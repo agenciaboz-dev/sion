@@ -8,6 +8,7 @@ import { Advert } from '../../components/Advert';
 import { HowWorks } from '../../components/HowWorks';
 import { Simulator } from '../../components/Simulator';
 import { Background } from '../../components/Background';
+import { WhoGets } from '../../components/WhoGets';
 
 const Home = () => {
 
@@ -51,6 +52,7 @@ const Home = () => {
                 <Advert />
                 <HowWorks />
                 <Simulator />
+                <WhoGets />
             </div>
         </section>
     )
