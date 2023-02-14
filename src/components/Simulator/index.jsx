@@ -1,9 +1,32 @@
+import MaskedInput from 'react-text-mask';
+import { useCallback, useEffect, useState } from 'react';
 import ReactSlider from 'react-slider';
 import { Benefits } from './Benefits';
 import './style.scss';
+import { createNumberMask } from 'text-mask-addons';
 
 export const Simulator = () => {
-    
+
+    const [spent, setSpent] = useState(0)
+
+    const currencyMask = createNumberMask({
+        prefix: 'R$ ',
+        suffix: '',
+        includeThousandsSeparator: true,
+        thousandsSeparatorSymbol: '.',
+        allowDecimal: true,
+        decimalSymbol: ',',
+        decimalLimit: 2,
+        allowNegative: false,
+        allowLeadingZeroes: false,
+    })
+
+    const getSpentNumber = useCallback(() => {
+        const number = spent ? spent.split('R$ ')[1].replaceAll('.', '').replaceAll(',', '.') : 0
+
+        return +number
+    }, [spent])
+
     return (
         <div className='Simulator-Component' >
             <div className="left-container">
@@ -21,12 +44,20 @@ export const Simulator = () => {
                 </div>
                 <div className="input-container">
                     <label htmlFor="spent">Gasto mensal</label>
-                    <input type="text" id='spent' />
+                    <MaskedInput id='spent' 
+                        mask={currencyMask}
+                        guide={false}
+                        value={spent}
+                        onChange={event => setSpent(event.target.value)}
+                    />
                 </div>
                 <ReactSlider
                     className="horizontal-slider"
                     thumbClassName="slider-thumb"
                     trackClassName="slider-track"
+                    max={1000000}
+                    value={typeof spent === 'number' ? spent : getSpentNumber()}
+                    onChange={value => setSpent(value)}
                 />
 
                 <button>Calcular</button>
