@@ -6,6 +6,7 @@ import { api } from '../../api'
 import './style.scss';
 import { useNavigate } from 'react-router-dom';
 import { Header } from '../../components/Header';
+import { Advert } from '../../components/Advert';
 // import { Membro } from '../../contexts/Membro';
 
 const Home = () => {
@@ -46,7 +47,7 @@ const Home = () => {
             <LoadingScreen loading={loading}/>
             <Header />
             <div className="main-container">
-                <h1>sion</h1>
+                <Advert />
             </div>
         </section>
     )

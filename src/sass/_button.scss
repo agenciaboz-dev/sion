@@ -1,15 +1,15 @@
 @import './colors';
 
-.default-button {
+button {
     background-color: $primary-color;
-    border-radius: 5vw;
     height: 3.25vw;
+    padding: 1vw;
     border: none;
     color: white;
     transition: 0.3s;
     cursor: pointer;
 }
 
-.default-button:hover {
-    background-color: $primary-color-dark;
+button:hover {
+    background-color: darken($primary-color, 10%);
 }

@@ -12,8 +12,5 @@ $background-color: #F3F3F3;
 :export {
     background: $background-color;
     primary: $primary-color;
-    primary-dark: $primary-color-dark;
-    primary-text: $primary-text-color;
-    secondary-text: $secondary-text-color;
-    line: $line-color;
+    text: $text-color;
 }
