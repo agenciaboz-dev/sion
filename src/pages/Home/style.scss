@@ -6,4 +6,8 @@
     width: 100vw;
     display: flex;
     flex-direction: column;
+
+    .main-container {
+        flex-direction: column;
+    }
 }

@@ -7,6 +7,7 @@ import './style.scss';
 import { useNavigate } from 'react-router-dom';
 import { Header } from '../../components/Header';
 import { Advert } from '../../components/Advert';
+import { HowWorks } from '../../components/HowWorks';
 // import { Membro } from '../../contexts/Membro';
 
 const Home = () => {
@@ -48,6 +49,7 @@ const Home = () => {
             <Header />
             <div className="main-container">
                 <Advert />
+                <HowWorks />
             </div>
         </section>
     )
