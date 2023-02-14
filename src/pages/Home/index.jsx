@@ -9,7 +9,7 @@ import { Header } from '../../components/Header';
 import { Advert } from '../../components/Advert';
 import { HowWorks } from '../../components/HowWorks';
 import { Simulator } from '../../components/Simulator';
-// import { Membro } from '../../contexts/Membro';
+import { Background } from '../../components/Background';
 
 const Home = () => {
 
@@ -46,6 +46,7 @@ const Home = () => {
 
     return (
         <section className="home-page">
+            <Background />
             <LoadingScreen loading={loading}/>
             <Header />
             <div className="main-container">

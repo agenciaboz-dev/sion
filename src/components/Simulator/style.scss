@@ -20,6 +20,7 @@
         justify-content: space-between;
         padding: 3vw;
         padding-bottom: 1.5vw;
+
     }
 }
 
@@ -33,4 +34,31 @@
     svg {
         filter: invert(1);
     }
+}
+
+.horizontal-slider {
+    display: flex;
+    align-items: center;
+}
+
+.slider-track {
+    background-color: white;
+    height: 1vw;
+    border: 1px solid black;
+}
+
+.slider-track.slider-track-0 {
+    background: $primary-color;
+  }
+
+.slider-thumb {
+    background: $primary-color;
+    height: 1.7vw;
+    width: 0.6vw;
+    cursor: pointer;
+    position: absolute;
+    z-index: 100;
+    border-radius: 20%;
+    box-shadow: 0 0 2px 0 rgb(0, 0, 0 / 44%);
+    font-size: 0.8vw;
 }

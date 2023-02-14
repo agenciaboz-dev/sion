@@ -1,3 +1,4 @@
+import ReactSlider from 'react-slider';
 import { Benefits } from './Benefits';
 import './style.scss';
 
@@ -14,7 +15,7 @@ export const Simulator = () => {
                 <h2>Simulador de Economia</h2>
                 <div className="input-container">
                     <label htmlFor="company">Distribuidora</label>
-                    <select name="company" id="company">
+                    <select as='select' name="company" id="company">
                         <option value="copel">Copel</option>
                     </select>
                 </div>
@@ -22,6 +23,11 @@ export const Simulator = () => {
                     <label htmlFor="spent">Gasto mensal</label>
                     <input type="text" id='spent' />
                 </div>
+                <ReactSlider
+                    className="horizontal-slider"
+                    thumbClassName="slider-thumb"
+                    trackClassName="slider-track"
+                />
 
                 <button>Calcular</button>
             </div>
