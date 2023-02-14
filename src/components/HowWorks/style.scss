@@ -8,7 +8,9 @@
     color: $text-color;
 
     hr {
-        height: 3vw;
+        height: 2vw;
+        border: none;
+        border-left: 1px solid $text-color;
     }
 }
 
