@@ -10,12 +10,18 @@
         gap: 0.5vw;
 
         p {
-            color: white!important;
+            // color: white!important;
             padding: 0.5vw;
         }
         
         .menu-title {
+            // color: white!important;
+            padding: 0.5vw;
+            display: flex;
             cursor: pointer;
+            text-decoration: none;
+            color: $text-color;
+            align-items: center;
         }
 
         .menu-title:hover {
