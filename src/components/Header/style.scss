@@ -1,7 +1,17 @@
 @import '/src/sass/colors';
 
 .Header-Component {
+    flex-direction: column;
+    align-items: center;
     align-self: center;
-    gap: 1vw;
-    margin: 2vw
+    margin: 2vw;
+    
+    .menus-container {
+        gap: 1vw;
+        
+        .menu-title {
+            cursor: pointer;
+        }
+    }
+
 }
