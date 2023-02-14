@@ -1,0 +1,19 @@
+$background-color: #E4E4E4;
+$toolbar-color: #F5F5F5;
+$primary-color: #0C6397;
+$primary-color-dark: #094a6f;
+$title-color: #959595;
+$primary-text-color: #8D8D8D;
+$secondary-text-color: #6B6B6B;
+$line-color: #707070;
+$etiquetinha-publico: rgba(16, 141, 98, 0.5);
+$etiquetinha-privado: rgba(24, 16, 141, 0.5);
+
+:export {
+    background: $background-color;
+    primary: $primary-color;
+    primary-dark: $primary-color-dark;
+    primary-text: $primary-text-color;
+    secondary-text: $secondary-text-color;
+    line: $line-color;
+}

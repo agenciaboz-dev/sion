@@ -1,0 +1,93 @@
+@font-face {
+    font-family: Montserrats;
+    src: url("../fonts/Montserrat-Regular.otf") ;
+}
+
+@font-face {
+    font-family: Montserrats;
+    src: url("../fonts/Montserrat-SemiBold.otf") ;
+    font-weight: bold;
+}
+
+@import './colors';
+
+/* @font-face {
+    font-family: Montserrats;
+    src: url("fonts/Montserrat-Bold.otf") ;
+    font-weight: bold;
+} */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Montserrats;
+}
+
+.title {
+    color: $title-color;
+}
+
+p {
+    color: $primary-text-color;
+}
+
+.fadeOut {
+    opacity:0;
+    width:0;
+    height:0;
+    transition-property: width, height, opacity;
+    transition-delay: 0s;
+    transition-duration: 0.3s;
+
+}
+.fadeIn {
+    opacity:1;
+    width:auto;
+    height:auto;
+    transition-property: width, height, opacity;
+    transition-delay: 0.3s;
+    transition-duration: 0.3s;
+
+}
+
+section {
+    display: contents;
+}
+
+div {
+    display: flex;
+}
+
+img {
+    object-fit: contain;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: darken($background-color, 20);
+    opacity: 1; /* Firefox */
+}
+  
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+/* box-shadow: inset 0 0 5px grey; */
+    border-radius: 10px;
+    margin: 1.5vw;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(203, 203, 203);
+    border-radius: 10px;
+}
+
+/* Corner */
+::-webkit-scrollbar-corner {
+    display: none;
+}

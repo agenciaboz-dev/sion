@@ -1,0 +1,10 @@
+@import './colors';
+
+.default-input {
+    border-radius: 5vw;
+    border: none;
+    outline: none;
+    background-color: $background-color;
+    height: 3.25vw;
+    padding: 0 1vw;
+}
