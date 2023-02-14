@@ -5,6 +5,7 @@ import { LoadingScreen } from '../../components/LoadingScreen';
 import { api } from '../../api'
 import './style.scss';
 import { useNavigate } from 'react-router-dom';
+import { Header } from '../../components/Header';
 // import { Membro } from '../../contexts/Membro';
 
 const Home = () => {
@@ -43,6 +44,7 @@ const Home = () => {
     return (
         <section className="home-page">
             <LoadingScreen loading={loading}/>
+            <Header />
             <div className="main-container">
                 <h1>sion</h1>
             </div>
