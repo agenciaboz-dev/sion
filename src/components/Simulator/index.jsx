@@ -7,7 +7,7 @@ import { createNumberMask } from 'text-mask-addons';
 
 export const Simulator = () => {
 
-    const [spent, setSpent] = useState(0)
+    const [spent, setSpent] = useState('')
 
     const currencyMask = createNumberMask({
         prefix: 'R$ ',
@@ -49,12 +49,14 @@ export const Simulator = () => {
                         guide={false}
                         value={spent}
                         onChange={event => setSpent(event.target.value)}
+                        placeholder={'R$ '}
                     />
                 </div>
                 <ReactSlider
                     className="horizontal-slider"
                     thumbClassName="slider-thumb"
                     trackClassName="slider-track"
+                    min={1}
                     max={1000000}
                     value={typeof spent === 'number' ? spent : getSpentNumber()}
                     onChange={value => setSpent(value)}
