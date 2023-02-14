@@ -7,10 +7,19 @@
     margin-top: 2vw;
     
     .menus-container {
-        gap: 1vw;
+        gap: 0.5vw;
+
+        p {
+            color: white!important;
+            padding: 0.5vw;
+        }
         
         .menu-title {
             cursor: pointer;
+        }
+
+        .menu-title:hover {
+            background-color: $primary-color;
         }
     }
 
