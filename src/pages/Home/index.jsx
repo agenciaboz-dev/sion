@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { Header } from '../../components/Header';
 import { Advert } from '../../components/Advert';
 import { HowWorks } from '../../components/HowWorks';
+import { Simulator } from '../../components/Simulator';
 // import { Membro } from '../../contexts/Membro';
 
 const Home = () => {
@@ -50,6 +51,7 @@ const Home = () => {
             <div className="main-container">
                 <Advert />
                 <HowWorks />
+                <Simulator />
             </div>
         </section>
     )
