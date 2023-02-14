@@ -7,33 +7,23 @@ export const useHeaderMenus = () => {
         },
         {
             id: 1,
-            title: 'Quem somos',
-            name: 'about',
+            title: 'Como Funciona',
+            name: 'how',
         },
         {
             id: 2,
-            title: 'Para sua empresa',
-            name: 'for_your_company',
+            title: 'Simulador',
+            name: 'simulator',
         },
         {
             id: 3,
-            title: 'Blog',
-            name: 'blog',
+            title: 'Quem Somos',
+            name: 'about',
         },
         {
             id: 4,
-            title: 'Contato',
-            name: 'contact',
-        },
-        {
-            id: 5,
-            title: 'Parceiros',
-            name: 'partners',
-        },
-        {
-            id: 6,
-            title: 'Economize Agora',
-            name: 'save_now',
+            title: 'FAQ',
+            name: 'faq',
         },
     ]
 
