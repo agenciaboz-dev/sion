@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import { Input } from 'react-burgos';
-import { Form } from 'react-burgos';
 import { LoadingScreen } from '../../components/LoadingScreen';
 import { api } from '../../api'
 import './style.scss';
