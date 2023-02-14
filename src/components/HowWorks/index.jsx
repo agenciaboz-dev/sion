@@ -4,7 +4,7 @@ import './style.scss';
 export const HowWorks = () => {
     
     return (
-        <div className='HowWorks-Component' >
+        <div className='HowWorks-Component' id='how' >
             <h1>Como funciona?</h1>
 
             <hr />

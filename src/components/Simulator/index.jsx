@@ -28,7 +28,7 @@ export const Simulator = () => {
     }, [spent])
 
     return (
-        <div className='Simulator-Component' >
+        <div className='Simulator-Component' id='simulator' >
             <div className="left-container">
                 <Benefits title={'Economia'} text='Receba seus créditos de energia e economize em até 15% na sua fatura' />
                 <Benefits title={'Sem investimento'} text='Sem necessidade de alteração física no seu negócio ou investimento' />
