@@ -1,0 +1,86 @@
+@import '/src/sass/colors';
+
+.Footer-Component {
+    width: 100%;
+    background-color: $primary-color;
+    flex-direction: column;
+    padding: 2vw 10vw;
+
+    .top-content {
+        padding: 1.5vw 0;
+
+        .info {
+            flex-direction: column;
+            border-right: 1px solid rgba(255, 255, 255, 0.25);
+            padding-right: 10vw;
+            
+            svg {
+                width: 15vw;
+                height: auto;
+                margin-left: -1.5vw;
+            }
+
+            .address {
+                flex-direction: column;
+                color: rgba(255, 255, 255, 0.5);
+            }
+
+            .contact {
+                flex-direction: column;
+                color: white;
+                font-weight: bold;
+                margin-top: 1vw;
+            }
+        }
+
+        .links {
+            flex-direction: column;
+            justify-content: space-between;
+            width: 50%;
+            padding-left: 7vw;
+
+            .menu-title {
+                text-decoration: none;
+                color: white;
+            }
+        }
+
+        .news {
+            flex-direction: column;
+            color: white;
+            align-self: center;
+            gap: 1vw;
+
+            .title {
+                font-weight: bold;
+            }
+
+            .email-container {
+                height: 2vw;
+
+                input {
+                    width: 70%;
+                }
+                button {
+                    width: 30%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: darken($primary-color, 15%);
+                }
+            }
+        }
+    }
+
+    .bottom-content {
+        width: 100%;
+        justify-content: space-between;
+        color: rgba(255, 255, 255, 0.5);
+        border-top: 1px solid rgba(255, 255, 255, 0.25);
+        padding: 1vw 0;
+
+        .icons {
+            gap: 2vw;
+        }
+    }
+}

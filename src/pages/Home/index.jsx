@@ -12,6 +12,7 @@ import { WhoGets } from '../../components/WhoGets';
 import { About } from '../../components/About';
 import { Faq } from '../../components/Faq';
 import useMeasure from 'react-use-measure';
+import { Footer } from '../../components/Footer';
 
 const Home = () => {
 
@@ -62,6 +63,7 @@ const Home = () => {
                 <About />
                 <Faq />
             </div>
+            <Footer />
         </section>
     )
 }
