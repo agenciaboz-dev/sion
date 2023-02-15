@@ -51,7 +51,7 @@ const Home = () => {
     const [loading, setLoading] = useState(false)
 
     return (
-        <section className="home-page">
+        <section className="home-page" id='home'>
             <Background />
             <LoadingScreen loading={loading}/>
             <Header />

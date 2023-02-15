@@ -8,7 +8,7 @@ export const Header = () => {
     const menus = useHeaderMenus()
     
     return (
-        <div className='Header-Component' id='home' >
+        <div className='Header-Component'>
             <div className="menus-container">
                 {menus.map(menu => {
                     return (
