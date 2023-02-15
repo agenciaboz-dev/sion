@@ -1,3 +1,4 @@
+import AnchorLink from 'react-anchor-link-smooth-scroll';
 import './style.scss';
 
 export const Advert = ({ innerRef }) => {
@@ -10,7 +11,7 @@ export const Advert = ({ innerRef }) => {
             <p>Renovável</p>
             <div className="buttons">
                 <button>Quero economizar!</button>
-                <button>Saiba como funciona</button>
+                <AnchorLink href={'#how'}className='menu-title'>Saiba como funciona</AnchorLink>
             </div>
         </div>
     )

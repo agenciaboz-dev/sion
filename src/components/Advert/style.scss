@@ -22,5 +22,25 @@
 
     .buttons {
         gap: 1vw;
+
+        a {
+            display: flex;
+            text-decoration: none;
+            color: white;
+            align-items: center;
+            justify-content: center;
+            background-color: $primary-color;
+            font-size: 0.9vw;
+            font-weight: 700;
+            padding: 0.7vw 3vw;
+            border: none;
+            color: white;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        a:hover {
+            background-color: darken($primary-color, 10%);
+        }
     }
 }
