@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { LoadingScreen } from '../../components/LoadingScreen';
 import { api } from '../../api'
 import './style.scss';
@@ -10,8 +10,11 @@ import { Simulator } from '../../components/Simulator';
 import { Background } from '../../components/Background';
 import { WhoGets } from '../../components/WhoGets';
 import { About } from '../../components/About';
+import { Faq } from '../../components/Faq';
 
 const Home = () => {
+
+    const mainContainerRef = useRef(null)
 
     const navigate = useNavigate();
     // const [loginfeedback, setLoginfeedback] = useState('');
@@ -49,12 +52,13 @@ const Home = () => {
             <Background />
             <LoadingScreen loading={loading}/>
             <Header />
-            <div className="main-container">
+            <div className="main-container" ref={mainContainerRef}>
                 <Advert />
-                <HowWorks />
+                <HowWorks mainContainerRef={mainContainerRef} />
                 <Simulator />
                 <WhoGets />
                 <About />
+                <Faq />
             </div>
         </section>
     )
