@@ -9,8 +9,7 @@
     align-items: center;
     gap: 2vw;
     color: $text-color;
-    // background-color: white;
-    // transform: skew(-25deg);
+    padding-bottom: 3.8vw;
 
     hr {
         height: 2vw;
@@ -34,7 +33,7 @@
         width: 100vw;
         z-index: -1;
 
-        transform: skew(0, -6.8deg);
+        transform: skew(0, -12deg);
     }
 
     .blue-background {
@@ -43,10 +42,10 @@
         left: -10vw;
         top: -3vw;
         width: 100vw;
-        height: 20vw;
+        height: 25vw;
         z-index: -1;
 
-        transform: skew(0, 6.8deg);
+        transform: skew(0, 12deg);
     }
 }
 
@@ -55,6 +54,10 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+
+    h3 {
+        width: 40%;
+    }
 
     .left {
         width: 50%;

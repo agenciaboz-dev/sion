@@ -4,9 +4,9 @@ export const HowItem = ({ right, title, text }) => {
     
     return (
         <div className='HowItem-Component' >
-            <div className="left">{right ? <h2>{title}</h2> : <p>{text}</p>}</div>
+            <div className="left">{right ? <h3>{title}</h3> : <p>{text}</p>}</div>
             <Icon />
-            <div className="right">{right ? <p>{text}</p> : <h2>{title}</h2>}</div>
+            <div className="right">{right ? <p>{text}</p> : <h3>{title}</h3>}</div>
         </div>
     )
 }
