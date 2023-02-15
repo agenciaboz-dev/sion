@@ -33,6 +33,10 @@
         }
     }
 
+    .question:hover {
+        transform: scale(1.005);
+    }
+
     .Collapsible {
         display: flex;
         flex-direction: column;
