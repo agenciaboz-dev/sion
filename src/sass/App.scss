@@ -1,13 +1,19 @@
 @font-face {
-    font-family: Montserrats;
-    src: url("../fonts/Montserrat-Regular.otf") ;
+    font-family: Poppins;
+    src: url("../fonts/Poppins-Regular.ttf") ;
 }
 
 @font-face {
-    font-family: Montserrats;
-    src: url("../fonts/Montserrat-SemiBold.otf") ;
+    font-family: Poppins;
+    src: url("../fonts/Poppins-Bold.ttf") ;
     font-weight: bold;
 }
+
+// @font-face {
+//     font-family: Poppins;
+//     src: url("../fonts/Poppins-SemiBold.otf") ;
+//     font-weight: bold;
+// }
 
 @import './colors';
 
@@ -21,7 +27,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Montserrats;
+    font-family: Poppins;
 }
 
 .fadeOut {
