@@ -1,5 +1,11 @@
 @import '/src/sass/colors';
 
 .Background-Component {
-    
+    position: absolute;    
+    z-index: -1;
+
+    img {
+        width: 100vw;
+        object-fit: contain;
+    }
 }
