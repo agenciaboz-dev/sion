@@ -11,6 +11,10 @@
     color: $text-color;
     padding-bottom: 3.8vw;
 
+    h1 {
+        color: $text-color;
+    }
+
     hr {
         height: 2vw;
         border: none;
@@ -57,6 +61,11 @@
 
     h3 {
         width: 40%;
+        color: $text-color;
+    }
+
+    p {
+        font-size: 14px;
     }
 
     .left {

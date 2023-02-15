@@ -7,6 +7,12 @@
     align-items: center;
     width: 100%;
 
+    h1 {
+        font-size: 32px;
+        margin-bottom: 2vw;
+        font-weight: normal;
+    }
+
     .main-container {
         margin-top: 3vw;
         flex-direction: row;
@@ -23,7 +29,7 @@
         background-color: white;
         left: -10vw;
         top: -7vw;
-        height: 19vw;
+        height: 22vw;
         width: 100vw;
         z-index: -1;
 
@@ -36,7 +42,7 @@
         right: -10vw;
         top: -3vw;
         width: 39vw;
-        height: 20vw;
+        height: 23vw;
         z-index: -1;
 
         transform: skew(0, 12deg);

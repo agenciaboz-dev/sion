@@ -5,15 +5,24 @@
     margin-top: 5vw;
     justify-content: space-between;
 
-    img {
+    .img-container {
+        flex-direction: column;
         flex: 0.4;
-        box-shadow: 0px 9px 15px 0px #00000040;
+        font-weight: bold;
 
+        img {
+            box-shadow: 0px 9px 15px 0px #00000040;
+            height: 20vw;
+            object-fit: cover;
+    
+        }
     }
+
 
     .main-container {
         flex-direction: column;
         justify-content: space-between;
         flex: 0.5;
+        color: $text-color;
     }
 }
