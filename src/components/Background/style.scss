@@ -8,7 +8,8 @@
         height: 100%;
         width: 100%;
         object-fit: contain;
-        filter: saturate(3);
+        margin-top: -6.5vw;
+        filter: saturate(3) contrast(1) brightness(0.7);
     }
 
 }
