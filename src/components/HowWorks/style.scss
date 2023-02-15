@@ -1,12 +1,16 @@
 @import '/src/sass/colors';
 
+.HowWorks-Component::after {
+}
+
 .HowWorks-Component {
     position: relative;
     flex-direction: column;
-    background-color: white;
     align-items: center;
     gap: 2vw;
     color: $text-color;
+    // background-color: white;
+    // transform: skew(-25deg);
 
     hr {
         height: 2vw;
@@ -17,10 +21,32 @@
     .background-container {
         position: absolute;
         left: -10vw;
-        z-index: -1;
+        z-index: -2;
         width: 100vw;
         background-color: $background-color;
-        border: 1px solid green;
+    }
+
+    .white-background {
+        position: absolute;
+        background-color: white;
+        left: -10vw;
+        top: -3vw;
+        width: 100vw;
+        z-index: -1;
+
+        transform: skew(0, -6.8deg);
+    }
+
+    .blue-background {
+        position: absolute;
+        background-color: $primary-color;
+        left: -10vw;
+        top: -3vw;
+        width: 100vw;
+        height: 20vw;
+        z-index: -1;
+
+        transform: skew(0, 6.8deg);
     }
 }
 
