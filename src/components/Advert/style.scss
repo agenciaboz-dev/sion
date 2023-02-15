@@ -1,6 +1,7 @@
 @import '/src/sass/colors';
 
 .Advert-Component {
+    margin-top: -1.5vw;
     flex-direction: column;
     align-items: center;
     color: white;
@@ -9,6 +10,7 @@
 
     h1 {
         font-size: 5vw;
+        margin-bottom: -1vw;
     }
 
     h2 {
