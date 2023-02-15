@@ -8,6 +8,7 @@ import { createNumberMask } from 'text-mask-addons';
 export const Simulator = () => {
 
     const [spent, setSpent] = useState('')
+    const [saving, setSaving] = useState('')
 
     const currencyMask = createNumberMask({
         prefix: 'R$ ',
@@ -61,6 +62,16 @@ export const Simulator = () => {
                     value={typeof spent === 'number' ? spent : getSpentNumber()}
                     onChange={value => setSpent(value)}
                 />
+                <div className="input-container">
+                    <label htmlFor="saving">Economia anual</label>
+                    <MaskedInput id='saving' 
+                        mask={currencyMask}
+                        guide={false}
+                        value={saving}
+                        onChange={event => setSaving(event.target.value)}
+                        placeholder={'R$ '}
+                    />
+                </div>
 
                 <button>Calcular</button>
             </div>
