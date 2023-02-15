@@ -1,6 +1,7 @@
 @import '/src/sass/colors';
 
 .HowWorks-Component {
+    position: relative;
     flex-direction: column;
     background-color: $background-color;
     align-items: center;
@@ -11,6 +12,15 @@
         height: 2vw;
         border: none;
         border-left: 1px solid $text-color;
+    }
+
+    .background-container {
+        position: absolute;
+        left: -10vw;
+        z-index: -1;
+        width: 100vw;
+        background-color: $background-color;
+        border: 1px solid green;
     }
 }
 

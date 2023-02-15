@@ -11,10 +11,12 @@ import { Background } from '../../components/Background';
 import { WhoGets } from '../../components/WhoGets';
 import { About } from '../../components/About';
 import { Faq } from '../../components/Faq';
+import useMeasure from 'react-use-measure';
 
 const Home = () => {
 
-    const mainContainerRef = useRef(null)
+    const [main_container_ref, main_container_dimensions] = useMeasure()
+    const [advert_ref, advert_dimensions] = useMeasure()
 
     const navigate = useNavigate();
     // const [loginfeedback, setLoginfeedback] = useState('');
@@ -52,9 +54,9 @@ const Home = () => {
             <Background />
             <LoadingScreen loading={loading}/>
             <Header />
-            <div className="main-container" ref={mainContainerRef}>
-                <Advert />
-                <HowWorks mainContainerRef={mainContainerRef} />
+            <div className="main-container" ref={main_container_ref}>
+                <Advert innerRef={advert_ref} />
+                <HowWorks main_container_height={main_container_dimensions.height} advert_height={advert_dimensions.height} />
                 <Simulator />
                 <WhoGets />
                 <About />
