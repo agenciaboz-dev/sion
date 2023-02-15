@@ -4,6 +4,8 @@
     height: 30vw;
     width: 100%;
     align-self: center;
+    box-shadow: 0px 9px 15px 0px #00000040;
+
 
     .left-container {
         flex: 0.6;
@@ -15,7 +17,7 @@
 
     .right-container {
         flex: 0.4;
-        border: 1px solid red;
+        background-color: white;
         flex-direction: column;
         justify-content: space-between;
         padding: 3vw;
