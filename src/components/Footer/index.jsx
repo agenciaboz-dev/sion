@@ -4,10 +4,27 @@ import {ReactComponent as InstagramIcon} from '../../images/instagram.svg';
 import {ReactComponent as FacebookIcon} from '../../images/facebook.svg';
 import { useHeaderMenus } from '../../hooks/useHeaderMenus';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
+import { useCallback, useState } from 'react';
+import { api } from '../../api';
 
 export const Footer = () => {
 
     const menus = useHeaderMenus()
+
+    const [email, setEmail] = useState('')
+
+    const onMailSignUp = useCallback(() => {
+        api.post('/signup', {email, news_signup: true})
+        .then(response => {
+            console.log(response.data)
+
+            if (response.data.insertId) {
+                alert('e-mail cadastrado')
+            } else {
+                alert('erro desconhecido')
+            }
+        })
+    }, [email])
     
     return (
         <div className='Footer-Component' >
@@ -36,8 +53,8 @@ export const Footer = () => {
                     <p className="title">Receba notícias</p>
                     <p>orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     <div className="email-container">
-                        <input type="email" placeholder='Seu e-mail' />
-                        <button><span style={{whiteSpace: 'nowrap'}}>Inscrever-se</span></button>
+                        <input type="email" placeholder='Seu e-mail' value={email} onChange={event => setEmail(event.target.value)}/>
+                        <button onClick={onMailSignUp}><span style={{whiteSpace: 'nowrap'}}>Inscrever-se</span></button>
                     </div>
                 </div>
             </div>
