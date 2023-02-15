@@ -1,0 +1,17 @@
+@import '/src/sass/colors';
+
+.About-Component {
+    align-self: center;
+    margin-top: 5vw;
+    justify-content: space-between;
+
+    img {
+        flex: 0.4;
+    }
+
+    .main-container {
+        flex-direction: column;
+        justify-content: space-between;
+        flex: 0.5;
+    }
+}

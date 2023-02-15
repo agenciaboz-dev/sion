@@ -9,6 +9,7 @@ import { HowWorks } from '../../components/HowWorks';
 import { Simulator } from '../../components/Simulator';
 import { Background } from '../../components/Background';
 import { WhoGets } from '../../components/WhoGets';
+import { About } from '../../components/About';
 
 const Home = () => {
 
@@ -53,6 +54,7 @@ const Home = () => {
                 <HowWorks />
                 <Simulator />
                 <WhoGets />
+                <About />
             </div>
         </section>
     )
