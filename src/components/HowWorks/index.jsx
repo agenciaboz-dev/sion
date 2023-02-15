@@ -13,7 +13,7 @@ export const HowWorks = ({ main_container_height, advert_height }) => {
 
             </div>
             <div className="blue-background"></div>
-            <div className="white-background" style={{height: height * 1.2}}></div>
+            <div className="white-background" style={{height: height * 1.1}}></div>
             <h1>Como funciona?</h1>
 
             <hr />
