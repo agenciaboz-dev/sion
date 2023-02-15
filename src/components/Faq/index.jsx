@@ -15,7 +15,7 @@ export const Faq = () => {
                 )
             })}
             <div className="contact">
-                <h2>Ficou com mais alguma dúvida? Fale com um dos nossos assessores</h2>
+                <h4>Ficou com mais alguma dúvida? Fale com um dos nossos assessores</h4>
                 <button>Entrar em contato</button>
             </div>
         </div>
