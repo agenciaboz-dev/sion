@@ -3,7 +3,7 @@ import './style.scss';
 export const About = () => {
     
     return (
-        <div className='About-Component' >
+        <div className='About-Component' id='about' >
             <img src="/images/about_building.webp" alt="" />
             <div className="main-container">
                 <h2>Quem somos</h2>
