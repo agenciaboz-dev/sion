@@ -27,6 +27,11 @@
         gap: 1vw;
     }
 
+    .Collapsible {
+        display: flex;
+        flex-direction: column;
+    }
+
     p {
         padding-left: 3vw;
     }
