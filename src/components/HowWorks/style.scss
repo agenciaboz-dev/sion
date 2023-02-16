@@ -10,6 +10,7 @@
     gap: 2vw;
     color: $text-color;
     padding-bottom: 3.8vw;
+    padding-top: 4.5vw;
 
     h1 {
         color: $text-color;
@@ -19,6 +20,7 @@
         height: 2vw;
         border: none;
         border-left: 1px solid $text-color;
+        opacity: 0.7;
     }
 
     .background-container {
@@ -33,7 +35,7 @@
         position: absolute;
         background-color: white;
         left: -10vw;
-        top: -3vw;
+        top: 0.75vw;
         width: 100vw;
         z-index: -1;
 
@@ -44,7 +46,7 @@
         position: absolute;
         background-color: $primary-color;
         left: -10vw;
-        top: -3vw;
+        top: 1vw;
         width: 100vw;
         height: 25vw;
         z-index: -1;
@@ -66,6 +68,7 @@
 
     p {
         font-size: 14px;
+        opacity: 0.7;
     }
 
     .left {

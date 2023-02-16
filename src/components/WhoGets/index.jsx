@@ -24,7 +24,7 @@ export const WhoGets = () => {
                         )
                     })}
                 </div>
-                <Arrow style={{transform: 'scale(-1, 1)', cursor: 'pointer'}} />
+                <Arrow style={{transform: 'scale(-1, 1)', cursor: 'pointer', filter: 'invert(94%) sepia(100%) saturate(1%) hue-rotate(87deg) brightness(104%) contrast(102%)'}} />
             </div>
         </div>
     )
