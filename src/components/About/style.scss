@@ -1,9 +1,14 @@
 @import '/src/sass/colors';
 
 .About-Component {
-    align-self: center;
     margin-top: 5vw;
     justify-content: space-between;
+    font-size: 1vw;
+
+    p {
+        color: $text-color;
+        font-weight: 500;
+    }
 
     .img-container {
         flex-direction: column;
@@ -14,10 +19,8 @@
             box-shadow: 0px 9px 15px 0px #00000040;
             height: 20vw;
             object-fit: cover;
-    
         }
     }
-
 
     .main-container {
         flex-direction: column;

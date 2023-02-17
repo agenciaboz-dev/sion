@@ -5,8 +5,7 @@
     z-index: -2;
     
     img {
-        height: 100%;
-        width: 100%;
+        width: 100vw;
         object-fit: contain;
         margin-top: -6.5vw;
         filter: saturate(3) contrast(1) brightness(0.6);
