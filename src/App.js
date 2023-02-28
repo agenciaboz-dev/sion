@@ -4,12 +4,14 @@ import './sass/App.scss';
 import './sass/_input.scss';
 import './sass/_button.scss';
 import { NotFound } from './pages/NotFound';
+import { Cadastro } from './pages/Cadastro';
 
 function App() {
   return (
     <BrowserRouter>
         <Routes>
                 <Route index element={<Home />} />
+                <Route path='/cadastro/*' element={<Cadastro />} />
                 <Route path='*' element={<NotFound />} />
         </Routes>
     </BrowserRouter>
