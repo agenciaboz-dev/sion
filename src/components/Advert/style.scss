@@ -6,20 +6,37 @@
     align-items: center;
     color: white;
     width: 100%;
-    gap: 1vw;
 
     h1 {
-        font-size: 6.5vw;
+        font-size: 6.25vw;
+        margin-top: -1vw;
         margin-bottom: -2vw;
     }
 
     h2 {
-        font-size: 1.8vw;
+        font-size: 1.6vw;
+        text-align: center;
+        margin-top: 2vw;
+        margin-bottom: 1vw;
+
+        span {
+            color: $yellow-text-color;
+        }
+    }
+
+    h3 {
+        font-size: 1.4vw;
+        color: $yellow-text-color;
     }
 
     p {
         font-size: 1vw;
         color: white;
+        margin-bottom: 1.5vw;
+    }
+
+    .shadow-text {
+        text-shadow: 2px 2px 2px #000000;
     }
 
     .buttons {
@@ -34,7 +51,6 @@
             background-color: $primary-color;
             font-size: 0.9vw;
             font-weight: 700;
-            padding: 0.4vw 3vw;
             border: none;
             color: white;
             transition: 0.3s;
@@ -43,6 +59,10 @@
 
         a:hover {
             background-color: darken($primary-color, 10%);
+        }
+
+        * {
+            padding: 0.4vw 8vw;
         }
     }
 }
