@@ -73,7 +73,7 @@ export const Simulator = () => {
                     />
                 </div>
 
-                <button>Calcular</button>
+                <button className='simulator-calculate-button'>Calcular</button>
             </div>
         </div>
     )
