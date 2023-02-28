@@ -4,7 +4,7 @@ import { BackgroundContainer } from '../../components/BackgroundContainer';
 import { Progress } from './Progress';
 import {ReactComponent as ChoseIcon} from '../../images/check.svg'
 import './style.scss';
-import { NotFound } from '../NotFound';
+import { Formulario } from './Formulario';
 
 
 export const Cadastro = () => {
@@ -53,7 +53,7 @@ export const Cadastro = () => {
                     <div className="content">
                     <Routes>
                             <Route index element={<PessoaComponent />} />
-                            <Route path='/formulario' element={<NotFound />} />
+                            <Route path='/formulario' element={<Formulario />} />
                     </Routes>
                     </div>
                 </div>

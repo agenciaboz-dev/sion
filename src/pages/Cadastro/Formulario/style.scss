@@ -1,0 +1,22 @@
+@import '/src/sass/colors';
+
+.Formulario-Component {
+    width: 100%;
+    justify-content: space-between;
+
+    form {
+        display: flex;
+        width: 100%;
+
+        .input-container {
+            flex: 0.45;
+            flex-direction: column;
+
+            button {
+                width: 10vw;
+                height: 3vw;
+                margin-top: 5vw;
+            }
+        }
+    }
+}
