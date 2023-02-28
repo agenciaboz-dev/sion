@@ -5,7 +5,6 @@
     align-items: center;
     background-color: white;
     // box-shadow: 0px 8px 16px 0px #00000040;
-    padding: 2vw;
     margin-bottom: -2vw;
     
     button {
@@ -26,6 +25,36 @@
 
     h4 {
         font-size: 1.1vw;
+    }
+
+    .contact-form {
+        width: 100%;
+        background-color: white;
+        justify-content: space-between;
+
+        > * {
+            width: 50%;
+        }
+
+        form {
+            margin: 2vw;
+        }
+
+        .info {
+            padding: 2vw;
+
+            h1 {
+                color: white;
+            }
+        }
+
+        .contact-send-button {
+            font-weight: 500;
+            font-size: 1.2vw;
+            padding: 0;
+            width: 10vw;
+            margin-top: 1vw;
+        }
     }
 }
 
