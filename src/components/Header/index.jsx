@@ -6,11 +6,9 @@ import './style.scss';
 import COLORS from '../../sass/_colors.scss'
 import { HeaderButton } from './HeaderButton';
 
-export const Header = () => {
+export const Header = ({ alternative, setAlternative }) => {
 
     const menus = useHeaderMenus()
-
-    const [alternative, setAlternative] = useState(false)
 
     const alternative_style = {
         backgroundColor: COLORS.primary,
