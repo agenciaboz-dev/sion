@@ -1,0 +1,17 @@
+@import '/src/sass/colors';
+
+.StickyHomeButton-Component {
+    position: sticky;
+    width: 5vw;
+    min-height: 5vw;
+    height: 5vw;
+    bottom: 1vw;
+    left: 92.5vw;
+    background-color: $primary-color;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+        transform: rotate(-90deg);
+    }
+}

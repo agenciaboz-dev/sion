@@ -14,9 +14,11 @@ import { Faq } from '../../components/Faq';
 import useMeasure from 'react-use-measure';
 import { Footer } from '../../components/Footer';
 import { Contact } from '../../components/Contact';
+import { StickyHomeButton } from '../../components/StickyHomeButton';
 
 const Home = () => {
 
+    const [stickyHeader, setstickyHeader] = useState(false)
     const [main_container_ref, main_container_dimensions] = useMeasure()
     const [advert_ref, advert_dimensions] = useMeasure()
 
@@ -55,7 +57,7 @@ const Home = () => {
         <section className="home-page" id='home'>
             <Background />
             <LoadingScreen loading={loading}/>
-            <Header />
+            <Header alternative={stickyHeader} setAlternative={setstickyHeader} />
             <div className="main-container" ref={main_container_ref}>
                 <Advert innerRef={advert_ref} />
                 <HowWorks main_container_height={main_container_dimensions.height} advert_height={advert_dimensions.height} />
@@ -65,6 +67,7 @@ const Home = () => {
                 <About />
                 <Contact />
             </div>
+            <StickyHomeButton show={stickyHeader} />
             <Footer />
         </section>
     )

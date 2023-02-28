@@ -1,0 +1,15 @@
+@import '/src/sass/colors';
+
+.NotFound-Page {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .main-container {
+        background-color: white;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 5vw;
+    }
+}
