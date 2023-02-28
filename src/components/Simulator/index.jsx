@@ -39,13 +39,13 @@ export const Simulator = () => {
                 <h2>Simulador de Economia</h2>
                 <div className="input-container">
                     <label htmlFor="company">Distribuidora</label>
-                    <select as='select' name="company" id="company">
+                    <select as='select' name="company" id="company" className='simulator-input'>
                         <option value="copel">Copel</option>
                     </select>
                 </div>
                 <div className="input-container">
                     <label htmlFor="spent">Gasto mensal</label>
-                    <MaskedInput id='spent' 
+                    <MaskedInput id='spent' className='simulator-input'
                         mask={currencyMask}
                         guide={false}
                         value={spent}
@@ -64,7 +64,7 @@ export const Simulator = () => {
                 />
                 <div className="input-container">
                     <label htmlFor="saving">Economia anual</label>
-                    <MaskedInput id='saving' 
+                    <MaskedInput id='saving' className='simulator-input'
                         mask={currencyMask}
                         guide={false}
                         value={saving}

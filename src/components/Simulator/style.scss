@@ -8,6 +8,18 @@
     margin-top: 1vw;
     margin-bottom: 11vw;
 
+    h2 {
+        font-size: 1.6vw;
+    }
+
+    label {
+        font-size: 1.1vw;
+    }
+
+    .simulator-input {
+        font-size: 1vw;
+    }
+
     .left-container {
         flex: 0.6;
         background-color: $primary-color;
