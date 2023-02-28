@@ -13,6 +13,7 @@ import { About } from '../../components/About';
 import { Faq } from '../../components/Faq';
 import useMeasure from 'react-use-measure';
 import { Footer } from '../../components/Footer';
+import { Contact } from '../../components/Contact';
 
 const Home = () => {
 
@@ -60,8 +61,9 @@ const Home = () => {
                 <HowWorks main_container_height={main_container_dimensions.height} advert_height={advert_dimensions.height} />
                 <Simulator />
                 <WhoGets />
-                <About />
                 <Faq />
+                <About />
+                <Contact />
             </div>
             <Footer />
         </section>
