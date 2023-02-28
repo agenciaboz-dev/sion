@@ -1,0 +1,51 @@
+@import '/src/sass/colors';
+
+.Cadastro-Page {
+
+    .main-container {
+        background-color: white;
+        flex-direction: column;
+        align-items: center;
+        width: 80vw;
+        padding: 3vw 2vw;
+    }
+
+    .content {
+        width: 100%;
+        padding-top: 5vw;
+    }
+
+    .pessoa-wrapper {
+        width: 100%;
+        justify-content: space-between;
+
+        .pessoa-container {
+            flex-direction: column;
+            border: 3px solid $primary-color;
+            flex: 0.45;
+            height: 25vw;
+            cursor: pointer;
+
+            .text-container {
+                flex: 0.65;
+                flex-direction: column;
+                padding: 2.5vw 2vw;
+            }
+
+            .chose-container {
+                flex: 0.35;
+                width: 100%;
+                background-color: $primary-color;
+                justify-content: center;
+                align-items: center;
+
+                .circle {
+                    border: 2px solid white;
+                    border-radius: 100%;
+                    height: 3vw;
+                    width: 3vw;
+                }
+            }
+        }
+    }
+}

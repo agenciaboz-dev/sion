@@ -1,0 +1,33 @@
+@import '/src/sass/colors';
+
+.Progress-Component {
+    position: relative;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+
+    .container {
+        width: 5vw;
+        background-color: white;
+        border: 0.2vw $primary-color solid;
+        flex: 0.28;
+        padding: 0.5vw;
+        justify-content: center;
+        color: $primary-color;
+        z-index: 2;
+    }
+
+    .progress-bar {
+        position: absolute;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+
+        .wrapper {
+            width: 100%;
+            border: 3px solid $primary-color;
+        }
+        
+    }
+
+}
