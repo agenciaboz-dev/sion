@@ -11,4 +11,13 @@
         width: 40%;
         padding: 0.5vw 0;
     }
+
+    .info {
+        flex-direction: column;
+        background-color: $primary-color;
+    }
+}
+
+.InputField-Component {
+    flex-direction: column;
 }
