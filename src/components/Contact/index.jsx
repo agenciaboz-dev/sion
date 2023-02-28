@@ -36,11 +36,11 @@ export const Contact = () => {
                 <Formik initialValues={initial_inputs} onSubmit={(values) => sendForm(values)}>
                     {({handleChange}) => (
                         <Form>
-                            <InputField id='name' title={'Nome'} handleChange={handleChange} />
-                            <InputField id='phone' title={'Telefone'} handleChange={handleChange} />
-                            <InputField id='email' title={'Email'} handleChange={handleChange} />
-                            <InputField id='message' title={'Mensagem'} handleChange={handleChange} />
-                            <button type='submit'>Enviar</button>
+                            <InputField className='contact-input' id='name' title={'Nome'} handleChange={handleChange} />
+                            <InputField className='contact-input' id='phone' title={'Telefone'} handleChange={handleChange} />
+                            <InputField className='contact-input' id='email' title={'Email'} handleChange={handleChange} />
+                            <InputField className='contact-input' id='message' title={'Mensagem'} handleChange={handleChange} />
+                            <button className='contact-send-button' type='submit'>Enviar</button>
                         </Form>
                     )}
                 </Formik>
