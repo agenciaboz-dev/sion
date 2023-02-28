@@ -4,7 +4,7 @@ export const Background = () => {
     
     return (
         <div className='Background-Component' >
-            <img src="/images/vista-da-cidade-de-nova-york-eua.webp" alt="" />
+            <img src="/images/bela-usina-de-energia-alternativa-com-paineis-solares.webp" alt="" />
         </div>
     )
 }
