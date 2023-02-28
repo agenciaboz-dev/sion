@@ -17,6 +17,11 @@
         flex-direction: column;
         background-color: $primary-color;
     }
+
+    .title {
+        width: 100%;
+        justify-content: space-between;
+    }
 }
 
 .InputField-Component {
