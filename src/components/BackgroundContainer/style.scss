@@ -1,0 +1,11 @@
+@import '/src/sass/colors';
+
+.BackgroundContainer-Component {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .children {
+        display: contents;
+    }
+}
