@@ -1,9 +1,9 @@
 import './style.scss';
 
-export const Background = () => {
+export const Background = ({ style }) => {
     
     return (
-        <div className='Background-Component' >
+        <div className='Background-Component' style={style || null} >
             <img src="/images/bela-usina-de-energia-alternativa-com-paineis-solares.webp" alt="" />
         </div>
     )
