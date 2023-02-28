@@ -6,11 +6,24 @@
     align-self: center;
     box-shadow: 0px 9px 15px 0px #00000040;
     margin-top: 1vw;
+    margin-bottom: 11vw;
+
+    h2 {
+        font-size: 1.6vw;
+    }
+
+    label {
+        font-size: 1.1vw;
+    }
+
+    .simulator-input {
+        font-size: 1vw;
+    }
 
     .left-container {
         flex: 0.6;
         background-color: $primary-color;
-        padding: 3vw 5vw;
+        padding: 3vw 4vw;
         align-items: center;
         justify-content: space-between;
     }
@@ -33,6 +46,11 @@
         }
 
     }
+
+    .simulator-calculate-button {
+        font-weight: 500;
+        font-size: 1.2vw;
+    }
 }
 
 .Benefits-Component {
@@ -48,11 +66,11 @@
     }
 
     h2 {
-        font-size: 20px;
+        font-size: 1.2vw;
     }
 
     p {
-        font-size: 14px;
+        font-size: 0.9vw;
         opacity: 0.7;
     }
 }
