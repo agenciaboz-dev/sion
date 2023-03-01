@@ -18,7 +18,7 @@ export const Cadastro = () => {
                 setPessoa(value)
                 setTimeout(() => {
                     navigate('/cadastro/formulario')
-                }, 1000)
+                }, 500)
             }
     
             return (
