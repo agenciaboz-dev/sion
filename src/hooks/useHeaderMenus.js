@@ -16,14 +16,14 @@ export const useHeaderMenus = () => {
             name: 'simulator',
         },
         {
-            id: 3,
-            title: 'Quem Somos',
-            name: 'about',
-        },
-        {
             id: 4,
             title: 'FAQ',
             name: 'faq',
+        },
+        {
+            id: 3,
+            title: 'Quem Somos',
+            name: 'about',
         },
     ]
 
