@@ -10,7 +10,7 @@ export const NotFound = () => {
         <div className='NotFound-Page' >
             <BackgroundContainer>
                 <div className="main-container">
-                    <NotFoundIcon />
+                    <NotFoundIcon className='not-found-icon'/>
                     <h1>Ops! página não encontrada</h1>
                     <p>Desculpe, a página que você está procurando não existe. Se você acha que algo está quebrado, relate um problema.</p>
                     <div className="buttons-container">
