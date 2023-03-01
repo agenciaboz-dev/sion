@@ -9,7 +9,7 @@ export const BackgroundContainer = ({ children }) => {
     
     return (
         <div className='BackgroundContainer-Component' >
-            <Background style={{top: 0}} />
+            <Background style={{top: '6.5vw'}} />
             <Header alternative={stickyHeader} setAlternative={setstickyHeader} />
 
             <div className="children-container">

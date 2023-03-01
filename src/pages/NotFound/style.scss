@@ -10,6 +10,7 @@
         align-items: center;
         padding: 3vw 5vw;
         width: 80vw;
+        margin-bottom: 20vw;
 
         h1 {
             text-transform: uppercase;
@@ -25,5 +26,30 @@
             margin-top: 2vw;
             padding: 0.5vw 5vw;
         }
+    }
+
+    .white-background {
+        position: absolute;
+        background-color: white;
+        left: 0;
+        top: 40vw;
+        width: 100vw;
+        height: 25vw;
+        z-index: -1;
+        box-shadow: 0 1vw 2vw 0 #00000040;
+
+        transform: skew(0, 12deg);
+    }
+
+    .blue-background {
+        position: absolute;
+        background-color: $primary-color;
+        left: 0;
+        top: 40vw;
+        width: 100vw;
+        height: 25vw;
+        z-index: -1;
+
+        transform: skew(0, -10deg);
     }
 }

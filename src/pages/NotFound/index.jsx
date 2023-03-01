@@ -17,6 +17,8 @@ export const NotFound = () => {
                         <button className='not-found-back-button' onClick={() => navigate('/')}>Voltar</button>
                     </div>
                 </div>
+                <div className="white-background"></div>
+                <div className="blue-background"></div>
             </BackgroundContainer>
         </div>
     )
