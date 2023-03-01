@@ -1,9 +1,10 @@
 import { Form, Formik } from 'formik';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { InputField } from '../../../components/Contact/InputField';
 import './style.scss';
 
-export const Formulario = ({ pessoa }) => {
+export const Formulario = ({ pessoa, setProgressBarStage }) => {
     const navigate = useNavigate()
 
     const inputs = pessoa == 'juridica' ? [
@@ -46,6 +47,10 @@ export const Formulario = ({ pessoa }) => {
         navigate('/cadastro')
     }
     
+    useEffect(() => {
+        setProgressBarStage(34)
+    }, [])
+
     return (
         <div className='Formulario-Component' >
             <Formik initialValues={initial_inputs} onSubmit={values => nextStage(values)}>

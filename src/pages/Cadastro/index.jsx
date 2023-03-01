@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { BackgroundContainer } from '../../components/BackgroundContainer';
 import { Progress } from './Progress';
@@ -32,6 +32,10 @@ export const Cadastro = () => {
                 </div>
             )
         }
+
+        useEffect(() => {
+            setProgressBarStage(31)
+        }, [])
     
         return (
             <div className="pessoa-wrapper">
@@ -45,7 +49,7 @@ export const Cadastro = () => {
 
     const [stage, setStage] = useState(0)
     const [pessoa, setPessoa] = useState(null)
-    const [progressBarStage, setProgressBarStage] = useState(31)
+    const [progressBarStage, setProgressBarStage] = useState(0)
 
     return (
         <div className='Cadastro-Page' >
@@ -55,7 +59,7 @@ export const Cadastro = () => {
                     <div className="content">
                     <Routes>
                             <Route index element={<PessoaComponent />} />
-                            <Route path='/formulario' element={<Formulario pessoa={pessoa} />} />
+                            <Route path='/formulario' element={<Formulario pessoa={pessoa} setProgressBarStage={setProgressBarStage} />} />
                     </Routes>
                     </div>
                 </div>
