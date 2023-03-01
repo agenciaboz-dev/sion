@@ -3,23 +3,40 @@ import { useNavigate } from 'react-router-dom';
 import { InputField } from '../../../components/Contact/InputField';
 import './style.scss';
 
-export const Formulario = () => {
-
+export const Formulario = ({ pessoa }) => {
     const navigate = useNavigate()
 
-    const initial_inputs = {
-        razao_social: '',
-        name: '',
-        cnpj: '',
-        objeto_social: '',
-        curriculo: '',
-        email: '',
-        phone: '',
-        address: '',
-        number: '',
-        cep: '',
-        bairro: ''
-    }
+    const inputs = pessoa == 'juridica' ? [
+        { title: 'Razão Social titular da Unidade Consumidora', id: 'razao_social' },
+        { title: 'Nome do Responsável Legal', id: 'name' },
+        { title: 'CNPJ', id: 'cnpj' },
+        { title: 'Objeto Social', id: 'objeto_social' },
+        { title: 'Currículo Social', id: 'curriculo' },
+        { title: 'E-mail dos Representantes legais para assinatura', id: 'email' },
+        { title: 'Telefone', id: 'phone' },
+        { title: 'Endereço', id: 'address' },
+        { title: 'Número', id: 'number' },
+        { title: 'Bairro', id: 'bairro' },
+        { title: 'Gasto mensal em média', id: 'monthly_spent' },
+    ] : [
+        { title: 'Nome Completo do  titular da Unidade Consumidora', id: 'name' },
+        { title: 'CPF', id: 'cpf' },
+        { title: 'RG', id: 'rg' },
+        { title: 'E-mail', id: 'email' },
+        { title: 'Telefone', id: 'phone' },
+        { title: 'Estado Civil', id: 'civil_status' },
+        { title: 'Nacionalidade', id: 'nationality' },
+        { title: 'Profession', id: 'profession' },
+        { title: 'Endereço', id: 'address' },
+        { title: 'Número', id: 'number' },
+        { title: 'CEP', id: 'cep' },
+        { title: 'Bairro', id: 'bairro' },
+        { title: 'Gasto mensal em média', id: 'monthly_spent' },
+    ]
+
+    const initial_inputs = inputs.reduce((acc, input) => {
+        return { ...acc, [input.id]: "" };
+      }, {});
 
     const nextStage = (values) => {
         alert(JSON.stringify(values))
@@ -35,24 +52,19 @@ export const Formulario = () => {
                 {({handleChange}) => (
                     <Form>
                         <div className="left-panel input-container">
-                            <InputField title={'Razão Social titular da Unidade Consumidora'} id='razao_social' handleChange={handleChange} />
-                            <InputField title={'Nome do Responsável Legal'} id='name' handleChange={handleChange} />
-                            <InputField title={'CNPJ'} id='cnpj' handleChange={handleChange} />
-                            <InputField title={'Objeto Social'} id='objeto_social' handleChange={handleChange} />
-                            <InputField title={'Currículo Social'} id='curriculo' handleChange={handleChange} />
+                            {inputs.slice(0, 5).map(input => {
+                                return (
+                                    <InputField title={input.title} id={input.id} handleChange={handleChange} />
+                                )
+                            })}
                             <button onClick={() => previousStage()}>Voltar</button>
                         </div>
                         <div className="right-panel input-container">
-                            <InputField title={'E-mail dos Representantes legais para assinatura'} id='email' handleChange={handleChange} />
-                            <InputField title={'Telefone'} id='phone' handleChange={handleChange} />
-                            <div>
-                                <InputField title={'Endereço'} id='address' handleChange={handleChange} />
-                                <InputField title={'Número'} id='number' handleChange={handleChange} />
-                            </div>
-                            <div>
-                                <InputField title={'CEP'} id='cep' handleChange={handleChange} />
-                                <InputField title={'Bairro'} id='bairro' handleChange={handleChange} />
-                            </div>
+                            {inputs.slice(5).map(input => {
+                                return (
+                                    <InputField title={input.title} id={input.id} handleChange={handleChange} />
+                                )
+                            })}
                             <button type="submit">Enviar</button>
                         </div>
                     </Form>

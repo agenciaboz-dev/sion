@@ -14,6 +14,7 @@ export const Cadastro = () => {
     
             const nextStage = () => {
                 setClicked(true)
+                setPessoa(value)
                 setTimeout(() => {
                     navigate('/cadastro/formulario')
                 }, 1000)
@@ -43,6 +44,7 @@ export const Cadastro = () => {
     const navigate = useNavigate()
 
     const [stage, setStage] = useState(0)
+    const [pessoa, setPessoa] = useState(null)
     const [progressBarStage, setProgressBarStage] = useState(31)
 
     return (
@@ -53,7 +55,7 @@ export const Cadastro = () => {
                     <div className="content">
                     <Routes>
                             <Route index element={<PessoaComponent />} />
-                            <Route path='/formulario' element={<Formulario />} />
+                            <Route path='/formulario' element={<Formulario pessoa={pessoa} />} />
                     </Routes>
                     </div>
                 </div>
