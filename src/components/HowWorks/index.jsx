@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import useMeasure from 'react-use-measure';
 import { HowItem } from './HowItem';
 import './style.scss';
-import {ReactComponent as Icon} from '../../images/how_item.svg';
+import {ReactComponent as Icon} from '../../images/sun_icon.svg';
 
 export const HowWorks = ({ main_container_height, advert_height }) => {
 
