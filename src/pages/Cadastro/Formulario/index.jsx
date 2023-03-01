@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { InputField } from '../../../components/Contact/InputField';
 import './style.scss';
 
-export const Formulario = ({ pessoa, setProgressBarStage }) => {
+export const Formulario = ({ pessoa, setProgressBarStage, setPessoa }) => {
     const navigate = useNavigate()
 
     const inputs = pessoa == 'juridica' ? [
@@ -45,6 +45,7 @@ export const Formulario = ({ pessoa, setProgressBarStage }) => {
 
     const previousStage = (event) => {
         event.preventDefault()
+        setPessoa(null)
         navigate('/cadastro')
     }
     
