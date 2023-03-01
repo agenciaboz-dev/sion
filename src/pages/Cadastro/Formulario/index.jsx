@@ -2,10 +2,12 @@ import { Form, Formik } from 'formik';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { InputField } from '../../../components/Contact/InputField';
+import { useClient } from '../../../hooks/useClient';
 import './style.scss';
 
 export const Formulario = ({ pessoa, setProgressBarStage, setPessoa }) => {
     const navigate = useNavigate()
+    const client = useClient()
 
     const inputs = pessoa == 'juridica' ? [
         { title: 'Razão Social titular da Unidade Consumidora', id: 'razao_social' },
@@ -41,6 +43,7 @@ export const Formulario = ({ pessoa, setProgressBarStage, setPessoa }) => {
 
     const nextStage = (values) => {
         alert(JSON.stringify(values))
+        client.setValue({...client.value, form: values})
     }
 
     const previousStage = (event) => {

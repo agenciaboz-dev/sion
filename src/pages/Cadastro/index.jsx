@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { Route, useLocation, useNavigate } from 'react-router-dom';
 import { BackgroundContainer } from '../../components/BackgroundContainer';
 import { Progress } from './Progress';
 import {ReactComponent as ChoseIcon} from '../../images/check.svg'
@@ -15,6 +15,7 @@ export const Cadastro = () => {
             const [clicked, setClicked] = useState(false)
     
             const nextStage = () => {
+                client.setValue({...client.value, pessoa: value})
                 setPessoa(value)
                 setTimeout(() => {
                     navigate('/cadastro/formulario')
