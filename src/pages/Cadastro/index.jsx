@@ -14,12 +14,17 @@ export const Cadastro = () => {
             const [clicked, setClicked] = useState(false)
     
             const nextStage = () => {
-                setClicked(true)
                 setPessoa(value)
                 setTimeout(() => {
                     navigate('/cadastro/formulario')
                 }, 500)
             }
+
+            useEffect(() => {
+                if (pessoa == value) {
+                    setClicked(true)
+                }
+            }, [pessoa])
     
             return (
                 <div className="pessoa-container" onClick={() => nextStage()}>
