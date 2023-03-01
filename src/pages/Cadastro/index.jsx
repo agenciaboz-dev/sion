@@ -6,6 +6,7 @@ import {ReactComponent as ChoseIcon} from '../../images/check.svg'
 import './style.scss';
 import { Formulario } from './Formulario';
 import SlideRoutes from 'react-slide-routes';
+import { useClient } from '../../hooks/useClient';
 
 export const Cadastro = () => {
     const PessoaComponent = () => {
@@ -58,6 +59,7 @@ export const Cadastro = () => {
     const [pessoa, setPessoa] = useState(null)
     const [progressBarStage, setProgressBarStage] = useState(0)
     const [loaded, setLoaded] = useState(false)
+    const client = useClient()
 
     useEffect(() => {
         setLoaded(true)
