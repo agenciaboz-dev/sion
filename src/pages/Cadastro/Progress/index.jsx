@@ -16,7 +16,6 @@ const Container = ({ name, current }) => {
 }
 
 export const Progress = ({ stage, progressBarStage }) => {
-    const vw = window.innerWidth / 100
     
     return (
         <div className='Progress-Component' >
@@ -27,7 +26,7 @@ export const Progress = ({ stage, progressBarStage }) => {
                     className="wrapper"
                     bgColor={COLORS.primary}
                     borderRadius={'0'}
-                    height={0.6 * vw}
+                    height={'0.6vw'}
                     baseBgColor='none'
                     transitionDuration={'1s'}
                 />
