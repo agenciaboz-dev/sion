@@ -2,12 +2,28 @@
 
 .NotFound-Page {
     
-
     .main-container {
+        position: relative;
         background-color: white;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 5vw;
+        padding: 3vw 5vw;
+        width: 80vw;
+
+        h1 {
+            text-transform: uppercase;
+            margin-top: 1vw;
+        }
+
+        p {
+            text-align: center;
+            font-size: 1.5vw;
+        }
+
+        .not-found-back-button {
+            margin-top: 2vw;
+            padding: 0.5vw 5vw;
+        }
     }
 }

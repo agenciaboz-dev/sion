@@ -30,7 +30,7 @@ export const Contact = () => {
             { !showForm ? 
             <div className="title">
                 <h4>Ficou com mais alguma dúvida? Fale com um dos nossos assessores</h4>
-                <button onClick={() => setShowForm(true)}>Entrar em contato</button>
+                <button className='show-contact-form-button' onClick={() => setShowForm(true)}>Entrar em contato</button>
             </div> : 
             <div className="contact-form">
                 <Formik initialValues={initial_inputs} onSubmit={(values) => sendForm(values)}>
@@ -45,18 +45,18 @@ export const Contact = () => {
                     )}
                 </Formik>
                 <div className="info">
-                    <h1>Entre em contato</h1>
+                    <h1 className='contact-us-h1'>Entre em contato</h1>
                     <div className="info-item">
                         <FolderIcon />
-                        <input type="text" readOnly value={'comercial@sionenergia.com.br'} />
+                        <input type="text" className='readonly-contact-info' readOnly value={'comercial@sionenergia.com.br'} />
                     </div>
                     <div className="info-item">
                         <MapIcon />
-                        <input type="text" readOnly value={'Rua Dr. Manoel Pedro, 365, 21º andar. Curitiba - PR'} />
+                        <input type="text" className='readonly-contact-info' readOnly value={'Rua Dr. Manoel Pedro, 365, 21º andar. Curitiba - PR'} />
                     </div>
                     <div className="info-item">
                         <WhatsappIcon />
-                        <input type="text" readOnly value={'(41) 3533-5910'} />
+                        <input type="text" className='readonly-contact-info' readOnly value={'(41) 3533-5910'} />
                     </div>
                 </div>
             </div>

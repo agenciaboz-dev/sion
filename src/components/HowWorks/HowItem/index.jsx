@@ -1,4 +1,3 @@
-
 export const HowItem = ({ right, title, text, icon }) => {
     
     return (
