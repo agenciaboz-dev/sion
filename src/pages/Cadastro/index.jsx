@@ -57,11 +57,16 @@ export const Cadastro = () => {
     const [stage, setStage] = useState(0)
     const [pessoa, setPessoa] = useState(null)
     const [progressBarStage, setProgressBarStage] = useState(0)
+    const [loaded, setLoaded] = useState(false)
+
+    useEffect(() => {
+        setLoaded(true)
+    }, [])
 
     return (
         <div className='Cadastro-Page' >
             <BackgroundContainer>
-                <div className="main-container">
+                <div className="main-container" style={{opacity: loaded ? 1 : 0, transition: '0.5s'}}>
                     <Progress stage={stage} progressBarStage={progressBarStage} />
                     <div className="content">
                     <SlideRoutes location={location} duration={1000}>

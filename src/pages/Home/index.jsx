@@ -15,6 +15,7 @@ import useMeasure from 'react-use-measure';
 import { Footer } from '../../components/Footer';
 import { Contact } from '../../components/Contact';
 import { StickyHomeButton } from '../../components/StickyHomeButton';
+import { ScrollTop } from '../../components/ScrollTop';
 
 const Home = () => {
 
@@ -56,6 +57,7 @@ const Home = () => {
     return (
         <section className="home-page" id='home'>
             <Background />
+            <ScrollTop />
             <LoadingScreen loading={loading}/>
             <Header alternative={stickyHeader} setAlternative={setstickyHeader} />
             <div className="main-container" ref={main_container_ref}>
