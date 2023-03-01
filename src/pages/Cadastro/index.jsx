@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { BackgroundContainer } from '../../components/BackgroundContainer';
 import { Progress } from './Progress';
 import {ReactComponent as ChoseIcon} from '../../images/check.svg'
 import './style.scss';
 import { Formulario } from './Formulario';
-
+import SlideRoutes from 'react-slide-routes';
 
 export const Cadastro = () => {
     const PessoaComponent = () => {
+        
         const Pessoa = ({ name, value, description }) => {
             const [clicked, setClicked] = useState(false)
     
@@ -46,6 +47,7 @@ export const Cadastro = () => {
     }
 
     const navigate = useNavigate()
+    const location = useLocation()
 
     const [stage, setStage] = useState(0)
     const [pessoa, setPessoa] = useState(null)
@@ -57,10 +59,10 @@ export const Cadastro = () => {
                 <div className="main-container">
                     <Progress stage={stage} progressBarStage={progressBarStage} />
                     <div className="content">
-                    <Routes>
+                    <SlideRoutes location={location} duration={1000}>
                             <Route index element={<PessoaComponent />} />
                             <Route path='/formulario' element={<Formulario pessoa={pessoa} setProgressBarStage={setProgressBarStage} />} />
-                    </Routes>
+                    </SlideRoutes>
                     </div>
                 </div>
             </BackgroundContainer>
