@@ -20,7 +20,7 @@ export const Header = ({ alternative, setAlternative }) => {
 
     useEffect(() => {
         const onScroll = () => {
-            setAlternative(window.scrollY > 100 ? true : false)
+            setAlternative(window.scrollY > 50 ? true : false)
         }
 
         window.addEventListener('scroll', onScroll, { passive: true });
@@ -40,7 +40,7 @@ export const Header = ({ alternative, setAlternative }) => {
                     )
                 })}
             </div>
-            <Logo />
+            <Logo style={alternative ? {visibility: 'hidden'} : null} />
         </div>
     )
 }
