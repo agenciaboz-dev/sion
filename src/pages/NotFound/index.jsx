@@ -12,9 +12,9 @@ export const NotFound = () => {
                 <div className="main-container">
                     <NotFoundIcon />
                     <h1>Ops! página não encontrada</h1>
-                    <p>desculpe, a página que você está procurando não existe. Se você acha que algo está quebrado, relate um problema.</p>
+                    <p>Desculpe, a página que você está procurando não existe. Se você acha que algo está quebrado, relate um problema.</p>
                     <div className="buttons-container">
-                        <button onClick={() => navigate('/')}>Voltar</button>
+                        <button className='not-found-back-button' onClick={() => navigate('/')}>Voltar</button>
                     </div>
                 </div>
             </BackgroundContainer>
