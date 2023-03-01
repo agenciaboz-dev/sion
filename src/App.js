@@ -19,7 +19,7 @@ const ScrollTop = () => {
 function App() {
   return (
     <BrowserRouter>
-    <ScrollTop />
+    {/* <ScrollTop /> */}
         <Routes>
                 <Route index element={<Home />} />
                 <Route path='/cadastro/*' element={<Cadastro />} />

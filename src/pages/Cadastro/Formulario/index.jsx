@@ -43,7 +43,8 @@ export const Formulario = ({ pessoa, setProgressBarStage }) => {
         alert(JSON.stringify(values))
     }
 
-    const previousStage = () => {
+    const previousStage = (event) => {
+        event.preventDefault()
         navigate('/cadastro')
     }
     
@@ -59,15 +60,15 @@ export const Formulario = ({ pessoa, setProgressBarStage }) => {
                         <div className="left-panel input-container">
                             {inputs.slice(0, 5).map(input => {
                                 return (
-                                    <InputField title={input.title} id={input.id} handleChange={handleChange} />
+                                    <InputField key={input.id} title={input.title} id={input.id} handleChange={handleChange} />
                                 )
                             })}
-                            <button onClick={() => previousStage()}>Voltar</button>
+                            <button onClick={(event) => previousStage(event)}>Voltar</button>
                         </div>
                         <div className="right-panel input-container">
                             {inputs.slice(5).map(input => {
                                 return (
-                                    <InputField title={input.title} id={input.id} handleChange={handleChange} />
+                                    <InputField key={input.id} title={input.title} id={input.id} handleChange={handleChange} />
                                 )
                             })}
                             <button type="submit">Enviar</button>
