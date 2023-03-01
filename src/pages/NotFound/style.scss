@@ -10,7 +10,11 @@
         align-items: center;
         padding: 3vw 5vw;
         width: 80vw;
-        margin-bottom: 20vw;
+        margin-bottom: 25vw;
+
+        .not-found-icon {
+            width: 30vw;
+        }
 
         h1 {
             text-transform: uppercase;
@@ -32,7 +36,7 @@
         position: absolute;
         background-color: white;
         left: 0;
-        top: 40vw;
+        top: 75vw;
         width: 100vw;
         height: 25vw;
         z-index: -1;
@@ -45,7 +49,7 @@
         position: absolute;
         background-color: $primary-color;
         left: 0;
-        top: 40vw;
+        top: 75vw;
         width: 100vw;
         height: 25vw;
         z-index: -1;
