@@ -39,23 +39,23 @@ export const Contact = () => {
                             <InputField className='contact-input' id='name' title={'Nome'} handleChange={handleChange} />
                             <InputField className='contact-input' id='phone' title={'Telefone'} handleChange={handleChange} />
                             <InputField className='contact-input' id='email' title={'Email'} handleChange={handleChange} />
-                            <InputField className='contact-input' id='message' title={'Mensagem'} handleChange={handleChange} />
+                            <InputField className='contact-input' multiline inputProps={{height: '6vw'}} id='message' title={'Mensagem'} handleChange={handleChange} />
                             <button className='contact-send-button' type='submit'>Enviar</button>
                         </Form>
                     )}
                 </Formik>
                 <div className="info">
-                    <h1 className='contact-us-h1'>Entre em contato</h1>
+                    <h1 className='contact-us-h1'>Entre em Contato</h1>
                     <div className="info-item">
-                        <FolderIcon />
+                        <FolderIcon className='info-icon'/>
                         <input type="text" className='readonly-contact-info' readOnly value={'comercial@sionenergia.com.br'} />
                     </div>
                     <div className="info-item">
-                        <MapIcon />
+                        <MapIcon className='info-icon'/>
                         <input type="text" className='readonly-contact-info' readOnly value={'Rua Dr. Manoel Pedro, 365, 21º andar. Curitiba - PR'} />
                     </div>
                     <div className="info-item">
-                        <WhatsappIcon />
+                        <WhatsappIcon className='info-icon'/>
                         <input type="text" className='readonly-contact-info' readOnly value={'(41) 3533-5910'} />
                     </div>
                 </div>
