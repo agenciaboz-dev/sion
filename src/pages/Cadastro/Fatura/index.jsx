@@ -1,4 +1,6 @@
 import { CustomDashedBorder } from 'custom-dashed-border';
+import { useState } from 'react';
+import { useCallback } from 'react';
 import { useEffect } from 'react';
 import Dropzone from 'react-dropzone';
 import { useNavigate } from 'react-router-dom';
@@ -11,6 +13,9 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
 
     const navigate = useNavigate()
     const client = useClient()
+
+    const [fileContent, setFileContent] = useState('')
+    const [fileName, setFileName] = useState('')
 
 
     const borderStyle = {
@@ -27,6 +32,28 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
         navigate('/cadastro/contrato')
     }
 
+    const onDrop = useCallback((acceptedFiles) => {
+        client.setValue({...client.value, fatura: acceptedFiles})
+
+        acceptedFiles.forEach((file) => {
+          const reader = new FileReader()
+          setFileName(file.name)
+    
+          reader.onabort = () => console.log('file reading was aborted')
+          reader.onerror = () => console.log('file reading has failed')
+          reader.onload = () => {
+          // Do whatever you want with the file contents
+            const binaryStr = reader.result
+            console.log(binaryStr)
+            setFileContent(binaryStr)
+          }
+          reader.readAsText(file);
+        //   reader.readAsArrayBuffer(file)
+
+        })
+        
+      }, [])
+
     useEffect(() => {
         setProgressBarStage(68.3)
         setStage(1)
@@ -36,15 +63,27 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
     return (
         <div className='Fatura-Component' >
             <h1>Anexar a fatura de energia</h1>
-            <Dropzone onDrop={acceptedFiles => client.setValue({...client.value, fatura: acceptedFiles})}>
+            <Dropzone onDrop={acceptedFiles => onDrop(acceptedFiles)}>
             {({getRootProps, getInputProps}) => (
                 <section>
                 <div {...getRootProps()} className="dropzone">
                     <CustomDashedBorder top={borderStyle} left={borderStyle} right={borderStyle} bottom={borderStyle} >
                         <input {...getInputProps()} />
-                        <DropIcon />
-                        <p>Selecione um arquivo para fazer upload</p>
-                        <p>ou arraste e solte aqui</p>
+                        {
+                            fileContent 
+                            ?
+                            <div className="file-container">
+                                <h3>{fileName}</h3>
+                                <p>{fileContent}</p>
+                            </div> 
+                            :
+                            <div className="upload-container">
+                                <DropIcon />
+                                <p>Selecione um arquivo para fazer upload</p>
+                                <p>ou arraste e solte aqui</p>
+                            </div>
+                        }
+
                     </CustomDashedBorder>
                 </div>
                 </section>
