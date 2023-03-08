@@ -7,6 +7,7 @@ import './style.scss';
 import { Formulario } from './Formulario';
 import SlideRoutes from 'react-slide-routes';
 import { useClient } from '../../hooks/useClient';
+import { Fatura } from './Fatura';
 
 export const Cadastro = () => {
     const PessoaComponent = () => {
@@ -63,6 +64,10 @@ export const Cadastro = () => {
     const client = useClient()
 
     useEffect(() => {
+       console.log({stage})
+    }, [stage])
+
+    useEffect(() => {
         setLoaded(true)
     }, [])
 
@@ -75,6 +80,7 @@ export const Cadastro = () => {
                     <SlideRoutes location={location} duration={1000}>
                             <Route index element={<PessoaComponent />} />
                             <Route path='/formulario' element={<Formulario pessoa={pessoa} setPessoa={setPessoa} setProgressBarStage={setProgressBarStage} />} />
+                            <Route path='/fatura' element={<Fatura setProgressBarStage={setProgressBarStage} setStage={setStage} />} />
                     </SlideRoutes>
                     </div>
                 </div>

@@ -101,8 +101,8 @@ export const Formulario = ({ pessoa, setProgressBarStage, setPessoa }) => {
     const client = useClient()
 
     const nextStage = (values) => {
-        alert(JSON.stringify(values))
         client.setValue({...client.value, form: values})
+        navigate('/cadastro/fatura')
     }
 
     const previousStage = (event) => {

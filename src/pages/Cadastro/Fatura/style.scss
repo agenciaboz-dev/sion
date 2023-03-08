@@ -1,0 +1,25 @@
+@import '/src/sass/colors';
+
+$dash-length: 1vw;
+$dash-spacing: 1vw;
+
+.Fatura-Component {
+    flex-direction: column;
+    width: 100%;
+
+    .dropzone {
+        position: relative;
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10vw 0;
+      
+    }
+
+    .buttons-container {
+        margin-top: 2vw;
+        width: 100%;
+        justify-content: space-between;
+    }
+}
