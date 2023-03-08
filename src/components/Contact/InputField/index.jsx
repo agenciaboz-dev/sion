@@ -2,7 +2,7 @@
 import { TextField } from '@mui/material';
 import InputMask from 'react-input-mask';
 
-export const InputField = ({ children, id, title, handleChange, value, type, mask, autoFocus, error, errorText, multiline, select }) => {
+export const InputField = ({ children, id, title, handleChange, value, type, mask, autoFocus, error, errorText, multiline, select, inputProps }) => {
     
     return (
         <div className='InputMui-Component' style={{flexDirection: 'column'}} >
@@ -21,10 +21,11 @@ export const InputField = ({ children, id, title, handleChange, value, type, mas
                     className='input-field'
                     multiline={multiline}
                     FormHelperTextProps={{style:{fontSize: '1.2vw'}}}
-                    rows={10}
+                    InputLabelProps={{style:{fontSize: '1.2vw'}}}
+                    inputProps={{style:{minHeight: '1vw', padding: '0.5vw'}}}
+                    rows={3}
                     sx={{fontFamily: "Montserrats"}}
                     select={select}
-                    // InputProps={{style: {borderRadius: '4vw'}}}
                 />}
             </InputMask>
             :
@@ -45,10 +46,12 @@ export const InputField = ({ children, id, title, handleChange, value, type, mas
                 className='input-field'
                 multiline={multiline}
                 FormHelperTextProps={{style:{fontSize: '1.2vw'}}}
-                rows={10}
+                InputLabelProps={{style:{fontSize: '1.2vw'}}}
+                inputProps={{style:{minHeight: '1vw', padding: '0.5vw'}}}
+                // inputProps={inputProps || {style:{height: '0'}}}
+                rows={3}
                 sx={{fontFamily: "Montserrats"}}
                 select={select}
-                // InputProps={{style: {borderRadius: '4vw'}}}
             />
             }
         </div>
