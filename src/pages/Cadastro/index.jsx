@@ -8,6 +8,7 @@ import { Formulario } from './Formulario';
 import SlideRoutes from 'react-slide-routes';
 import { useClient } from '../../hooks/useClient';
 import { Fatura } from './Fatura';
+import { Contrato } from './Contrato';
 
 export const Cadastro = () => {
     const PessoaComponent = () => {
@@ -81,6 +82,7 @@ export const Cadastro = () => {
                             <Route index element={<PessoaComponent />} />
                             <Route path='/formulario' element={<Formulario pessoa={pessoa} setPessoa={setPessoa} setProgressBarStage={setProgressBarStage} />} />
                             <Route path='/fatura' element={<Fatura setProgressBarStage={setProgressBarStage} setStage={setStage} />} />
+                            <Route path='/contrato' element={<Contrato setProgressBarStage={setProgressBarStage} setStage={setStage} />} />
                     </SlideRoutes>
                     </div>
                 </div>
