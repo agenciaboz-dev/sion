@@ -30,12 +30,7 @@ export const Simulator = () => {
 
     return (
         <div className='Simulator-Component' id='simulator' >
-            <div className="left-container">
-                <Benefits title={'Economia'} text='Receba seus créditos de energia e economize em até 15% na sua fatura' />
-                <Benefits title={'Sem investimento'} text='Sem necessidade de alteração física no seu negócio ou investimento' />
-                <Benefits title={'Energia renovável'} text='Os créditos de energia são gerados por fontes renováveis' />
-            </div>
-            <div className="right-container">
+            <div className="white-container">
                 <h2>Simulador de Economia</h2>
                 <div className="input-container">
                     <label htmlFor="company">Distribuidora</label>
@@ -72,8 +67,15 @@ export const Simulator = () => {
                         placeholder={'R$ '}
                     />
                 </div>
-
                 <button className='simulator-calculate-button'>Calcular</button>
+            </div>
+            <div className="blue-container">
+                <div className="benefits-container">
+                    <Benefits title={'Economia'} text='Receba seus créditos de energia e economize em até 15% na sua fatura' />
+                    <Benefits title={'Sem investimento'} text='Sem necessidade de alteração física no seu negócio ou investimento' />
+                    <Benefits title={'Energia renovável'} text='Os créditos de energia são gerados por fontes renováveis' />
+                </div>
+                <button className='simulator-signup-button'>Quero economizar!</button>
             </div>
         </div>
     )
