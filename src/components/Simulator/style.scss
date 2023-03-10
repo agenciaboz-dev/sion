@@ -76,9 +76,9 @@
     gap: 0.7vw;
     
     svg {
-        filter: invert(1);
+        // filter: invert(100%) sepia(5%) saturate(20%) hue-rotate(178deg) brightness(107%) contrast(106%);
     }
-    
+
     h2 {
         font-size: 1.2vw;
     }

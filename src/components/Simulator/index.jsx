@@ -5,6 +5,9 @@ import { Benefits } from './Benefits';
 import './style.scss';
 import { createNumberMask } from 'text-mask-addons';
 import { useNavigate } from 'react-router-dom';
+import {ReactComponent as SunIcon} from '../../images/simulator/sun.svg';
+import {ReactComponent as DollarIcon} from '../../images/simulator/dollar.svg';
+import {ReactComponent as WalletIcon} from '../../images/simulator/wallet.svg';
 
 export const Simulator = () => {
 
@@ -79,9 +82,9 @@ export const Simulator = () => {
             </div>
             <div className="blue-container">
                 <div className="benefits-container">
-                    <Benefits title={'Economia'} text='Receba seus créditos de energia e economize em até 15% na sua fatura' />
-                    <Benefits title={'Sem investimento'} text='Sem necessidade de alteração física no seu negócio ou investimento' />
-                    <Benefits title={'Energia renovável'} text='Os créditos de energia são gerados por fontes renováveis' />
+                    <Benefits icon={() => <DollarIcon />} title={'Economia'} text='Receba seus créditos de energia e economize em até 15% na sua fatura' />
+                    <Benefits icon={() => <WalletIcon />} title={'Sem investimento'} text='Sem necessidade de alteração física no seu negócio ou investimento' />
+                    <Benefits icon={() => <SunIcon />} title={'Energia renovável'} text='Os créditos de energia são gerados por fontes renováveis' />
                 </div>
                 <button onClick={() => goToSignUp()} className='simulator-signup-button'>Quero economizar!</button>
             </div>
