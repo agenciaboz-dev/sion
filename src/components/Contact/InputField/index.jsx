@@ -1,8 +1,14 @@
 import { TextField } from '@mui/material';
 import InputMask from 'react-input-mask';
+import { useValidationErrors } from '../../../hooks/useValidationsErrors';
 
 export const InputField = ({ children, id, title, handleChange, value, type, mask, autoFocus, error, errorText, multiline, select, inputProps }) => {
-    
+
+    const errors = useValidationErrors()
+    if (errorText == errors.required) {
+        error = false
+    }
+
     return (
         <div className='InputMui-Component' style={{flexDirection: 'column'}} >
             {mask ? 
@@ -21,7 +27,6 @@ export const InputField = ({ children, id, title, handleChange, value, type, mas
                     multiline={multiline}
                     FormHelperTextProps={{style:{fontSize: '1.2vw'}}}
                     InputLabelProps={{style:{fontSize: '1.2vw'}}}
-                    inputProps={{style:{minHeight: '1vw', padding: '0.5vw'}}}
                     rows={3}
                     sx={{fontFamily: "Montserrats"}}
                     select={select}
@@ -46,7 +51,6 @@ export const InputField = ({ children, id, title, handleChange, value, type, mas
                 multiline={multiline}
                 FormHelperTextProps={{style:{fontSize: '1.2vw'}}}
                 InputLabelProps={{style:{fontSize: '1.2vw'}}}
-                inputProps={{style:{minHeight: '1vw'}}}
                 // inputProps={inputProps || {style:{height: '0'}}}
                 rows={3}
                 sx={{fontFamily: "Montserrats"}}
