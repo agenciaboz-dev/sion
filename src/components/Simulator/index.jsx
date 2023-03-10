@@ -4,11 +4,14 @@ import ReactSlider from 'react-slider';
 import { Benefits } from './Benefits';
 import './style.scss';
 import { createNumberMask } from 'text-mask-addons';
+import { useNavigate } from 'react-router-dom';
 
 export const Simulator = () => {
 
     const [spent, setSpent] = useState('')
     const [saving, setSaving] = useState('')
+
+    const navigate = useNavigate()
 
     const currencyMask = createNumberMask({
         prefix: 'R$ ',
@@ -21,6 +24,11 @@ export const Simulator = () => {
         allowNegative: false,
         allowLeadingZeroes: false,
     })
+
+    const goToSignUp = () => {
+        window.scrollTo(0, 200);
+        navigate('/cadastro')
+    }
 
     const getSpentNumber = useCallback(() => {
         const number = spent ? spent.split('R$ ')[1].replaceAll('.', '').replaceAll(',', '.') : 0
@@ -75,7 +83,7 @@ export const Simulator = () => {
                     <Benefits title={'Sem investimento'} text='Sem necessidade de alteração física no seu negócio ou investimento' />
                     <Benefits title={'Energia renovável'} text='Os créditos de energia são gerados por fontes renováveis' />
                 </div>
-                <button className='simulator-signup-button'>Quero economizar!</button>
+                <button onClick={() => goToSignUp()} className='simulator-signup-button'>Quero economizar!</button>
             </div>
         </div>
     )
