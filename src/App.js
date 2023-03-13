@@ -6,6 +6,7 @@ import './sass/_button.scss';
 import { NotFound } from './pages/NotFound';
 import { Cadastro } from './pages/Cadastro';
 import { ClientProvider } from './contexts/clientContext';
+import { Links } from './pages/Links';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
             <Routes>
                     <Route index element={<Home />} />
                     <Route path='/cadastro/*' element={<Cadastro />} />
+                    <Route path='/links' element={<Links />} />
                     <Route path='*' element={<NotFound />} />
             </Routes>
         </ClientProvider>
