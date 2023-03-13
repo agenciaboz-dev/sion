@@ -8,7 +8,6 @@ export const useValidationErrors = () => {
         cep: 'CEP inválido',
         phone: 'Telefone inválido'
     }
-    console.log({defaults})
     
     return defaults
 }
