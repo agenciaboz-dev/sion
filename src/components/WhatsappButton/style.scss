@@ -1,19 +1,14 @@
 @import '/src/sass/colors';
 
-.StickyHomeButton-Component {
+.WhatsappButton-Component {
     position: sticky;
     width: 5vw;
     min-height: 5vw;
     height: 5vw;
     bottom: 1vw;
-    left: 2.5vw;
+    left: 92.5vw;
     background-color: $primary-color;
     justify-content: center;
     align-items: center;
     outline: 2px solid white;
-
-    svg {
-        transform: rotate(-90deg);
-        filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(72deg) brightness(110%) contrast(101%);
-    }
 }
