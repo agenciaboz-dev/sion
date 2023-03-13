@@ -1,8 +1,12 @@
 import { TextField } from '@mui/material';
-import InputMask from 'react-input-mask';
-import { useValidationErrors } from '../../../hooks/useValidationsErrors';
+import { useRef } from 'react';
+import MaskedInput from 'react-text-mask';
+import { useValidationErrors } from '../../hooks/useValidationsErrors';
 
-export const InputField = ({ children, id, title, handleChange, value, type, mask, autoFocus, error, errorText, multiline, select, inputProps }) => {
+export const InputField = ({ children, id, title, handleChange, value, type, mask, autoFocus, error, errorText, multiline, select, inputProps, innerRef }) => {
+
+    const newRef = useRef(null)
+    const ref = innerRef || newRef
 
     const errors = useValidationErrors()
     if (errorText == errors.required) {
@@ -12,9 +16,19 @@ export const InputField = ({ children, id, title, handleChange, value, type, mas
     return (
         <div className='InputMui-Component' style={{flexDirection: 'column'}} >
             {mask ? 
-            <InputMask mask={mask} alwaysShowMask={false} name={id} required onChange={handleChange} value={value} maskChar={null} >
-                {(inputProps) => <TextField
-                    {...inputProps}
+            <MaskedInput
+            ref={ref}
+            mask={mask}
+            id={id}
+            name={id}
+            required
+            onChange={handleChange}
+            value={value}
+            guide={false}
+            render={(ref, props) => (
+                <TextField
+                    inputRef={ref}
+                    {...props}
                     autoFocus={autoFocus}
                     type={type || 'text'}
                     error={error}
@@ -30,8 +44,9 @@ export const InputField = ({ children, id, title, handleChange, value, type, mas
                     rows={3}
                     sx={{fontFamily: "Montserrats"}}
                     select={select}
-                />}
-            </InputMask>
+                />
+            )}
+            />
             :
             <TextField
                 children={children}

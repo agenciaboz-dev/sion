@@ -1,6 +1,6 @@
 import { Form, Formik } from 'formik';
 import { useState } from 'react';
-import { InputField } from './InputField';
+import { InputField } from '../InputField';
 import {ReactComponent as FolderIcon} from '../../images/folder.svg'
 import {ReactComponent as MapIcon} from '../../images/map.svg'
 import {ReactComponent as WhatsappIcon} from '../../images/whatsapp.svg'

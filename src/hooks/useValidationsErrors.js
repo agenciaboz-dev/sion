@@ -4,11 +4,11 @@ export const useValidationErrors = () => {
         number: 'Este campo aceita apenas números',
         email: 'Este campo requer um email válido',
         cpf: 'CPF inválido',
+        cnpj: 'CNPJ inválido',
         rg: 'RG inválido',
         cep: 'CEP inválido',
         phone: 'Telefone inválido'
     }
-    console.log({defaults})
     
     return defaults
 }
