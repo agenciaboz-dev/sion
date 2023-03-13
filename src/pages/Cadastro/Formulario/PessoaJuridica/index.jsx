@@ -25,7 +25,7 @@ export const PessoaJuridica = ({ previousStage, nextStage }) => {
     const validationSchema = object({
         razao_social: string().required(default_errors.required),
         name: string().required(default_errors.required),
-        cnpj: string().required(default_errors.required),
+        cnpj: string().length(18, default_errors.cnpj).required(default_errors.required),
         objeto_social: string().required(default_errors.required),
         curriculo: string().required(default_errors.required),
         email: string().email(default_errors.email).required(default_errors.required),
