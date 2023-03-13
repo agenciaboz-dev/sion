@@ -2,9 +2,11 @@ import { object, string, number, date, InferType, setLocale } from 'yup';
 import { Form, Formik } from 'formik';
 import { useValidationErrors } from '../../../../hooks/useValidationsErrors';
 import { InputField } from '../../../../components/InputField';
+import { useCurrencyMask } from '../../../../hooks/useCurrencyMask';
 
 export const PessoaJuridica = ({ previousStage, nextStage }) => {
     const default_errors = useValidationErrors()
+    const currencyMask = useCurrencyMask()
 
     const initial_inputs = {
         razao_social: '',
@@ -31,7 +33,7 @@ export const PessoaJuridica = ({ previousStage, nextStage }) => {
         address: string().required(default_errors.required),
         number: number().typeError(default_errors.number).required(default_errors.required),
         bairro: string().required(default_errors.required),
-        monthly_spent: number().typeError(default_errors.number).required(default_errors.required),
+        monthly_spent: string().required(default_errors.required),
 
         // age: number().typeError(default_errors.number).required(default_errors.required).positive().integer(),
         // email: string().email(default_errors.email),
@@ -51,18 +53,18 @@ export const PessoaJuridica = ({ previousStage, nextStage }) => {
                     <div className="left-panel input-container">
                         <InputField title={'Razão Social titular da Unidade Consumidora'} id={'razao_social'} handleChange={handleChange} value={values.razao_social} error={Boolean(errors.razao_social)} errorText={errors.razao_social} />
                         <InputField title={'Nome do Responsável Legal'} id={'name'} handleChange={handleChange} value={values.name} error={Boolean(errors.name)} errorText={errors.name} />
-                        <InputField mask={'99.999.999/9999-99'} title={'CNPJ'} id={'cnpj'} handleChange={handleChange} value={values.cnpj} error={Boolean(errors.cnpj)} errorText={errors.cnpj} />
+                        <InputField title={'CNPJ'} mask={[/\d/,/\d/,'.',/\d/,/\d/,/\d/,'.',/\d/,/\d/,/\d/,'/',/\d/,/\d/,/\d/,/\d/,'-',/\d/,/\d/]} id={'cnpj'} handleChange={handleChange} value={values.cnpj} error={Boolean(errors.cnpj)} errorText={errors.cnpj} />
                         <InputField title={'Objeto Social'} id={'objeto_social'} handleChange={handleChange} value={values.objeto_social} error={Boolean(errors.objeto_social)} errorText={errors.objeto_social} />
                         <InputField title={'Curriculo Social'} id={'curriculo'} handleChange={handleChange} value={values.curriculo} error={Boolean(errors.curriculo)} errorText={errors.curriculo} />
                         <button tabIndex={2} onClick={(event) => previousStage(event)}>Voltar</button>
                     </div>
                     <div className="right-panel input-container">
                         <InputField title={'E-mail dos Representantes legais para assinatura'} id={'email'} handleChange={handleChange} value={values.email} error={Boolean(errors.email)} errorText={errors.email} />
-                        <InputField mask={'(99) 99999-9999'} title={'Telefone'} id={'phone'} handleChange={handleChange} value={values.phone} error={Boolean(errors.phone)} errorText={errors.phone} />
+                        <InputField title={'Telefone'} mask={["(", /\d/, /\d/, ")", " ", /\d/, /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/]} id={'phone'} handleChange={handleChange} value={values.phone} error={Boolean(errors.phone)} errorText={errors.phone} />
                         <InputField title={'Endereço'} id={'address'} handleChange={handleChange} value={values.address} error={Boolean(errors.address)} errorText={errors.address} />
                         <InputField title={'Número'} id={'number'} handleChange={handleChange} value={values.number} error={Boolean(errors.number)} errorText={errors.number} />
                         <InputField title={'Bairro'} id={'bairro'} handleChange={handleChange} value={values.bairro} error={Boolean(errors.bairro)} errorText={errors.bairro} />
-                        <InputField title={'Gasto mensal em média'} id={'monthly_spent'} handleChange={handleChange} value={values.monthly_spent} error={Boolean(errors.monthly_spent)} errorText={errors.monthly_spent} />
+                        <InputField title={'Gasto mensal em média'} mask={currencyMask} id={'monthly_spent'} handleChange={handleChange} value={values.monthly_spent} error={Boolean(errors.monthly_spent)} errorText={errors.monthly_spent} />
                         <button tabIndex={1} type="submit">Enviar</button>
                     </div>
                 </Form>

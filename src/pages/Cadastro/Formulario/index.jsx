@@ -33,8 +33,7 @@ export const Formulario = ({ pessoa, setProgressBarStage, setPessoa }) => {
             ? 
             <PessoaFisica nextStage={nextStage} previousStage={previousStage} /> 
             : 
-            // <PessoaJuridica nextStage={nextStage} previousStage={previousStage} /> 
-            null
+            <PessoaJuridica nextStage={nextStage} previousStage={previousStage} /> 
             }
         </div>
     )
