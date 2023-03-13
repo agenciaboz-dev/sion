@@ -16,6 +16,7 @@ import { Footer } from '../../components/Footer';
 import { Contact } from '../../components/Contact';
 import { StickyHomeButton } from '../../components/StickyHomeButton';
 import { ScrollTop } from '../../components/ScrollTop';
+import { WhatsappButton } from '../../components/WhatsappButton';
 
 const Home = () => {
 
@@ -69,7 +70,10 @@ const Home = () => {
                 <About />
                 <Contact />
             </div>
-            <StickyHomeButton show={stickyHeader} />
+            <div className="buttons-container">
+                <StickyHomeButton show={stickyHeader} />
+                <WhatsappButton />
+            </div>
             <Footer />
         </section>
     )
