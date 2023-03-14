@@ -1,5 +1,5 @@
 import './style.scss';
-import {ReactComponent as WhatsappIcon} from '../../images/whatsapp.svg'
+import {ReactComponent as WhatsappIcon} from '../../images/whatsapp_green_icon.svg'
 
 export const WhatsappButton = () => {
 

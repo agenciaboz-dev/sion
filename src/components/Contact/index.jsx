@@ -11,7 +11,8 @@ export const Contact = () => {
     const [showForm, setShowForm] = useState(false)
 
     const wrapper_style = {
-        height: showForm ? '15vw' : null
+        height: showForm ? '15vw' : null,
+        margin: showForm ? '10vw 0' : 0
     }
 
     const initial_inputs = {
