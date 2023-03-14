@@ -6,10 +6,13 @@ import { useHeaderMenus } from '../../hooks/useHeaderMenus';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { useCallback, useState } from 'react';
 import { api } from '../../api';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export const Footer = () => {
 
     const menus = useHeaderMenus()
+    const location = useLocation()
+    const navigate = useNavigate()
 
     const [email, setEmail] = useState('')
 
@@ -44,7 +47,11 @@ export const Footer = () => {
                     {menus.map(menu => {
                         return (
                             <section key={menu.id}>
-                                <AnchorLink href={'#'+menu.name}className='menu-title'>{menu.title}</AnchorLink>
+                                { location.pathname == '/' ?
+                                    <AnchorLink href={'#'+menu.name} className='menu-title' >{menu.title}</AnchorLink>
+                                    :
+                                    <p onClick={() => navigate('/')} className='menu-title' >{menu.title}</p>
+                                }
                             </section>
                         )
                     })}
