@@ -50,3 +50,26 @@
     }
 
 }
+
+.push-conversation-container {
+
+    div {
+        display: block;
+    }
+
+    .push-header-and-loading {
+        display: block;
+    }
+    
+    #push-messages {
+        display: block;
+    
+        section {
+            display: block;
+    
+            > div {
+                display: block;
+            }
+        }
+    }
+}

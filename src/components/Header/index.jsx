@@ -24,8 +24,31 @@ export const Header = ({ alternative, setAlternative }) => {
         }
 
         window.addEventListener('scroll', onScroll, { passive: true });
-        return () => window.removeEventListener('scroll', onScroll);
+
+
+        const script = document.createElement('script');
+      
+        script.innerHTML = `
+        (function (d, s, u) {
+          let h = d.getElementsByTagName(s)[0], k = d.createElement(s);
+          k.onload = function () {
+            let l = d.createElement(s); l.src = u; l.async = true;
+            h.parentNode.insertBefore(l, k.nextSibling);
+          };
+          k.async = true; k.src = 'https://storage.googleapis.com/push-webchat/wwc-latest.js';
+          h.parentNode.insertBefore(k, h);
+        })(document, 'script', 'https://weni-sp-integrations-production.s3.amazonaws.com/apptypes/wwc/7a3f1cad-3671-45a4-a1ea-9d33ac1883e2/script.js');
+      `
+        script.async = true;
+      
+        document.body.appendChild(script);
+
+        return () => {
+            window.removeEventListener('scroll', onScroll)
+            document.body.removeChild(script);
+        };
     }, [])
+
     
     return (
         <div className='Header-Component'>
