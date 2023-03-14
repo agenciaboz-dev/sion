@@ -9,6 +9,10 @@ import './style.scss';
 export const Links = () => {
 
     const navigate = useNavigate()
+
+    const openUrl = (url) => {
+        window.open(url, '_blank', 'noopener,noreferrer')
+    }
     
     return (
         <div className='Links-Page' >
@@ -18,9 +22,9 @@ export const Links = () => {
                     <button onClick={() => navigate('/')}>Simulador de Economia</button>
                     <button onClick={() => navigate('/cadastro')}>Quero Economizar</button>
                     <div className="socials-icons">
-                        <InstagramIcon />
-                        <FacebookIcon />
-                        <WhatsappIcon />
+                        <InstagramIcon onClick={() => openUrl('https://instagram.com')} />
+                        <FacebookIcon onClick={() => openUrl('https://facebook.com')} />
+                        <WhatsappIcon onClick={() => openUrl('https://whatsapp.com')} />
                     </div>
                 </div>
             </BackgroundContainer>

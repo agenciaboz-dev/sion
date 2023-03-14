@@ -14,5 +14,16 @@
             padding: 0.5vw;
             width: 30vw;
         }
+
+        .socials-icons {
+            gap: 5vw;
+
+            svg {
+                width: auto;
+                height: 3vw;
+                cursor: pointer;
+            }
+            
+        }
     }
 }
