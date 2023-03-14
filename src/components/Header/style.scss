@@ -51,25 +51,15 @@
 
 }
 
+// CHAT BOT
 .push-conversation-container {
 
-    div {
+    .push-close-button, .push-send {
+        padding: 0;
+    }
+
+    div, section {
         display: block;
     }
 
-    .push-header-and-loading {
-        display: block;
-    }
-    
-    #push-messages {
-        display: block;
-    
-        section {
-            display: block;
-    
-            > div {
-                display: block;
-            }
-        }
-    }
 }
