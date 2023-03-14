@@ -1,5 +1,16 @@
 @import '/src/sass/colors';
 
 .Login-Page {
-    
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10vw;
+    background-color: $primary-color;
+
+    .main-container {
+        width: 100%;
+        background-color: white;
+        flex-direction: column;
+        align-items: center;
+    }
 }

@@ -7,6 +7,7 @@ import { NotFound } from './pages/NotFound';
 import { Cadastro } from './pages/Cadastro';
 import { ClientProvider } from './contexts/clientContext';
 import { Links } from './pages/Links';
+import { Login } from './pages/Login';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
                     <Route index element={<Home />} />
                     <Route path='/cadastro/*' element={<Cadastro />} />
                     <Route path='/links' element={<Links />} />
+                    <Route path='/login' element={<Login />} />
                     <Route path='*' element={<NotFound />} />
             </Routes>
         </ClientProvider>
