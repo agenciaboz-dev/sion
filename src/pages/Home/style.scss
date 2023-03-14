@@ -10,6 +10,11 @@
     > .main-container {
         flex-direction: column;
         padding: 0 10vw;
+
+        > button {
+            margin-top: 5vw;
+            padding: 0.5vw;
+        }
     }
 
     .buttons-container {

@@ -67,6 +67,7 @@ const Home = () => {
                 <Simulator />
                 <WhoGets />
                 <Faq />
+                <button onClick={() => navigate('/cadastro')}>Quero economizar!</button>
                 <About />
                 <Contact />
             </div>
