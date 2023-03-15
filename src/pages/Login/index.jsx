@@ -8,10 +8,12 @@ import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { ReactComponent as LogoIcon } from '../../images/login/logotype.svg'
 import CircularProgress from '@mui/material/CircularProgress';
 import './style.scss';
+import { useUser } from '../../hooks/useUser';
 
 export const Login = () => {
 
     const storage = useLocalStorage()
+    const [user, setUser] = useUser()
 
     const [remind, setRemind] = useState(storage.get('remindme'))
     const [loading, setLoading] = useState(false)
@@ -21,7 +23,9 @@ export const Login = () => {
 
         api.post('/login', values)
         .then(response => {
-            alert(JSON.stringify(response.data, null, 4))
+            storage.set('user', remind ? response.data : null)
+
+            setUser(response.data)
         })
         .catch(error => console.error(error))
         .finally(() => {
