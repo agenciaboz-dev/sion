@@ -5,10 +5,12 @@ import {ReactComponent as Logo} from '../../images/logo.svg';
 import './style.scss';
 import COLORS from '../../sass/_colors.scss'
 import { HeaderButton } from './HeaderButton';
+import { useNavigate } from 'react-router-dom';
 
 export const Header = ({ alternative, setAlternative }) => {
 
     const menus = useHeaderMenus()
+    const navigate = useNavigate()
 
     const alternative_style = {
         backgroundColor: COLORS.primary,
@@ -62,6 +64,7 @@ export const Header = ({ alternative, setAlternative }) => {
                         </section>
                     )
                 })}
+                <button className="login-button" onClick={() => navigate('/login')}>Sou cliente</button>
             </div>
             <Logo style={alternative ? {visibility: 'hidden'} : null} />
         </div>

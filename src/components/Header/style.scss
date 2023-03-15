@@ -8,6 +8,7 @@
     margin-top: 1.5vw;
     font-size: 1.25vw;
     z-index: 5;
+    width: 100%;
     
     .menus-container {
         gap: 0.3vw;
@@ -16,6 +17,16 @@
         position: fixed;
         height: 4vw;
         align-items: center;
+        width: 100%;
+        justify-content: center;
+
+        .login-button {
+            position: absolute;
+            right: 5vw;
+            padding: 0.5vw;
+            background-color: white;
+            color: $primary-color;
+        }
 
         p {
             color: white!important;
