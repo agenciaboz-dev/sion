@@ -47,6 +47,10 @@ export const Login = () => {
     useEffect(() => {
         storage.set('remindme', remind)
     }, [remind])
+
+    useEffect(() => {
+        if (user?.username) navigate(user?.adm ? '/admin' : '/login')
+    }, [])
     
     return (
         <div className='Login-Page' >
