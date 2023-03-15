@@ -76,7 +76,7 @@ export const Login = () => {
                                     <p>Perdeu a senha?</p>
                                 </div>
                                 <div className='button-container'>
-                                    <button type='submit'>{loading ? <CircularProgress /> : 'Entrar'}</button>
+                                    <button type='submit'>{loading ? <CircularProgress size={'1.5vw'} thickness={5} sx={{color: 'white'}} /> : 'Entrar'}</button>
                                     <p onClick={() => navigate('/cadastro')}>Quero economizar!</p>
                                 </div>
                             </div>

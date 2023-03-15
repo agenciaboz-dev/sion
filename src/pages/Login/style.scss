@@ -60,14 +60,15 @@
                         align-items: center;
                     }
 
+                }
+                
+                .button-container {
+                    align-items: flex-end;
+
                     button {
                         flex: 1;
                         width: 100%;
                     }
-                }
-
-                .button-container {
-                    align-items: flex-end;
                 }
             }
         }
