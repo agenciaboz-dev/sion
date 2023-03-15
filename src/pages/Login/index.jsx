@@ -17,15 +17,20 @@ export const Login = () => {
 
     const [remind, setRemind] = useState(storage.get('remindme'))
     const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(false)
 
     const tryLogin = (values) => {
         setLoading(true)
+        setError(false)
 
         api.post('/login', values)
         .then(response => {
-            storage.set('user', remind ? response.data : null)
-
-            setUser(response.data)
+            if (response.data.error) {
+                setError(true)
+            } else {
+                storage.set('user', remind ? response.data : null)
+                setUser(response.data)
+            }
         })
         .catch(error => console.error(error))
         .finally(() => {
@@ -46,7 +51,7 @@ export const Login = () => {
                     {({handleChange, values, submitForm, errors}) => (
                         <Form>
                             <InputField title={'Nome de usuário ou e-mail'} id={'user'} handleChange={handleChange} value={values.user} error={Boolean(errors.user)} errorText={errors.user} />
-                            <InputField title={'Senha'} type='password' id={'password'} handleChange={handleChange} value={values.password} error={Boolean(errors.password)} errorText={errors.password} />
+                            <InputField title={'Senha'} type='password' id={'password'} handleChange={handleChange} value={values.password} error={error} errorText={'Não foi possível fazer login'} />
                             <div className="bottom-container">
                                 <div>
                                     <div className='remember-container'>
