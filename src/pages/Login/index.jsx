@@ -67,7 +67,7 @@ export const Login = () => {
                                 </div>
                                 <div className='button-container'>
                                     <button type='submit'>{loading ? <CircularProgress /> : 'Entrar'}</button>
-                                    <p>Quero economizar!</p>
+                                    <p onClick={() => navigate('/cadastro')}>Quero economizar!</p>
                                 </div>
                             </div>
                         </Form>
