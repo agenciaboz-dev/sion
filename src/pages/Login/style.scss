@@ -7,6 +7,26 @@
     padding-top: 10vw;
     background-color: $primary-color;
 
+    .back-container {
+        color: white;
+        align-self: flex-start;
+        margin-left: 7vw;
+        margin-top: -5vw;
+        margin-bottom: 2vw;
+        align-items: center;
+        gap: 0.5vw;
+        cursor: pointer;
+
+        div {
+            border-radius: 100%;
+            border: 1px solid white;
+            width: 2vw;
+            height: 2vw;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
     .main-container {
         width: 100%;
         background-color: white;

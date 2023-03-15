@@ -54,6 +54,12 @@ export const Login = () => {
     
     return (
         <div className='Login-Page' >
+            <div className="back-container" onClick={() => navigate('/')}>
+                <div>
+                    <p>{'<'}</p>
+                </div>
+                <p>Voltar</p>
+            </div>
             <div className="main-container">
                 <LogoIcon />
                 <Formik initialValues={{user: '', password: ''}} onSubmit={values => tryLogin(values)}>
