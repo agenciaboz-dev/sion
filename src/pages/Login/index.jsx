@@ -9,11 +9,13 @@ import { ReactComponent as LogoIcon } from '../../images/login/logotype.svg'
 import CircularProgress from '@mui/material/CircularProgress';
 import './style.scss';
 import { useUser } from '../../hooks/useUser';
+import { useNavigate } from 'react-router-dom';
 
 export const Login = () => {
 
     const storage = useLocalStorage()
     const [user, setUser] = useUser()
+    const navigate = useNavigate()
 
     const [remind, setRemind] = useState(storage.get('remindme'))
     const [loading, setLoading] = useState(false)
@@ -28,8 +30,11 @@ export const Login = () => {
             if (response.data.error) {
                 setError(true)
             } else {
-                storage.set('user', remind ? response.data : null)
-                setUser(response.data)
+                const usuario = response.data
+                storage.set('user', remind ? usuario : null)
+                setUser(usuario)
+
+                navigate(usuario.adm ? '/admin' : '/login')
             }
         })
         .catch(error => console.error(error))

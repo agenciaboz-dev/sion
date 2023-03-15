@@ -9,6 +9,7 @@ import { ClientProvider } from './contexts/clientContext';
 import { Links } from './pages/Links';
 import { Login } from './pages/Login';
 import { UserProvider } from './contexts/userContext';
+import { ControlPanel } from './pages/ControlPanel';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
                         <Route path='/cadastro/*' element={<Cadastro />} />
                         <Route path='/links' element={<Links />} />
                         <Route path='/login' element={<Login />} />
+                        <Route path='/admin' element={<ControlPanel />} />
                         <Route path='*' element={<NotFound />} />
                 </Routes>
             </ClientProvider>
