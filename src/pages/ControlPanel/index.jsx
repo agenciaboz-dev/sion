@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { useUser } from '../../hooks/useUser';
@@ -13,6 +14,12 @@ export const ControlPanel = () => {
         storage.set('user', null)
         navigate('/login')
     }
+
+    useEffect(() => {
+        if (!user?.adm) {
+            navigate('/login')
+        }
+    }, [])
     
     return (
         <div className='ControlPanel-Page' >
