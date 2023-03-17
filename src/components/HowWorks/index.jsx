@@ -18,16 +18,21 @@ export const HowWorks = ({ main_container_height, advert_height }) => {
             </div>
             <div className="blue-background"></div>
             <div className="white-background" style={{height: height * 1.05}}></div>
-            <h1>Como funciona?</h1>
-            
-            <hr />
-            <HowItem icon={() => <SunIcon className="how-item-icon" />} right title='Energia Renovável' text='Nossa empresa tem se destacado na geração de energia renovável, oferecendo preços mais baixos em comparação às distribuidoras convencionais. Utilizando fontes renováveis e tecnologias inovadoras, conseguimos maximizar a produção de energia e reduzir custos operacionais.' />
-            <hr />
-            <HowItem icon={() => <DollarIcon className="how-item-icon" />} title='Convertida em Créditos' text='A energia produzida é injetada na rede e convertida em créditos de energia, que podem ser usados para reduzir a conta de luz do proprietário. O sistema de geração distribuída torna-se uma alternativa econômica e sustentável para os consumidores, permitindo que economizem em suas contas de luz.' />
-            <hr />
-            <HowItem icon={() => <CustomersIcon className="how-item-icon" />} right title='Distribuida aos consumidores' text='Após a conversão da energia injetada em créditos de energia, distribuímos esses créditos entre os consumidores. Em seguida, emitimos a cobrança com o desconto de até 15%, baseado na quantidade de créditos gerados e utilizados pelo cliente.' />
-            <hr />
-            <HowItem icon={() => <WalletIcon className="how-item-icon" />} title='Gerando desconto de até 15% na fatura' text='Com base na quantidade de créditos gerados e utilizados, a fatura da distribuidora é automaticamente ajustada, com desconto de até 15%. Esse desconto representa uma economia significativa para nossos cooperados e é possível graças ao valor de mercado dos créditos de energia.' />
+                <h1>Uma maneira simples de você economizar com a energia do seu negócio</h1>
+            <div className="how-works-columns">
+                <div className="details-column">
+                    <HowItem icon={() => <SunIcon className="how-item-icon" />} title='Energia Renovável' text='A usina produz e injeta energia renovável com custo inferior à distribuidora de energia.' />
+                    <hr />
+                    <HowItem icon={() => <DollarIcon className="how-item-icon" />} title='Convertida em Créditos' text='A distribuidora local converte a energia injetada em créditos.' />
+                    <hr />
+                    <HowItem icon={() => <CustomersIcon className="how-item-icon" />} title='Créditos distribuídos' text='Distribuimos os créditos entre os cooperados e emitimos a cobrança incluindo o desconto que foi negociado.' />
+                    <hr />
+                    <HowItem icon={() => <WalletIcon className="how-item-icon" />} title='Desconto de até 15% na fatura' text='Os cooperados recebem o crédito na conta da distrivuidora e pagam com desconto o valor da energia consumida.' />
+                </div>
+                <div className="photo-column">
+                    <img src="../../images/como-funciona.webp" alt="" />
+                </div>
+            </div>
         </div>
     )
 }
