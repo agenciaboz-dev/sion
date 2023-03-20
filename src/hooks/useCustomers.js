@@ -1,19 +1,22 @@
 export const useCustomers = () => {
     const customers = [
         {
-            image: '/images/customers/joao.png'
+            image: '/images/customers/confiance.webp'
         },
         {
-            image: '/images/customers/clarisse.png'
+            image: '/images/customers/toyota.webp'
         },
         {
-            image: '/images/customers/maria.png'
+            image: '/images/customers/elasto.webp'
         },
         {
-            image: '/images/customers/paula.png'
+            image: '/images/customers/mcdonalds.webp'
         },
         {
-            image: '/images/customers/marcos.png'
+            image: '/images/customers/baraquias.webp'
+        },
+        {
+            image: '/images/customers/varandas.webp'
         },
     ]
 
