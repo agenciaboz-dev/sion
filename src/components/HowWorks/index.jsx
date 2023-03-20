@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import useMeasure from 'react-use-measure';
 import { HowItem } from './HowItem';
 import './style.scss';
-import {ReactComponent as SunIcon} from '../../images/sun_icon.svg';
-import {ReactComponent as DollarIcon} from '../../images/dollar_coins_icon.svg';
-import {ReactComponent as CustomersIcon} from '../../images/customers_icon.svg';
-import {ReactComponent as WalletIcon} from '../../images/wallet_icon.svg';
+import {ReactComponent as BlackSunIcon} from '../../images/black_sun_icon.svg';
+import {ReactComponent as RecycleIcon} from '../../images/recycle_icon.svg';
+import {ReactComponent as DistributionsIcon} from '../../images/distributions_icon.svg';
+import {ReactComponent as DiscountsIcon} from '../../images/discounts_icon.svg';
 
 export const HowWorks = ({ main_container_height, advert_height }) => {
 
@@ -18,18 +18,18 @@ export const HowWorks = ({ main_container_height, advert_height }) => {
             </div>
             <div className="blue-background"></div>
             <div className="white-background" style={{height: height * 1.05}}></div>
-                <h1>Uma maneira simples de você economizar com a energia do seu negócio</h1>
-            <div className="how-works-columns">
-                <div className="details-column">
-                    <HowItem icon={() => <SunIcon className="how-item-icon" />} title='Energia Renovável' text='A usina produz e injeta energia renovável com custo inferior à distribuidora de energia.' />
+            <div className="how-works-containers">
+                <div className="details-container">
+                    <h1>Uma maneira simples de você economizar com a energia do seu negócio</h1>
+                    <HowItem icon={() => <BlackSunIcon className="how-item-icon" />} title='Energia Renovável' text='A usina produz e injeta energia renovável com custo inferior à distribuidora de energia.' />
                     <hr />
-                    <HowItem icon={() => <DollarIcon className="how-item-icon" />} title='Convertida em Créditos' text='A distribuidora local converte a energia injetada em créditos.' />
+                    <HowItem icon={() => <RecycleIcon className="how-item-icon" />} title='Convertida em Créditos' text='A distribuidora local converte a energia injetada em créditos.' />
                     <hr />
-                    <HowItem icon={() => <CustomersIcon className="how-item-icon" />} title='Créditos distribuídos' text='Distribuimos os créditos entre os cooperados e emitimos a cobrança incluindo o desconto que foi negociado.' />
+                    <HowItem icon={() => <DistributionsIcon className="how-item-icon" />} title='Créditos distribuídos' text='Distribuimos os créditos entre os cooperados e emitimos a cobrança incluindo o desconto que foi negociado.' />
                     <hr />
-                    <HowItem icon={() => <WalletIcon className="how-item-icon" />} title='Desconto de até 15% na fatura' text='Os cooperados recebem o crédito na conta da distrivuidora e pagam com desconto o valor da energia consumida.' />
+                    <HowItem icon={() => <DiscountsIcon className="how-item-icon" />} title='Desconto de até 15% na fatura' text='Os cooperados recebem o crédito na conta da distrivuidora e pagam com desconto o valor da energia consumida.' />
                 </div>
-                <div className="photo-column">
+                <div className="photo-container">
                     <img src="../../images/como-funciona.webp" alt="" />
                 </div>
             </div>

@@ -10,21 +10,22 @@
     gap: 2vw;
     color: $text-color;
     padding-bottom: 3.8vw;
-    padding-top: 7vw;
+    padding-top: 9vw;
     margin-bottom: 7vw;
 
     h1 {
-        color: $text-color;
-        font-size: 1.6vw;
-        font-weight: 400;
+        color: $primary-color;
+        font-size: 1.2vw;
+        font-weight: 600;
+        margin-bottom: 1vw;
     }
 
     hr {
-        height: 2vw;
+        height: 2.5vw;
         border: none;
-        margin: 1vw 0;
+        margin: 0.5vw 0;
         border-left: 2px solid $text-color;
-        margin-left: 2vw;
+        margin-left: 1.5vw;
     }
 
     .background-container {
@@ -60,17 +61,21 @@
         transform: skew(0, 12deg);
     }
 
-    .how-works-columns {
+    .how-works-containers {
+        width: 100%;
         justify-content: space-between;
     }
 
-    .details-column {
+    .details-container {
         flex: 0.9;
         flex-direction: column;
         align-items: flex-start;
         justify-content: center;
     }
 
+    .photo-container img {
+        width: 45vw;
+    }
 }
 
 .HowItem-Component {
@@ -91,6 +96,14 @@
     .HowItem-Texts {
         flex-direction: column;
         margin-left: 1vw;
+    }
+
+    .HowItem-Icon{
+        justify-content: center;
+        align-items: center;
+        height: 3vw;
+        width: 3vw;
+        align-self: center;
     }
 
 }
