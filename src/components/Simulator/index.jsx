@@ -42,7 +42,19 @@ export const Simulator = () => {
     return (
         <div className='Simulator-Component' id='simulator' >
             <div className="white-container">
-                <h2>Simulador de Economia</h2>
+                <div className="simulator-header">
+                    <h2>Simule sua Economia</h2>
+                    <div className="input-container">
+                        {/* <label htmlFor="flag">Bandeira</label> */}
+                        <select as='select' name="flag" id="flag" className='simulator-input'>
+                            <option disabled selected value="">Selecione a bandeira</option>
+                            <option value="verde">Verde</option>
+                            <option value="amarela">Amarela</option>
+                            <option value="vermelha">Vermelha</option>
+                            <option value="marrom">Marrom</option>
+                        </select>
+                    </div>
+                </div>
                 <div className="input-container">
                     <label htmlFor="company">Distribuidora</label>
                     <select as='select' name="company" id="company" className='simulator-input'>
