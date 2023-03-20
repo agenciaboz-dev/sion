@@ -8,12 +8,6 @@
     width: 100%;
     margin-bottom: 6vw;
 
-    h1 {
-        font-size: 6.25vw;
-        margin-top: -1vw;
-        margin-bottom: -2vw;
-    }
-
     h2 {
         font-size: 1.6vw;
         text-align: center;
@@ -25,19 +19,54 @@
         }
     }
 
-    h3 {
-        font-size: 1.4vw;
-        color: $yellow-text-color;
-    }
-
     p {
         font-size: 1vw;
         color: white;
         margin-bottom: 1.5vw;
     }
 
-    .shadow-text {
-        text-shadow: 2px 2px 2px #000000;
+    .blue-box {
+        background-color: $primary-color;
+        padding: 2vw;
+        flex-direction: column;
+        width: 30vw;
+        box-shadow: 0 2px 2px #000000;
+        margin-right: auto;
+
+        h1 {
+            font-size: 4vw;
+            margin-top: -1vw;
+            margin-bottom: -2vw;
+        }
+            
+        h3 {
+            margin-top: 1.5vw;
+            font-size: 2vw;
+            color: $yellow-text-color;
+        }
+
+        button {
+            background-color: white;
+            color: $primary-color;
+            padding: 0.75vw;
+            margin-top: 1.5vw;
+        }
+    }
+
+    .white-box {
+        flex-direction: column;
+        background-color: white;
+        width: 40vw;
+        padding: 1vw;
+        margin-left: auto;
+
+        h2 {
+            color: #333333;
+        }
+
+        p {
+            color: $graybutton-color;
+        }
     }
 
     .buttons {
