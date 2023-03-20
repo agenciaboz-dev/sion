@@ -67,9 +67,9 @@ const Home = () => {
                 <Simulator />
                 <WhoGets />
                 <Faq />
-                <button onClick={() => navigate('/cadastro')}>Quero economizar!</button>
-                <About />
+                {/* <button onClick={() => navigate('/cadastro')}>Quero economizar!</button> */}
                 <Contact />
+                <About />
             </div>
             <div className="buttons-container">
                 <StickyHomeButton show={stickyHeader} />

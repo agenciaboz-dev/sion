@@ -12,7 +12,7 @@ export const Contact = () => {
 
     const wrapper_style = {
         height: showForm ? '15vw' : null,
-        margin: showForm ? '10vw 0' : 0
+        margin: showForm ? '7vw 0' : 0
     }
 
     const initial_inputs = {
