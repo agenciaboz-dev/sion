@@ -5,43 +5,34 @@
     flex-direction: column;
     align-items: center;
     color: white;
+    height: 20vw;
     width: 100%;
     margin-bottom: 6vw;
-
-    h2 {
-        font-size: 1.6vw;
-        text-align: center;
-        margin-top: 2vw;
-        margin-bottom: 1vw;
-
-        span {
-            color: $yellow-text-color;
-        }
-    }
+    position: relative;
 
     p {
-        font-size: 1vw;
         color: white;
-        margin-bottom: 1.5vw;
     }
 
     .blue-box {
         background-color: $primary-color;
         padding: 2vw;
         flex-direction: column;
-        width: 30vw;
+        width: 33vw;
         box-shadow: 0 2px 2px #000000;
         margin-right: auto;
+        position: absolute;
+        left: 3vw;
 
         h1 {
-            font-size: 4vw;
+            font-size: 5vw;
             margin-top: -1vw;
             margin-bottom: -2vw;
         }
             
         h3 {
             margin-top: 1.5vw;
-            font-size: 2vw;
+            font-size: 2.5vw;
             color: $yellow-text-color;
         }
 
@@ -57,42 +48,50 @@
         flex-direction: column;
         background-color: white;
         width: 40vw;
-        padding: 1vw;
+        padding: 2vw;
         margin-left: auto;
-
+        gap: 2vw;
+        position: absolute;
+        right: 6vw;
+        top: -9vw;
+        z-index: 1;
+        
         h2 {
+            font-weight: 500;
             color: #333333;
+            font-size: 2.2vw;
+
+            span {
+                font-weight: 600;
+                color: $primary-color;
+            }
         }
 
         p {
+            font-size: 1.5vw;
             color: $graybutton-color;
         }
-    }
 
-    .buttons {
-        gap: 0.5vw;
-
-        a {
-            display: flex;
-            text-decoration: none;
-            color: white;
-            align-items: center;
-            justify-content: center;
-            background-color: $primary-color;
-            font-size: 0.9vw;
-            font-weight: 700;
-            border: none;
-            color: white;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-
-        a:hover {
-            background-color: darken($primary-color, 10%);
-        }
-
-        * {
-            padding: 0.4vw 8vw;
+        .square-arrow {
+            width: 1vw;
+            height: 1vw;
+            align-self: center;
+            margin-left: 0.5vw;
         }
     }
+
+    a {
+        display: flex;
+        color: $primary-color;
+        font-size: 1vw;
+        font-weight: 500;
+        border: none;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+
+    a:hover {
+        transform: scale(1.05);
+    }
+
 }

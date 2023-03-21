@@ -1,5 +1,5 @@
 import './style.scss';
-import {ReactComponent as Logo} from '../../images/logo.svg';
+import {ReactComponent as LogoBranco} from '../../images/logo_branco.svg';
 import {ReactComponent as InstagramIcon} from '../../images/instagram.svg';
 import {ReactComponent as FacebookIcon} from '../../images/facebook.svg';
 import { useHeaderMenus } from '../../hooks/useHeaderMenus';
@@ -33,7 +33,7 @@ export const Footer = () => {
         <div className='Footer-Component' >
             <div className="top-content">
                 <div className="info">
-                    <Logo />
+                    <LogoBranco />
                     <div className="address">
                         <p>Rua Dr. Manoel Pedro, 365,</p>
                         <p>21º andar. Curitiba - PR</p>

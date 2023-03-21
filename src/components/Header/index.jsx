@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { useHeaderMenus } from '../../hooks/useHeaderMenus';
-import {ReactComponent as Logo} from '../../images/logo.svg';
+import {ReactComponent as LogoBranco} from '../../images/logo_branco.svg';
+import {ReactComponent as LogoCromado} from '../../images/logo_cromado.svg';
 import './style.scss';
 import COLORS from '../../sass/_colors.scss'
 import { HeaderButton } from './HeaderButton';
@@ -55,7 +56,7 @@ export const Header = ({ alternative, setAlternative }) => {
     return (
         <div className='Header-Component'>
             <div className="menus-container" style={alternative ? alternative_style : null} >
-                {alternative ? <Logo /> : null}
+                {alternative ? <LogoCromado /> : null}
                 {menus.map(menu => {
                     return (
                         <section key={menu.id}>
@@ -66,7 +67,7 @@ export const Header = ({ alternative, setAlternative }) => {
                 })}
                 <button className="login-button" onClick={() => navigate('/login')}>Sou cliente</button>
             </div>
-            <Logo style={alternative ? {visibility: 'hidden'} : null} />
+            <LogoCromado style={alternative ? {visibility: 'hidden'} : null} />
         </div>
     )
 }
