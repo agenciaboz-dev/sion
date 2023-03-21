@@ -49,3 +49,14 @@
         }
     }
 }
+
+@media only screen and (max-width: 600px) {
+    .Cadastro-Page {
+        height: 100vh;
+        
+        .main-container {
+            width: 90vw;
+            padding: 8vw 5vw;
+        }
+    }
+}
