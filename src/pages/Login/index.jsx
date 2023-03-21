@@ -26,22 +26,22 @@ export const Login = () => {
         setLoading(true)
         setError(false)
 
-        // api.post('/login', values)
-        // .then(response => {
-        //     if (response.data.error) {
-        //         setError(true)
-        //     } else {
-        //         const usuario = response.data
-        //         storage.set('user_sion', remind ? usuario : null)
-        //         setUser(usuario)
+        api.post('/login', values)
+        .then(response => {
+            if (response.data.error) {
+                setError(true)
+            } else {
+                const usuario = response.data
+                storage.set('user_sion', remind ? usuario : null)
+                setUser(usuario)
 
-        //         navigate(usuario.adm ? '/admin' : '/login')
-        //     }
-        // })
-        // .catch(error => console.error(error))
-        // .finally(() => {
-        //     setLoading(false)
-        // })
+                navigate(usuario.adm ? '/admin' : '/login')
+            }
+        })
+        .catch(error => console.error(error))
+        .finally(() => {
+            setLoading(false)
+        })
 
     }
 
