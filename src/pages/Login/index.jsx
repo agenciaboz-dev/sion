@@ -35,7 +35,7 @@ export const Login = () => {
                 storage.set('user_sion', remind ? usuario : null)
                 setUser(usuario)
 
-                navigate(usuario.adm ? '/admin' : '/login')
+                navigate('/cadastro')
             }
         })
         .catch(error => console.error(error))
@@ -50,7 +50,7 @@ export const Login = () => {
     }, [remind])
 
     useEffect(() => {
-        if (user?.username) navigate(user?.adm ? '/admin' : '/login')
+        if (user?.username) navigate('/cadastro')
     }, [])
     
     return (
