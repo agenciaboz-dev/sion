@@ -17,10 +17,12 @@ function App() {
         <BrowserRouter>
             <ClientProvider>
                 <Routes>
-                        <Route index element={<Home />} />
+                        {/* <Route index element={<Home />} /> */}
+                        <Route index element={<Login />} />
+
+                        <Route path='/login' element={<Login />} />
                         <Route path='/cadastro/*' element={<Cadastro />} />
                         <Route path='/links' element={<Links />} />
-                        <Route path='/login' element={<Login />} />
                         <Route path='/admin' element={<ControlPanel />} />
                         <Route path='*' element={<NotFound />} />
                 </Routes>
