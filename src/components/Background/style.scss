@@ -20,6 +20,7 @@
         img {
             height: 100vh;
             object-fit: cover;
+            filter: saturate(1.5) contrast(1) brightness(0.9);
         }
     }
 }
