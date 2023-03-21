@@ -1,6 +1,7 @@
 import './style.scss';
 import COLORS from '../../../sass/_colors.scss'
 import ProgressBar from '@ramonak/react-progress-bar';
+import { useMediaQuery } from 'react-responsive';
 
 const Container = ({ name, current }) => {
     const active_style = {
@@ -16,6 +17,8 @@ const Container = ({ name, current }) => {
 }
 
 export const Progress = ({ stage, progressBarStage }) => {
+
+    const isMobile = useMediaQuery({maxWidth: 600})
     
     return (
         <div className='Progress-Component' >
@@ -26,7 +29,7 @@ export const Progress = ({ stage, progressBarStage }) => {
                     className="wrapper"
                     bgColor={COLORS.primary}
                     borderRadius={'0'}
-                    height={'0.6vw'}
+                    height={isMobile ? '2.5vw' : '0.6vw'}
                     baseBgColor='none'
                     transitionDuration={'1s'}
                 />
