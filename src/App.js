@@ -10,23 +10,29 @@ import { Links } from './pages/Links';
 import { Login } from './pages/Login';
 import { UserProvider } from './contexts/userContext';
 import { ControlPanel } from './pages/ControlPanel';
+import { useMuiTheme } from './hooks/useMuiTheme';
+import { ThemeProvider } from '@mui/material';
 
 function App() {
+    const muiTheme = useMuiTheme()
+
   return (
     <UserProvider>
         <BrowserRouter>
-            <ClientProvider>
-                <Routes>
-                        {/* <Route index element={<Home />} /> */}
-                        <Route index element={<Login />} />
+            <ThemeProvider theme={muiTheme}>
+                <ClientProvider>
+                    <Routes>
+                            {/* <Route index element={<Home />} /> */}
+                            <Route index element={<Login />} />
 
-                        <Route path='/login' element={<Login />} />
-                        <Route path='/cadastro/*' element={<Cadastro />} />
-                        <Route path='/links' element={<Links />} />
-                        <Route path='/admin' element={<ControlPanel />} />
-                        <Route path='*' element={<NotFound />} />
-                </Routes>
-            </ClientProvider>
+                            <Route path='/login' element={<Login />} />
+                            <Route path='/cadastro/*' element={<Cadastro />} />
+                            <Route path='/links' element={<Links />} />
+                            <Route path='/admin' element={<ControlPanel />} />
+                            <Route path='*' element={<NotFound />} />
+                    </Routes>
+                </ClientProvider>
+            </ThemeProvider>
         </BrowserRouter>
     </UserProvider>
   );
