@@ -11,7 +11,7 @@ export const ControlPanel = () => {
 
     const logout = () => {
         setUser(null)
-        storage.set('user', null)
+        storage.set('user_sion', null)
         navigate('/login')
     }
 

@@ -31,7 +31,7 @@ export const Login = () => {
                 setError(true)
             } else {
                 const usuario = response.data
-                storage.set('user', remind ? usuario : null)
+                storage.set('user_sion', remind ? usuario : null)
                 setUser(usuario)
 
                 navigate(usuario.adm ? '/admin' : '/login')

@@ -15,7 +15,7 @@ export const UserProvider = ({children}) => {
     }, [value])
     
     useEffect(() => {
-        if (!value) setValue(storage.get('user'))
+        if (!value) setValue(storage.get('user_sion'))
     }, [])
 
     return (
