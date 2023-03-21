@@ -14,3 +14,12 @@
     }
 
 }
+
+@media only screen and (max-width: 600px) {
+    .Background-Component {
+        img {
+            height: 100vh;
+            object-fit: cover;
+        }
+    }
+}
