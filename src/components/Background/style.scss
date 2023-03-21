@@ -6,9 +6,8 @@
     
     img {
         width: 100vw;
-        // object-fit: contain;
-        // height: fit-content;
-        // margin-top: -6.5vw;
+        height: 100vh;
+        object-fit: cover;
         // filter: saturate(3) contrast(1) brightness(0.6);
         filter: brightness(0.7);
     }
@@ -18,8 +17,7 @@
 @media only screen and (max-width: 600px) {
     .Background-Component {
         img {
-            height: 100vh;
-            object-fit: cover;
+            
             filter: saturate(1.5) contrast(1) brightness(0.9);
         }
     }

@@ -10,7 +10,7 @@ export const BackgroundContainer = ({ children }) => {
     const isMobile = useMediaQuery({maxWidth: 600})
 
     const style = {
-        top: isMobile ? 0 : '6.5vw' 
+        top: 0,
     }
     
     return (
