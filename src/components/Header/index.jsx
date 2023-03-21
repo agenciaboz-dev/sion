@@ -6,11 +6,13 @@ import './style.scss';
 import COLORS from '../../sass/_colors.scss'
 import { HeaderButton } from './HeaderButton';
 import { useNavigate } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 
 export const Header = ({ alternative, setAlternative }) => {
 
     const menus = useHeaderMenus()
     const navigate = useNavigate()
+    const isMobile = useMediaQuery({maxWidth: 600})
 
     const alternative_style = {
         backgroundColor: COLORS.primary,
@@ -35,6 +37,9 @@ export const Header = ({ alternative, setAlternative }) => {
     
     return (
         <div className='Header-Component'>
+            {isMobile ? 
+            null 
+            : 
             <div className="menus-container" style={alternative ? alternative_style : null} >
                 {alternative ? <Logo /> : null}
                 {menus.map(menu => {
@@ -46,7 +51,7 @@ export const Header = ({ alternative, setAlternative }) => {
                     )
                 })}
                 <button className="login-button" onClick={() => navigate('/login')}>Sou cliente</button>
-            </div>
+            </div>}
             <Logo style={alternative ? {visibility: 'hidden'} : null} />
         </div>
     )
