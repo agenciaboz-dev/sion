@@ -1,5 +1,6 @@
 import { TextField } from '@mui/material';
 import { useRef } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import MaskedInput from 'react-text-mask';
 import { useValidationErrors } from '../../hooks/useValidationsErrors';
 
@@ -7,6 +8,8 @@ export const InputField = ({ children, id, title, handleChange, value, type, mas
 
     const newRef = useRef(null)
     const ref = innerRef || newRef
+
+    const isMobile = useMediaQuery({maxWidth:600})
 
     const errors = useValidationErrors()
     if (errorText == errors.required) {
@@ -39,8 +42,8 @@ export const InputField = ({ children, id, title, handleChange, value, type, mas
                     variant="outlined"
                     className='input-field'
                     multiline={multiline}
-                    FormHelperTextProps={{style:{fontSize: '1.2vw'}}}
-                    InputLabelProps={{style:{fontSize: '1.2vw'}}}
+                    FormHelperTextProps={{style:{fontSize: isMobile ? '5vw' : '1.2vw'}}}
+                    InputLabelProps={{style:{fontSize: isMobile ? '5vw' : '1.2vw'}}}
                     rows={3}
                     sx={{fontFamily: "Montserrats"}}
                     select={select}
@@ -64,8 +67,8 @@ export const InputField = ({ children, id, title, handleChange, value, type, mas
                 variant="outlined"
                 className='input-field'
                 multiline={multiline}
-                FormHelperTextProps={{style:{fontSize: '1.2vw'}}}
-                InputLabelProps={{style:{fontSize: '1.2vw'}}}
+                FormHelperTextProps={{style:{fontSize: isMobile ? '5vw' : '1.2vw'}}}
+                InputLabelProps={{style:{fontSize: isMobile ? '5vw' : '1.2vw'}}}
                 // inputProps={inputProps || {style:{height: '0'}}}
                 rows={3}
                 sx={{fontFamily: "Montserrats"}}

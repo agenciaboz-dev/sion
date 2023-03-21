@@ -74,3 +74,43 @@
         }
     }
 }
+
+@media only screen and (max-width: 600px) {
+    .Login-Page {
+        height: 100vh;
+
+        .main-container {
+            > svg {
+                width: 70vw;
+                margin: -10vw;
+            }
+
+            form {
+                width: 60%;
+                
+                .bottom-container {
+                    flex-direction: column;
+
+                    .remember-wrapper {
+                        align-items: center;
+
+                        .remember-container {
+                            flex-direction: column;
+                        }
+                    }
+
+                    .button-container {
+                        button {
+                            font-size: 5vw;
+                        }
+                    }
+
+                }
+            }
+        }
+
+        .Footer-Component {
+            margin-top: auto;
+        }
+    }
+}

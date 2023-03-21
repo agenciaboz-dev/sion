@@ -1,4 +1,4 @@
-import { Checkbox } from '@mui/material';
+import { Checkbox, FormControlLabel } from '@mui/material';
 import { Form, Formik } from 'formik';
 import { useEffect, useState } from 'react';
 import { api } from '../../api';
@@ -68,16 +68,14 @@ export const Login = () => {
                             <InputField title={'Nome de usuário ou e-mail'} id={'user'} handleChange={handleChange} value={values.user} error={Boolean(errors.user)} errorText={errors.user} />
                             <InputField title={'Senha'} type='password' id={'password'} handleChange={handleChange} value={values.password} error={error} errorText={'Não foi possível fazer login'} />
                             <div className="bottom-container">
-                                <div>
+                                <div className='remember-wrapper'>
                                     <div className='remember-container'>
-                                        <Checkbox id='remindme' checked={remind} onChange={() => setRemind(!remind)} />
-                                        <label htmlFor='remindme'>Lembre de mim</label>
+                                        <FormControlLabel control={<Checkbox checked={remind} onChange={() => setRemind(!remind)} />} label={'Lembre de mim'} />
                                     </div>
                                     <p>Perdeu a senha?</p>
                                 </div>
                                 <div className='button-container'>
                                     <button type='submit'>{loading ? <CircularProgress size={'1.5vw'} thickness={5} sx={{color: 'white'}} /> : 'Entrar'}</button>
-                                    <p onClick={() => navigate('/cadastro')}>Quero economizar!</p>
                                 </div>
                             </div>
                         </Form>
