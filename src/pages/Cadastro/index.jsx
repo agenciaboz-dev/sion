@@ -9,6 +9,7 @@ import SlideRoutes from 'react-slide-routes';
 import { useClient } from '../../hooks/useClient';
 import { Fatura } from './Fatura';
 import { Contrato } from './Contrato';
+import { useMediaQuery } from 'react-responsive';
 
 export const Cadastro = () => {
     const PessoaComponent = () => {
@@ -37,7 +38,7 @@ export const Cadastro = () => {
                         <p>{description}</p>
                     </div>
                     <div className="chose-container" style={{opacity: clicked ? 1 : 0.7}}>
-                        {clicked ? <ChoseIcon /> : <div className="circle"></div> }
+                        {clicked ? <ChoseIcon style={isMobile && {height:'11vw', width: '11vw'}} /> : <div className="circle"></div> }
                     </div>
                 </div>
             )
@@ -57,6 +58,7 @@ export const Cadastro = () => {
 
     const navigate = useNavigate()
     const location = useLocation()
+    const isMobile = useMediaQuery({maxWidth: 600})
 
     const [stage, setStage] = useState(0)
     const [pessoa, setPessoa] = useState(null)

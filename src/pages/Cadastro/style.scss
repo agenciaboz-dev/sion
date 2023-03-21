@@ -52,11 +52,44 @@
 
 @media only screen and (max-width: 600px) {
     .Cadastro-Page {
-        height: 100vh;
-        
+        height: max-content;
+
         .main-container {
             width: 90vw;
             padding: 8vw 5vw;
+
+            .pessoa-wrapper {
+                flex-direction: column;
+                justify-content: flex-start;
+                gap: 5vw;
+
+                .pessoa-container {
+                    // flex: 1;
+
+                    .text-container {
+                        padding: 4vw 3vw;
+
+                        p {
+                            font-size: 4vw;
+                        }
+    
+                        h1 {
+                            font-size: 5vw;
+                        }
+                    }
+
+                    .chose-container {
+                        flex: auto;
+                        height: 25vw;
+
+                        .circle {
+                            height: 7vw;
+                            width: 7vw;
+                        }
+                    }
+
+                }
+            }
         }
     }
 }
