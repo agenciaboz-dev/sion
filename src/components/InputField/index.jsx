@@ -4,7 +4,7 @@ import { useMediaQuery } from 'react-responsive';
 import MaskedInput from 'react-text-mask';
 import { useValidationErrors } from '../../hooks/useValidationsErrors';
 
-export const InputField = ({ children, id, title, handleChange, value, type, mask, autoFocus, error, errorText, multiline, select, inputProps, innerRef }) => {
+export const InputField = ({ children, id, title, handleChange, value, type, mask, autoFocus, error, errorText, multiline, select, inputProps, innerRef, not_required, readOnly }) => {
 
     const newRef = useRef(null)
     const ref = innerRef || newRef
@@ -24,7 +24,7 @@ export const InputField = ({ children, id, title, handleChange, value, type, mas
             mask={mask}
             id={id}
             name={id}
-            required
+            required={!not_required}
             onChange={handleChange}
             value={value}
             guide={false}
@@ -47,6 +47,7 @@ export const InputField = ({ children, id, title, handleChange, value, type, mas
                     rows={3}
                     sx={{fontFamily: "Montserrats"}}
                     select={select}
+                    InputProps={{readOnly}}
                 />
             )}
             />
@@ -57,7 +58,7 @@ export const InputField = ({ children, id, title, handleChange, value, type, mas
                 name={id} 
                 onChange={handleChange}
                 value={value}
-                required
+                required={!not_required}
                 type={type || 'text'}
                 error={error}
                 helperText={error ? errorText : ''}
@@ -73,6 +74,7 @@ export const InputField = ({ children, id, title, handleChange, value, type, mas
                 rows={3}
                 sx={{fontFamily: "Montserrats"}}
                 select={select}
+                InputProps={{readOnly}}
             />
             }
         </div>

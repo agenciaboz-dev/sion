@@ -19,14 +19,12 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
 
     const CurrentSupplier = () => {
         const onSubmit = values => {
-            // setFileError(false)
-
-            // if (!fileContent) {
+            // if (!client.value.anexos) {
             //     setFileError(true)
             //     return
             // }
             client.setValue({...client.value, supplier: values.supplier})
-            navigate('/cadastro/contrato')
+            navigate('/cadastro/calculadora')
         }
 
         return (

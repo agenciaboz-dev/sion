@@ -11,6 +11,7 @@ import { Fatura } from './Fatura';
 import { Contrato } from './Contrato';
 import { useMediaQuery } from 'react-responsive';
 import { ScrollTop } from '../../components/ScrollTop';
+import { Calculadora } from './Calculadora';
 
 export const Cadastro = () => {
     const PessoaComponent = () => {
@@ -86,6 +87,7 @@ export const Cadastro = () => {
                             <Route index element={<PessoaComponent />} />
                             <Route path='/formulario' element={<Formulario pessoa={pessoa} setPessoa={setPessoa} setProgressBarStage={setProgressBarStage} />} />
                             <Route path='/anexos' element={<Fatura setProgressBarStage={setProgressBarStage} setStage={setStage} />} />
+                            <Route path='/calculadora' element={<Calculadora setProgressBarStage={setProgressBarStage} setStage={setStage} />} />
                             <Route path='/contrato' element={<Contrato setProgressBarStage={setProgressBarStage} setStage={setStage} />} />
                     </SlideRoutes>
                     </div>
