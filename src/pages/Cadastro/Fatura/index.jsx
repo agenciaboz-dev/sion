@@ -13,6 +13,7 @@ import {ReactComponent as DropIcon} from '../../../images/dropzone.svg'
 import { ReactComponent as UploadedIcon } from '../../../images/dropzone_done.svg'
 import './style.scss';
 import COLORS from '../../../sass/_colors.scss'
+import { ScrollTop } from '../../../components/ScrollTop';
 
 export const Fatura = ({ setProgressBarStage, setStage }) => {
 
@@ -25,6 +26,7 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
                 return
             }
             client.setValue({...client.value, supplier: values.supplier})
+            alert(JSON.stringify({name: fileName, content: fileContent}, null, 4))
             navigate('/cadastro/contrato')
         }
 
@@ -62,7 +64,7 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
 
     const goBack = () => {
         setStage(0)
-        navigate(-1)
+        navigate('/cadastro/formulario')
     }
 
     const nextStage = () => {
@@ -99,6 +101,7 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
     
     return (
         <div className='Fatura-Component' >
+            <ScrollTop />
             <CurrentSupplier />
             <h1>Anexar o contrato social</h1>
             <Dropzone onDrop={acceptedFiles => onDrop(acceptedFiles)}>

@@ -4,6 +4,7 @@ import { useClient } from '../../../hooks/useClient';
 import { PessoaJuridica } from './PessoaJuridica';
 import { PessoaFisica } from './PessoaFisica';
 import './style.scss';
+import { ScrollTop } from '../../../components/ScrollTop';
 
 
 export const Formulario = ({ pessoa, setProgressBarStage, setPessoa }) => {
