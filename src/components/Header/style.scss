@@ -64,14 +64,20 @@
 
 @media only screen and (max-width: 600px) {
     .Header-Component {
-        height: 30vw;
+        height: 15vw;
         margin: 0;
-
+        margin-bottom: 15vw;
+        padding: 10vw 0;
+        position: relative;
+        align-self: flex-start;
+        
         .top-container {
+            position: absolute;
             height: 100%;
             color: white;
             align-self: flex-start;
             margin-left: 7vw;
+            margin-top: 5vw;
             align-items: center;
             gap: 2vw;
             cursor: pointer;
@@ -91,6 +97,24 @@
         svg {
             height: 25vw;
             margin: 8vw;
+        }
+
+        .top-triangle {
+            position: absolute;
+            border-top: 0 solid transparent;
+            border-bottom: 25vw solid transparent;
+            border-right: 130vw solid $primary-color;
+            margin-right: 30vw;
+            margin-top: -15.5vw;
+        }
+
+        .bottom-triangle {
+            position: absolute;
+            border-top: 10vw solid transparent;
+            border-bottom: 35vw solid transparent;
+            border-left: 250vw solid $darkbluebutton-color;
+            margin-left: 0vw;
+            z-index: -1;
         }
     }
 }

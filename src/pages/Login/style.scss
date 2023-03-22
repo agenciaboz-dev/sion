@@ -78,6 +78,7 @@
 @media only screen and (max-width: 600px) {
     .Login-Page {
         height: 100vh;
+        overflow-x: hidden;
 
         .main-container {
             > svg {

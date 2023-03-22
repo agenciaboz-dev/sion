@@ -40,12 +40,16 @@ export const Header = ({ alternative, setAlternative, vendas }) => {
     return (
         <div className='Header-Component' style={vendas && {backgroundColor: COLORS.primary_dark}}>
             {isMobile ? 
-            <div className="top-container" onClick={() => headerNavigate.navigate()}>
-                <div>
-                    <p>{'<'}</p>
+            <section>
+                <div className="top-triangle"></div>
+                <div className="top-container" onClick={() => headerNavigate.navigate()}>
+                    <div>
+                        <p>{'<'}</p>
+                    </div>
+                    <p>{headerNavigate.label}</p>
                 </div>
-                <p>{headerNavigate.label}</p>
-            </div>
+                <div className="bottom-triangle"></div>
+            </section>
             : 
             <div className="menus-container" style={alternative ? alternative_style : null} >
                 {alternative ? <Logo /> : null}
