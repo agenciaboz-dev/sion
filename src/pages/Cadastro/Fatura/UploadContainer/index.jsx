@@ -1,6 +1,7 @@
 import { CustomDashedBorder } from 'custom-dashed-border';
 import { useCallback, useState } from 'react';
 import Dropzone from 'react-dropzone';
+import { useAttachments } from '../../../../hooks/useAttachments';
 import { useClient } from '../../../../hooks/useClient';
 import {ReactComponent as DropIcon} from '../../../../images/dropzone.svg'
 import { ReactComponent as UploadedIcon } from '../../../../images/dropzone_done.svg'
@@ -9,7 +10,7 @@ import COLORS from '../../../../sass/_colors.scss'
 export const UploadContainer = ({ title, identifier }) => {
     const vw = window.innerHeight / 100
 
-    const client = useClient()
+    const [attachments, setAttachments] = useAttachments()
 
     const [fileContent, setFileContent] = useState('')
     const [fileName, setFileName] = useState('')
@@ -21,7 +22,7 @@ export const UploadContainer = ({ title, identifier }) => {
     }
 
     const onDrop = useCallback((acceptedFiles) => {
-        client.setValue({...client.value, fatura: acceptedFiles})
+        setAttachments({...attachments, [identifier]: acceptedFiles})
 
         acceptedFiles.forEach((file) => {
           const reader = new FileReader()

@@ -72,7 +72,7 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
             <ScrollTop />
             <CurrentSupplier />
             <UploadContainer title={'Anexar a fatura'} identifier='fatura' />
-            <UploadContainer title={client.value.pessoa == 'juridica' ? 'Anexar o contrato social' : 'Anexar documentos'} identifier='contrato_social' />
+            <UploadContainer title={client.value.pessoa == 'juridica' ? 'Anexar o contrato social' : 'Anexar documentos'} identifier='documentos' />
             <div className="buttons-container">
                 <button onClick={() => goBack()} style={{backgroundColor: COLORS.gray}} >Voltar</button>
                 <button onClick={() => nextStage()}>Avançar</button>

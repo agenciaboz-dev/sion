@@ -12,6 +12,7 @@ import { UserProvider } from './contexts/userContext';
 import { ControlPanel } from './pages/ControlPanel';
 import { useMuiTheme } from './hooks/useMuiTheme';
 import { ThemeProvider } from '@mui/material';
+import { AttachmentsProvider } from './contexts/attachmentsContext';
 
 function App() {
     const muiTheme = useMuiTheme()
@@ -21,16 +22,18 @@ function App() {
         <BrowserRouter>
             <ThemeProvider theme={muiTheme}>
                 <ClientProvider>
-                    <Routes>
-                            {/* <Route index element={<Home />} /> */}
-                            <Route index element={<Login />} />
+                    <AttachmentsProvider>
+                        <Routes>
+                                {/* <Route index element={<Home />} /> */}
+                                <Route index element={<Login />} />
 
-                            <Route path='/login' element={<Login />} />
-                            <Route path='/cadastro/*' element={<Cadastro />} />
-                            <Route path='/links' element={<Links />} />
-                            <Route path='/admin' element={<ControlPanel />} />
-                            <Route path='*' element={<NotFound />} />
-                    </Routes>
+                                <Route path='/login' element={<Login />} />
+                                <Route path='/cadastro/*' element={<Cadastro />} />
+                                <Route path='/links' element={<Links />} />
+                                <Route path='/admin' element={<ControlPanel />} />
+                                <Route path='*' element={<NotFound />} />
+                        </Routes>
+                    </AttachmentsProvider>
                 </ClientProvider>
             </ThemeProvider>
         </BrowserRouter>
