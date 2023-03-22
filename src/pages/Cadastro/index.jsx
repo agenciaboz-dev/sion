@@ -78,7 +78,7 @@ export const Cadastro = () => {
     return (
         <div className='Cadastro-Page' >
             {isMobile && <ScrollTop />}
-            <BackgroundContainer>
+            <BackgroundContainer vendas>
                 <div className="main-container" style={{opacity: loaded ? 1 : 0, transition: '0.5s'}}>
                     <Progress stage={stage} progressBarStage={progressBarStage} />
                     <div className="content">

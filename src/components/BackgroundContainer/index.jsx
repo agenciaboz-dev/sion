@@ -6,7 +6,7 @@ import { Header } from '../Header';
 import { useMediaQuery } from 'react-responsive';
 import useMeasure from 'react-use-measure';
 
-export const BackgroundContainer = ({ children }) => {
+export const BackgroundContainer = ({ children, vendas }) => {
     const [stickyHeader, setstickyHeader] = useState(false)
     const isMobile = useMediaQuery({maxWidth: 600})
     const [ref, {height}] = useMeasure()
@@ -17,8 +17,7 @@ export const BackgroundContainer = ({ children }) => {
     
     return (
         <div className='BackgroundContainer-Component' ref={ref} >
-            <Background style={style} height={height} />
-            <Header alternative={stickyHeader} setAlternative={setstickyHeader} />
+            <Header alternative={stickyHeader} setAlternative={setstickyHeader} vendas={vendas} />
 
             <div className="children-container">
                 {children}

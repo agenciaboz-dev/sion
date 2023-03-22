@@ -8,7 +8,7 @@ import { HeaderButton } from './HeaderButton';
 import { useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 
-export const Header = ({ alternative, setAlternative }) => {
+export const Header = ({ alternative, setAlternative, vendas }) => {
 
     const menus = useHeaderMenus()
     const navigate = useNavigate()
@@ -36,7 +36,7 @@ export const Header = ({ alternative, setAlternative }) => {
 
     
     return (
-        <div className='Header-Component'>
+        <div className='Header-Component' style={vendas && {backgroundColor: COLORS.primary_dark}}>
             {isMobile ? 
             null 
             : 
@@ -52,7 +52,7 @@ export const Header = ({ alternative, setAlternative }) => {
                 })}
                 <button className="login-button" onClick={() => navigate('/login')}>Sou cliente</button>
             </div>}
-            <Logo style={alternative ? {visibility: 'hidden'} : null} />
+            {!vendas && <Logo style={alternative ? {visibility: 'hidden'} : null} />}
         </div>
     )
 }

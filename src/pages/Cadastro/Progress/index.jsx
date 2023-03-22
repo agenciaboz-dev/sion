@@ -35,7 +35,7 @@ export const Progress = ({ stage, progressBarStage }) => {
                 />
             </div>
             <Container name={'Cadastro'} current={stage >= 0} />
-            <Container name={'Contrato Social'} current={stage >= 1} />
+            <Container name={'Anexos'} current={stage >= 1} />
             <Container name={'Contrato'} current={stage >= 2} />
         </div>
     )
