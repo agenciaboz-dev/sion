@@ -12,8 +12,8 @@ export const UploadContainer = ({ title, identifier }) => {
 
     const [attachments, setAttachments] = useAttachments()
 
-    const [fileContent, setFileContent] = useState('')
-    const [fileName, setFileName] = useState('')
+    const [fileContent, setFileContent] = useState(attachments[identifier] || '')
+    const [fileName, setFileName] = useState(attachments[identifier] || '')
     const [fileError, setFileError] = useState(false)
 
     const borderStyle = {
