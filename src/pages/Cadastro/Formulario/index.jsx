@@ -18,7 +18,6 @@ export const Formulario = ({ pessoa, setProgressBarStage, setPessoa }) => {
 
     const previousStage = (event) => {
         event.preventDefault()
-        window.scrollTo(0, 200);
         setPessoa(null)
         navigate('/cadastro')
     }

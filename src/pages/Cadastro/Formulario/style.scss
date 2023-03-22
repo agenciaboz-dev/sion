@@ -5,24 +5,43 @@
 
     form {
         display: flex;
+        flex-direction: column;
         width: 100%;
         justify-content: space-between;
 
-        .input-container {
-            flex: 0.48;
-            flex-direction: column;
-            justify-content: space-between;
 
+        .InputField-Component {
+            flex-direction: column;
+        }
+
+        .buttons-container {
             button {
                 width: 10vw;
                 height: 3vw;
                 margin-top: 5vw;
             }
-
-            .InputField-Component {
-                flex-direction: column;
-            }
-
         }
+
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .Formulario-Component {
+        form {
+            .buttons-container {
+                width: 100%;
+                height: max-content;
+                justify-content: space-between;
+                gap: 3vw;
+                
+                button {
+                    flex: 1;
+                    font-size: 6vw;
+                    height: auto;
+                    padding: 2vw 5vw;
+                }
+            }
+        }
+        
     }
 }
