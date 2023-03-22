@@ -23,9 +23,9 @@ export const Calculadora = () => {
     const [spent, setSpent] = useState(client.value.form?.monthly_spent || 'R$ 1.000')
     const [currentFlag, setCurrentFlag] = useState(1)
     const [newFlag, setNewFlag] = useState(1)
-    const [discount, setDiscount] = useState('')
+    const [discount, setDiscount] = useState(client.value.discount || '')
     const [new_spent, setNew_spent] = useState('')
-    const [profit, setProfit] = useState('')
+    const [profit, setProfit] = useState(client.value.profit || '')
     const [cost, setCost] = useState('')
 
     const goBack = () => {
@@ -33,6 +33,7 @@ export const Calculadora = () => {
     }
 
     const nextStage = () => {
+        client.setValue({...client.value, discount, profit})
         navigate('/cadastro/contrato')
     }
 
