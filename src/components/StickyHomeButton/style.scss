@@ -1,6 +1,7 @@
 @import '/src/sass/colors';
 
 .StickyHomeButton-Component {
+    display: flex;
     position: sticky;
     width: 5vw;
     min-height: 5vw;

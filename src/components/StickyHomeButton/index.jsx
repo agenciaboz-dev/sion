@@ -5,7 +5,7 @@ import AnchorLink from 'react-anchor-link-smooth-scroll';
 export const StickyHomeButton = ({ show }) => {
     
     return (
-        <AnchorLink className='StickyHomeButton-Component' style={{display: show ? 'flex' : 'none'}} href={'#home'}>
+        <AnchorLink className='StickyHomeButton-Component' style={{visibility: show ? 'visible' : 'hidden'}} href={'#home'}>
             <Arrow />
         </AnchorLink>
     )
