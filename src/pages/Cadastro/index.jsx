@@ -51,8 +51,8 @@ export const Cadastro = () => {
     
         return (
             <div className="pessoa-wrapper">
-                <Pessoa name='Pessoa Física' value='fisica' description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'} />
-                <Pessoa name='Pessoa Jurídica' value='juridica' description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'} />
+                <Pessoa name='Pessoa Física' value='fisica' description={''} />
+                <Pessoa name='Pessoa Jurídica' value='juridica' description={''} />
             </div>
         )
     }
