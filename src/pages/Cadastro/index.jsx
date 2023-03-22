@@ -10,6 +10,7 @@ import { useClient } from '../../hooks/useClient';
 import { Fatura } from './Fatura';
 import { Contrato } from './Contrato';
 import { useMediaQuery } from 'react-responsive';
+import { ScrollTop } from '../../components/ScrollTop';
 
 export const Cadastro = () => {
     const PessoaComponent = () => {
@@ -76,6 +77,7 @@ export const Cadastro = () => {
 
     return (
         <div className='Cadastro-Page' >
+            {isMobile && <ScrollTop />}
             <BackgroundContainer>
                 <div className="main-container" style={{opacity: loaded ? 1 : 0, transition: '0.5s'}}>
                     <Progress stage={stage} progressBarStage={progressBarStage} />
