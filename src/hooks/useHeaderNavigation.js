@@ -32,6 +32,10 @@ export const useHeaderNavigation = () => {
             label: 'Voltar',
             navigate: () => navigate('/cadastro/anexos')
         },
+        ['/cadastro/contrato']: {
+            label: 'Voltar',
+            navigate: () => navigate('/cadastro/calculadora')
+        },
     }
 
 
