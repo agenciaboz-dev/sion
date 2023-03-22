@@ -15,7 +15,8 @@ export const Calculadora = () => {
 
     const client = useClient()
     const navigate = useNavigate()
-    const flagRef = useRef(null)
+    const discountRef = useRef(null)
+    const profitRef = useRef(null)
     const percentMask = usePercentMask()
     const currencyMask = useCurrencyMask()
     const flags = useFlags()
@@ -33,6 +34,16 @@ export const Calculadora = () => {
     }
 
     const nextStage = () => {
+        if (!discount) {
+            discountRef.current.inputElement.focus()
+            return
+        }
+        
+        if (!profit) {
+            profitRef.current.inputElement.focus()
+            return
+        }
+
         client.setValue({...client.value, discount, profit})
         navigate('/cadastro/contrato')
     }
@@ -75,9 +86,9 @@ export const Calculadora = () => {
                 {flags.map(flag => <MenuItem key={flag.factor} value={flag.factor} style={{width: '100%'}} >{flag.name}</MenuItem>)}
             </InputField>
 
-            <InputField mask={percentMask} title={'Desconto'} id={'discount'} value={discount} handleChange={event => setDiscount(event.target.value)} />
+            <InputField mask={percentMask} title={'Desconto'} innerRef={discountRef} id={'discount'} value={discount} handleChange={event => setDiscount(event.target.value)} />
             <InputField mask={currencyMask} title={'Novo valor da fatura'} id={'new_spent'} value={new_spent || 0} readOnly not_required />
-            <InputField mask={percentMask} title={'Taxa sion'} id={'profit'} value={profit} handleChange={event => setProfit(event.target.value)} />
+            <InputField mask={percentMask} title={'Taxa sion'} innerRef={profitRef} id={'profit'} value={profit} handleChange={event => setProfit(event.target.value)} />
             <InputField mask={currencyMask} title={'Custo mensal'} id={'cost'} value={cost || 0} readOnly not_required />
 
             <NavButtons goBack={goBack} nextStage={nextStage} />
