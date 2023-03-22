@@ -18,8 +18,14 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
 
     const CurrentSupplier = () => {
         const onSubmit = values => {
+            setFileError(false)
+
+            if (!fileContent) {
+                setFileError(true)
+                return
+            }
             client.setValue({...client.value, supplier: values.supplier})
-            // navigate('/cadastro/contrato')
+            navigate('/cadastro/contrato')
         }
 
         return (
@@ -46,6 +52,7 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
 
     const [fileContent, setFileContent] = useState('')
     const [fileName, setFileName] = useState('')
+    const [fileError, setFileError] = useState(false)
 
 
     const borderStyle = {
@@ -103,7 +110,7 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
                         <div className="upload-container">
                             {fileContent ? <UploadedIcon /> : <DropIcon />}
                             {fileContent && <p style={{fontWeight: 'bold'}} >Feito!</p> }
-                            {fileContent ? <p>Clique para selecionar outro arquivo</p> : <p style={{fontWeight: 'bold'}}>Selecione um arquivo para fazer upload</p>}
+                            {fileContent ? <p>Clique para selecionar outro arquivo</p> : <p style={{fontWeight: 'bold', color: fileError && COLORS.red}}>Selecione um arquivo para fazer upload</p>}
                             <p>ou arraste e solte aqui</p>
                         </div> 
 
