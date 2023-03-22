@@ -1,19 +1,17 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useClient } from '../../../hooks/useClient';
 import {ReactComponent as ChoseIcon} from '../../../images/blue_check.svg'
 import './style.scss';
 
 export const Contrato = ({ setProgressBarStage, setStage }) => {
 
     const navigate = useNavigate()
+    const client = useClient()
 
-    const goBack = () => {
-        setStage(1)
-        navigate(-1)
-    }
-
-    const nextStage = () => {
-        navigate('/cadastro/contrato')
+    const finish = () => {
+        client.setValue(null)
+        navigate('/')
     }
 
     useEffect(() => {
@@ -31,7 +29,7 @@ export const Contrato = ({ setProgressBarStage, setStage }) => {
                     <p>Foi enviado um email com as</p>
                     <p>informações recebidas!</p>
                 </div>
-                <button onClick={() => navigate('/')}>Finalizar</button>
+                <button onClick={() => finish()}>Finalizar</button>
             </div>
 
             
