@@ -69,20 +69,17 @@
                     // flex: 1;
 
                     .text-container {
-                        padding: 4vw 3vw;
+                        padding: 6vw 3vw;
 
-                        p {
-                            font-size: 4vw;
-                        }
-    
                         h1 {
-                            font-size: 5vw;
+                            font-size: 8.5vw;
+                            text-align: center;
                         }
                     }
 
                     .chose-container {
                         flex: auto;
-                        height: 25vw;
+                        height: 15vw;
 
                         .circle {
                             height: 7vw;
