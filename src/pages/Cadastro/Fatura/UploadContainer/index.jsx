@@ -1,5 +1,5 @@
 import { CustomDashedBorder } from 'custom-dashed-border';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Dropzone from 'react-dropzone';
 import { useAttachments } from '../../../../hooks/useAttachments';
 import { useClient } from '../../../../hooks/useClient';
@@ -15,6 +15,8 @@ export const UploadContainer = ({ title, identifier }) => {
     const [fileContent, setFileContent] = useState(attachments[identifier] || '')
     const [fileName, setFileName] = useState(attachments[identifier] || '')
     const [fileError, setFileError] = useState(false)
+    const [currentAttachments, setCurrentAttachments] = useState(attachments[identifier])
+    console.log(currentAttachments)
 
     const borderStyle = {
         stripe: 2 * vw, 
@@ -42,6 +44,10 @@ export const UploadContainer = ({ title, identifier }) => {
         })
         
       }, [])
+
+    useEffect(() => {
+        setCurrentAttachments(attachments[identifier])
+    }, [attachments])
     
     return (
         <div className='UploadContainer-Component' >
@@ -53,9 +59,9 @@ export const UploadContainer = ({ title, identifier }) => {
                     <CustomDashedBorder top={borderStyle} left={borderStyle} right={borderStyle} bottom={borderStyle} >
                         <input {...getInputProps()} />
                         <div className="upload-container">
-                            {fileContent ? <UploadedIcon /> : <DropIcon />}
-                            {fileContent && <p style={{fontWeight: 'bold'}} >Feito!</p> }
-                            {fileContent ? <p>Clique para selecionar outro arquivo</p> : <p style={{fontWeight: 'bold', color: fileError && COLORS.red}}>Clique para tirar uma foto</p>}
+                            {currentAttachments ? <UploadedIcon /> : <DropIcon />}
+                            {currentAttachments && <p style={{fontWeight: 'bold'}} >Feito!</p> }
+                            {currentAttachments ? <p>Clique para selecionar outro arquivo</p> : <p style={{fontWeight: 'bold', color: fileError && COLORS.red}}>Clique para tirar uma foto</p>}
                             <p>ou selecione um arquivo</p>
                         </div> 
 
