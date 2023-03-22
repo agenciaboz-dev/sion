@@ -11,12 +11,13 @@ export const UploadContainer = ({ title, identifier }) => {
     const vw = window.innerHeight / 100
 
     const [attachments, setAttachments] = useAttachments()
+    const client = useClient()
 
     const [fileContent, setFileContent] = useState(attachments[identifier] || '')
     const [fileName, setFileName] = useState(attachments[identifier] || '')
     const [fileError, setFileError] = useState(false)
-    const [currentAttachments, setCurrentAttachments] = useState(attachments[identifier])
-    console.log(currentAttachments)
+    const [currentAttachments, setCurrentAttachments] = useState(client.value.anexos[identifier])
+    console.log({[identifier]: client.value.anexos[identifier]})
 
     const borderStyle = {
         stripe: 2 * vw, 
@@ -46,8 +47,8 @@ export const UploadContainer = ({ title, identifier }) => {
       }, [])
 
     useEffect(() => {
-        setCurrentAttachments(attachments[identifier])
-    }, [attachments])
+        setCurrentAttachments(client.value.anexos[identifier])
+    }, [client.value.anexos[identifier]])
     
     return (
         <div className='UploadContainer-Component' >
