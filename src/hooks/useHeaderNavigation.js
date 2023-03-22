@@ -20,17 +20,25 @@ export const useHeaderNavigation = () => {
             label: 'Sair',
             navigate: logout
         },
-        ['*']: {
+        ['/cadastro/formulario']: {
             label: 'Voltar',
-            navigate: () => navigate(-1)
+            navigate: () => navigate('/cadastro')
+        },
+        ['/cadastro/anexos']: {
+            label: 'Voltar',
+            navigate: () => navigate('/cadastro/formulario')
+        },
+        ['/cadastro/calculadora']: {
+            label: 'Voltar',
+            navigate: () => navigate('/cadastro/anexos')
         },
     }
 
 
     const headerObject = useMemo(() => {
         return {
-            label: paths[path]?.label || paths['*'].label,
-            navigate: () => paths[path]?.navigate() || paths['*'].navigate()
+            label: paths[path].label,
+            navigate: () => paths[path].navigate()
         }
 
     }, [path])
