@@ -79,7 +79,7 @@ export const Login = () => {
                     )}
                 </Formik>
             </div>
-            <Footer />
+            <Footer vendas />
         </div>
     )
 }

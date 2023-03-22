@@ -7,8 +7,9 @@ import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { useCallback, useState } from 'react';
 import { api } from '../../api';
 import { useLocation, useNavigate } from 'react-router-dom';
+import COLORS from '../../sass/_colors.scss'
 
-export const Footer = () => {
+export const Footer = ({ vendas }) => {
 
     const menus = useHeaderMenus()
     const location = useLocation()
@@ -29,7 +30,21 @@ export const Footer = () => {
         })
     }, [email])
     
-    return (
+    return vendas ? 
+    <div className='Footer-Component' style={{
+            backgroundColor: 'transparent',
+            marginLeft: '-10vw',
+            width: 0, 
+            height: 0,
+            borderTop: '35vw solid transparent',
+            borderBottom: '0 solid transparent',
+            borderRight: `110vw solid ${COLORS.primary}`,
+            padding: 0
+        }} >
+
+    </div>
+    :
+    (
         <div className='Footer-Component' >
             <div className="top-content">
                 <div className="info">

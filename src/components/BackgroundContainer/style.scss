@@ -9,3 +9,9 @@
         display: contents;
     }
 }
+
+@media only screen and (max-width: 600px) {
+    .BackgroundContainer-Component {
+        min-height: 100vh;
+    }
+}

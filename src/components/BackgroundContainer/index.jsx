@@ -23,7 +23,7 @@ export const BackgroundContainer = ({ children, vendas }) => {
                 {children}
             </div>
 
-            <Footer />
+            <Footer vendas={vendas} />
         </div>
     )
 }
