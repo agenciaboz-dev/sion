@@ -63,6 +63,7 @@
 
                 input {
                     width: 70%;
+                    font-size: 1vw;
                 }
                 button {
                     width: 30%;
@@ -84,6 +85,10 @@
 
         .icons {
             gap: 2vw;
+
+            svg {
+                width: 2vw;
+            }
         }
     }
 }

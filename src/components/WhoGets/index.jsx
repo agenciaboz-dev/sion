@@ -16,7 +16,7 @@ export const WhoGets = () => {
 
             <h1>Quem recebe nossa energia</h1>
             <div className="main-container">
-                <Arrow style={{cursor: 'pointer'}} />
+                <Arrow style={{cursor: 'pointer', width: '3vw'}} />
                 <div className="pictures">
                     {customers.map(customer => {
                         return (
@@ -24,7 +24,7 @@ export const WhoGets = () => {
                         )
                     })}
                 </div>
-                <Arrow style={{transform: 'scale(-1, 1)', cursor: 'pointer', filter: 'invert(94%) sepia(100%) saturate(1%) hue-rotate(87deg) brightness(104%) contrast(102%)'}} />
+                <Arrow style={{transform: 'scale(-1, 1)', cursor: 'pointer', filter: 'invert(94%) sepia(100%) saturate(1%) hue-rotate(87deg) brightness(104%) contrast(102%)', width: '3vw'}} />
             </div>
         </div>
     )
