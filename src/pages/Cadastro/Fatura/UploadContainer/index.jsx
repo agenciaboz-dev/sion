@@ -46,9 +46,9 @@ export const UploadContainer = ({ title, identifier }) => {
       }, [])
 
     useEffect(() => {
-        if (client.value.anexos[identifier]) setCurrentAttachments(client.value.anexos[identifier])
+        if ('anexos' in client?.value && identifier in client.value.anexos) setCurrentAttachments(client.value.anexos[identifier])
         
-    }, [client.value.anexos])
+    }, [client?.value?.anexos])
     
     return (
         <div className='UploadContainer-Component' >

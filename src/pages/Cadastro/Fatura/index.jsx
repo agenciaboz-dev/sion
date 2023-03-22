@@ -71,7 +71,7 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
             <ScrollTop />
             <CurrentSupplier />
             <UploadContainer title={'Anexar a fatura'} identifier='fatura' />
-            <UploadContainer title={client.value.pessoa == 'juridica' ? 'Anexar o contrato social' : 'Anexar documentos'} identifier='documentos' />
+            <UploadContainer title={client?.value?.pessoa == 'juridica' ? 'Anexar o contrato social' : 'Anexar documentos'} identifier='documentos' />
             <NavButtons goBack={goBack} nextStage={nextStage} />
         </div>
     )
