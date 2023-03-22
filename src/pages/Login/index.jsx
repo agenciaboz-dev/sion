@@ -11,6 +11,7 @@ import './style.scss';
 import { useUser } from '../../hooks/useUser';
 import { useNavigate } from 'react-router-dom';
 import { MuiLoading } from '../../components/MuiLoading';
+import { Header } from '../../components/Header';
 
 export const Login = () => {
 
@@ -55,12 +56,7 @@ export const Login = () => {
     
     return (
         <div className='Login-Page' >
-            <div className="back-container" onClick={() => navigate('/')}>
-                <div>
-                    <p>{'<'}</p>
-                </div>
-                <p>Voltar</p>
-            </div>
+            <Header vendas />
             <div className="main-container">
                 <LogoIcon />
                 <Formik initialValues={{user: '', password: ''}} onSubmit={values => tryLogin(values)}>
