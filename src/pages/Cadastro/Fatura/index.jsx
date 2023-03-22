@@ -1,14 +1,44 @@
+import { MenuItem } from '@mui/material';
 import { CustomDashedBorder } from 'custom-dashed-border';
-import { useState } from 'react';
+import { Form, Formik } from 'formik';
+import { useRef, useState } from 'react';
 import { useCallback } from 'react';
 import { useEffect } from 'react';
 import Dropzone from 'react-dropzone';
 import { useNavigate } from 'react-router-dom';
+import { InputField } from '../../../components/InputField';
+import { MuiLoading } from '../../../components/MuiLoading';
 import { useClient } from '../../../hooks/useClient';
 import {ReactComponent as DropIcon} from '../../../images/dropzone.svg'
+import { ReactComponent as UploadedIcon } from '../../../images/dropzone_done.svg'
 import './style.scss';
+import COLORS from '../../../sass/_colors.scss'
 
 export const Fatura = ({ setProgressBarStage, setStage }) => {
+
+    const CurrentSupplier = () => {
+        const onSubmit = values => {
+            client.setValue({...client.value, supplier: values.supplier})
+            // navigate('/cadastro/contrato')
+        }
+
+        return (
+            <Formik initialValues={{supplier: 0}} onSubmit={onSubmit} innerRef={formRef} >
+                {({values, handleChange}) => (
+                    <Form>
+                        <InputField select id='supplier' title='Nova solicitação' handleChange={handleChange} value={values.supplier} >
+                            <MenuItem
+                                value={0}
+                                style={{width: '100%'}}
+                            >Copel</MenuItem>
+                        </InputField>
+                    </Form>
+                )}
+            </Formik>
+        )
+    }
+
+    const formRef = useRef(null)
     const vw = window.innerHeight / 100
 
     const navigate = useNavigate()
@@ -29,7 +59,7 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
     }
 
     const nextStage = () => {
-        navigate('/cadastro/contrato')
+        formRef.current.submitForm()
     }
 
     const onDrop = useCallback((acceptedFiles) => {
@@ -62,27 +92,20 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
     
     return (
         <div className='Fatura-Component' >
-            <h1>Anexar a fatura de energia</h1>
+            <CurrentSupplier />
+            <h1>Anexar o contrato social</h1>
             <Dropzone onDrop={acceptedFiles => onDrop(acceptedFiles)}>
             {({getRootProps, getInputProps}) => (
                 <section>
                 <div {...getRootProps()} className="dropzone">
                     <CustomDashedBorder top={borderStyle} left={borderStyle} right={borderStyle} bottom={borderStyle} >
                         <input {...getInputProps()} />
-                        {
-                            fileContent 
-                            ?
-                            <div className="file-container">
-                                <h3>{fileName}</h3>
-                                <p>{fileContent}</p>
-                            </div> 
-                            :
-                            <div className="upload-container">
-                                <DropIcon />
-                                <p>Selecione um arquivo para fazer upload</p>
-                                <p>ou arraste e solte aqui</p>
-                            </div>
-                        }
+                        <div className="upload-container">
+                            {fileContent ? <UploadedIcon /> : <DropIcon />}
+                            {fileContent && <p style={{fontWeight: 'bold'}} >Feito!</p> }
+                            {fileContent ? <p>Clique para selecionar outro arquivo</p> : <p style={{fontWeight: 'bold'}}>Selecione um arquivo para fazer upload</p>}
+                            <p>ou arraste e solte aqui</p>
+                        </div> 
 
                     </CustomDashedBorder>
                 </div>
@@ -90,7 +113,7 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
             )}
             </Dropzone>
             <div className="buttons-container">
-                <button onClick={() => goBack()}>Voltar</button>
+                <button onClick={() => goBack()} style={{backgroundColor: COLORS.gray}} >Voltar</button>
                 <button onClick={() => nextStage()}>Avançar</button>
             </div>
         </div>

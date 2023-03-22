@@ -38,3 +38,41 @@ $dash-spacing: 1vw;
         justify-content: space-between;
     }
 }
+
+@media only screen and (max-width: 600px) {
+    .Fatura-Component {
+
+        gap: 2vw;
+
+        h1 {
+            font-size: 6vw;
+        }
+
+        .dropzone {
+
+            .upload-container {
+                text-align: center;
+                color: $primary-color;
+
+                svg {
+                    width: 20vw;
+                    height: auto;
+                }
+            }
+        }
+
+        .buttons-container {
+            width: 100%;
+            height: max-content;
+            justify-content: space-between;
+            gap: 3vw;
+            
+            button {
+                flex: 1;
+                font-size: 6vw;
+                height: auto;
+                padding: 2vw 5vw;
+            }
+        }
+    }
+}
