@@ -12,30 +12,30 @@ export const PessoaJuridica = ({ previousStage, nextStage }) => {
     const client = useClient()
 
     const initial_inputs = client.value.form ||  {
-        razao_social: '',
+        company: '',
         name: '',
         cnpj: '',
-        objeto_social: '',
-        curriculo: '',
+        category: '',
+        curriculum: '',
         email: '',
         phone: '',
         address: '',
         number: '',
-        bairro: '',
+        district: '',
         monthly_spent: '',
     }
 
     const validationSchema = object({
-        razao_social: string().required(default_errors.required),
+        company: string().required(default_errors.required),
         name: string().required(default_errors.required),
         cnpj: string().length(18, default_errors.cnpj).required(default_errors.required),
-        objeto_social: string().required(default_errors.required),
-        curriculo: string().required(default_errors.required),
+        category: string().required(default_errors.required),
+        curriculum: string().required(default_errors.required),
         email: string().email(default_errors.email).required(default_errors.required),
         phone: string().min(14, default_errors.phone).required(default_errors.required),
         address: string().required(default_errors.required),
         number: number().typeError(default_errors.number).required(default_errors.required),
-        bairro: string().required(default_errors.required),
+        district: string().required(default_errors.required),
         monthly_spent: string().required(default_errors.required),
 
         // age: number().typeError(default_errors.number).required(default_errors.required).positive().integer(),
@@ -53,16 +53,16 @@ export const PessoaJuridica = ({ previousStage, nextStage }) => {
                         submitForm();
                     }
                     }}>
-                    <InputField title={'Razão Social titular da Unidade Consumidora'} id={'razao_social'} handleChange={handleChange} value={values.razao_social} error={Boolean(errors.razao_social)} errorText={errors.razao_social} />
+                    <InputField title={'Razão Social titular da Unidade Consumidora'} id={'company'} handleChange={handleChange} value={values.company} error={Boolean(errors.company)} errorText={errors.company} />
                     <InputField title={'Nome do Responsável Legal'} id={'name'} handleChange={handleChange} value={values.name} error={Boolean(errors.name)} errorText={errors.name} />
                     <InputField title={'CNPJ'} mask={[/\d/,/\d/,'.',/\d/,/\d/,/\d/,'.',/\d/,/\d/,/\d/,'/',/\d/,/\d/,/\d/,/\d/,'-',/\d/,/\d/]} id={'cnpj'} handleChange={handleChange} value={values.cnpj} error={Boolean(errors.cnpj)} errorText={errors.cnpj} />
-                    <InputField title={'Objeto Social'} id={'objeto_social'} handleChange={handleChange} value={values.objeto_social} error={Boolean(errors.objeto_social)} errorText={errors.objeto_social} />
-                    <InputField title={'Curriculo Social'} id={'curriculo'} handleChange={handleChange} value={values.curriculo} error={Boolean(errors.curriculo)} errorText={errors.curriculo} />
+                    <InputField title={'Objeto Social'} id={'category'} handleChange={handleChange} value={values.category} error={Boolean(errors.category)} errorText={errors.category} />
+                    <InputField title={'Curriculo Social'} id={'curriculum'} handleChange={handleChange} value={values.curriculum} error={Boolean(errors.curriculum)} errorText={errors.curriculum} />
                     <InputField title={'E-mail dos Representantes legais para assinatura'} id={'email'} handleChange={handleChange} value={values.email} error={Boolean(errors.email)} errorText={errors.email} />
                     <InputField title={'Telefone'} mask={["(", /\d/, /\d/, ")", " ", /\d/, /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/]} id={'phone'} handleChange={handleChange} value={values.phone} error={Boolean(errors.phone)} errorText={errors.phone} />
                     <InputField title={'Endereço'} id={'address'} handleChange={handleChange} value={values.address} error={Boolean(errors.address)} errorText={errors.address} />
                     <InputField title={'Número'} id={'number'} handleChange={handleChange} value={values.number} error={Boolean(errors.number)} errorText={errors.number} />
-                    <InputField title={'Bairro'} id={'bairro'} handleChange={handleChange} value={values.bairro} error={Boolean(errors.bairro)} errorText={errors.bairro} />
+                    <InputField title={'Bairro'} id={'district'} handleChange={handleChange} value={values.district} error={Boolean(errors.district)} errorText={errors.district} />
                     <InputField title={'Gasto mensal em média'} mask={currencyMask} id={'monthly_spent'} handleChange={handleChange} value={values.monthly_spent} error={Boolean(errors.monthly_spent)} errorText={errors.monthly_spent} />
                     <div className="buttons-container">
                         <button tabIndex={2} onClick={(event) => previousStage(event)} style={{backgroundColor: COLORS.gray}}>Voltar</button>
