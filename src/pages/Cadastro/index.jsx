@@ -85,7 +85,7 @@ export const Cadastro = () => {
                     <SlideRoutes location={location} duration={1000}>
                             <Route index element={<PessoaComponent />} />
                             <Route path='/formulario' element={<Formulario pessoa={pessoa} setPessoa={setPessoa} setProgressBarStage={setProgressBarStage} />} />
-                            <Route path='/fatura' element={<Fatura setProgressBarStage={setProgressBarStage} setStage={setStage} />} />
+                            <Route path='/anexos' element={<Fatura setProgressBarStage={setProgressBarStage} setStage={setStage} />} />
                             <Route path='/contrato' element={<Contrato setProgressBarStage={setProgressBarStage} setStage={setStage} />} />
                     </SlideRoutes>
                     </div>
