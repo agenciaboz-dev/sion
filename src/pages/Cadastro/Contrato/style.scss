@@ -1,6 +1,31 @@
 @import '/src/sass/colors';
 
 .Contrato-Component {
+    width: 100%;
     flex-direction: column;   
     align-items: center; 
+    color: $primary-color;
+
+    h1 {
+        font-size: 7vw;
+    }
+
+    .main-container {
+        width: 100%;
+        margin: 0;
+        padding: 5vw;
+        gap: 5vw;
+
+        .description-container {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        button {
+            flex: 1;
+            font-size: 6vw;
+            height: auto;
+            padding: 0 15vw;
+        }
+    }
 }

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { NavButtons } from '../NavButtons';
+import {ReactComponent as ChoseIcon} from '../../../images/blue_check.svg'
 import './style.scss';
 
 export const Contrato = ({ setProgressBarStage, setStage }) => {
@@ -24,9 +24,17 @@ export const Contrato = ({ setProgressBarStage, setStage }) => {
     
     return (
         <div className='Contrato-Component' >
-            <h1>click sign</h1>
+            <div className="main-container">
+                <ChoseIcon style={{height:'11vw', width: '11vw'}} />
+                <h1>Tudo pronto!</h1>
+                <div className='description-container'>
+                    <p>Foi enviado um email com as</p>
+                    <p>informações recebidas!</p>
+                </div>
+                <button onClick={() => navigate('/')}>Finalizar</button>
+            </div>
+
             
-            <NavButtons goBack={goBack} nextStage={nextStage} />
         </div>
     )
 }
