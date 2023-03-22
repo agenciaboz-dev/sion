@@ -14,6 +14,7 @@ import './style.scss';
 import COLORS from '../../../sass/_colors.scss'
 import { ScrollTop } from '../../../components/ScrollTop';
 import { UploadContainer } from './UploadContainer';
+import { NavButtons } from '../NavButtons';
 
 export const Fatura = ({ setProgressBarStage, setStage }) => {
 
@@ -71,10 +72,7 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
             <CurrentSupplier />
             <UploadContainer title={'Anexar a fatura'} identifier='fatura' />
             <UploadContainer title={client.value.pessoa == 'juridica' ? 'Anexar o contrato social' : 'Anexar documentos'} identifier='documentos' />
-            <div className="buttons-container">
-                <button onClick={() => goBack()} style={{backgroundColor: COLORS.gray}} >Voltar</button>
-                <button onClick={() => nextStage()}>Avançar</button>
-            </div>
+            <NavButtons goBack={goBack} nextStage={nextStage} />
         </div>
     )
 }

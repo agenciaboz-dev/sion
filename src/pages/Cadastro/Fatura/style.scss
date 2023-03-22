@@ -65,19 +65,6 @@ $dash-spacing: 1vw;
             }
         }
 
-        .buttons-container {
-            width: 100%;
-            height: max-content;
-            justify-content: space-between;
-            gap: 3vw;
-            margin-top: 7vw;
-            
-            button {
-                flex: 1;
-                font-size: 6vw;
-                height: auto;
-                padding: 2vw 5vw;
-            }
-        }
+        
     }
 }

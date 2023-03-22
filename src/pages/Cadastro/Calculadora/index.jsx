@@ -9,6 +9,7 @@ import { usePercentMask } from '../../../hooks/usePercentMask';
 import './style.scss';
 import COLORS from '../../../sass/_colors.scss'
 import { useFlags } from '../../../hooks/useFlags';
+import { NavButtons } from '../NavButtons';
 
 export const Calculadora = () => {
 
@@ -78,10 +79,7 @@ export const Calculadora = () => {
             <InputField mask={percentMask} title={'Taxa sion'} id={'profit'} value={profit} handleChange={event => setProfit(event.target.value)} />
             <InputField mask={currencyMask} title={'Custo mensal'} id={'cost'} value={cost || 0} readOnly not_required />
 
-            <div className="buttons-container">
-                <button onClick={() => goBack()} style={{backgroundColor: COLORS.gray}} >Voltar</button>
-                <button onClick={() => nextStage()}>Avançar</button>
-            </div>
+            <NavButtons goBack={goBack} nextStage={nextStage} />
         </div>
     )
 }

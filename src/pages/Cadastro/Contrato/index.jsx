@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { NavButtons } from '../NavButtons';
 import './style.scss';
 
 export const Contrato = ({ setProgressBarStage, setStage }) => {
@@ -24,10 +25,8 @@ export const Contrato = ({ setProgressBarStage, setStage }) => {
     return (
         <div className='Contrato-Component' >
             <h1>click sign</h1>
-            <div className="buttons-container">
-                <button onClick={() => goBack()}>Voltar</button>
-                <button onClick={() => nextStage()}>Avançar</button>
-            </div>
+            
+            <NavButtons goBack={goBack} nextStage={nextStage} />
         </div>
     )
 }
