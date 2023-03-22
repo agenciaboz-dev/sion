@@ -4,12 +4,14 @@ import { useValidationErrors } from '../../../../hooks/useValidationsErrors';
 import { InputField } from '../../../../components/InputField';
 import { useCurrencyMask } from '../../../../hooks/useCurrencyMask';
 import COLORS from '../../../../sass/_colors.scss'
+import { useClient } from '../../../../hooks/useClient';
 
 export const PessoaJuridica = ({ previousStage, nextStage }) => {
     const default_errors = useValidationErrors()
     const currencyMask = useCurrencyMask()
+    const client = useClient()
 
-    const initial_inputs = {
+    const initial_inputs = client.value.form ||  {
         razao_social: '',
         name: '',
         cnpj: '',
