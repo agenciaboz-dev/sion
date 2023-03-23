@@ -2,6 +2,7 @@ import './style.scss';
 import {ReactComponent as Logo} from '../../images/logo.svg';
 import {ReactComponent as InstagramIcon} from '../../images/instagram.svg';
 import {ReactComponent as FacebookIcon} from '../../images/facebook.svg';
+import {ReactComponent as ForwardArrow} from '../../images/forward_arrow_small.svg';
 import { useHeaderMenus } from '../../hooks/useHeaderMenus';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { useCallback, useState } from 'react';
@@ -51,9 +52,9 @@ export const Footer = ({ vendas }) => {
             {location.pathname == '/cadastro/contrato' &&
             <div className="finish-container" onClick={finish} >
                 <p>Finalizar</p>
-                <div>
-                    <p>{'>'}</p>
-                </div>
+                <div className='forward-arrow-container'>
+                        <ForwardArrow />
+                    </div>
             </div>
             }
     </div>

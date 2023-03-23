@@ -44,12 +44,13 @@ export const InputField = ({ children, id, title, handleChange, value, type, mas
                     multiline={multiline}
                     FormHelperTextProps={{style:{fontSize: isMobile ? '5vw' : '1.2vw'}}}
                     InputLabelProps={{style:{fontSize: isMobile ? '5vw' : '1.2vw'}}}
-                    rows={3}
+                    rows={1}
                     sx={{fontFamily: "Montserrats"}}
                     select={select}
                     InputProps={{readOnly}}
-                />
-            )}
+                    size="small"
+                    />
+                    )}
             />
             :
             <TextField
@@ -71,11 +72,12 @@ export const InputField = ({ children, id, title, handleChange, value, type, mas
                 FormHelperTextProps={{style:{fontSize: isMobile ? '5vw' : '1.2vw'}}}
                 InputLabelProps={{style:{fontSize: isMobile ? '5vw' : '1.2vw'}}}
                 // inputProps={inputProps || {style:{height: '0'}}}
-                rows={3}
+                rows={1}
                 sx={{fontFamily: "Montserrats"}}
                 select={select}
                 InputProps={{readOnly}}
-            />
+                size="small"
+                />
             }
         </div>
     )

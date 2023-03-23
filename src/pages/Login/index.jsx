@@ -5,7 +5,7 @@ import { api } from '../../api';
 import { Footer } from '../../components/Footer';
 import { InputField } from '../../components/InputField';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
-import { ReactComponent as LogoIcon } from '../../images/login/logotype.svg'
+import { ReactComponent as LogoCromado } from '../../images/logo_cromado_svg.svg'
 import CircularProgress from '@mui/material/CircularProgress';
 import './style.scss';
 import { useUser } from '../../hooks/useUser';
@@ -58,11 +58,13 @@ export const Login = () => {
         <div className='Login-Page' >
             <Header vendas />
             <div className="main-container">
-                <LogoIcon />
+                <LogoCromado />
                 <Formik initialValues={{user: '', password: ''}} onSubmit={values => tryLogin(values)}>
                     {({handleChange, values, submitForm, errors}) => (
                         <Form>
+                            <p>Nome de usuário ou e-mail</p>
                             <InputField title={'Nome de usuário ou e-mail'} id={'user'} handleChange={handleChange} value={values.user} error={Boolean(errors.user)} errorText={errors.user} />
+                            <p>Senha</p>
                             <InputField title={'Senha'} type='password' id={'password'} handleChange={handleChange} value={values.password} error={error} errorText={'Não foi possível fazer login'} />
                             <div className="bottom-container">
                                 <div className='remember-wrapper'>
@@ -73,6 +75,7 @@ export const Login = () => {
                                 </div>
                                 <div className='button-container'>
                                     <button type='submit'>{loading ? <MuiLoading /> : 'Entrar'}</button>
+                                    <p>Quero economizar!</p>
                                 </div>
                             </div>
                         </Form>

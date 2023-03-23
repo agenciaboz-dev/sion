@@ -39,7 +39,7 @@ export const Cadastro = () => {
                         <h1>{name}</h1>
                         <p>{description}</p>
                     </div>
-                    <div className="chose-container" style={{opacity: clicked ? 1 : 0.7}}>
+                    <div className="chose-container" style={{opacity: clicked ? 1 : 0.4}}>
                         {clicked ? <ChoseIcon style={isMobile && {height:'11vw', width: '11vw'}} /> : <div className="circle"></div> }
                     </div>
                 </div>

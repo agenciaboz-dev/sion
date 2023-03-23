@@ -3,13 +3,14 @@ $text-color: #333333;
 $yellow-text-color: #FFF493;
 $background-color: #F3F3F3;
 $darkbluebutton-color: #001448;
+$darkbluebackground-color: #182851;
 $graybutton-color: #737373;
 $red: #E12454;
 
 :export {
     background: $background-color;
     primary: $primary-color;
-    primary_dark: $darkbluebutton-color;
+    primary_dark: $darkbluebackground-color;
     text: $text-color;
     gray: $graybutton-color;
     red: $red;
