@@ -12,6 +12,7 @@ export const Contrato = ({ setProgressBarStage, setStage }) => {
     const client = useClient()
 
     const [loading, setLoading] = useState(true)
+    const [error, setError] = useState('')
 
     const finish = () => {
         client.setValue(null)
@@ -26,7 +27,11 @@ export const Contrato = ({ setProgressBarStage, setStage }) => {
         delete data.form
 
         api.post('/contract/new', data)
-        .then(response => console.log(response.data))
+        .then(response => {
+            const data = response.data
+            console.log(data)
+            if (data.error) setError(data.error)
+        })
         .catch(error => console.error(error))
         .finally(() => setLoading(false))
 
@@ -41,15 +46,21 @@ export const Contrato = ({ setProgressBarStage, setStage }) => {
                     <MuiLoading color={'primary'} size={'15vw'} />
                 </div>
                 :
-                <section>
-                    <ChoseIcon style={{height:'11vw', width: '11vw'}} />
-                    <h1>Tudo pronto!</h1>
-                    <div className='description-container'>
-                        <p>Foi enviado um email com as</p>
-                        <p>informações recebidas!</p>
-                    </div>
-                    <button onClick={() => finish()}>Finalizar</button>
-                </section>
+                error ?
+                    <section>
+                        <h1>Erro.</h1>
+                        <p>{error} já cadastrado</p>
+                    </section>
+                    :
+                    <section>
+                        <ChoseIcon style={{height:'11vw', width: '11vw'}} />
+                        <h1>Tudo pronto!</h1>
+                        <div className='description-container'>
+                            <p>Foi enviado um email com as</p>
+                            <p>informações recebidas!</p>
+                        </div>
+                        <button onClick={() => finish()}>Finalizar</button>
+                    </section>
                 }
             </div>
 
