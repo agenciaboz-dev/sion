@@ -44,7 +44,7 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
                                 style={{width: '100%'}}
                             >{supplier.name}</MenuItem>)}
                         </InputField>
-                        <InputField title='Unidade consumidora' innerRef={unitRef} id={'unit'} handleChange={handleChange} value={values.unit} error={unitError} errorText={'Campo obrigatório'} />
+                        <InputField title='Unidade consumidora' id={'unit'} handleChange={handleChange} value={values.unit} error={unitError} errorText={'Campo obrigatório'} />
 
                     </Form>
                 )}
@@ -53,7 +53,6 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
     }
 
     const formRef = useRef(null)
-    const unitRef = useRef(null)
 
     const navigate = useNavigate()
     const client = useClient()
@@ -65,8 +64,6 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
     }
 
     const nextStage = () => {
-        const unit = unitRef
-        console.log({unit})
         formRef.current.submitForm()
     }
 

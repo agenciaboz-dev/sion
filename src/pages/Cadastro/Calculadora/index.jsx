@@ -21,12 +21,12 @@ export const Calculadora = ({ setProgressBarStage, setStage }) => {
     const currencyMask = useCurrencyMask()
     const flags = useFlags()
 
-    const [spent, setSpent] = useState(client.value.form?.monthly_spent || 'R$ 1.000')
+    const [spent, setSpent] = useState(client.value?.form?.monthly_spent || 'R$ 1.000')
     const [currentFlag, setCurrentFlag] = useState(1)
     const [newFlag, setNewFlag] = useState(1)
-    const [discount, setDiscount] = useState(client.value.discount || '')
+    const [discount, setDiscount] = useState(client.value?.discount || '')
     const [new_spent, setNew_spent] = useState('')
-    const [profit, setProfit] = useState(client.value.profit || '')
+    const [profit, setProfit] = useState(client.value?.profit || '')
     const [cost, setCost] = useState('')
 
     const goBack = () => {

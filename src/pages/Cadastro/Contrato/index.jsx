@@ -22,11 +22,23 @@ export const Contrato = ({  }) => {
     }
 
     useEffect(() => {
+        const formData = new FormData();
+        const data = { ...client.value, ...client.value?.form };
+        delete data.form;
 
-        const data = {...client.value, ...client.value.form}
-        delete data.form
+        formData.append("data", JSON.stringify(data));
 
-        api.post('/contract/new', data)
+        // Assuming you have the files in the `attachments` state
+        const attachments = client.value.anexos;
+        if (attachments) {
+            Object.entries(attachments).forEach(([key, files]) => {
+            files.forEach((file, index) => {
+                formData.append(`${key}_${index}`, file);
+                });
+            });
+        }
+
+        api.post('/contract/new', formData)
         .then(response => {
             const data = response.data
             console.log(data)

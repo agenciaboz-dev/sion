@@ -27,18 +27,17 @@ export const UploadContainer = ({ title, identifier }) => {
         setAttachments({...attachments, [identifier]: acceptedFiles})
 
         acceptedFiles.forEach((file) => {
-          const reader = new FileReader()
-          setFileName(file.name)
+        //  const reader = new FileReader()
+            setFileName(file.name)
     
-          reader.onabort = () => console.log('file reading was aborted')
-          reader.onerror = () => console.log('file reading has failed')
-          reader.onload = () => {
-          // Do whatever you want with the file contents
-            const binaryStr = reader.result
-            console.log(binaryStr)
-            setFileContent(binaryStr)
-          }
-          reader.readAsText(file);
+        //   reader.onabort = () => console.log('file reading was aborted')
+        //   reader.onerror = () => console.log('file reading has failed')
+        //   reader.onload = () => {
+        //   // Do whatever you want with the file contents
+        //   const binaryStr = reader.result
+        //   console.log(binaryStr)
+        //   }
+        //   reader.readAsText(file);
         //   reader.readAsArrayBuffer(file)
 
         })
@@ -46,7 +45,9 @@ export const UploadContainer = ({ title, identifier }) => {
       }, [])
 
     useEffect(() => {
-        if ('anexos' in client?.value && identifier in client.value.anexos) setCurrentAttachments(client.value.anexos[identifier])
+        if (client.value) {
+            if ('anexos' in client?.value && identifier in client.value.anexos) setCurrentAttachments(client.value.anexos[identifier])
+        }
         
     }, [client?.value?.anexos])
     
