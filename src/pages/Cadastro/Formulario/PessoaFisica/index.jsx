@@ -11,7 +11,7 @@ export const PessoaFisica = ({ previousStage, nextStage }) => {
     const currencyMask = useCurrencyMask()
     const client = useClient()
 
-    const initial_inputs = client.value.form || {
+    const initial_inputs = client.value?.form || {
         name: '',
         cpf: '',
         rg: '',

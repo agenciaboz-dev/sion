@@ -19,17 +19,22 @@ import { NavButtons } from '../NavButtons';
 export const Fatura = ({ setProgressBarStage, setStage }) => {
 
     const CurrentSupplier = () => {
+        const [unitError, setUnitError] = useState(false)
+
         const onSubmit = values => {
-            // if (!client.value.anexos) {
-            //     setFileError(true)
-            //     return
-            // }
-            client.setValue({...client.value, supplier: values.supplier})
+            setUnitError(false)
+
+            if (!values.unit) {
+                setUnitError(true)
+                return
+            }
+
+            client.setValue({...client.value, supplier: values.supplier, unit: values.unit})
             navigate('/cadastro/calculadora')
         }
 
         return (
-            <Formik initialValues={{supplier: 0}} onSubmit={onSubmit} innerRef={formRef} >
+            <Formik initialValues={{supplier: 0, unit: client?.value?.unit || ''}} onSubmit={onSubmit} innerRef={formRef} >
                 {({values, handleChange}) => (
                     <Form>
                         <InputField select id='supplier' title='Distribuidora atual' handleChange={handleChange} value={values.supplier} >
@@ -38,6 +43,8 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
                                 style={{width: '100%'}}
                             >Copel</MenuItem>
                         </InputField>
+                        <InputField title='Unidade consumidora' innerRef={unitRef} id={'unit'} handleChange={handleChange} value={values.unit} error={unitError} errorText={'Campo obrigatório'} />
+
                     </Form>
                 )}
             </Formik>
@@ -45,6 +52,7 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
     }
 
     const formRef = useRef(null)
+    const unitRef = useRef(null)
 
     const navigate = useNavigate()
     const client = useClient()
@@ -56,12 +64,14 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
     }
 
     const nextStage = () => {
+        const unit = unitRef
+        console.log({unit})
         formRef.current.submitForm()
     }
 
 
     useEffect(() => {
-        setProgressBarStage(68.3)
+        setProgressBarStage(50)
         setStage(1)
 
     }, [])

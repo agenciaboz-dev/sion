@@ -11,7 +11,7 @@ import COLORS from '../../../sass/_colors.scss'
 import { useFlags } from '../../../hooks/useFlags';
 import { NavButtons } from '../NavButtons';
 
-export const Calculadora = () => {
+export const Calculadora = ({ setProgressBarStage, setStage }) => {
 
     const client = useClient()
     const navigate = useNavigate()
@@ -72,6 +72,11 @@ export const Calculadora = () => {
         
         setCost(cost_string)
     }, [profit, new_spent, currentFlag, newFlag])
+
+    useEffect(() => {
+        setProgressBarStage(100)
+        setStage(2)
+    }, [])
     
     return (
         <div className='Calculadora-Component' >

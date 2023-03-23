@@ -8,14 +8,21 @@ import { useCallback, useState } from 'react';
 import { api } from '../../api';
 import { useLocation, useNavigate } from 'react-router-dom';
 import COLORS from '../../sass/_colors.scss'
+import { useClient } from '../../hooks/useClient';
 
 export const Footer = ({ vendas }) => {
 
     const menus = useHeaderMenus()
     const location = useLocation()
     const navigate = useNavigate()
+    const client = useClient()
 
     const [email, setEmail] = useState('')
+
+    const finish = () => {
+        client.setValue(null)
+        navigate('/')
+    }
 
     const onMailSignUp = useCallback(() => {
         api.post('/signup', {email, news_signup: true})
@@ -41,7 +48,14 @@ export const Footer = ({ vendas }) => {
             borderRight: `110vw solid ${COLORS.primary}`,
             padding: 0
         }} >
-
+            {location.pathname == '/cadastro/contrato' &&
+            <div className="finish-container" onClick={finish} >
+                <p>Finalizar</p>
+                <div>
+                    <p>{'>'}</p>
+                </div>
+            </div>
+            }
     </div>
     :
     (
