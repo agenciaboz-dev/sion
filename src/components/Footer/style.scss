@@ -91,6 +91,7 @@
 @media only screen and (max-width: 600px) {
     .Footer-Component {
         margin-top: auto;
+        position: relative;
 
         .finish-container {
             z-index: 2;
@@ -101,8 +102,8 @@
             gap: 2vw;
             cursor: pointer;
             font-size: 5vw;
-            right: 5vw;
-            bottom: -20vw;
+            bottom: 9vw;
+            left: 75vw;
     
             div {
                 border-radius: 100%;
