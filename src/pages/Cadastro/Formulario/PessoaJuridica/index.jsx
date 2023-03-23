@@ -11,7 +11,7 @@ export const PessoaJuridica = ({ previousStage, nextStage }) => {
     const currencyMask = useCurrencyMask()
     const client = useClient()
 
-    const initial_inputs = client.value.form ||  {
+    const initial_inputs = client.value?.form ||  {
         company: '',
         name: '',
         cnpj: '',
