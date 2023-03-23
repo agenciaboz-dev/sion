@@ -105,14 +105,12 @@
             bottom: 9vw;
             left: 75vw;
     
-            div {
-                border-radius: 100%;
-                border: 1px solid white;
-                width: 8vw;
-                height: 8vw;
-                justify-content: center;
-                align-items: center;
-    
+            .forward-arrow-container {
+                svg {
+                    height: 7vw;
+                    width: 7vw;
+                    margin: 1vw;
+                }
             }
         }
     }
