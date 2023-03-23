@@ -6,7 +6,7 @@ import { useClient } from '../../../hooks/useClient';
 import {ReactComponent as ChoseIcon} from '../../../images/blue_check.svg'
 import './style.scss';
 
-export const Contrato = ({ setProgressBarStage, setStage }) => {
+export const Contrato = ({  }) => {
 
     const navigate = useNavigate()
     const client = useClient()
@@ -20,8 +20,6 @@ export const Contrato = ({ setProgressBarStage, setStage }) => {
     }
 
     useEffect(() => {
-        setProgressBarStage(100)
-        setStage(2)
 
         const data = {...client.value, ...client.value.form}
         delete data.form
