@@ -7,7 +7,7 @@ export const MuiLoading = ({ size, color }) => {
     
     return (
         <section className='MuiLoading-Component' >
-            <CircularProgress size={size || isMobile ? '4vw' : '2vw'} color={color || 'secondary'} />
+            <CircularProgress size={size || (isMobile ? '4vw' : '2vw')} color={color || 'secondary'} />
         </section>
     )
 }
