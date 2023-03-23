@@ -91,9 +91,9 @@ export const Calculadora = ({ setProgressBarStage, setStage }) => {
                 {flags.map(flag => <MenuItem key={flag.factor} value={flag.factor} style={{width: '100%'}} >{flag.name}</MenuItem>)}
             </InputField>
 
-            <InputField mask={percentMask} title={'Desconto'} innerRef={discountRef} id={'discount'} value={discount} handleChange={event => setDiscount(event.target.value)} />
+            <InputField mask={percentMask} title={'Desconto'} inputMode={'numeric'} innerRef={discountRef} id={'discount'} value={discount} handleChange={event => setDiscount(event.target.value)} />
             <InputField mask={currencyMask} title={'Novo valor da fatura'} id={'new_spent'} value={new_spent || 0} readOnly not_required />
-            <InputField mask={percentMask} title={'Taxa sion'} innerRef={profitRef} id={'profit'} value={profit} handleChange={event => setProfit(event.target.value)} />
+            <InputField mask={percentMask} title={'Taxa sion'} inputMode={'numeric'} innerRef={profitRef} id={'profit'} value={profit} handleChange={event => setProfit(event.target.value)} />
             <InputField mask={currencyMask} title={'Custo mensal'} id={'cost'} value={cost || 0} readOnly not_required />
 
             <NavButtons goBack={goBack} nextStage={nextStage} />
