@@ -7,7 +7,7 @@ import './style.scss';
 import { ScrollTop } from '../../../components/ScrollTop';
 
 
-export const Formulario = ({ pessoa, setProgressBarStage, setPessoa }) => {
+export const Formulario = ({ pessoa, setStage, setProgressBarStage, setPessoa }) => {
 
     const navigate = useNavigate()
     const client = useClient()
@@ -24,6 +24,7 @@ export const Formulario = ({ pessoa, setProgressBarStage, setPessoa }) => {
     }
     
     useEffect(() => {
+        setStage(0)
         setProgressBarStage(34)
     }, [])
 
