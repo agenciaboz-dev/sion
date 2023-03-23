@@ -4,7 +4,7 @@ import { useMediaQuery } from 'react-responsive';
 import MaskedInput from 'react-text-mask';
 import { useValidationErrors } from '../../hooks/useValidationsErrors';
 
-export const InputField = ({ children, id, title, handleChange, value, type, mask, autoFocus, error, errorText, multiline, select, inputProps, innerRef, not_required, readOnly }) => {
+export const InputField = ({ children, id, title, handleChange, value, type, mask, autoFocus, error, errorText, multiline, select, inputMode, innerRef, not_required, readOnly }) => {
 
     const newRef = useRef(null)
     const ref = innerRef || newRef
@@ -48,6 +48,7 @@ export const InputField = ({ children, id, title, handleChange, value, type, mas
                     sx={{fontFamily: "Montserrats"}}
                     select={select}
                     InputProps={{readOnly}}
+                    inputProps={{inputMode}}
                     size="small"
                     />
                     )}
@@ -76,6 +77,7 @@ export const InputField = ({ children, id, title, handleChange, value, type, mas
                 sx={{fontFamily: "Montserrats"}}
                 select={select}
                 InputProps={{readOnly}}
+                inputProps={{inputMode}}
                 size="small"
                 />
             }
