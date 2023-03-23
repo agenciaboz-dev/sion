@@ -101,17 +101,17 @@
         .top-triangle {
             position: absolute;
             border-top: 0 solid transparent;
-            border-bottom: 35vw solid transparent;
+            border-bottom: 24vw solid transparent;
             border-right: 120vw solid $primary-color;
             margin-right: 20vw;
-            margin-top: -15.5vw;
+            margin-top: -14.5vw;
         }
 
         .bottom-triangle {
             position: absolute;
             border-top: 10vw solid transparent;
             border-bottom: 35vw solid transparent;
-            border-left: 250vw solid $darkbluebutton-color;
+            border-left: 250vw solid $darkbluebackground-color;
             margin-left: 0vw;
             z-index: -1;
         }
