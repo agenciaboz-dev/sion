@@ -15,6 +15,7 @@ import COLORS from '../../../sass/_colors.scss'
 import { ScrollTop } from '../../../components/ScrollTop';
 import { UploadContainer } from './UploadContainer';
 import { NavButtons } from '../NavButtons';
+import { useSuppliers } from '../../../hooks/useSuppliers';
 
 export const Fatura = ({ setProgressBarStage, setStage }) => {
 
@@ -38,10 +39,10 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
                 {({values, handleChange}) => (
                     <Form>
                         <InputField select id='supplier' title='Distribuidora atual' handleChange={handleChange} value={values.supplier} >
-                            <MenuItem
-                                value={0}
+                            {suppliers.map(supplier => <MenuItem key={supplier.id}
+                                value={supplier.name}
                                 style={{width: '100%'}}
-                            >Copel</MenuItem>
+                            >{supplier.name}</MenuItem>)}
                         </InputField>
                         <InputField title='Unidade consumidora' innerRef={unitRef} id={'unit'} handleChange={handleChange} value={values.unit} error={unitError} errorText={'Campo obrigatório'} />
 
@@ -56,7 +57,7 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
 
     const navigate = useNavigate()
     const client = useClient()
-
+    const suppliers = useSuppliers()
 
     const goBack = () => {
         setStage(0)
