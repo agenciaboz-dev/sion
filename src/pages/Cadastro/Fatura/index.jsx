@@ -35,7 +35,7 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
         }
 
         return (
-            <Formik initialValues={{supplier: 0, unit: client?.value?.unit || ''}} onSubmit={onSubmit} innerRef={formRef} >
+            <Formik initialValues={{supplier: suppliers[0].name, unit: client?.value?.unit || ''}} onSubmit={onSubmit} innerRef={formRef} >
                 {({values, handleChange}) => (
                     <Form>
                         <InputField select id='supplier' title='Distribuidora atual' handleChange={handleChange} value={values.supplier} >
