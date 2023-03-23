@@ -25,7 +25,7 @@ export const Formulario = ({ pessoa, setStage, setProgressBarStage, setPessoa })
     
     useEffect(() => {
         setStage(0)
-        setProgressBarStage(34)
+        setProgressBarStage(32.5)
     }, [])
 
     return (
