@@ -52,9 +52,15 @@
             color: white;
             align-self: center;
             gap: 1vw;
+            align-items: flex-end;
+            width: 40vw;
 
             .title {
                 font-weight: bold;
+            }
+
+            p {
+                text-align: end;
             }
 
             .email-container {
