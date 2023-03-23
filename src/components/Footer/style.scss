@@ -91,5 +91,28 @@
 @media only screen and (max-width: 600px) {
     .Footer-Component {
         margin-top: auto;
+
+        .finish-container {
+            z-index: 2;
+            position: absolute;
+            color: white;
+            align-self: flex-start;
+            align-items: center;
+            gap: 2vw;
+            cursor: pointer;
+            font-size: 5vw;
+            right: 5vw;
+            bottom: -20vw;
+    
+            div {
+                border-radius: 100%;
+                border: 1px solid white;
+                width: 8vw;
+                height: 8vw;
+                justify-content: center;
+                align-items: center;
+    
+            }
+        }
     }
 }

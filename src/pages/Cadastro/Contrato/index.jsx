@@ -17,11 +17,6 @@ export const Contrato = ({  }) => {
     const [error, setError] = useState('')
     const [qrCodeValue, setQrCodeValue] = useState('https://cooperativasion.com.br')
 
-    const finish = () => {
-        client.setValue(null)
-        navigate('/')
-    }
-
     const copyToClipboard = () => {
         navigator.clipboard.writeText(qrCodeValue)
     }
@@ -71,7 +66,6 @@ export const Contrato = ({  }) => {
                 }
             </div>
 
-            
         </div>
     )
 }
