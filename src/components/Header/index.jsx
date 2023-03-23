@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { useHeaderMenus } from '../../hooks/useHeaderMenus';
 import {ReactComponent as Logo} from '../../images/logo.svg';
+import {ReactComponent as BackArrow} from '../../images/back_arrow_small.svg';
 import './style.scss';
 import COLORS from '../../sass/_colors.scss'
 import { HeaderButton } from './HeaderButton';
@@ -43,8 +44,8 @@ export const Header = ({ alternative, setAlternative, vendas }) => {
             <section>
                 <div className="top-triangle"></div>
                 <div className="top-container" onClick={() => headerNavigate.navigate()}>
-                    <div>
-                        <p>{'<'}</p>
+                    <div className='back-arrow-container'>
+                        <BackArrow />
                     </div>
                     <p>{headerNavigate.label}</p>
                 </div>

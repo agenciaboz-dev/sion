@@ -82,15 +82,14 @@
             gap: 2vw;
             cursor: pointer;
             font-size: 5vw;
-    
-            div {
-                border-radius: 100%;
-                border: 1px solid white;
-                width: 8vw;
-                height: 8vw;
-                justify-content: center;
-                align-items: center;
+            font-weight: 400;
 
+            .back-arrow-container {
+                svg {
+                    height: 7vw;
+                    width: 7vw;
+                    margin: 1vw;
+                }
             }
         }
 
