@@ -61,7 +61,7 @@ export const Contrato = ({  }) => {
                 error ?
                     <section>
                         <h1>Erro.</h1>
-                        <p>{error} já cadastrado</p>
+                        <p>{error}</p>
                     </section>
                     :
                     <section>
