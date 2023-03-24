@@ -66,7 +66,7 @@ export const Header = ({ alternative, setAlternative }) => {
                         </section>
                     )
                 })}
-                <button className="login-button" onClick={() => navigate('/login')}>Sou cliente</button>
+                <button className="login-button">Sou cliente</button>
             </div>
             <LogoCromado style={{visibility: alternative && 'hidden', margin: location.pathname != '/' && '6vw 0 4vw'}} />
         </div>
