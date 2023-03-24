@@ -48,6 +48,7 @@ export const Cadastro = () => {
 
         useEffect(() => {
             setProgressBarStage(31)
+            setStage(0)
         }, [])
     
         return (
