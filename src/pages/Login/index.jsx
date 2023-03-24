@@ -62,10 +62,14 @@ export const Login = () => {
                 <Formik initialValues={{user: '', password: ''}} onSubmit={values => tryLogin(values)}>
                     {({handleChange, values, submitForm, errors}) => (
                         <Form>
-                            <p>Nome de usuário ou e-mail</p>
-                            <InputField title={'Nome de usuário ou e-mail'} id={'user'} handleChange={handleChange} value={values.user} error={Boolean(errors.user)} errorText={errors.user} />
-                            <p>Senha</p>
-                            <InputField title={'Senha'} type='password' id={'password'} handleChange={handleChange} value={values.password} error={error} errorText={'Não foi possível fazer login'} />
+                            <div className="user-input-container">
+                                <p>Nome de usuário ou e-mail</p>
+                                <InputField title={'Nome de usuário ou e-mail'} id={'user'} handleChange={handleChange} value={values.user} error={Boolean(errors.user)} errorText={errors.user} />
+                            </div>
+                            <div className="password-input-container">
+                                <p>Senha</p>
+                                <InputField title={'Senha'} type='password' id={'password'} handleChange={handleChange} value={values.password} error={error} errorText={'Não foi possível fazer login'} />
+                            </div>
                             <div className="bottom-container">
                                 <div className='remember-wrapper'>
                                     <div className='remember-container'>

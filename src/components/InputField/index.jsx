@@ -49,7 +49,6 @@ export const InputField = ({ children, id, title, handleChange, value, type, mas
                     select={select}
                     InputProps={{readOnly}}
                     inputProps={{inputMode}}
-                    size="small"
                     />
                     )}
             />
@@ -78,7 +77,6 @@ export const InputField = ({ children, id, title, handleChange, value, type, mas
                 select={select}
                 InputProps={{readOnly}}
                 inputProps={{inputMode}}
-                size="small"
                 />
             }
         </div>

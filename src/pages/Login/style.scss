@@ -83,20 +83,29 @@
         .main-container {
             flex-direction: column;
             justify-content: center;
-            padding: 20vw 0;
+            padding: 16vw 0;
 
             > svg {
                 height: 35vw;
             }
 
             form {
-                width: 80%;
+                width: 90%;
+
+                .user-input-container {
+                    flex-direction: column;
+                }
+
+                .password-input-container {
+                    flex-direction: column;
+                    margin: 2vw 0;
+                }
                 
                 .bottom-container {
                     justify-content: space-between;
 
                     p {
-                        font-size: 3.5vw;
+                        font-size: 4vw;
                     }
 
                     .remember-wrapper {
@@ -104,9 +113,16 @@
 
                         .remember-container {
                             flex-direction: column;
+                            width: 100%;
+                            margin-left: -0.6vw;
 
-                            * {
-                                font-size: 3vw;
+                            label {
+                                margin-right: 0;
+                                
+                                span {
+                                    font-size: 4vw;
+                                    margin-left: -2vw;
+                                }
                             }
                         }
                     }
