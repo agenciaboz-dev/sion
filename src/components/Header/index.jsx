@@ -20,6 +20,7 @@ export const Header = ({ alternative, setAlternative }) => {
         top: 0,
         width: '100vw',
         justifyContent: 'center',
+        zIndex: 5,
     }
 
     useEffect(() => {
