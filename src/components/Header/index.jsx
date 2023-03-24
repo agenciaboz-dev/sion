@@ -6,12 +6,13 @@ import {ReactComponent as LogoCromado} from '../../images/logo_cromado.svg';
 import './style.scss';
 import COLORS from '../../sass/_colors.scss'
 import { HeaderButton } from './HeaderButton';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export const Header = ({ alternative, setAlternative }) => {
 
     const menus = useHeaderMenus()
     const navigate = useNavigate()
+    const location = useLocation()
 
     const alternative_style = {
         backgroundColor: COLORS.primary,
@@ -67,7 +68,7 @@ export const Header = ({ alternative, setAlternative }) => {
                 })}
                 <button className="login-button" onClick={() => navigate('/login')}>Sou cliente</button>
             </div>
-            <LogoCromado style={alternative ? {visibility: 'hidden'} : null} />
+            <LogoCromado style={{visibility: alternative && 'hidden', margin: location.pathname != '/' && '6vw 0 4vw'}} />
         </div>
     )
 }
