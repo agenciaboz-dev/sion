@@ -74,6 +74,8 @@ export const Calculadora = ({ setProgressBarStage, setStage }) => {
     }, [profit, new_spent, currentFlag, newFlag])
 
     useEffect(() => {
+        if (!client?.value?.unit) navigate('/cadastro/anexos')
+
         setProgressBarStage(100)
         setStage(2)
     }, [])

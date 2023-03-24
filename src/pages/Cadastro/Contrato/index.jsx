@@ -22,6 +22,8 @@ export const Contrato = ({  }) => {
     }
 
     useEffect(() => {
+        if (!client?.value?.unit) navigate('/cadastro/anexos')
+
         const formData = new FormData();
         const data = { ...client.value, ...client.value?.form };
         delete data.form;
