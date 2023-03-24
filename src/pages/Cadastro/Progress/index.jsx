@@ -3,6 +3,7 @@ import COLORS from '../../../sass/_colors.scss'
 import ProgressBar from '@ramonak/react-progress-bar';
 import { useMediaQuery } from 'react-responsive';
 import { useNavigate } from 'react-router-dom';
+import { useClient } from '../../../hooks/useClient';
 
 const Container = ({ name, current, onClick }) => {
     const active_style = {
@@ -21,6 +22,20 @@ export const Progress = ({ stage, progressBarStage }) => {
 
     const isMobile = useMediaQuery({maxWidth: 600})
     const navigate = useNavigate()
+
+    const client = useClient().value
+
+    const toAttachments = () => {
+        if (!client?.form?.name) return
+
+        navigate('/cadastro/anexos')
+    }
+
+    const toEconomy = () => {
+        if (!client?.unit) return
+
+        navigate('/cadastro/calculadora')
+    }
     
     return (
         <div className='Progress-Component' >
@@ -37,8 +52,8 @@ export const Progress = ({ stage, progressBarStage }) => {
                 />
             </div>
             <Container name={'Cadastro'} current={stage >= 0} onClick={() => navigate('/cadastro')} />
-            <Container name={'Anexos'} current={stage >= 1} onClick={() => navigate('/cadastro/anexos')} />
-            <Container name={'Economia'} current={stage >= 2} onClick={() => navigate('/cadastro/calculadora')} />
+            <Container name={'Anexos'} current={stage >= 1} onClick={toAttachments} />
+            <Container name={'Economia'} current={stage >= 2} onClick={toEconomy} />
         </div>
     )
 }
