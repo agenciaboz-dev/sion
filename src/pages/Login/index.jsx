@@ -63,12 +63,12 @@ export const Login = () => {
                     {({handleChange, values, submitForm, errors}) => (
                         <Form>
                             <div className="user-input-container">
-                                <p>Nome de usuário ou e-mail</p>
-                                <InputField title={'Nome de usuário ou e-mail'} id={'user'} handleChange={handleChange} value={values.user} error={Boolean(errors.user)} errorText={errors.user} />
+                                <label>Nome de usuário ou e-mail</label>
+                                <InputField title={''} id={'user'} handleChange={handleChange} value={values.user} error={Boolean(errors.user)} errorText={errors.user} />
                             </div>
                             <div className="password-input-container">
-                                <p>Senha</p>
-                                <InputField title={'Senha'} type='password' id={'password'} handleChange={handleChange} value={values.password} error={error} errorText={'Não foi possível fazer login'} />
+                                <label>Senha</label>
+                                <InputField title={''} type='password' id={'password'} handleChange={handleChange} value={values.password} error={error} errorText={'Não foi possível fazer login'} />
                             </div>
                             <div className="bottom-container">
                                 <div className='remember-wrapper'>
