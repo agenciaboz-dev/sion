@@ -75,11 +75,10 @@ export const Login = () => {
                                     <div className='remember-container'>
                                         <FormControlLabel control={<Checkbox checked={remind} onChange={() => setRemind(!remind)} />} label={'Lembre de mim'} />
                                     </div>
-                                    <p>Perdeu a senha?</p>
+                                    {/* <p>Perdeu a senha?</p> */}
                                 </div>
                                 <div className='button-container'>
                                     <button type='submit'>{loading ? <MuiLoading /> : 'Entrar'}</button>
-                                    <p>Quero economizar!</p>
                                 </div>
                             </div>
                         </Form>
