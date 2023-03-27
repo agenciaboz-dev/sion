@@ -19,13 +19,8 @@ import { useSuppliers } from '../../../hooks/useSuppliers';
 
 export const Fatura = ({ setProgressBarStage, setStage }) => {
 
-    
-
-    const formRef = useRef(null)
-
     const navigate = useNavigate()
     const client = useClient()
-    const suppliers = useSuppliers()
 
     const goBack = () => {
         setStage(0)
@@ -33,7 +28,9 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
     }
 
     const nextStage = () => {
+        if (!client?.value?.anexos?.fatura) return
         
+        navigate('/cadastro/contrato')
     }
 
 
