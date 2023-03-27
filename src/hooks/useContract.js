@@ -30,4 +30,15 @@ export const useContract = (setLoading, setError) => {
         .catch(error => console.error(error))
         .finally(() => setLoading(false))
     }
+
+    const contract = {
+        generate: (data, callback, _finally) => {
+            api.post('/contract/generate', data)
+            .then(response => callback(response))
+            .catch(error => console.error(error))
+            .finally(() => _finally())
+        }
+    }
+
+    return contract
 }

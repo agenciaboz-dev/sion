@@ -12,6 +12,7 @@ export const Contrato = ({  }) => {
 
     const navigate = useNavigate()
     const client = useClient()
+    
 
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState('')
