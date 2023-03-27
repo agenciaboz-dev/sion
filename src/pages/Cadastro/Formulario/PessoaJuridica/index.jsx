@@ -2,13 +2,11 @@ import { object, string, number, date, InferType, setLocale } from 'yup';
 import { Form, Formik } from 'formik';
 import { useValidationErrors } from '../../../../hooks/useValidationsErrors';
 import { InputField } from '../../../../components/InputField';
-import { useCurrencyMask } from '../../../../hooks/useCurrencyMask';
 import COLORS from '../../../../sass/_colors.scss'
 import { useClient } from '../../../../hooks/useClient';
 
 export const PessoaJuridica = ({ previousStage, nextStage }) => {
     const default_errors = useValidationErrors()
-    const currencyMask = useCurrencyMask()
     const client = useClient()
 
     const initial_inputs = client.value?.form ||  {
