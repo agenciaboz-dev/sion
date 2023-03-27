@@ -11,7 +11,7 @@ export const RepresentanteLegal = ({ }) => {
     const client = useClient()
     const navigate = useNavigate()
 
-    const initial_inputs = client.value?.form ||  {
+    const initial_inputs = client.value?.form?.name ? client.value.form : {
         name: '',
         email: '',
         phone: '',
