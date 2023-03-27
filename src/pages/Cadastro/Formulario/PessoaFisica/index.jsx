@@ -57,7 +57,7 @@ export const PessoaFisica = ({ previousStage, nextStage }) => {
                         submitForm();
                     }
                     }}>
-                    <InputField title={'Nome Completo do  titular da Unidade Consumidora'} id={'name'} handleChange={handleChange} value={values.name} error={Boolean(errors.name)} errorText={errors.name} />
+                    <InputField title={'Nome Completo do titular da Unidade Consumidora'} id={'name'} handleChange={handleChange} value={values.name} error={Boolean(errors.name)} errorText={errors.name} />
                     <InputField title={'CPF'} mask={[ /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/ ]} inputMode={'numeric'} id={'cpf'} handleChange={handleChange} value={values.cpf} error={Boolean(errors.cpf)} errorText={errors.cpf} />
                     <InputField title={'RG'} inputMode={'numeric'} id={'rg'} handleChange={handleChange} value={values.rg} error={Boolean(errors.rg)} errorText={errors.rg} />
                     <InputField title={'E-mail'} inputMode={'email'} id={'email'} handleChange={handleChange} value={values.email} error={Boolean(errors.email)} errorText={errors.email} />

@@ -12,6 +12,7 @@ import { useMediaQuery } from 'react-responsive';
 import { ScrollTop } from '../../components/ScrollTop';
 import { Calculadora } from './Calculadora';
 import { PessoaChooser } from './PessoaChooser';
+import { RepresentanteLegal } from './Formulario/PessoaJuridica/RepresentanteLegal';
 
 export const Cadastro = () => {
 
@@ -47,6 +48,7 @@ export const Cadastro = () => {
                             <Route index element={<Calculadora />} />
                             <Route path='/pessoa' element={<PessoaChooser setProgressBarStage={setProgressBarStage} setStage={setStage} pessoa={pessoa} setPessoa={setPessoa} />} />
                             <Route path='/formulario' element={<Formulario pessoa={pessoa} setPessoa={setPessoa} setProgressBarStage={setProgressBarStage} setStage={setStage} />} />
+                            <Route path='/formulario/representante' element={<RepresentanteLegal pessoa={pessoa} setPessoa={setPessoa} setProgressBarStage={setProgressBarStage} setStage={setStage} />} />
                             <Route path='/anexos' element={<Fatura setProgressBarStage={setProgressBarStage} setStage={setStage} />} />
                             <Route path='/contrato' element={<Contrato setProgressBarStage={setProgressBarStage} setStage={setStage} />} />
                     </SlideRoutes>

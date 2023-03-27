@@ -24,6 +24,10 @@ export const useHeaderNavigation = () => {
             label: 'Voltar',
             navigate: () => navigate('/cadastro/pessoa')
         },
+        ['/cadastro/formulario/representante']: {
+            label: 'Voltar',
+            navigate: () => navigate('/cadastro/formulario')
+        },
         ['/cadastro/anexos']: {
             label: 'Voltar',
             navigate: () => navigate('/cadastro/formulario')

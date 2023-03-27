@@ -14,7 +14,7 @@ export const Formulario = ({ pessoa, setStage, setProgressBarStage, setPessoa })
 
     const nextStage = (values) => {
         client.setValue({...client.value, form: values})
-        navigate('/cadastro/anexos')
+        navigate(`/cadastro/${pessoa == 'juridica' ? 'formulario/representante' : 'anexos'}`)
     }
 
     const previousStage = (event) => {
