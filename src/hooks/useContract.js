@@ -37,6 +37,14 @@ export const useContract = (setLoading, setError) => {
             .then(response => callback(response))
             .catch(error => console.error(error))
             .finally(() => _finally())
+        },
+        
+        lead: () => {
+            const data = {...client.value, ...client.value.form}
+            delete data.form
+            api.post('/contract/lead', data)
+            .then(response => console.log(response.data))
+            .catch(error => console.error(error))
         }
     }
 

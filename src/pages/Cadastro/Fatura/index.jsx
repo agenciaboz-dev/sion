@@ -16,11 +16,13 @@ import { ScrollTop } from '../../../components/ScrollTop';
 import { UploadContainer } from './UploadContainer';
 import { NavButtons } from '../NavButtons';
 import { useSuppliers } from '../../../hooks/useSuppliers';
+import { useContract } from '../../../hooks/useContract';
 
 export const Fatura = ({ setProgressBarStage, setStage }) => {
 
     const navigate = useNavigate()
     const client = useClient()
+    const contract = useContract()
 
     const goBack = () => {
         setStage(0)
@@ -39,6 +41,8 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
 
         setProgressBarStage(50)
         setStage(1)
+
+        contract.lead()
 
     }, [])
     
