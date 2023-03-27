@@ -18,21 +18,7 @@ $dash-spacing: 1vw;
             align-items: center;
             padding: 10vw 5vw;
             
-            .upload-container {
-                flex-direction: column;
-                width: 100%;
-                justify-content: center;
-                align-items: center;
-            }
-            
-            .file-container {
-                flex-direction: column;
-                width: 100%;
-                justify-content: center;
-                align-items: center;
-    
-            }
-          
+
         }
     }
 
@@ -62,6 +48,26 @@ $dash-spacing: 1vw;
                 svg {
                     width: 20vw;
                     height: auto;
+                }
+            }
+        }
+
+        .uploaded-container {
+            width: 100%;
+            flex-direction: column;
+
+            .file-container {
+                width: 100%;
+                justify-content: space-between;
+                align-items: center;
+
+                button {
+                    background-color: white;
+                    color: $primary-color;
+                    border: 0.5vw solid $primary-color;
+                    padding: 1vw 4vw;
+                    font-size: 3.5vw;
+                    
                 }
             }
         }
