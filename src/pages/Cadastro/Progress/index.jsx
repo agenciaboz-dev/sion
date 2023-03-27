@@ -32,9 +32,7 @@ export const Progress = ({ stage, progressBarStage }) => {
     }
 
     const toEconomy = () => {
-        if (!client?.unit) return
-
-        navigate('/cadastro/calculadora')
+        navigate('/cadastro')
     }
     
     return (
@@ -51,9 +49,9 @@ export const Progress = ({ stage, progressBarStage }) => {
                     transitionDuration={'1s'}
                 />
             </div>
-            <Container name={'Cadastro'} current={stage >= 0} onClick={() => navigate('/cadastro')} />
-            <Container name={'Anexos'} current={stage >= 1} onClick={toAttachments} />
-            <Container name={'Economia'} current={stage >= 2} onClick={toEconomy} />
+            <Container name={'Economia'} current={stage >= 0} onClick={toEconomy} />
+            <Container name={'Cadastro'} current={stage >= 1} onClick={() => navigate('/cadastro/pessoa')} />
+            <Container name={'Anexos'} current={stage >= 2} onClick={toAttachments} />
         </div>
     )
 }

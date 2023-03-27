@@ -54,6 +54,7 @@ export const InputField = ({ children, id, title, handleChange, value, type, mas
             />
             :
             <TextField
+                inputRef={ref}
                 children={children}
                 autoFocus={autoFocus}
                 name={id} 

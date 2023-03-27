@@ -75,6 +75,9 @@ export const Cadastro = () => {
 
     useEffect(() => {
         setLoaded(true)
+
+        setStage(0)
+        setProgressBarStage(30)
     }, [])
 
     return (
@@ -85,10 +88,10 @@ export const Cadastro = () => {
                     <Progress stage={stage} progressBarStage={progressBarStage} />
                     <div className="content">
                     <SlideRoutes location={location} duration={1000}>
-                            <Route index element={<PessoaComponent />} />
+                            <Route index element={<Calculadora />} />
+                            <Route path='/pessoa' element={<PessoaComponent setProgressBarStage={setProgressBarStage} setStage={setStage} />} />
                             <Route path='/formulario' element={<Formulario pessoa={pessoa} setPessoa={setPessoa} setProgressBarStage={setProgressBarStage} setStage={setStage} />} />
                             <Route path='/anexos' element={<Fatura setProgressBarStage={setProgressBarStage} setStage={setStage} />} />
-                            <Route path='/calculadora' element={<Calculadora setProgressBarStage={setProgressBarStage} setStage={setStage} />} />
                             <Route path='/contrato' element={<Contrato setProgressBarStage={setProgressBarStage} setStage={setStage} />} />
                     </SlideRoutes>
                     </div>

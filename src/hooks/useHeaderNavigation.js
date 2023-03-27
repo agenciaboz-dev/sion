@@ -22,19 +22,19 @@ export const useHeaderNavigation = () => {
         },
         ['/cadastro/formulario']: {
             label: 'Voltar',
-            navigate: () => navigate('/cadastro')
+            navigate: () => navigate('/cadastro/pessoa')
         },
         ['/cadastro/anexos']: {
             label: 'Voltar',
             navigate: () => navigate('/cadastro/formulario')
         },
-        ['/cadastro/calculadora']: {
+        ['/cadastro/pessoa']: {
             label: 'Voltar',
-            navigate: () => navigate('/cadastro/anexos')
+            navigate: () => navigate('/cadastro')
         },
         ['/cadastro/contrato']: {
             label: 'Voltar',
-            navigate: () => navigate('/cadastro/calculadora')
+            navigate: () => navigate('/cadastro/anexos')
         },
     }
 
