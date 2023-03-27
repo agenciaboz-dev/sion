@@ -40,11 +40,11 @@ export const Calculadora = ({  }) => {
     
     return (
         <div className='Calculadora-Component' >
-            <h1>Simulador de economia</h1>
+            <h1>Projeção de economia</h1>
 
             <CurrentSupplier formRef={formRef} />
 
-            <InputField title={'Consumo Mensal'} mask={kwhMask} id={'spent'} value={spent} handleChange={event => setSpent(event.target.value)} not_required />
+            <InputField title={'Consumo mensal médio'} mask={kwhMask} id={'spent'} value={spent} handleChange={event => setSpent(event.target.value)} not_required />
 
             <NavButtons nextOnly nextStage={nextStage} />
         </div>

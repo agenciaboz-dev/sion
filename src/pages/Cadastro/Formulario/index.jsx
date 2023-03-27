@@ -20,7 +20,7 @@ export const Formulario = ({ pessoa, setStage, setProgressBarStage, setPessoa })
     const previousStage = (event) => {
         event.preventDefault()
         setPessoa(null)
-        navigate('/cadastro')
+        navigate('/cadastro/pessoa')
     }
     
     useEffect(() => {
