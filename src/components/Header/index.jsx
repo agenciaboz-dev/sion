@@ -58,7 +58,7 @@ export const Header = ({ alternative, setAlternative }) => {
     return (
         <div className='Header-Component'>
             <div className="menus-container" style={alternative ? alternative_style : null} >
-                {alternative ? <LogoCromado /> : null}
+                {alternative ? <LogoBranco /> : null}
                 {menus.map(menu => {
                     return (
                         <section key={menu.id}>
@@ -69,7 +69,7 @@ export const Header = ({ alternative, setAlternative }) => {
                 })}
                 <button className="login-button">Sou cliente</button>
             </div>
-            <LogoCromado style={{visibility: alternative && 'hidden', margin: location.pathname != '/' && '6vw 0 4vw'}} />
+            <LogoBranco style={{visibility: alternative && 'hidden', margin: location.pathname != '/' && '6vw 0 4vw'}} />
         </div>
     )
 }
