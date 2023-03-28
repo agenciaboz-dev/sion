@@ -51,7 +51,7 @@ export const PessoaFisica = ({ previousStage, nextStage }) => {
     }
 
     return (
-        <Formik initialValues={initial_inputs} onSubmit={values => nextStage(values)} validationSchema={validationSchema} >
+        <Formik initialValues={initial_inputs} onSubmit={values => nextStage(values, cpfError)} validationSchema={validationSchema} >
             {({handleChange, values, submitForm, errors}) => (
                 <Form onKeyDown={(event) => {
                     if (event.key === 'Enter') {

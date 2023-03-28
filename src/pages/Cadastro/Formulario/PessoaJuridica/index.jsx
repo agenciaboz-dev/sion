@@ -41,7 +41,7 @@ export const PessoaJuridica = ({ previousStage, nextStage }) => {
     }
 
     return (
-        <Formik initialValues={initial_inputs} onSubmit={nextStage} validationSchema={validationSchema}>
+        <Formik initialValues={initial_inputs} onSubmit={values => nextStage(values, cnpjError)} validationSchema={validationSchema}>
             {({handleChange, values, submitForm, errors}) => (
                 <Form onKeyDown={(event) => {
                     if (event.key === 'Enter') {
