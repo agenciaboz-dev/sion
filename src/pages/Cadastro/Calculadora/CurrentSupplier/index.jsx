@@ -23,12 +23,17 @@ export const CurrentSupplier = ({ formRef }) => {
     const unitInputRef = useRef(null)
 
     const onSubmit = values => {
-        setUnitError(false)
+        // setUnitError(false)
         setUnitErrorText('')
         
         if (!values.unit) {
             setUnitError(true)
             setUnitErrorText('Campo obrigatório')
+            unitInputRef.current.focus()
+            return
+        }
+        
+        if(unitError) {
             unitInputRef.current.focus()
             return
         }
@@ -38,8 +43,14 @@ export const CurrentSupplier = ({ formRef }) => {
     }
 
     const saveUnit = (event) => {
-        if (!event.target.value) return
-        setUnitError(false)
+        if (!event.target.value) {
+            setUnitError(true)
+            setUnitErrorText('Campo obrigatório')
+            unitInputRef.current.focus()
+            return
+        }
+
+        // setUnitError(false)
         setUnitErrorText('')
         setLoading(true)
 
@@ -49,6 +60,8 @@ export const CurrentSupplier = ({ formRef }) => {
             if (error) {
                 setUnitError(true)
                 setUnitErrorText(error)
+            } else {
+                setUnitError(false)
             }
             console.log(response.data)
         })
