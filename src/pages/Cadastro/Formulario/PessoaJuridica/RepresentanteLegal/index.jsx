@@ -35,7 +35,7 @@ export const RepresentanteLegal = ({ handleChange, values, errors }) => {
       });
 
     const nextStage = (values) => {
-        client.setValue({...client.value, form: {...client.value.form, ...values}})
+        client.setValue({...client.value, form: {...client.value.form, ...values}, emails: emails.map(number => values[`email${number}`])})
         navigate('/cadastro/anexos')
     }
 
