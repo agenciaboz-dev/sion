@@ -5,11 +5,18 @@ import { InputField } from '../../../../components/InputField';
 import { useCurrencyMask } from '../../../../hooks/useCurrencyMask';
 import COLORS from '../../../../sass/_colors.scss'
 import { useClient } from '../../../../hooks/useClient';
+import { useRef } from 'react';
+import { useValidateCPF } from '../../../../hooks/useValidateCPF';
+import { useState } from 'react';
 
 export const PessoaFisica = ({ previousStage, nextStage }) => {
     const default_errors = useValidationErrors()
     const currencyMask = useCurrencyMask()
     const client = useClient()
+    const cpfRef = useRef(null)
+    const validateCPF = useValidateCPF()
+
+    const [cpfError, setCpfError] = useState(false)
 
     const initial_inputs = client.value?.form || {
         name: '',
@@ -34,7 +41,14 @@ export const PessoaFisica = ({ previousStage, nextStage }) => {
         // email: string().email(default_errors.email),
         // website: string().url().nullable(),
         // createdOn: date().default(() => new Date()),
-      });
+    })
+
+    
+      
+
+    const cpfBlur = event => {
+        setCpfError(!validateCPF(event.target.value))
+    }
 
     return (
         <Formik initialValues={initial_inputs} onSubmit={values => nextStage(values)} validationSchema={validationSchema} >
@@ -46,7 +60,7 @@ export const PessoaFisica = ({ previousStage, nextStage }) => {
                     }
                     }}>
                     <InputField title={'Nome Completo do titular da Unidade Consumidora'} id={'name'} handleChange={handleChange} value={values.name} error={Boolean(errors.name)} errorText={errors.name} />
-                    <InputField title={'CPF'} mask={[ /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/ ]} inputMode={'numeric'} id={'cpf'} handleChange={handleChange} value={values.cpf} error={Boolean(errors.cpf)} errorText={errors.cpf} />
+                    <InputField title={'CPF'} onBlur={cpfBlur} mask={[ /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/ ]} inputMode={'numeric'} id={'cpf'} handleChange={handleChange} value={values.cpf} error={cpfError} errorText={'CPF inválido'} />
                     <InputField title={'RG'} inputMode={'numeric'} id={'rg'} handleChange={handleChange} value={values.rg} error={Boolean(errors.rg)} errorText={errors.rg} />
                     <InputField title={'E-mail'} inputMode={'email'} id={'email'} handleChange={handleChange} value={values.email} error={Boolean(errors.email)} errorText={errors.email} />
                     <InputField title={'Telefone'} inputMode={'tel'} mask={["(", /\d/, /\d/, ")", " ", /\d/, /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/]} id={'phone'} handleChange={handleChange} value={values.phone} error={Boolean(errors.phone)} errorText={errors.phone} />
