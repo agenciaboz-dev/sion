@@ -14,8 +14,6 @@ export const UploadContainer = ({ title, identifier }) => {
     const [attachments, setAttachments] = useAttachments()
     const client = useClient()
 
-    const [fileContent, setFileContent] = useState(attachments[identifier] || '')
-    const [fileName, setFileName] = useState(attachments[identifier] || '')
     const [fileError, setFileError] = useState(false)
     const [currentAttachments, setCurrentAttachments] = useState([])
 
@@ -25,35 +23,14 @@ export const UploadContainer = ({ title, identifier }) => {
     }
 
     const onDrop = useCallback((acceptedFiles) => {
-        setAttachments({...attachments, [identifier]: acceptedFiles})
+        setCurrentAttachments([...acceptedFiles])
 
-        acceptedFiles.forEach((file) => {
-        //  const reader = new FileReader()
-            setFileName(file.name)
-    
-        //   reader.onabort = () => console.log('file reading was aborted')
-        //   reader.onerror = () => console.log('file reading has failed')
-        //   reader.onload = () => {
-        //   // Do whatever you want with the file contents
-        //   const binaryStr = reader.result
-        //   console.log(binaryStr)
-        //   }
-        //   reader.readAsText(file);
-        //   reader.readAsArrayBuffer(file)
-
-        })
-        
       }, [])
 
-    useEffect(() => {
-        if (client.value) {
-            if ('anexos' in client?.value && identifier in client.value.anexos) setCurrentAttachments(client.value.anexos[identifier])
-        }
-        
-    }, [client?.value?.anexos])
 
     useEffect(() => {
         console.log({currentAttachments})
+        setAttachments({...attachments, [identifier]: currentAttachments})
 
     }, [currentAttachments])
     
@@ -64,21 +41,21 @@ export const UploadContainer = ({ title, identifier }) => {
             <div className='UploadContainer-Component' >
                 <h1>{title}</h1>
                 <Dropzone onDrop={acceptedFiles => onDrop(acceptedFiles)}>
-                {({getRootProps, getInputProps}) => (
-                    <section>
-                    <div {...getRootProps()} className="dropzone">
-                        <CustomDashedBorder top={borderStyle} left={borderStyle} right={borderStyle} bottom={borderStyle} >
-                            <input {...getInputProps()} />
-                            <div className="upload-container">
-                                <DropIcon />
-                                <p style={{fontWeight: 'bold', color: fileError && COLORS.red}}>Clique para tirar uma foto</p>
-                                <p>ou selecione um arquivo</p>
-                            </div> 
+                    {({getRootProps, getInputProps}) => (
+                        <section>
+                        <div {...getRootProps()} className="dropzone">
+                            <CustomDashedBorder top={borderStyle} left={borderStyle} right={borderStyle} bottom={borderStyle} >
+                                <input {...getInputProps()} />
+                                <div className="upload-container">
+                                    <DropIcon />
+                                    <p style={{fontWeight: 'bold', color: fileError && COLORS.red}}>Clique para tirar uma foto</p>
+                                    <p>ou selecione um arquivo</p>
+                                </div> 
 
-                        </CustomDashedBorder>
-                    </div>
-                    </section>
-                )}
+                            </CustomDashedBorder>
+                        </div>
+                        </section>
+                    )}
                 </Dropzone>
             </div>
         }</>

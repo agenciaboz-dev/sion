@@ -11,7 +11,7 @@ export const AttachmentsProvider = ({children}) => {
     const client = useClient()
 
     useEffect(() => {
-        client.setValue({...client.value, anexos: {...client.value?.anexos || {}, ...value}})
+        client.setValue({...client.value, anexos: value})
     }, [value])
 
     return (
