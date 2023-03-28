@@ -40,7 +40,7 @@ export const useContract = (setLoading, setError) => {
         },
         
         lead: () => {
-            const data = {...client.value, ...client.value.form}
+            const data = {...client?.value, ...client?.value?.form}
             delete data.form
             api.post('/contract/lead', data)
             .then(response => console.log(response.data))

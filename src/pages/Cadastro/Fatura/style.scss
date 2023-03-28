@@ -44,6 +44,8 @@ $dash-spacing: 1vw;
             .upload-container {
                 text-align: center;
                 color: $primary-color;
+                flex-direction: column;
+                align-items: center;
 
                 svg {
                     width: 20vw;
