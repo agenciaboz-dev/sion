@@ -24,6 +24,8 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
     const client = useClient()
     const contract = useContract()
 
+    const [loading, setLoading] = useState(false)
+
     const goBack = () => {
         setStage(0)
         navigate('/cadastro/formulario')
@@ -32,7 +34,9 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
     const nextStage = () => {
         if (!client?.value?.anexos?.fatura) return
         
-        navigate('/cadastro/contrato')
+        setLoading(true)
+        contract.generate(() => navigate('/cadastro/contrato'),
+        () => setLoading(false))
     }
 
 
@@ -51,7 +55,7 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
             <ScrollTop />
             <UploadContainer title={'Anexar fatura'} identifier='fatura' />
             <UploadContainer title={client?.value?.pessoa == 'juridica' ? 'Anexar contrato social' : 'Anexar documentos'} identifier='documentos' />
-            <NavButtons goBack={goBack} nextStage={nextStage} />
+            <NavButtons goBack={goBack} nextStage={nextStage} children={loading && <MuiLoading size='5vw' />} />
         </div>
     )
 }
