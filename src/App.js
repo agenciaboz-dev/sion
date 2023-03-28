@@ -13,6 +13,7 @@ import { ControlPanel } from './pages/ControlPanel';
 import { useMuiTheme } from './hooks/useMuiTheme';
 import { ThemeProvider } from '@mui/material';
 import { AttachmentsProvider } from './contexts/attachmentsContext';
+import { PdfProvider } from './contexts/pdfContext';
 
 function App() {
     const muiTheme = useMuiTheme()
@@ -23,16 +24,18 @@ function App() {
             <ThemeProvider theme={muiTheme}>
                 <ClientProvider>
                     <AttachmentsProvider>
-                        <Routes>
-                                {/* <Route index element={<Home />} /> */}
-                                <Route index element={<Login />} />
+                        <PdfProvider>
+                            <Routes>
+                                    {/* <Route index element={<Home />} /> */}
+                                    <Route index element={<Login />} />
 
-                                <Route path='/login' element={<Login />} />
-                                <Route path='/cadastro/*' element={<Cadastro />} />
-                                <Route path='/links' element={<Links />} />
-                                <Route path='/admin' element={<ControlPanel />} />
-                                <Route path='*' element={<NotFound />} />
-                        </Routes>
+                                    <Route path='/login' element={<Login />} />
+                                    <Route path='/cadastro/*' element={<Cadastro />} />
+                                    <Route path='/links' element={<Links />} />
+                                    <Route path='/admin' element={<ControlPanel />} />
+                                    <Route path='*' element={<NotFound />} />
+                            </Routes>
+                        </PdfProvider>
                     </AttachmentsProvider>
                 </ClientProvider>
             </ThemeProvider>

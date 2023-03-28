@@ -17,12 +17,14 @@ import { UploadContainer } from './UploadContainer';
 import { NavButtons } from '../NavButtons';
 import { useSuppliers } from '../../../hooks/useSuppliers';
 import { useContract } from '../../../hooks/useContract';
+import { usePdf } from '../../../hooks/usePdf';
 
 export const Fatura = ({ setProgressBarStage, setStage }) => {
 
     const navigate = useNavigate()
     const client = useClient()
     const contract = useContract()
+    const [pdf, setPdf] = usePdf()
 
     const [loading, setLoading] = useState(false)
 
@@ -35,7 +37,11 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
         if (!client?.value?.anexos?.fatura) return
         
         setLoading(true)
-        contract.generate(() => navigate('/cadastro/contrato'),
+        contract.generate((response) => {
+            console.log(response)
+            setPdf(response.data)
+            navigate('/cadastro/contrato')
+        },
         () => setLoading(false))
     }
 
