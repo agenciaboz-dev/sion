@@ -79,7 +79,7 @@ export const Contrato = ({  }) => {
             <div className="main-container">
                 <div className="title-container">
                     <h1>Cadastrado!</h1>
-                    <ChoseIcon style={{height:'11vw', width: '11vw'}} />
+                    <ChoseIcon style={{height:'10vw', width: '10vw'}} />
                 </div>
                 <div className='description-container'>
                     <p>Clique avançar para enviar o contrato por email para todos os envolvidos cadastrados!</p>
