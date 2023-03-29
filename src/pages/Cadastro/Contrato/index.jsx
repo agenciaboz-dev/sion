@@ -28,7 +28,7 @@ export const Contrato = ({  }) => {
         }
 
         const nextPage = () => {
-            setPage(page+1)
+            if ((page+1) < 5) setPage(page+1)
         }
 
         const previousPage = () => {
