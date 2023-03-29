@@ -29,7 +29,7 @@ export const Contrato = ({  }) => {
         }
 
         const nextPage = () => {
-            if ((page+1) < 5) setPage(page+1)
+            if ((page+1) <= pages) setPage(page+1)
         }
 
         const previousPage = () => {
@@ -41,7 +41,7 @@ export const Contrato = ({  }) => {
                 <div className="back-button" style={button_style} onClick={previousPage}>
                     <p>{'<'}</p>
                 </div>
-                <p>{page}/4</p>
+                <p>{page} / {pages}</p>
                 <div className="next-button" style={button_style} onClick={nextPage}>
                     <p>{'>'}</p>
                 </div>
@@ -55,9 +55,16 @@ export const Contrato = ({  }) => {
 
     const [loading, setLoading] = useState(true)
     const [page, setPage] = useState(1)
+    const [pages, setPages] = useState(0)
 
     const nextStage = () => {
         // enviar contrato por email
+    }
+
+    const onLoadSuccess = pdf => {
+        console.log(pdf)
+        setLoading(false)
+        setPages(pdf.numPages)
     }
 
     useEffect(() => {
@@ -79,7 +86,7 @@ export const Contrato = ({  }) => {
                     <p>Clique avançar para enviar o contrato por email para todos os envolvidos cadastrados!</p>
                 </div>
                 <Document file={api.getUri().split('/api')[0]+`/documents/sion/${client.value.unit}/contract.pdf`} 
-                    onLoadSuccess={() => setLoading(false)} onLoadError={(error) => console.error(error)}
+                    onLoadSuccess={onLoadSuccess} onLoadError={(error) => console.error(error)}
                     loading={<MuiLoading color={'primary'} size={'15vw'} />}
                 >
                     <Page pageNumber={page} width={245} />
