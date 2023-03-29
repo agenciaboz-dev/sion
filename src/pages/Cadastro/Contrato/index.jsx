@@ -62,7 +62,6 @@ export const Contrato = ({  }) => {
     }
 
     const onLoadSuccess = pdf => {
-        console.log(pdf)
         setLoading(false)
         setPages(pdf.numPages)
     }
