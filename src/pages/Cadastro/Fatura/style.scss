@@ -64,6 +64,14 @@ $dash-spacing: 1vw;
                 justify-content: space-between;
                 align-items: center;
 
+                > p {
+                    width: 30vw;
+                    text-align: center;
+                    white-space: nowrap; 
+                    overflow: hidden;
+                    text-overflow:    ellipsis;
+                }
+
                 button {
                     background-color: white;
                     color: $primary-color;
