@@ -11,6 +11,7 @@ import { Document, Page, pdfjs } from 'react-pdf'
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import COLORS from '../../../sass/_colors.scss'
+import { NavButtons } from '../NavButtons';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -55,6 +56,10 @@ export const Contrato = ({  }) => {
     const [loading, setLoading] = useState(true)
     const [page, setPage] = useState(1)
 
+    const nextStage = () => {
+        // enviar contrato por email
+    }
+
     useEffect(() => {
         if (!client?.value?.unit) navigate('/cadastro')
 
@@ -79,8 +84,9 @@ export const Contrato = ({  }) => {
                 >
                     <Page pageNumber={page} width={245} />
                 </Document>
-                {!loading && <NavPdf />}
             </div>
+            {!loading && <NavPdf />}
+            <NavButtons goBack={() => navigate('/cadastro/anexos')} nextStage={nextStage} children={<p>Enviar</p>} />
 
         </div>
     )
