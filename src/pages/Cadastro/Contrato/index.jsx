@@ -6,9 +6,11 @@ import { MuiLoading } from '../../../components/MuiLoading';
 import { useClient } from '../../../hooks/useClient';
 import { useContract } from '../../../hooks/useContract';
 import {ReactComponent as ChoseIcon} from '../../../images/blue_check.svg'
-import { Document, Page, pdfjs } from 'react-pdf'
 import './style.scss';
 import { usePdf } from '../../../hooks/usePdf';
+import { Document, Page, pdfjs } from 'react-pdf'
+import 'react-pdf/dist/esm/Page/TextLayer.css';
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -19,12 +21,15 @@ export const Contrato = ({  }) => {
     const navigate = useNavigate()
     const client = useClient()
     const [pdf, setPdf] = usePdf()
+    // const [url, setUrl] = useState(api.getUri()+'/documents/sion/76/contract.pdf')
     
 
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         if (!client?.value?.unit) navigate('/cadastro')
+
+        console.log(api.getUri())
 
         // console.log(pdf)
     }, [])
@@ -39,8 +44,8 @@ export const Contrato = ({  }) => {
                 <div className='description-container'>
                     <p>Clique avançar para enviar o contrato por email para todos os envolvidos cadastrados!</p>
                 </div>
-                <Document file={'https://drive.google.com/file/d/1-K8YMzPbrOTEHNpIOrjHnW_JyZ5Rw1-g/view?usp=sharing'} onLoadSuccess={() => null} onLoadError={(error) => console.error(error)}>
-                    <Page pageNumber={1} />
+                <Document file={api.getUri().split('/api')[0]+`/documents/sion/76/contract.pdf`} onLoadSuccess={() => null} onLoadError={(error) => console.error(error)}>
+                    <Page pageNumber={1} width={270} />
                 </Document>
 
             </div>

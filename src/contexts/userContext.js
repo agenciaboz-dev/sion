@@ -7,17 +7,13 @@ export default UserContext;
 
 
 export const UserProvider = ({children}) => {
-    const [value, setValue] = useState(null)
     const storage = useLocalStorage()
+    const [value, setValue] = useState(storage.get('user_sion'))
     
     useEffect(() => {
        console.log(value)
     }, [value])
     
-    useEffect(() => {
-        if (!value) setValue(storage.get('user_sion'))
-    }, [])
-
     return (
         <UserContext.Provider value={{value, setValue}}>
             {children}
