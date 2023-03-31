@@ -3,9 +3,10 @@ import { useState } from "react"
 import { useMediaQuery } from "react-responsive"
 import { useNavigate } from "react-router-dom"
 import { useClient } from "../../../hooks/useClient"
+import { useStage } from "../../../hooks/useStage"
 import {ReactComponent as ChoseIcon} from '../../../images/check.svg'
 
-export const PessoaChooser = ({ setStage, setProgressBarStage, pessoa, setPessoa }) => {
+export const PessoaChooser = ({ pessoa, setPessoa }) => {
         
     const Pessoa = ({ name, value, description }) => {
         const [clicked, setClicked] = useState(false)
@@ -40,11 +41,9 @@ export const PessoaChooser = ({ setStage, setProgressBarStage, pessoa, setPessoa
     const navigate = useNavigate()
     const client = useClient()
     const isMobile = useMediaQuery({maxWidth: 600})
-    
+    const { setStage, setBar } = useStage()
 
     useEffect(() => {
-        setProgressBarStage(38)
-        setStage(0)
     }, [])
 
     return (

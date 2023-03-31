@@ -7,14 +7,13 @@
     align-items: center;
 
     > * {
-        box-shadow: 0 2px 3px rgba(0,0,0,0.4);
+        // box-shadow: 0 2px 3px rgba(0,0,0,0.4);
     }
 
     .container {
         width: 5vw;
         background-color: white;
         border: 0.2vw $primary-color solid;
-        flex: 0.28;
         padding: 0.5vw;
         justify-content: center;
         color: $primary-color;
@@ -38,18 +37,19 @@
 
 @media only screen and (max-width: 600px) {
     .Progress-Component {
+        justify-content: space-between;
         .container {
-            height: 15vw;
-            flex: 0.3;
+            height: 7vw;
+            width: 7vw;
             align-items: center;
-            text-align: center;
-            font-size: 4vw;
+            justify-content: center;
+            border-radius: 50%;
         }
 
         .progress-bar {
 
             .wrapper {
-                border: 1px solid $primary-color;
+                border: 1px solid white;
             }
         }
     }

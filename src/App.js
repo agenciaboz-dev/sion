@@ -14,6 +14,7 @@ import { useMuiTheme } from './hooks/useMuiTheme';
 import { ThemeProvider } from '@mui/material';
 import { AttachmentsProvider } from './contexts/attachmentsContext';
 import { PdfProvider } from './contexts/pdfContext';
+import { StageProvider } from './contexts/stageContext';
 
 function App() {
     const muiTheme = useMuiTheme()
@@ -25,16 +26,20 @@ function App() {
                 <ClientProvider>
                     <AttachmentsProvider>
                         <PdfProvider>
-                            <Routes>
-                                    {/* <Route index element={<Home />} /> */}
-                                    <Route index element={<Login />} />
+                            <StageProvider>
+                                
+                                <Routes>
+                                        {/* <Route index element={<Home />} /> */}
+                                        <Route index element={<Login />} />
 
-                                    <Route path='/login' element={<Login />} />
-                                    <Route path='/cadastro/*' element={<Cadastro />} />
-                                    <Route path='/links' element={<Links />} />
-                                    <Route path='/admin' element={<ControlPanel />} />
-                                    <Route path='*' element={<NotFound />} />
-                            </Routes>
+                                        <Route path='/login' element={<Login />} />
+                                        <Route path='/cadastro/*' element={<Cadastro />} />
+                                        <Route path='/links' element={<Links />} />
+                                        <Route path='/admin' element={<ControlPanel />} />
+                                        <Route path='*' element={<NotFound />} />
+                                </Routes>
+
+                            </StageProvider>
                         </PdfProvider>
                     </AttachmentsProvider>
                 </ClientProvider>
