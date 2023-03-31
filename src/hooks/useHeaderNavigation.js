@@ -40,6 +40,10 @@ export const useHeaderNavigation = () => {
             label: 'Voltar',
             navigate: () => navigate('/cadastro/anexos')
         },
+        ['/cadastro/financeiro']: {
+            label: 'Voltar',
+            navigate: () => navigate('/cadastro/contrato')
+        },
     }
 
 
