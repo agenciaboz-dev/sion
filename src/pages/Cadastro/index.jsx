@@ -13,6 +13,7 @@ import { ScrollTop } from '../../components/ScrollTop';
 import { Calculadora } from './Calculadora';
 import { PessoaChooser } from './PessoaChooser';
 import { RepresentanteLegal } from './Formulario/PessoaJuridica/RepresentanteLegal';
+import { ContatoFinanceiro } from './ContatoFinanceiro';
 
 export const Cadastro = () => {
 
@@ -51,6 +52,7 @@ export const Cadastro = () => {
                             <Route path='/formulario/representante' element={<RepresentanteLegal pessoa={pessoa} setPessoa={setPessoa} setProgressBarStage={setProgressBarStage} setStage={setStage} />} />
                             <Route path='/anexos' element={<Fatura setProgressBarStage={setProgressBarStage} setStage={setStage} />} />
                             <Route path='/contrato' element={<Contrato setProgressBarStage={setProgressBarStage} setStage={setStage} />} />
+                            <Route path='/financeiro' element={<ContatoFinanceiro setProgressBarStage={setProgressBarStage} setStage={setStage} />} />
                     </SlideRoutes>
                     </div>
                 </div>

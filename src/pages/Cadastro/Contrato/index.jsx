@@ -59,6 +59,7 @@ export const Contrato = ({  }) => {
 
     const nextStage = () => {
         // enviar contrato por email
+        navigate('/cadastro/financeiro')
     }
 
     const onLoadSuccess = pdf => {

@@ -29,14 +29,14 @@ export const Login = () => {
 
         api.post('/login', values)
         .then(response => {
-            if (response.data.error) {
-                setError(true)
-            } else {
+            if (response.data) {
                 const usuario = response.data
                 storage.set('user_sion', remind ? usuario : null)
                 setUser(usuario)
 
                 navigate('/cadastro')
+            } else {
+                setError(true)
             }
         })
         .catch(error => console.error(error))

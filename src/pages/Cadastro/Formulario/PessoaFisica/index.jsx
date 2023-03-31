@@ -43,9 +43,6 @@ export const PessoaFisica = ({ previousStage, nextStage }) => {
         // createdOn: date().default(() => new Date()),
     })
 
-    
-      
-
     const cpfBlur = event => {
         setCpfError(!validateCPF(event.target.value))
     }

@@ -5,8 +5,8 @@ export const NavButtons = ({ goBack, nextStage, nextOnly, children }) => {
     
     return (
         <div className="buttons-container">
-            {!nextOnly && <button onClick={() => goBack()} style={{backgroundColor: COLORS.gray}} >Voltar</button>}
-            <button onClick={() => nextStage()}>{children || 'Avançar'}</button>
+            {!nextOnly && <button onClick={(event) => goBack(event)} style={{backgroundColor: COLORS.gray}} >Voltar</button>}
+            <button type='submit' onClick={(event) => nextStage(event)}>{children || 'Avançar'}</button>
         </div>
     )
 }
