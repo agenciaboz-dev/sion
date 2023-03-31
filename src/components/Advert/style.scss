@@ -2,98 +2,96 @@
 
 .Advert-Component {
     margin-top: 4vw;
-    flex-direction: column;
     align-items: center;
     color: white;
-    height: 22vw;
+    height: 36vw;
     width: 100%;
-    margin-bottom: 7vw;
+    margin-bottom: 12vw;
     position: relative;
-
-    p {
-        color: white;
-    }
-
-    .blue-box {
-        background-color: $primary-color;
-        padding: 2vw;
+    justify-content: space-between;
+    
+    .left {
+        flex: 0.4;
         flex-direction: column;
-        width: 33vw;
-        box-shadow: 0 2px 2px #000000;
-        margin-right: auto;
-        position: absolute;
-        left: 3vw;
-
+        
+        .logo {
+            margin: 0 auto -1vw -2vw;
+            height: 11vw;
+            width: auto;
+        }
+        
         h1 {
-            font-size: 5vw;
+            font-size: 4.5vw;
             margin-top: -1vw;
             margin-bottom: -2vw;
         }
             
         h3 {
-            margin-top: 1.5vw;
-            margin-right: 5vw;
-            font-size: 2.3vw;
+            margin-top: 1vw;
+            margin-right: 3vw;
+            font-size: 2vw;
             color: $yellow-text-color;
         }
-
-        button {
-            background-color: white;
-            color: $primary-color;
-            padding: 0.75vw;
-            margin-top: 1.5vw;
-        }
-    }
-
-    .white-box {
-        flex-direction: column;
-        background-color: white;
-        width: 42vw;
-        padding: 2vw;
-        padding-bottom: 3vw;
-        margin-left: auto;
-        gap: 2vw;
-        position: absolute;
-        right: 4vw;
-        top: -11vw;
-        z-index: 1;
         
-        h2 {
-            font-weight: 500;
-            color: #333333;
-            font-size: 2.2vw;
+        p {
+            font-size: 1.5vw;
+            color: white;
+        }
+        
+        .advert-buttons-container {
+            width: 100%;
+            justify-content: space-between;
 
-            span {
-                font-weight: 600;
+            > * {
+                background-color: white;
                 color: $primary-color;
+                padding: 0.75vw;
+                margin-top: 1.5vw;
+                padding: 0.5vw 2.75vw;
             }
         }
 
-        p {
-            font-size: 1.5vw;
-            color: $graybutton-color;
+        a {
+            background-color: $primary-color;
+            font-size: 0.9vw;
+            font-weight: 700;
+            padding: 0 3vw;
+            border: none;
+            color: white;
+            transition: 0.3s;
+            cursor: pointer;
+            text-decoration: none;
         }
-
-        .square-arrow {
-            width: 1vw;
-            height: 1vw;
-            align-self: center;
-            margin-left: 0.5vw;
+        
+        a:hover {
+            background-color: darken($primary-color, 10%);
         }
     }
 
-    a {
-        display: flex;
-        color: $primary-color;
-        font-size: 1vw;
-        font-weight: 500;
-        border: none;
-        transition: 0.3s;
-        cursor: pointer;
-    }
+    .right {
+        flex: 0.45;
+        flex-direction: column;
 
-    a:hover {
-        transform: scale(1.05);
-    }
+        .images-container {
+            justify-content: space-between;
 
+            .large-image-container{
+                flex: 0.49;
+                
+                img {
+                    width: 18vw;
+                }
+            }
+            
+            .small-images-container {
+                flex: 0.49;
+                flex-direction: column;
+                justify-content: space-between;
+
+                img {
+                    width: 13vw;
+                }
+            }
+        }
+    }
 }

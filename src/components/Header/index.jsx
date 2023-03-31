@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { useHeaderMenus } from '../../hooks/useHeaderMenus';
 import {ReactComponent as LogoBranco} from '../../images/logo_branco.svg';
-import {ReactComponent as LogoCromado} from '../../images/logo_cromado.svg';
 import './style.scss';
 import COLORS from '../../sass/_colors.scss'
 import { HeaderButton } from './HeaderButton';
@@ -69,7 +68,7 @@ export const Header = ({ alternative, setAlternative }) => {
                 })}
                 <button className="login-button">Sou cliente</button>
             </div>
-            <LogoBranco style={{visibility: alternative && 'hidden', margin: location.pathname != '/' && '6vw 0 4vw'}} />
+            {/* <LogoBranco style={{visibility: alternative && 'hidden', margin: location.pathname != '/' && '6vw 0 4vw'}} /> */}
         </div>
     )
 }
