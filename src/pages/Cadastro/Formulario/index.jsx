@@ -5,17 +5,20 @@ import { PessoaJuridica } from './PessoaJuridica';
 import { PessoaFisica } from './PessoaFisica';
 import './style.scss';
 import { ScrollTop } from '../../../components/ScrollTop';
+import { useContract } from '../../../hooks/useContract';
 
 
 export const Formulario = ({ pessoa, setStage, setProgressBarStage, setPessoa }) => {
 
     const navigate = useNavigate()
     const client = useClient()
+    const contract = useContract()
 
     const nextStage = (values, error) => {
         if (error) return
         client.setValue({...client.value, form: values})
         navigate(`/cadastro/${pessoa == 'juridica' ? 'formulario/representante' : 'anexos'}`)
+        setTimeout(() => contract.lead(), 1000)
     }
 
     const previousStage = (event) => {

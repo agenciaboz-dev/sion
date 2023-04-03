@@ -52,8 +52,6 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
         setProgressBarStage(50)
         setStage(1)
 
-        contract.lead()
-
     }, [])
     
     return (
