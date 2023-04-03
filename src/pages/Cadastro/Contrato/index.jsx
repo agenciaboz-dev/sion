@@ -58,7 +58,8 @@ export const Contrato = ({  }) => {
     const [pages, setPages] = useState(0)
 
     const nextStage = () => {
-        // enviar contrato por email
+        api.post('/contract/send', client.value)
+        .then(response => console.log(response.data))
         navigate('/cadastro/financeiro')
     }
 
