@@ -71,6 +71,7 @@
     .right {
         flex: 0.45;
         flex-direction: column;
+        padding-top: 1vw;
 
         .images-container {
             justify-content: space-between;
@@ -79,7 +80,7 @@
                 flex: 0.49;
                 
                 img {
-                    width: 18vw;
+                    width: 20vw;
                 }
             }
             
@@ -89,9 +90,13 @@
                 justify-content: space-between;
 
                 img {
-                    width: 13vw;
+                    width: 15vw;
                 }
             }
+        }
+
+        p {
+            font-size: 1vw;
         }
     }
 }
