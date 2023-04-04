@@ -12,16 +12,17 @@
     .menus-container {
         gap: 0.3vw;
         top: 2vw;
+        // left: 9.5vw;
+        padding-left: 9.5vw;
         transition: 0.5s;
         position: fixed;
         height: 4vw;
         align-items: center;
         width: 100%;
-        justify-content: center;
 
         .login-button {
             position: absolute;
-            right: 5vw;
+            right: 10vw;
             padding: 0.5vw;
             background-color: white;
             color: $primary-color;
@@ -46,7 +47,7 @@
         }
 
         svg {
-            margin: 2vw;
+            margin: 2vw 0.7vw 2vw -8vw;
             object-fit: contain;
             height: 100%;
             width: auto;
