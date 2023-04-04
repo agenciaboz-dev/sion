@@ -18,6 +18,10 @@ export const useHeaderNavigation = () => {
             label: 'Site',
             navigate: () => window.location.href = 'https://cooperativasion.com.br'
         },
+        ['/sign']: {
+            label: 'Site',
+            navigate: () => window.location.href = 'https://cooperativasion.com.br'
+        },
         ['/cadastro']: {
             label: 'Sair',
             navigate: logout,

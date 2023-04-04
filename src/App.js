@@ -15,6 +15,7 @@ import { ThemeProvider } from '@mui/material';
 import { AttachmentsProvider } from './contexts/attachmentsContext';
 import { PdfProvider } from './contexts/pdfContext';
 import { StageProvider } from './contexts/stageContext';
+import { SignContract } from './pages/SignContract';
 
 function App() {
     const muiTheme = useMuiTheme()
@@ -36,6 +37,7 @@ function App() {
                                         <Route path='/cadastro/*' element={<Cadastro />} />
                                         <Route path='/links' element={<Links />} />
                                         <Route path='/admin' element={<ControlPanel />} />
+                                        <Route path='/sign' element={<SignContract />} />
                                         <Route path='*' element={<NotFound />} />
                                 </Routes>
 
