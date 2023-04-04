@@ -8,17 +8,60 @@ import { useNavigate } from 'react-router-dom';
 import {ReactComponent as SunIcon} from '../../images/simulator/sun.svg';
 import {ReactComponent as DollarIcon} from '../../images/simulator/dollar.svg';
 import {ReactComponent as WalletIcon} from '../../images/simulator/wallet.svg';
+import { TextField } from '@mui/material';
+import { useFlags } from '../../hooks/useFlags';
+import CurrencyFormat from 'react-currency-format';
+import COLORS from '../../sass/_colors.scss'
 
 export const Simulator = () => {
 
-    const [spent, setSpent] = useState('')
-    const [saving, setSaving] = useState('')
+    const Flag = ({ flag }) => {
+        const Icon = () => flag.icon
+        const [economy, setEconomy] = useState(0)
+
+        useEffect(() => {
+            setEconomy(consumption*flag.factor)
+        }, [consumption])
+        return (
+            <div className="flag-container">
+                <Icon />
+                <hr />
+                <h3>Anual</h3>
+                <CurrencyFormat
+                    value={economy*12} 
+                    displayType='text' 
+                    thousandSeparator='.'
+                    decimalSeparator=','
+                    decimalScale={2}
+                    fixedDecimalScale={true}
+                    prefix={'R$ '}
+                    style={{fontSize: '1vw', fontWeight: 'bold', color: COLORS.primary}}
+                />
+                <hr />
+                <p>Mensal</p>
+                <CurrencyFormat
+                    value={economy*12} 
+                    displayType='text' 
+                    thousandSeparator='.'
+                    decimalSeparator=','
+                    decimalScale={2}
+                    fixedDecimalScale={true}
+                    prefix={'R$ '}
+                    style={{fontSize: '0.7vw', color: COLORS.primary}}
+                />
+            </div>
+        )
+    }
+
+    const [spent, setSpent] = useState('2000')
+    const [consumption, setConsumption] = useState(0)
 
     const navigate = useNavigate()
+    const flags = useFlags()
 
-    const currencyMask = createNumberMask({
-        prefix: 'R$ ',
-        suffix: '',
+    const kwhMask = createNumberMask({
+        prefix: '',
+        suffix: ' kWh',
         includeThousandsSeparator: true,
         thousandsSeparatorSymbol: '.',
         allowDecimal: true,
@@ -33,64 +76,28 @@ export const Simulator = () => {
         navigate('/cadastro')
     }
 
-    const getSpentNumber = useCallback(() => {
-        const number = spent ? spent.split('R$ ')[1].replaceAll('.', '').replaceAll(',', '.') : 0
-
-        return +number
+    useEffect(() => {
+        setConsumption(parseInt(spent.replace(/\D/, '')))
     }, [spent])
 
     return (
         <div className='Simulator-Component' id='simulator' >
             <div className="white-container">
-                <div className="simulator-header">
-                    <h2>Simule sua Economia</h2>
-                    <div className="input-container">
-                        {/* <label htmlFor="flag">Bandeira</label> */}
-                        <select as='select' name="flag" id="flag" className='simulator-input'>
-                            <option disabled selected value="">Selecione a bandeira</option>
-                            <option value="verde">Verde</option>
-                            <option value="amarela">Amarela</option>
-                            <option value="vermelha">Vermelha</option>
-                            <option value="marrom">Marrom</option>
-                        </select>
-                    </div>
-                </div>
-                <div className="input-container">
-                    <label htmlFor="company">Distribuidora</label>
-                    <select as='select' name="company" id="company" className='simulator-input'>
-                        <option value="copel">Copel</option>
-                    </select>
-                </div>
-                <div className="input-container">
-                    <label htmlFor="spent">Gasto mensal</label>
-                    <MaskedInput id='spent' className='simulator-input'
-                        mask={currencyMask}
-                        guide={false}
-                        value={spent}
-                        onChange={event => setSpent(event.target.value)}
-                        placeholder={'R$ '}
-                    />
-                </div>
-                <ReactSlider
-                    className="horizontal-slider"
-                    thumbClassName="slider-thumb"
-                    trackClassName="slider-track"
-                    min={1}
-                    max={1000000}
-                    value={typeof spent === 'number' ? spent : getSpentNumber()}
-                    onChange={value => setSpent(value)}
+                <MaskedInput 
+                    mask={kwhMask}
+                    value={spent} onChange={event => setSpent(event.target.value)}
+                    render={(ref, props) => (
+                        <TextField
+                            inputRef={ref}
+                            {...props}
+                            label='Consumo mensal'
+                            inputProps={{inputMode: 'numeric'}}
+                        />
+                    )}
                 />
-                <div className="input-container">
-                    <label htmlFor="saving">Economia anual</label>
-                    <MaskedInput id='saving' className='simulator-input'
-                        mask={currencyMask}
-                        guide={false}
-                        value={saving}
-                        onChange={event => setSaving(event.target.value)}
-                        placeholder={'R$ '}
-                    />
+                <div className="flags-container">
+                    {flags.map(flag => <Flag flag={flag} />)}
                 </div>
-                <button className='simulator-calculate-button'>Calcular</button>
             </div>
             <div className="blue-container">
                 <div className="benefits-container">
