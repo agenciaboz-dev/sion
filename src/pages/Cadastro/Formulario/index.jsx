@@ -18,7 +18,6 @@ export const Formulario = ({ pessoa, setStage, setProgressBarStage, setPessoa })
         if (error) return
         client.setValue({...client.value, form: values})
         navigate(`/cadastro/${pessoa == 'juridica' ? 'formulario/representante' : 'anexos'}`)
-        setTimeout(() => contract.lead(), 1000)
     }
 
     const previousStage = (event) => {

@@ -9,11 +9,13 @@ import { useState } from 'react';
 import { DashedPlusBox } from '../../../../../components/DashedPlusBox';
 import { useEffect } from 'react';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { useContract } from '../../../../../hooks/useContract';
 
 export const RepresentanteLegal = ({ handleChange, values, errors }) => {
 
     const default_errors = useValidationErrors()
     const client = useClient()
+    const contract = useContract()
     const navigate = useNavigate()
     
     const [emails, setEmails] = useState([1])
