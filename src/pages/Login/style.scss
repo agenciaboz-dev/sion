@@ -87,10 +87,11 @@
 
             > svg {
                 height: 35vw;
+                margin-bottom: 7vw;
             }
 
             form {
-                width: 90%;
+                width: 80%;
 
                 .user-input-container {
                     flex-direction: column;
@@ -139,6 +140,27 @@
                         }
                     }
 
+                }
+
+                .client-button {
+                    flex-direction: column;
+                    width: 100%;
+                    align-items: center;
+                    
+                    .or {
+                        margin: 5vw;
+                        color: $primary-color;
+                        gap: 5vw;
+                        align-items: center;
+                        width: 100%;
+                        justify-content: space-between;
+                        
+
+                        > div {
+                            flex-direction: column;
+                            width: 100%;
+                        }
+                    }
                 }
             }
         }
