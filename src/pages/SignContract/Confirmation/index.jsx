@@ -7,12 +7,14 @@ import { useDocumentMask } from '../../../hooks/useDocumentMask';
 import { useEffect, useState } from 'react';
 import { api } from '../../../api';
 import { ReactComponent as CameraIcon } from '../../../images/camera.svg'
+import { useUser } from '../../../hooks/useUser';
 
 export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract }) => {
     const [attachments, setAttachments] = useState([])
     const [loading, setLoading] = useState(false)
 
     const params = useParams()
+    const [user, setUser] = useUser()
 
     const documentMask = useDocumentMask()
 
@@ -25,8 +27,7 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
     const handleSubmit = values => {
         setLoading(true)
         const formData = new FormData();
-        const data = { ...values, id: params.id };
-        console.log(params)
+        const data = { ...values, id: params.id, user };
         console.log({data})
 
         formData.append("data", JSON.stringify(data));
