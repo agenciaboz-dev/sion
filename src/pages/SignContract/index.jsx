@@ -91,8 +91,8 @@ export const SignContract = () => {
                                     fullWidth
                                     required
                                     />
-                                    )}
-                                    />
+                                )}
+                            />
                             <TextField label='Data de nascimento' name='birth' value={values.birth} onChange={handleChange} type='date' fullWidth required />
 
                             <Dropzone onDrop={acceptedFiles => onDrop(acceptedFiles)}>
@@ -100,10 +100,16 @@ export const SignContract = () => {
                                     <section>
                                     <div {...getRootProps()} className="dropzone">
                                         <input {...getInputProps()} />
+                                        {attachments[0] ? 
+                                        <div className="uploaded-container">
+                                            <h3>{attachments[0].name}</h3>
+                                        </div>
+                                        :
                                         <div className="upload-container">
                                             <CameraIcon />
                                             <h3>Clique aqui para tirar uma foto</h3>
                                         </div> 
+                                        }
                                     </div>
                                     </section>
                                 )}
@@ -114,11 +120,13 @@ export const SignContract = () => {
                 </Formik>
             </div>
         </BackgroundContainer>
+
         <Snackbar open={openSnackbar} autoHideDuration={3000} onClose={() => setOpenSnackbar(false)} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
             <Alert onClose={() => setOpenSnackbar(false)} severity={'error'} sx={{ width: '100%' }}>
                 {error}
             </Alert>
         </Snackbar>
+
         </>
     )
 }
