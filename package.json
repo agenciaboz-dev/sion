@@ -31,6 +31,7 @@
     "react-slider": "^2.0.4",
     "react-text-mask": "^5.4.3",
     "react-use-measure": "^2.1.1",
+    "react-verification-code-input": "^1.2.9",
     "sass": "^1.58.1",
     "text-mask-addons": "^3.8.0",
     "yup": "^0.32.11"

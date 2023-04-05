@@ -23,4 +23,29 @@
             }
         }
     }
+
+    .Token-Component {
+        flex-direction: column;
+        gap: 3vw;
+
+        .token-chars {
+            gap: 1vw;
+        }
+
+        input:focus {
+            border-color: lighten($primary-color, 10);
+            caret-color: lighten($primary-color, 10);
+        }
+    }
+
+    .Signed-Component {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        color: $primary-color;
+        text-align: center;
+        gap: 5vw;
+        padding-top: 10vh;
+
+    }
 }
