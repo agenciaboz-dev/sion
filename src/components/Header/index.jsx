@@ -18,7 +18,6 @@ export const Header = ({ alternative, setAlternative }) => {
         position: 'fixed',
         top: 0,
         width: '100%',
-        zIndex: 5,
     }
 
     useEffect(() => {
