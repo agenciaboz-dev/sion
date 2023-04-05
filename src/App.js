@@ -34,6 +34,7 @@ function App() {
                                         <Route index element={<Login />} />
 
                                         <Route path='/login' element={<Login />} />
+                                        <Route path='/login/:id' element={<Login signing />} />
                                         <Route path='/cadastro/*' element={<Cadastro />} />
                                         <Route path='/links' element={<Links />} />
                                         <Route path='/admin' element={<ControlPanel />} />
