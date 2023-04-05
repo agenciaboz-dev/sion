@@ -6,9 +6,12 @@ import { useState, useEffect } from 'react'
 import Dropzone from 'react-dropzone';
 import { ReactComponent as CameraIcon } from '../../images/camera.svg'
 import { api } from '../../api';
+import { useDocumentMask } from '../../hooks/useDocumentMask';
+import MaskedInput from 'react-text-mask';
 
 export const SignContract = () => {
     const [attachments, setAttachments] = useState([])
+    const documentMask = useDocumentMask()
 
     const initialValues = {
         name: '',
@@ -23,10 +26,13 @@ export const SignContract = () => {
         formData.append("data", JSON.stringify(data));
 
         // Assuming you have the files in the `attachments` state
-        if (attachments) {
+        if (attachments[0]) {
             attachments.map(file => {
                 formData.append('biometria', file)
             })
+        } else {
+            alert('obrigatório enviar uma foto')
+            return
         }
 
         api.post('/contract/confirm', formData)
@@ -49,9 +55,25 @@ export const SignContract = () => {
                     {({values, handleChange}) => 
                         <Form>
                             <h3>Confirme seus dados</h3>
-                            <TextField label='Responsável Legal' name='name' value={values.name} onChange={handleChange} fullWidth />
-                            <TextField label='CPF / CNPJ' name='document' value={values.document} onChange={handleChange} inputProps={{inputMode: 'numeric'}} fullWidth />
-                            <TextField label='Data de nascimento' name='birth' value={values.birth} onChange={handleChange} type='date' fullWidth />
+                            <TextField label='Responsável Legal' name='name' value={values.name} onChange={handleChange} fullWidth required />
+                            <MaskedInput
+                                mask={documentMask}
+                                name={'document'}
+                                onChange={handleChange}
+                                value={values.document}
+                                guide={false}
+                                render={(ref, props) => (
+                                    <TextField
+                                        inputRef={ref}
+                                        {...props}
+                                        label='CPF / CNPJ'
+                                        inputProps={{inputMode: 'numeric'}} 
+                                        fullWidth
+                                        required
+                                    />
+                                )}
+                            />
+                            <TextField label='Data de nascimento' name='birth' value={values.birth} onChange={handleChange} type='date' fullWidth required />
 
                             <Dropzone onDrop={acceptedFiles => onDrop(acceptedFiles)}>
                                 {({getRootProps, getInputProps}) => (
