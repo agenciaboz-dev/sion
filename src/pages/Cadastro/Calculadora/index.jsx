@@ -84,7 +84,7 @@ export const Calculadora = ({  }) => {
             <InputField title={'Consumo mensal médio'} mask={kwhMask} id={'spent'} value={spent} handleChange={event => setSpent(event.target.value)} not_required />
 
             <div className="flags-container">
-                {flags.map(flag => <Flag flag={flag} />)}
+                {flags.map(flag => <Flag key={flag.id} flag={flag} />)}
             </div>
 
             <NavButtons nextOnly nextStage={nextStage} />
