@@ -18,10 +18,6 @@ export const useHeaderNavigation = () => {
             label: 'Site',
             navigate: () => window.location.href = 'https://cooperativasion.com.br'
         },
-        ['/sign']: {
-            label: 'Site',
-            navigate: () => window.location.href = 'https://cooperativasion.com.br'
-        },
         ['/cadastro']: {
             label: 'Sair',
             navigate: logout,
@@ -61,13 +57,25 @@ export const useHeaderNavigation = () => {
 
 
     const headerObject = useMemo(() => {
-        setStage(paths[path].stage)
-        setBar(paths[path].stage-1)
 
-        return {
-            label: paths[path].label,
-            navigate: () => paths[path].navigate(),
+        try {
+            setStage(paths[path].stage)
+            setBar(paths[path].stage-1)
+            
+            return {
+                label: paths[path].label,
+                navigate: () => paths[path].navigate(),
+            }
+        } catch {
+            setStage(1)
+            setBar(0)
+
+            return {
+                label: 'Site',
+                navigate: () => window.location.href = 'https://cooperativasion.com.br',
+            }
         }
+
 
     }, [path])
 
