@@ -71,10 +71,8 @@ const Home = () => {
                 <Contact />
                 <About />
             </div>
-            <div className="buttons-container">
-                <StickyHomeButton show={stickyHeader} />
-                <WhatsappButton />
-            </div>
+            <StickyHomeButton show={stickyHeader} />
+            <WhatsappButton />
             <Footer />
         </section>
     )
