@@ -1,6 +1,6 @@
 import { BackgroundContainer } from '../../components/BackgroundContainer';
 import { Formik, Form } from 'formik'
-import { TextField, Button } from '@mui/material';
+import { TextField, Button, CircularProgress, Snackbar, Alert } from '@mui/material';
 import './style.scss';
 import { useState, useEffect } from 'react'
 import Dropzone from 'react-dropzone';
@@ -8,9 +8,16 @@ import { ReactComponent as CameraIcon } from '../../images/camera.svg'
 import { api } from '../../api';
 import { useDocumentMask } from '../../hooks/useDocumentMask';
 import MaskedInput from 'react-text-mask';
+import { useParams } from 'react-router-dom';
 
 export const SignContract = () => {
     const [attachments, setAttachments] = useState([])
+    const [loading, setLoading] = useState(false)
+    const [openSnackbar, setOpenSnackbar] = useState(false)
+    const [error, setError] = useState('')
+
+    const params = useParams()
+
     const documentMask = useDocumentMask()
 
     const initialValues = {
@@ -20,8 +27,11 @@ export const SignContract = () => {
     }
 
     const handleSubmit = values => {
+        setLoading(true)
         const formData = new FormData();
-        const data = { ...values };
+        const data = { ...values, id: params.id };
+        console.log(params)
+        console.log({data})
 
         formData.append("data", JSON.stringify(data));
 
@@ -31,13 +41,22 @@ export const SignContract = () => {
                 formData.append('biometria', file)
             })
         } else {
-            alert('obrigatório enviar uma foto')
+            setOpenSnackbar(true)
+            setError('Foto obrigatória')
+            setLoading(false)
             return
         }
 
         api.post('/contract/confirm', formData)
-        .then(response => console.log(response.data))
+        .then(response => {
+            const contract = response.data
+            if (!contract) {
+                setOpenSnackbar(true)
+                setError('Dados inválidos')
+            }
+        })
         .catch(error => console.error(error))
+        .finally(() => setLoading(false))
     }
 
     const onDrop = (acceptedFiles) => {
@@ -49,6 +68,7 @@ export const SignContract = () => {
     }, [attachments])
     
     return (
+        <>
         <BackgroundContainer vendas>
             <div className='SignContract-Page' >
                 <Formik initialValues={initialValues} onSubmit={handleSubmit}>
@@ -64,15 +84,15 @@ export const SignContract = () => {
                                 guide={false}
                                 render={(ref, props) => (
                                     <TextField
-                                        inputRef={ref}
-                                        {...props}
-                                        label='CPF / CNPJ'
-                                        inputProps={{inputMode: 'numeric'}} 
-                                        fullWidth
-                                        required
+                                    inputRef={ref}
+                                    {...props}
+                                    label='CPF / CNPJ'
+                                    inputProps={{inputMode: 'numeric'}} 
+                                    fullWidth
+                                    required
                                     />
-                                )}
-                            />
+                                    )}
+                                    />
                             <TextField label='Data de nascimento' name='birth' value={values.birth} onChange={handleChange} type='date' fullWidth required />
 
                             <Dropzone onDrop={acceptedFiles => onDrop(acceptedFiles)}>
@@ -88,11 +108,17 @@ export const SignContract = () => {
                                     </section>
                                 )}
                             </Dropzone>
-                            <Button variant='contained' type='submit' >Avançar</Button>
+                            <Button variant='contained' type='submit' >{loading ? <CircularProgress size={'1.5rem'} color='secondary' /> : 'Avançar'}</Button>
                         </Form>
                     }
                 </Formik>
             </div>
         </BackgroundContainer>
+        <Snackbar open={openSnackbar} autoHideDuration={3000} onClose={() => setOpenSnackbar(false)} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
+            <Alert onClose={() => setOpenSnackbar(false)} severity={'error'} sx={{ width: '100%' }}>
+                {error}
+            </Alert>
+        </Snackbar>
+        </>
     )
 }

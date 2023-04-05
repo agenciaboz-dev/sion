@@ -37,7 +37,7 @@ function App() {
                                         <Route path='/cadastro/*' element={<Cadastro />} />
                                         <Route path='/links' element={<Links />} />
                                         <Route path='/admin' element={<ControlPanel />} />
-                                        <Route path='/sign' element={<SignContract />} />
+                                        <Route path='/sign/:id' element={<SignContract />} />
                                         <Route path='*' element={<NotFound />} />
                                 </Routes>
 
