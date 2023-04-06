@@ -16,7 +16,8 @@ export const Token = ({ setOpenSnackbar, setError, setStage, contract }) => {
                 id: contract.id, 
                 name: user?.name || contract.name,
                 email: user?.email || contract.email,
-                cpf: user?.cpf || contract.cpf
+                cpf: user?.cpf || contract.cpf,
+                cnpj: contract.cnpj
             }
             
             api.post('/contract/sign', data)
