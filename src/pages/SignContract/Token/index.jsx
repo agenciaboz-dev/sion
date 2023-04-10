@@ -7,6 +7,16 @@ import { useUser } from '../../../hooks/useUser';
 export const Token = ({ setOpenSnackbar, setError, setStage, contract }) => {
 
     const [user, setUser] = useUser()
+    const [inputStyle, setInputStyle] = useState({
+        fontFamily: 'Poppins',
+        MozAppearance: 'textfield',
+        textAlign: 'center',
+        height: '15vw',
+        width: '15vw',
+        borderRadius: '2vw',
+        border: '1px solid $eee',
+        boxShadow: '0 0 5px #999'
+    })
     const colors = useColors()
 
     const handleChange = values => {
@@ -35,18 +45,6 @@ export const Token = ({ setOpenSnackbar, setError, setStage, contract }) => {
         }
     }
 
-    const inputStyle = {
-        fontFamily: 'Poppins',
-        MozAppearance: 'textfield',
-        textAlign: 'center',
-        height: '15vw',
-        width: '15vw',
-        borderRadius: '2vw',
-        border: '1px solid $eee',
-        boxShadow: '0 0 5px #999'
-        
-    }
-    
     const inputStyleInvalid = {
         fontFamily: 'Poppins',
         MozAppearance: 'textfield',
