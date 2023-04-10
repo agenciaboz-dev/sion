@@ -52,7 +52,7 @@ export const Token = ({ setOpenSnackbar, setError, setStage, contract }) => {
         <div className='Token-Component' >
             <h3>Enviamos um token para o email: <br /> {user?.email || contract.email}</h3>
             {/* <ReactCodeInput type="number" fields={5} onComplete={verifyToken} /> */}
-            <ReactCodeInput className='code-container' onChange={handleChange} type='number' fields={5} onComplete={verifyToken} inputMode='numeric' inputStyle={inputStyle} inputStyleInvalid={inputStyleInvalid} />
+            <ReactCodeInput className='code-container' onChange={handleChange} type='number' fields={5} onComplete={verifyToken} inputMode='numeric' inputStyle={inputStyle} />
         </div>
     )
 }
