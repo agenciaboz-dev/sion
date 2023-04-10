@@ -34,7 +34,7 @@ export const Token = ({ setOpenSnackbar, setError, setStage, contract }) => {
     
     return (
         <div className='Token-Component' >
-            <h3>Enviamos um token para o email: {contract.email}</h3>
+            <h3>Enviamos um token para o email: {user?.email || contract.email}</h3>
             <ReactCodeInput type="number" fields={5} onComplete={verifyToken} />
         </div>
     )
