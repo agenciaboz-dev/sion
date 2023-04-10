@@ -26,7 +26,13 @@
 
     .Token-Component {
         flex-direction: column;
+        align-items: center;
         gap: 3vw;
+        width: 100%;
+
+        h3 {
+            text-align: center;
+        }
 
         .token-chars {
             gap: 1vw;
@@ -40,6 +46,8 @@
         .code-container {
             display: flex!important;
             justify-content: space-between;
+            gap: 2vw;
+
         }
     }
 
