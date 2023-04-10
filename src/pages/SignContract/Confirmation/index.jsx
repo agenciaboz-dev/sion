@@ -74,7 +74,7 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
                     <h3>Confirme seus dados</h3>
                     <TextField label='Responsável Legal' name='name' value={values.name} onChange={handleChange} fullWidth required />
                     <MaskedInput
-                        mask={documentMask}
+                        mask={[ /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/ ]}
                         name={'document'}
                         onChange={handleChange}
                         value={values.document}
@@ -83,7 +83,7 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
                             <TextField
                             inputRef={ref}
                             {...props}
-                            label='CPF / CNPJ'
+                            label='CPF'
                             inputProps={{inputMode: 'numeric'}} 
                             fullWidth
                             required
