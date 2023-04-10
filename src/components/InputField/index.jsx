@@ -4,7 +4,7 @@ import { useMediaQuery } from 'react-responsive';
 import MaskedInput from 'react-text-mask';
 import { useValidationErrors } from '../../hooks/useValidationsErrors';
 
-export const InputField = ({ children, id, title, handleChange, value, type, mask, autoFocus, error, errorText, multiline, select, inputMode, innerRef, not_required, readOnly, onBlur }) => {
+export const InputField = ({ children, id, title, handleChange, value, type, mask, autoFocus, error, errorText, multiline, select, inputMode, innerRef, not_required, readOnly, onBlur, endAdornment }) => {
 
     const newRef = useRef(null)
     const ref = innerRef || newRef
@@ -47,10 +47,10 @@ export const InputField = ({ children, id, title, handleChange, value, type, mas
                     rows={1}
                     sx={{fontFamily: "Montserrats"}}
                     select={select}
-                    InputProps={{readOnly}}
+                    InputProps={{readOnly, endAdornment}}
                     inputProps={{inputMode, onBlur}}
                     />
-                    )}
+                )}
             />
             :
             <TextField
@@ -76,9 +76,9 @@ export const InputField = ({ children, id, title, handleChange, value, type, mas
                 rows={1}
                 sx={{fontFamily: "Montserrats"}}
                 select={select}
-                InputProps={{readOnly}}
+                InputProps={{readOnly, endAdornment}}
                 inputProps={{inputMode, onBlur}}
-                />
+            />
             }
         </div>
     )
