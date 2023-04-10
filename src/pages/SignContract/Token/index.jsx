@@ -7,6 +7,9 @@ import { useUser } from '../../../hooks/useUser';
 export const Token = ({ setOpenSnackbar, setError, setStage, contract }) => {
 
     const [user, setUser] = useUser()
+    
+    const [invalid, setInvalid] = useState(false)
+
     const [inputStyle, setInputStyle] = useState({
         fontFamily: 'Poppins',
         MozAppearance: 'textfield',
@@ -14,7 +17,7 @@ export const Token = ({ setOpenSnackbar, setError, setStage, contract }) => {
         height: '15vw',
         width: '15vw',
         borderRadius: '2vw',
-        border: '1px solid $eee',
+        border: invalid ? '1px solid $red' : '1px solid $eee',
         boxShadow: '0 0 5px #999'
     })
     const colors = useColors()
@@ -45,14 +48,6 @@ export const Token = ({ setOpenSnackbar, setError, setStage, contract }) => {
         }
     }
 
-    const inputStyleInvalid = {
-        fontFamily: 'Poppins',
-        MozAppearance: 'textfield',
-        textAlign: 'center',
-        color: '$red',
-
-    }
-    
     return (
         <div className='Token-Component' >
             <h3>Enviamos um token para o email: <br /> {user?.email || contract.email}</h3>
