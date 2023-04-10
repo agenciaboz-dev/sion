@@ -1,4 +1,4 @@
-import ReactCodeInput from 'react-verification-code-input';
+import ReactCodeInput from 'react-code-input';
 import { api } from '../../../api';
 import { useUser } from '../../../hooks/useUser';
 
@@ -31,11 +31,24 @@ export const Token = ({ setOpenSnackbar, setError, setStage, contract }) => {
             setError('Token inválido')
         }
     }
+
+    const inputStyle = {
+        fontFamily: 'Poppins',
+        MozAppearance: 'textfield',
+
+    }
+
+    const inputStyleInvalid = {
+        fontFamily: 'Poppins',
+        MozAppearance: 'textfield',
+
+    }
     
     return (
         <div className='Token-Component' >
             <h3>Enviamos um token para o email: {user?.email || contract.email}</h3>
-            <ReactCodeInput type="number" fields={5} onComplete={verifyToken} />
+            {/* <ReactCodeInput type="number" fields={5} onComplete={verifyToken} /> */}
+            <ReactCodeInput className='code-container' type='number' fields={5} onComplete={verifyToken} inputMode='numeric' inputStyle={inputStyle} inputStyleInvalid={inputStyleInvalid} />
         </div>
     )
 }
