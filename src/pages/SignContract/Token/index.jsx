@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useState } from 'react';
 import ReactCodeInput from 'react-code-input';
 import { api } from '../../../api';
@@ -7,7 +8,7 @@ import { useUser } from '../../../hooks/useUser';
 export const Token = ({ setOpenSnackbar, setError, setStage, contract }) => {
 
     const [user, setUser] = useUser()
-    
+    const colors = useColors()
     const [invalid, setInvalid] = useState(false)
 
     const [inputStyle, setInputStyle] = useState({
@@ -17,13 +18,16 @@ export const Token = ({ setOpenSnackbar, setError, setStage, contract }) => {
         height: '15vw',
         width: '15vw',
         borderRadius: '2vw',
-        border: invalid ? '1px solid $red' : '1px solid $eee',
+        border: '1px solid',
         boxShadow: '0 0 5px #999'
     })
-    const colors = useColors()
 
     const handleChange = values => {
-        if (values.length == 5) verifyToken(values)
+        if (values.length == 5) {
+            verifyToken(values)
+        } else {
+            setInvalid(false)
+        }
     }
 
     const verifyToken = (value) => {
@@ -43,10 +47,19 @@ export const Token = ({ setOpenSnackbar, setError, setStage, contract }) => {
             setStage(3)
 
         } else {
+            setInvalid(true)
             setOpenSnackbar(true)
             setError('Token inválido')
         }
     }
+
+    useEffect(() => {
+        if (invalid) {
+            setInputStyle({...inputStyle, borderColor: colors.red})
+        } else {
+            setInputStyle({...inputStyle, borderColor: '#eee'})
+        }
+    }, [invalid])
 
     return (
         <div className='Token-Component' >
