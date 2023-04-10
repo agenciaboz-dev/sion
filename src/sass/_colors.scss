@@ -5,7 +5,7 @@ $background-color: #F3F3F3;
 $darkbluebutton-color: #001448;
 $darkbluebackground-color: #182851;
 $graybutton-color: #737373;
-$red: #E12454;
+$red: darken(#E12454, 20);
 
 :export {
     background: $background-color;

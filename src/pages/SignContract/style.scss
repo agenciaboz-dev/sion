@@ -40,6 +40,12 @@
             align-items: center;
             margin-top: 4vw;
             gap: 3vw;
+            background: rgba(56, 73, 116, 0.25);
+            padding: 3vw;
+
+            p {
+                color: $text-color;
+            }
         }
 
         .token-chars {
@@ -55,7 +61,11 @@
             display: flex!important;
             justify-content: space-between;
             gap: 2vw;
+        }
 
+        .resend-token-button{
+            color: $primary-color;
+            text-decoration: underline;
         }
     }
 
