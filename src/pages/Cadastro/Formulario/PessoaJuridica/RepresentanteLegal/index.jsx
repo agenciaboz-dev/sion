@@ -22,6 +22,7 @@ export const RepresentanteLegal = ({ handleChange, values, errors }) => {
     const [initialInputs, setInitialInputs] = useState(client.value?.form?.name ? client.value.form : {
         name: '',
         email1: '',
+        birth: new Date().toISOString().substring(0, 10),
         phone: '',
     })
 
@@ -70,6 +71,7 @@ export const RepresentanteLegal = ({ handleChange, values, errors }) => {
                     }
                     }}>
                     <InputField title={'Nome do Responsável Legal'} id={'name'} handleChange={handleChange} value={values.name} error={Boolean(errors.name)} errorText={errors.name} />
+                    <InputField title={'Data de nascimento'} type='date' id={'birth'} handleChange={handleChange} value={values.birth} error={errors.birth} errorText={'Data inválida'} />
 
                     {emails.map(index => <div className="email-container" key={index} style={{alignItems: 'center', justifyContent: 'center', gap: '3vw'}}>
                         <InputField title={'E-mail do Representante legal'} type='email' inputMode={'email'} id={`email${index}`} handleChange={handleChange} value={values[`email${index}`]} error={Boolean(errors[`email${index}`])} errorText={errors[`email${index}`]} />
