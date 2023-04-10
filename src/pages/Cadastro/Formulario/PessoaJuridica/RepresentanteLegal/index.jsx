@@ -10,6 +10,7 @@ import { DashedPlusBox } from '../../../../../components/DashedPlusBox';
 import { useEffect } from 'react';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useContract } from '../../../../../hooks/useContract';
+import { useValidateCPF } from '../../../../../hooks/useValidateCPF';
 
 export const RepresentanteLegal = ({ handleChange, values, errors }) => {
 
@@ -17,10 +18,14 @@ export const RepresentanteLegal = ({ handleChange, values, errors }) => {
     const client = useClient()
     const contract = useContract()
     const navigate = useNavigate()
+    const validateCPF = useValidateCPF()
+
+    const [cpfError, setCpfError] = useState(false)
     
     const [emails, setEmails] = useState([1])
     const [initialInputs, setInitialInputs] = useState(client.value?.form?.name ? client.value.form : {
         name: '',
+        cpf: '',
         email1: '',
         birth: new Date().toISOString().substring(0, 10),
         phone: '',
@@ -29,6 +34,7 @@ export const RepresentanteLegal = ({ handleChange, values, errors }) => {
     const validationSchema = object({
         name: string().required(default_errors.required),
         // email: string().email(default_errors.email).required(default_errors.required),
+        cpf: string().length(14, default_errors.cpf).required(default_errors.required),
         phone: string().min(14, default_errors.phone).required(default_errors.required),
 
         // age: number().typeError(default_errors.number).required(default_errors.required).positive().integer(),
@@ -57,6 +63,10 @@ export const RepresentanteLegal = ({ handleChange, values, errors }) => {
         setEmails(emails.filter(number => number != current_number))
     }
 
+    const cpfBlur = event => {
+        setCpfError(!validateCPF(event.target.value))
+    }
+
     useEffect(() => {
         console.log({emails})
     }, [emails])
@@ -71,6 +81,7 @@ export const RepresentanteLegal = ({ handleChange, values, errors }) => {
                     }
                     }}>
                     <InputField title={'Nome do Responsável Legal'} id={'name'} handleChange={handleChange} value={values.name} error={Boolean(errors.name)} errorText={errors.name} />
+                    <InputField title={'CPF'} onBlur={cpfBlur} mask={[ /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/ ]} inputMode={'numeric'} id={'cpf'} handleChange={handleChange} value={values.cpf} error={cpfError} errorText={'CPF inválido'} />
                     <InputField title={'Data de nascimento'} type='date' id={'birth'} handleChange={handleChange} value={values.birth} error={errors.birth} errorText={'Data inválida'} />
 
                     {emails.map(index => <div className="email-container" key={index} style={{alignItems: 'center', justifyContent: 'center', gap: '3vw'}}>
