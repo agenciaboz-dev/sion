@@ -17,8 +17,9 @@ export const Token = ({ setOpenSnackbar, setError, setStage, contract }) => {
         height: '15vw',
         width: '15vw',
         borderRadius: '2vw',
-        border: invalid ? '1px solid $red' : '1px solid $eee',
-        boxShadow: '0 0 5px #999'
+        border: invalid ? '1px solid $red' : 'none',
+        boxShadow: '0 0 5px #999',
+        outline: 'none'
     })
     const colors = useColors()
 
@@ -52,7 +53,10 @@ export const Token = ({ setOpenSnackbar, setError, setStage, contract }) => {
         <div className='Token-Component' >
             <h3>Enviamos um token para o email: <br /> {user?.email || contract.email}</h3>
             {/* <ReactCodeInput type="number" fields={5} onComplete={verifyToken} /> */}
-            <ReactCodeInput className='code-container' onChange={handleChange} type='number' fields={5} onComplete={verifyToken} inputMode='numeric' inputStyle={inputStyle} />
+            <div className="token-insert-container">
+                <p>Insira o token:</p>
+                <ReactCodeInput className='code-container' onChange={handleChange} type='number' fields={5} onComplete={verifyToken} inputMode='numeric' inputStyle={inputStyle} />
+            </div>
         </div>
     )
 }

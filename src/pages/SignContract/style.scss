@@ -34,6 +34,14 @@
             text-align: center;
         }
 
+        .token-insert-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 4vw;
+            gap: 3vw;
+        }
+
         .token-chars {
             gap: 1vw;
         }
