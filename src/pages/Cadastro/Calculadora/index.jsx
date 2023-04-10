@@ -62,7 +62,7 @@ export const Calculadora = ({  }) => {
 
     const formRef = useRef(null)
 
-    const [spent, setSpent] = useState(client.value?.spent || '2000')
+    const [spent, setSpent] = useState(client.value?.spent || '0')
     const [consumption, setConsumption] = useState(0)
 
     const nextStage = () => {
