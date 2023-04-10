@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import ReactCodeInput from 'react-code-input';
 import { api } from '../../../api';
 import { useUser } from '../../../hooks/useUser';
@@ -6,8 +7,8 @@ export const Token = ({ setOpenSnackbar, setError, setStage, contract }) => {
 
     const [user, setUser] = useUser()
 
-    const handleSubmit = values => {
-        console.log(values)
+    const handleChange = values => {
+        if (values.length == 5) verifyToken(values)
     }
 
     const verifyToken = (value) => {
@@ -48,7 +49,7 @@ export const Token = ({ setOpenSnackbar, setError, setStage, contract }) => {
         <div className='Token-Component' >
             <h3>Enviamos um token para o email: {user?.email || contract.email}</h3>
             {/* <ReactCodeInput type="number" fields={5} onComplete={verifyToken} /> */}
-            <ReactCodeInput className='code-container' type='number' fields={5} onComplete={verifyToken} inputMode='numeric' inputStyle={inputStyle} inputStyleInvalid={inputStyleInvalid} />
+            <ReactCodeInput className='code-container' onChange={handleChange} type='number' fields={5} onComplete={verifyToken} inputMode='numeric' inputStyle={inputStyle} inputStyleInvalid={inputStyleInvalid} />
         </div>
     )
 }
