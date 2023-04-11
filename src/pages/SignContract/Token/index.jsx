@@ -20,6 +20,8 @@ export const Token = ({ setOpenSnackbar, setError, setStage, contract }) => {
         borderRadius: '2vw',
         border: 'none',
         outline: 'none',
+        fontSize: '10vw',
+        fontWeight: 'bold'
         
     })
 
@@ -57,18 +59,18 @@ export const Token = ({ setOpenSnackbar, setError, setStage, contract }) => {
 
     useEffect(() => {
         if (invalid) {
-            setInputStyle({...inputStyle, boxShadow: `0 0 5px ${colors.red}`})
+            setInputStyle({...inputStyle, boxShadow: `0 0 2px 2px ${colors.red}`})
         } else {
-            setInputStyle({...inputStyle, boxShadow: '0 0 5px #999'})
+            setInputStyle({...inputStyle, boxShadow: '0 0 5px 0 #999'})
         }
     }, [invalid])
 
     return (
         <div className='Token-Component' >
-            <h3>Enviamos um TOKEN para o e-mail: <br /> {user?.email || contract.email}</h3>
+            <h3>Enviamos um TOKEN<br />para o e-mail:<br />{user?.email || contract.email}</h3>
             {/* <ReactCodeInput type="number" fields={5} onComplete={verifyToken} /> */}
             <div className="token-insert-container">
-                <p>Insira o Token:</p>
+                <p className='insert-token'>Insira o Token:</p>
                 <ReactCodeInput className='code-container' onChange={handleChange} type='number' fields={5} onComplete={verifyToken} inputMode='numeric' inputStyle={inputStyle} />
                 <p className='resend-token-button'>Reenviar token via e-mail</p>
             </div>

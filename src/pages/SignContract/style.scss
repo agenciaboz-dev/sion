@@ -1,5 +1,16 @@
 @import '/src/sass/colors';
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-moz-inner-spin-button,
+input[type=number]::-moz-outer-spin-button,
+input[type=number]::spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
 .SignContract-Page {
     width: 100vw;
     overflow-x: hidden;
@@ -42,27 +53,26 @@
             gap: 3vw;
             background: rgba(56, 73, 116, 0.25);
             padding: 3vw;
-
-            p {
-                color: $text-color;
-            }
         }
-
         .token-chars {
             gap: 1vw;
         }
-
+        
         input:focus {
             border-color: lighten($primary-color, 10);
             caret-color: lighten($primary-color, 10);
         }
-
+        
         .code-container {
             display: flex!important;
             justify-content: space-between;
             gap: 2vw;
         }
 
+        .insert-token {
+            color: $text-color;
+        }
+       
         .resend-token-button{
             color: $primary-color;
             text-decoration: underline;
