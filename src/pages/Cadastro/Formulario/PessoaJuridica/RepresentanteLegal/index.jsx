@@ -87,7 +87,7 @@ export const RepresentanteLegal = ({ handleChange, values, errors }) => {
 
                     {emails.map(index => <div className="email-container" key={index} style={{alignItems: 'center', justifyContent: 'center', gap: '3vw'}}>
                         <InputField title={'E-mail do Representante legal'} type='email' inputMode={'email'} id={`email${index}`} handleChange={handleChange} value={values[`email${index}`]} error={Boolean(errors[`email${index}`])} errorText={errors[`email${index}`]} />
-                        <DeleteForeverIcon onClick={() => removeEmail(index)} sx={{color: COLORS.primary}} />
+                        { index > 1 && <DeleteForeverIcon onClick={() => removeEmail(index)} sx={{color: COLORS.primary}} /> }
                     </div> )}
                     <DashedPlusBox onClick={addEmailContainer} />
 
