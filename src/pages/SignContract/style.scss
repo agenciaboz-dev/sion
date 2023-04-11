@@ -16,6 +16,21 @@ input[type=number]::spin-button {
     overflow-x: hidden;
     padding: 15vw 5vw;
 
+    .safe-environment-statement {
+        margin-top: 4vw;
+        align-items: center;
+
+        .padlock-icon {
+            width: 5vw;
+            margin-right: 2vw;
+        }
+
+        .safe-environment-p {
+            font-size: 4vw;
+            color: lighten($text-color, 50)
+        }
+    }
+
     form {
         display: flex;
         flex-direction: column;
@@ -76,21 +91,6 @@ input[type=number]::spin-button {
         .resend-token-button{
             color: $primary-color;
             text-decoration: underline;
-        }
-
-        .safe-environment-statement {
-            margin-top: 4vw;
-            align-items: center;
-
-            .padlock-icon {
-                width: 5vw;
-                margin-right: 2vw;
-            }
-    
-            .safe-environment-p {
-                font-size: 4vw;
-                color: lighten($text-color, 50)
-            }
         }
     }
 
