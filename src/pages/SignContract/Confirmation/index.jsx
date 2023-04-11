@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { api } from '../../../api';
 import { ReactComponent as CameraIcon } from '../../../images/camera.svg'
 import { useUser } from '../../../hooks/useUser';
+import { SafeEnvironment } from '../SafeEnvironment';
 
 export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract }) => {
     const [attachments, setAttachments] = useState([])
@@ -112,6 +113,7 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
                         )}
                     </Dropzone>
                     <Button variant='contained' type='submit' >{loading ? <CircularProgress size={'1.5rem'} color='secondary' /> : 'Avançar'}</Button>
+                    <SafeEnvironment />
                 </Form>
             }
         </Formik>
