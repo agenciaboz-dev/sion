@@ -83,6 +83,7 @@ export const RepresentanteLegal = ({ handleChange, values, errors }) => {
                     <InputField title={'Nome do Responsável Legal'} id={'name'} handleChange={handleChange} value={values.name} error={Boolean(errors.name)} errorText={errors.name} />
                     <InputField title={'CPF'} onBlur={cpfBlur} mask={[ /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/ ]} inputMode={'numeric'} id={'cpf'} handleChange={handleChange} value={values.cpf} error={cpfError} errorText={'CPF inválido'} />
                     <InputField title={'Data de nascimento'} type='date' id={'birth'} handleChange={handleChange} value={values.birth} error={errors.birth} errorText={'Data inválida'} />
+                    <InputField title={'Telefone'} inputMode={'tel'} mask={["(", /\d/, /\d/, ")", " ", /\d/, /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/]} id={'phone'} handleChange={handleChange} value={values.phone} error={Boolean(errors.phone)} errorText={errors.phone} />
 
                     {emails.map(index => <div className="email-container" key={index} style={{alignItems: 'center', justifyContent: 'center', gap: '3vw'}}>
                         <InputField title={'E-mail do Representante legal'} type='email' inputMode={'email'} id={`email${index}`} handleChange={handleChange} value={values[`email${index}`]} error={Boolean(errors[`email${index}`])} errorText={errors[`email${index}`]} />
@@ -90,7 +91,6 @@ export const RepresentanteLegal = ({ handleChange, values, errors }) => {
                     </div> )}
                     <DashedPlusBox onClick={addEmailContainer} />
 
-                    <InputField title={'Telefone'} inputMode={'tel'} mask={["(", /\d/, /\d/, ")", " ", /\d/, /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/]} id={'phone'} handleChange={handleChange} value={values.phone} error={Boolean(errors.phone)} errorText={errors.phone} />
 
                     <div className="buttons-container">
                         <button tabIndex={2} onClick={(event) => previousStage(event)} style={{backgroundColor: COLORS.gray}}>Voltar</button>
