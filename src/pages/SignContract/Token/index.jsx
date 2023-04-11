@@ -4,6 +4,7 @@ import ReactCodeInput from 'react-code-input';
 import { api } from '../../../api';
 import { useColors } from '../../../hooks/useColors';
 import { useUser } from '../../../hooks/useUser';
+import {ReactComponent as Padlock} from '../../../images/safe_environment_padlock.svg'
 
 export const Token = ({ setOpenSnackbar, setError, setStage, contract }) => {
 
@@ -73,6 +74,10 @@ export const Token = ({ setOpenSnackbar, setError, setStage, contract }) => {
                 <p className='insert-token'>Insira o Token:</p>
                 <ReactCodeInput className='code-container' onChange={handleChange} type='text' fields={5} onComplete={verifyToken} inputMode='numeric' inputStyle={inputStyle} />
                 <p className='resend-token-button'>Reenviar token via e-mail</p>
+            </div>
+            <div className="safe-environment-statement">
+                <Padlock className='padlock-icon'/>
+                <p className='safe-environment-p'>Ambiente seguro da Cooperativa Sion</p>
             </div>
         </div>
     )
