@@ -71,7 +71,7 @@ export const Token = ({ setOpenSnackbar, setError, setStage, contract }) => {
             {/* <ReactCodeInput type="number" fields={5} onComplete={verifyToken} /> */}
             <div className="token-insert-container">
                 <p className='insert-token'>Insira o Token:</p>
-                <ReactCodeInput className='code-container' onChange={handleChange} type='number' fields={5} onComplete={verifyToken} inputMode='numeric' inputStyle={inputStyle} />
+                <ReactCodeInput className='code-container' onChange={handleChange} type='text' fields={5} onComplete={verifyToken} inputMode='numeric' inputStyle={inputStyle} />
                 <p className='resend-token-button'>Reenviar token via e-mail</p>
             </div>
         </div>
