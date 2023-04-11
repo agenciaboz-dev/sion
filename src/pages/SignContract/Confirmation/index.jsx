@@ -72,7 +72,7 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
             {({values, handleChange}) => 
                 <Form>
                     <h3>Confirme seus dados</h3>
-                    <TextField label='Responsável Legal' name='name' value={values.name} onChange={handleChange} fullWidth required />
+                    <TextField label='Nome Completo' name='name' value={values.name} onChange={handleChange} fullWidth required />
                     <MaskedInput
                         mask={[ /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/ ]}
                         name={'document'}
