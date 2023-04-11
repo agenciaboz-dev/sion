@@ -1,4 +1,5 @@
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import { SafeEnvironment } from '../SafeEnvironment';
 
 export const Signed = () => {
     return (
@@ -6,7 +7,7 @@ export const Signed = () => {
             <CheckCircleIcon color='primary' fontSize={'large'} />
             <h3>Assinatura efetuada com sucesso!</h3>
             <p>Você receberá um e-mail com o documento assinado.</p>
-            
+            <SafeEnvironment />
         </div>
     )
 }
