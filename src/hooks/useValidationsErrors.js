@@ -6,7 +6,7 @@ export const useValidationErrors = () => {
         cpf: 'CPF inválido',
         cnpj: 'CNPJ inválido',
         rg: 'RG inválido',
-        cep: 'CEP inválido',
+        cep: 'CEP incompleto',
         phone: 'Telefone inválido'
     }
     
