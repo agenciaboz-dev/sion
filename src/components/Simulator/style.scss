@@ -27,10 +27,14 @@
     .white-container {
         background-color: white;
         flex-direction: column;
-        padding: 1.5vw 2vw;
+        padding: 1vw 2vw;
         gap: 1vw;
         color: $text-color;
         width: 40%;
+
+        h1 {
+            text-align: center;
+        }
         
         .flags-container {
             flex-wrap: wrap;
@@ -41,7 +45,7 @@
                 width: 48%;
                 border: 1px solid grey;
                 align-items: center;
-                gap: 0.4vw;
+                gap: 0.2vw;
                 padding: 1vw 0;
 
                 h3 {
@@ -72,6 +76,11 @@
             padding: 3vw;
             justify-content: space-between;
             width: 60%;
+
+            h1 {
+                text-align: center;
+                color: white;
+            }
 
             .benefits-container {
                 margin: auto;

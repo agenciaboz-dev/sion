@@ -83,6 +83,7 @@ export const Simulator = () => {
     return (
         <div className='Simulator-Component' id='simulator' >
             <div className="white-container">
+                <h1>Simule sua economia</h1>
                 <MaskedInput 
                     mask={kwhMask}
                     value={spent} onChange={event => setSpent(event.target.value)}
@@ -100,6 +101,7 @@ export const Simulator = () => {
                 </div>
             </div>
             <div className="blue-container">
+                <h1>Seus benefícios:</h1>
                 <div className="benefits-container">
                     <Benefits icon={() => <DollarIcon />} title={'Economia'} text='Receba seus créditos de energia e economize em até 15% na sua fatura' />
                     <Benefits icon={() => <WalletIcon />} title={'Sem investimento'} text='Sem necessidade de alteração física no seu negócio ou investimento' />
