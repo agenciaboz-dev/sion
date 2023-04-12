@@ -31,7 +31,7 @@ export const PessoaFisica = ({ previousStage, nextStage }) => {
         district: '',
         number: '',
         city: '',
-        state: '',
+        state: 'PR',
     }
 
     const validationSchema = object({
