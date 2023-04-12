@@ -8,6 +8,7 @@ import { useClient } from '../../../../hooks/useClient';
 import { useRef } from 'react';
 import { useValidateCPF } from '../../../../hooks/useValidateCPF';
 import { useState } from 'react';
+import { EstadosSelect } from '../../../../components/EstadosSelect';
 
 export const PessoaFisica = ({ previousStage, nextStage }) => {
     const default_errors = useValidationErrors()
@@ -25,12 +26,12 @@ export const PessoaFisica = ({ previousStage, nextStage }) => {
         birth: new Date().toISOString().substring(0, 10),
         email: '',
         phone: '',
+        cep: '',
         address: '',
-        number: '',
         district: '',
+        number: '',
         city: '',
         state: '',
-        cep: '',
     }
 
     const validationSchema = object({
@@ -38,13 +39,13 @@ export const PessoaFisica = ({ previousStage, nextStage }) => {
         cpf: string().length(14, default_errors.cpf).required(default_errors.required),
         rg: string().required(default_errors.required),
         email: string().email(default_errors.email).required(default_errors.required),
-        district: string().required(default_errors.required),
         phone: string().min(14, default_errors.phone).required(default_errors.required),
+        cep: string().length(10, default_errors.cep).required(default_errors.required),
         address: string().required(default_errors.required),
+        district: string().required(default_errors.required),
         number: string().required(default_errors.required),
         city: string().required(default_errors.required),
         state: string().required(default_errors.required),
-        cep: string().length(10, default_errors.cep).required(default_errors.required),
 
         // age: number().typeError(default_errors.number).required(default_errors.required).positive().integer(),
         // email: string().email(default_errors.email),
@@ -79,7 +80,7 @@ export const PessoaFisica = ({ previousStage, nextStage }) => {
                     </div>
                     <div className="two-inputs">
                         <InputField title={'Cidade'} id={'city'} handleChange={handleChange} value={values.city} error={Boolean(errors.city)} errorText={errors.city} />
-                        <InputField title={'Estado'} id={'state'} handleChange={handleChange} value={values.state} error={Boolean(errors.state)} errorText={errors.state} />
+                        <EstadosSelect title={'Estado'} id={'state'} handleChange={handleChange} value={values.state} error={Boolean(errors.state)} errorText={errors.state} />
                     </div>
 
                     <div className="buttons-container">
