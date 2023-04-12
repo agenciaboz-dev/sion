@@ -6,7 +6,6 @@ import COLORS from '../../../../sass/_colors.scss'
 import { useClient } from '../../../../hooks/useClient';
 import { useState } from 'react';
 import { useValidateCNPJ } from '../../../../hooks/useValidateCNPJ';
-import { EstadosSelect } from '../../../../components/EstadosSelect';
 import { AddressFields } from '../AddressFields';
 
 export const PessoaJuridica = ({ previousStage, nextStage }) => {
