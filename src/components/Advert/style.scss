@@ -15,14 +15,8 @@
         flex-direction: column;
         gap: 1vw;
         
-        // .logo {
-        //     margin: 0 auto -1vw -2vw;
-        //     height: 11vw;
-        //     width: auto;
-        // }
-        
         h1 {
-            font-size: 5vw;
+            font-size: 4vw;
             margin-top: -1vw;
             margin-bottom: -2vw;
         }
@@ -30,12 +24,12 @@
         h3 {
             margin-top: 1vw;
             margin-right: 3vw;
-            font-size: 2vw;
-            color: $yellow-text-color;
+            font-size: 3vw;
+            // color: $yellow-text-color;
         }
         
         p {
-            font-size: 1.5vw;
+            font-size: 2vw;
             color: white;
         }
         

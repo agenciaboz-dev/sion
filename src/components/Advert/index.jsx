@@ -13,14 +13,14 @@ export const Advert = ({ innerRef }) => {
     return (
         <div className='Advert-Component' ref={innerRef}>
             <div className="left">
-                {/* <LogoBranco className='logo'/> */}
                 <h1>Até 15%</h1>
                 <h3>de economia na sua conta de luz!</h3>
-                <p>Sem Investimento<br />Sem instalação<br />Adesão 100% online<br />Uso de Energia Renovável</p>
-                <div className="advert-buttons-container">
+                {/* <p>Sem Investimento<br />Sem instalação<br />Adesão 100% online<br />Uso de Energia Renovável</p> */}
+                <p>Geramos energia mais barata para seu negócio!</p>
+                {/* <div className="advert-buttons-container">
                     <button onClick={() => goToSignUp()}>Quero economizar!</button>
                     <a href={'#how'}className='menu-title'>Saiba como funciona</a>
-                </div>
+                </div> */}
             </div>
             <div className="right">
                 <div className="images-container">
