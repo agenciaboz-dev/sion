@@ -1,0 +1,32 @@
+export const useEstadosBrasil = () => {
+    const estados = [
+        {value:"AC", label: "Acre"},
+        {value:"AL", label: "Alagoas"},
+        {value:"AP", label: "Amapá"},
+        {value:"AM", label: "Amazonas"},
+        {value:"BA", label: "Bahia"},
+        {value:"CE", label: "Ceará"},
+        {value:"DF", label: "Distrito"},
+        {value:"ES", label: "Espírito"},
+        {value:"GO", label: "Goiás"},
+        {value:"MA", label: "Maranhão"},
+        {value:"MT", label: "Mato"},
+        {value:"MS", label: "Mato"},
+        {value:"MG", label: "Minas"},
+        {value:"PA", label: "Pará"},
+        {value:"PB", label: "Paraíba"},
+        {value:"PR", label: "Paraná"},
+        {value:"PE", label: "Pernambuco"},
+        {value:"PI", label: "Piauí"},
+        {value:"RJ", label: "Rio"},
+        {value:"RN", label: "Rio"},
+        {value:"RS", label: "Rio"},
+        {value:"RO", label: "Rondônia"},
+        {value:"RR", label: "Roraima"},
+        {value:"SC", label: "Santa"},
+        {value:"SP", label: "São"},
+        {value:"SE", label: "Sergipe"},
+        {value:"TO", label: "Tocantins"},
+    ]
+    return estados
+}
