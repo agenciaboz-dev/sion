@@ -11,7 +11,7 @@ export const Faq = () => {
             <div className="faq-top-container">
                 <div className="faq-header-container">
                     <h2>Dúvidas frequentes</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <p>Aqui estão as respostas para as perguntas mais frequentes. Encontre soluções rápidas para as suas dúvidas logo abaixo.</p>
                 </div>
                 {questions.map(question => {
                     return (
