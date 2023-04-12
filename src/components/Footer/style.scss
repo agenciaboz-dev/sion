@@ -56,29 +56,33 @@
             align-items: flex-end;
             width: 40vw;
 
-            .title {
+            .news-a {
+                color: darken($primary-color, 15%);
+                background-color: white;
+                padding: 0.25vw 2.5vw;
                 font-weight: bold;
+                text-decoration: none;
             }
 
             p {
                 text-align: end;
             }
 
-            .email-container {
-                height: 2vw;
+            // .email-container {
+            //     height: 2vw;
 
-                input {
-                    width: 70%;
-                    font-size: 1vw;
-                }
-                button {
-                    width: 30%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    background-color: darken($primary-color, 15%);
-                }
-            }
+            //     input {
+            //         width: 70%;
+            //         font-size: 1vw;
+            //     }
+            //     button {
+            //         width: 30%;
+            //         display: flex;
+            //         align-items: center;
+            //         justify-content: center;
+            //         background-color: darken($primary-color, 15%);
+            //     }
+            // }
         }
     }
 

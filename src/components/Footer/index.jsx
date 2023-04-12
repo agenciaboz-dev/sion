@@ -39,7 +39,7 @@ export const Footer = () => {
                         <p>21º andar. Curitiba - PR</p>
                     </div>
                     <div className="contact">
-                        <p>(41) 3533-5910</p>
+                        <p>(41) 3028-3782</p>
                         <p>comercial@sionenergia.com.br</p>
                     </div>
                 </div>
@@ -57,20 +57,20 @@ export const Footer = () => {
                     })}
                 </div>
                 <div className="news">
-                    <p className="title">Receba notícias</p>
                     <p>Receba as últimas notícias e informações relevantes diretamente em sua caixa de entrada, não perca a oportunidade de ficar informado e se beneficiar das vantagens que oferecemos.</p>
-                    <div className="email-container">
+                    {/* <div className="email-container">
                         <input type="email" placeholder='Seu e-mail' value={email} onChange={event => setEmail(event.target.value)}/>
                         <button onClick={onMailSignUp}><span style={{whiteSpace: 'nowrap'}}>Inscrever-se</span></button>
-                    </div>
+                    </div> */}
+                    <a className="news-a" href="https://materiais.sionenergia.com.br/informativo-sion-energia?_ga=2.118441546.210694676.1678706322-1651090181.1662405999&_gl=1*ar7ggp*_ga*MTY1MTA5MDE4MS4xNjYyNDA1OTk5*_ga_7L363588WY*MTY3ODgwMzA1My4xMjMuMC4xNjc4ODAzMDUzLjAuMC4w">Receba notícias</a>
                 </div>
             </div>
 
             <div className="bottom-content">
                 <p>2023 © Direitos Reservados | Powered By BOZ</p>
                 <div className="icons">
-                    <InstagramIcon />
-                    <FacebookIcon />
+                    <a href="https://www.instagram.com/sion_energia/"><InstagramIcon /></a>
+                    <a href="https://www.facebook.com/SionEnergia"><FacebookIcon /></a>
                 </div>
             </div>
             
