@@ -13,7 +13,7 @@ export const Advert = ({ innerRef }) => {
     return (
         <div className='Advert-Component' ref={innerRef}>
             <div className="left">
-                <LogoBranco className='logo'/>
+                {/* <LogoBranco className='logo'/> */}
                 <h1>Até 15%</h1>
                 <h3>de economia na sua conta de luz!</h3>
                 <p>Sem Investimento<br />Sem instalação<br />Adesão 100% online<br />Uso de Energia Renovável</p>

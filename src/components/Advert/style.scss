@@ -13,15 +13,16 @@
     .left {
         flex: 0.4;
         flex-direction: column;
+        gap: 1vw;
         
-        .logo {
-            margin: 0 auto -1vw -2vw;
-            height: 11vw;
-            width: auto;
-        }
+        // .logo {
+        //     margin: 0 auto -1vw -2vw;
+        //     height: 11vw;
+        //     width: auto;
+        // }
         
         h1 {
-            font-size: 4.5vw;
+            font-size: 5vw;
             margin-top: -1vw;
             margin-bottom: -2vw;
         }

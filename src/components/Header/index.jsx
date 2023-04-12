@@ -50,12 +50,12 @@ export const Header = ({ alternative, setAlternative }) => {
             document.body.removeChild(script);
         };
     }, [])
-
     
     return (
         <div className='Header-Component'>
             <div className="menus-container" style={alternative ? alternative_style : null} >
-                {alternative ? <LogoBranco /> : null}
+                {/* {alternative ? <LogoBranco /> : null} */}
+                <LogoBranco />
                 {menus.map(menu => {
                     return (
                         <section key={menu.id}>
