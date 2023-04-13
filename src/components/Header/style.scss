@@ -6,12 +6,12 @@
     align-items: center;
     align-self: center;
     margin-top: 1.5vw;
-    font-size: 1.25vw;
+    font-size: 1.5vw;
     width: 100%;
     
     .menus-container {
-        gap: 0.3vw;
-        top: 2vw;
+        gap: 0.5vw;
+        top: 1vw;
         justify-content: center;
         transition: 0.5s;
         position: fixed;
@@ -23,9 +23,10 @@
         .login-button {
             position: absolute;
             right: 10vw;
-            padding: 0.5vw;
+            padding: 0.75vw 1vw;
             background-color: white;
-            color: $primary-color;
+            color: black;
+            background-color: lighten($graybutton-color , 10);
             z-index: 9;
         }
 
@@ -48,10 +49,10 @@
         }
 
         svg {
-            margin: 2vw 0.7vw 2vw -8vw;
+            margin: 2.25vw 4vw 2vw -15vw;
             object-fit: contain;
-            height: 100%;
-            width: auto;
+            height: auto;
+            width: 9vw;
         }
 
     }
