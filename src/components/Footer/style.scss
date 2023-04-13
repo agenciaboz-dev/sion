@@ -56,11 +56,15 @@
             align-items: flex-end;
             width: 40vw;
 
+            .news-title {
+                font-weight: 700;
+            }
+
             .news-a {
                 color: $darkbluebutton-color;
                 background-color: white;
-                padding: 0.25vw 2.5vw;
-                font-weight: bold;
+                padding: 0.25vw 1vw;
+                font-weight: 300;
                 text-decoration: none;
             }
 

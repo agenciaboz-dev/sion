@@ -58,12 +58,13 @@ export const Footer = () => {
                     })}
                 </div>
                 <div className="news">
+                    <p className="news-title">Receba notícias</p>
                     <p>Receba as últimas notícias e informações relevantes diretamente em sua caixa de entrada, não perca a oportunidade de ficar informado e se beneficiar das vantagens que oferecemos.</p>
                     {/* <div className="email-container">
                         <input type="email" placeholder='Seu e-mail' value={email} onChange={event => setEmail(event.target.value)}/>
                         <button onClick={onMailSignUp}><span style={{whiteSpace: 'nowrap'}}>Inscrever-se</span></button>
                     </div> */}
-                    <a className="news-a" target="_blank" href="https://materiais.sionenergia.com.br/informativo-sion-energia?_ga=2.118441546.210694676.1678706322-1651090181.1662405999&_gl=1*ar7ggp*_ga*MTY1MTA5MDE4MS4xNjYyNDA1OTk5*_ga_7L363588WY*MTY3ODgwMzA1My4xMjMuMC4xNjc4ODAzMDUzLjAuMC4w">Receba notícias</a>
+                    <a className="news-a" target="_blank" href="https://materiais.sionenergia.com.br/informativo-sion-energia?_ga=2.118441546.210694676.1678706322-1651090181.1662405999&_gl=1*ar7ggp*_ga*MTY1MTA5MDE4MS4xNjYyNDA1OTk5*_ga_7L363588WY*MTY3ODgwMzA1My4xMjMuMC4xNjc4ODAzMDUzLjAuMC4w">Inscrever-se</a>
                 </div>
             </div>
 
