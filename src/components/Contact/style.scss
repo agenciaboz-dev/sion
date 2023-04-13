@@ -51,10 +51,16 @@
 
         form {
             margin: 2vw;
+            height: 22vw;
+            
+            input {
+                height: 1.5vw;
+                padding: 1vw;
+            }
         }
 
         .info {
-            padding: 3vw 0 4vw 3vw;
+            padding: 3vw 0 3vw 3vw;
             gap: 3vw;
 
             h1 {
