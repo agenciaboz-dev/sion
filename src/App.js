@@ -16,6 +16,7 @@ import { AttachmentsProvider } from './contexts/attachmentsContext';
 import { PdfProvider } from './contexts/pdfContext';
 import { StageProvider } from './contexts/stageContext';
 import { SignContract } from './pages/SignContract';
+import { Contract } from './pages/Contract';
 
 function App() {
     const muiTheme = useMuiTheme()
@@ -35,6 +36,7 @@ function App() {
 
                                         <Route path='/login' element={<Login />} />
                                         <Route path='/login/:id' element={<Login signing />} />
+                                        <Route path='/contract/:id' element={<Contract />} />
                                         <Route path='/cadastro/*' element={<Cadastro />} />
                                         <Route path='/links' element={<Links />} />
                                         <Route path='/admin' element={<ControlPanel />} />

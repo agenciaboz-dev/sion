@@ -1,0 +1,19 @@
+@import '/src/sass/colors';
+
+.Contract-Page {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+    .react-pdf__Document {
+        align-self: flex-start;
+    }
+
+    .pdf-bottom {
+        position: sticky;
+        top: 0;
+        left: 0;
+        width: 100vw;
+    }
+}

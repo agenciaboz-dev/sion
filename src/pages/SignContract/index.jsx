@@ -15,6 +15,7 @@ export const SignContract = () => {
 
     useEffect(() => {
         console.log(contract)
+        console.log(contract.token)
     }, [contract])
     
     return (
