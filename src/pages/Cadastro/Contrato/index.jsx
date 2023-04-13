@@ -86,7 +86,7 @@ export const Contrato = ({  }) => {
                 <div className='description-container'>
                     <p>Clique avançar para enviar o contrato por email para todos os envolvidos cadastrados!</p>
                 </div>
-                <Document file={api.getUri().split('/api')[0]+`/documents/sion/${client.value.unit}/contract.pdf`} 
+                <Document file={api.getUri().split('/api')[0]+'/'+client.filename} 
                     onLoadSuccess={onLoadSuccess} onLoadError={(error) => console.error(error)}
                     loading={<MuiLoading color={'primary'} size={'15vw'} />}
                 >
