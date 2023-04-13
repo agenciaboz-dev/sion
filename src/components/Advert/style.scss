@@ -13,23 +13,25 @@
     .left {
         flex: 0.4;
         flex-direction: column;
-        gap: 1vw;
+        gap: 0.5vw;
         
         h1 {
-            font-size: 4vw;
-            margin-top: -1vw;
+            font-size: 6vw;
+            // margin-top: -1vw;
             margin-bottom: -2vw;
+            text-shadow: 3px 3px 0 rgba($background-color, 0.3);
         }
-            
+        
         h3 {
-            margin-top: 1vw;
             margin-right: 3vw;
             font-size: 3vw;
+            text-shadow: 3px 3px 0 rgba($background-color, 0.3);
             // color: $yellow-text-color;
         }
         
         p {
-            font-size: 2vw;
+            margin-top: 0.5vw;
+            font-size: 2.25vw;
             color: white;
         }
         
