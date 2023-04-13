@@ -2,6 +2,7 @@ import './style.scss';
 import {ReactComponent as LogoBranco} from '../../images/logo_branco.svg';
 import {ReactComponent as InstagramIcon} from '../../images/instagram.svg';
 import {ReactComponent as FacebookIcon} from '../../images/facebook.svg';
+import {ReactComponent as LinkedInIcon} from '../../images/linkedin.svg';
 import { useHeaderMenus } from '../../hooks/useHeaderMenus';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { useCallback, useState } from 'react';
@@ -62,15 +63,16 @@ export const Footer = () => {
                         <input type="email" placeholder='Seu e-mail' value={email} onChange={event => setEmail(event.target.value)}/>
                         <button onClick={onMailSignUp}><span style={{whiteSpace: 'nowrap'}}>Inscrever-se</span></button>
                     </div> */}
-                    <a className="news-a" href="https://materiais.sionenergia.com.br/informativo-sion-energia?_ga=2.118441546.210694676.1678706322-1651090181.1662405999&_gl=1*ar7ggp*_ga*MTY1MTA5MDE4MS4xNjYyNDA1OTk5*_ga_7L363588WY*MTY3ODgwMzA1My4xMjMuMC4xNjc4ODAzMDUzLjAuMC4w">Receba notícias</a>
+                    <a className="news-a" target="_blank" href="https://materiais.sionenergia.com.br/informativo-sion-energia?_ga=2.118441546.210694676.1678706322-1651090181.1662405999&_gl=1*ar7ggp*_ga*MTY1MTA5MDE4MS4xNjYyNDA1OTk5*_ga_7L363588WY*MTY3ODgwMzA1My4xMjMuMC4xNjc4ODAzMDUzLjAuMC4w">Receba notícias</a>
                 </div>
             </div>
 
             <div className="bottom-content">
                 <p>2023 © Direitos Reservados | Powered By BOZ</p>
                 <div className="icons">
-                    <a href="https://www.instagram.com/sion_energia/"><InstagramIcon /></a>
-                    <a href="https://www.facebook.com/SionEnergia"><FacebookIcon /></a>
+                    <a href="https://www.instagram.com/sion_energia/" target="_blank"><InstagramIcon /></a>
+                    <a href="https://www.facebook.com/SionEnergia" target="_blank"><FacebookIcon /></a>
+                    <a href="https://br.linkedin.com/company/sion-energia" target="_blank"><LinkedInIcon /></a>
                 </div>
             </div>
             

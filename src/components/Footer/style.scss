@@ -57,7 +57,7 @@
             width: 40vw;
 
             .news-a {
-                color: darken($primary-color, 15%);
+                color: $darkbluebutton-color;
                 background-color: white;
                 padding: 0.25vw 2.5vw;
                 font-weight: bold;
@@ -67,22 +67,6 @@
             p {
                 text-align: end;
             }
-
-            // .email-container {
-            //     height: 2vw;
-
-            //     input {
-            //         width: 70%;
-            //         font-size: 1vw;
-            //     }
-            //     button {
-            //         width: 30%;
-            //         display: flex;
-            //         align-items: center;
-            //         justify-content: center;
-            //         background-color: darken($primary-color, 15%);
-            //     }
-            // }
         }
     }
 
