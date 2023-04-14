@@ -50,7 +50,7 @@
                     gap: 1vw;
 
                     > p {
-                        color: $graybutton-color;;
+                        color: $graybutton-color;
                         cursor: pointer;
                     }
 
@@ -83,7 +83,7 @@
         .main-container {
             flex-direction: column;
             justify-content: center;
-            padding: 16vw 0;
+            padding: 24vw 0 20vw;
 
             > svg {
                 height: 35vw;
@@ -95,18 +95,29 @@
 
                 .user-input-container {
                     flex-direction: column;
-                }
 
+                    input {
+                        padding: 1vw;
+                    }
+                    
+                }
+                
                 .password-input-container {
                     flex-direction: column;
                     margin: 2vw 0;
+                    
+                    input {
+                        padding: 1vw;
+                    }
                 }
                 
                 .bottom-container {
                     justify-content: space-between;
+                    margin-top: 4vw;
 
                     p {
                         font-size: 4vw;
+                        margin-top: 1vw;
                     }
 
                     .remember-wrapper {
@@ -119,9 +130,10 @@
 
                             label {
                                 margin-right: 0;
+                                height: 4vw;
                                 
                                 span {
-                                    font-size: 4vw;
+                                    font-size: 3.5vw;
                                     margin-left: -2vw;
                                 }
                             }

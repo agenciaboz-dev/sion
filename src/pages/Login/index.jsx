@@ -5,7 +5,7 @@ import { api } from '../../api';
 import { Footer } from '../../components/Footer';
 import { InputField } from '../../components/InputField';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
-import { ReactComponent as LogoCromado } from '../../images/logo_bonita.svg'
+import { ReactComponent as LogoEscuro } from '../../images/logo_bonita.svg'
 import CircularProgress from '@mui/material/CircularProgress';
 import './style.scss';
 import { useUser } from '../../hooks/useUser';
@@ -64,7 +64,7 @@ export const Login = () => {
         <div className='Login-Page' >
             <Header vendas />
             <div className="main-container">
-                <LogoCromado />
+                <LogoEscuro />
                 <Formik initialValues={{user: '', password: ''}} onSubmit={values => tryLogin(values)}>
                     {({handleChange, values, submitForm, errors}) => (
                         <Form>
@@ -97,7 +97,7 @@ export const Login = () => {
                                     <div className='remember-container'>
                                         <FormControlLabel control={<Checkbox checked={remind} onChange={() => setRemind(!remind)} />} label={'Lembre de mim'} />
                                     </div>
-                                    {/* <p>Perdeu a senha?</p> */}
+                                    <p>Perdeu a senha?</p>
                                 </div>
                                 <div className='button-container'>
                                     <button type='submit'>{loading ? <MuiLoading /> : 'Entrar'}</button>
