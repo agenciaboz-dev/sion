@@ -5,9 +5,9 @@ import { Benefits } from './Benefits';
 import './style.scss';
 import { createNumberMask } from 'text-mask-addons';
 import { useNavigate } from 'react-router-dom';
-import {ReactComponent as SunIcon} from '../../images/simulator/sun.svg';
-import {ReactComponent as DollarIcon} from '../../images/simulator/dollar.svg';
-import {ReactComponent as WalletIcon} from '../../images/simulator/wallet.svg';
+import {ReactComponent as EconomyIcon} from '../../images/wb_economy_icon.svg';
+import {ReactComponent as NoInvestmentIcon} from '../../images/wb_no_investment_icon.svg';
+import {ReactComponent as RenewableEnergyIcon} from '../../images/wb_renewable_energy_icon.svg';
 import { TextField } from '@mui/material';
 // import { useFlags } from '../../hooks/useFlags';
 import CurrencyFormat from 'react-currency-format';
@@ -36,7 +36,7 @@ export const Simulator = () => {
                         decimalScale={2}
                         fixedDecimalScale={true}
                         prefix={'R$ '}
-                        style={{fontSize: '1.5vw', fontWeight: 'bold', color: COLORS.primary}}
+                        style={{fontSize: '1.5vw', fontWeight: '500', color: COLORS.primary}}
                     />
                 </div>
                 <hr />
@@ -50,7 +50,7 @@ export const Simulator = () => {
                         decimalScale={2}
                         fixedDecimalScale={true}
                         prefix={'R$ '}
-                        style={{fontSize: '1vw', color: COLORS.primary}}
+                        style={{fontSize: '1vw', color: COLORS.lightText}}
                     />
                 </div>
             </div>
@@ -135,7 +135,7 @@ export const Simulator = () => {
                         <TextField
                             inputRef={ref}
                             {...props}
-                            label='Consumo mensal'
+                            label='Consumo mensal médio'
                             inputProps={{inputMode: 'numeric'}}
                         />
                     )}
@@ -148,9 +148,9 @@ export const Simulator = () => {
             <div className="blue-container">
                 <h1>Seus Benefícios</h1>
                 <div className="benefits-container">
-                    <Benefits icon={() => <DollarIcon />} title={'Economia'} text='Receba seus créditos de energia e economize em até 15% na sua fatura' />
-                    <Benefits icon={() => <WalletIcon />} title={'Sem investimento'} text='Sem necessidade de alteração física no seu negócio ou investimento' />
-                    <Benefits icon={() => <SunIcon />} title={'Energia renovável'} text='Os créditos de energia são gerados por fontes renováveis' />
+                    <Benefits icon={() => <EconomyIcon />} title={'Economia'} text='Receba seus créditos de energia e economize em até 15% na sua fatura' />
+                    <Benefits icon={() => <NoInvestmentIcon />} title={'Sem investimento'} text='Sem necessidade de alteração física no seu negócio ou investimento' />
+                    <Benefits icon={() => <RenewableEnergyIcon />} title={'Energia renovável'} text='Os créditos de energia são gerados por fontes renováveis' />
                 </div>
                 <button onClick={() => goToSignUp()} className='simulator-signup-button'>Quero economizar!</button>
             </div>

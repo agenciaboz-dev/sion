@@ -1,7 +1,7 @@
 @import '/src/sass/colors';
 
 .Simulator-Component {
-    height: 32vw;
+    height: 28vw;
     width: 100%;
     align-self: center;
     box-shadow: 0px 9px 15px 0px #00000040;
@@ -27,16 +27,14 @@
     .white-container {
         background-color: white;
         flex-direction: column;
-        padding: 3vw;
-        gap: 1vw;
+        padding: 2vw;
         color: $text-color;
         width: 40%;
         justify-content: space-between;
 
         h1 {
-            text-align: center;
             font-size: 1.75vw;
-            margin-bottom: 1.75vw;
+            font-weight: 500;
         }
 
         input {
@@ -59,13 +57,18 @@
 
                 h3 {
                     font-size: 1.5vw;
+                    color: lighten($text-color, 25);
+                    font-weight: 300;
                 }
-
+                
                 h4 {
                     font-size: 1.5vw;
+                    font-weight: 300;
+                    color: lighten($text-color, 25);
                 }
 
                 p {
+                    color: lighten($text-color, 25);
                     font-size: 1vw;
                 }
 
@@ -90,7 +93,7 @@
         .blue-container {
             flex-direction: column;
             background-color: $primary-color;
-            padding: 3vw;
+            padding: 2vw;
             justify-content: space-between;
             width: 60%;
 
@@ -102,7 +105,7 @@
 
             .benefits-container {
                 margin: auto;
-                margin-bottom: 6vw;
+                margin-bottom: 2.5vw;
                 justify-content: space-between;
             }
 
@@ -121,22 +124,21 @@
 
 .Benefits-Component {
     flex: 0.3;
-    // width: 12vw;
     flex-direction: column;
     align-items: center;
     color: white;
     text-align: center;
-    gap: 2vw;
+    gap: 2.5vw;
 
     .benefits-header {
         align-items: center;
         flex-direction: column;
-        gap: 0.5vw;
+        gap: 1.5vw;
     }
     
     svg {
-        height: 4vw;
-        width: 4vw;
+        height: 5vw;
+        width: 5vw;
     }
 
     h2 {

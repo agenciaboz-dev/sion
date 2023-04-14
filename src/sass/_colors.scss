@@ -3,10 +3,12 @@ $text-color: #333333;
 $yellow-text-color: #FFF493;
 $background-color: #F3F3F3;
 $darkbluebutton-color: #001448;
+$lightblue-text-color: #6476A4;
 $graybutton-color: #737373;
 
 :export {
     background: $background-color;
     primary: $primary-color;
     text: $text-color;
+    lightText: $lightblue-text-color;
 }
