@@ -6,20 +6,37 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    margin-bottom: 12vw;
+    height: 30vw;
+    margin-bottom: 6vw;
 
     h1 {
         font-size: 2.25vw;
-        margin-bottom: 2vw;
+        margin-bottom: 4vw;
         font-weight: normal;
     }
 
     .main-container {
-        margin-top: 3vw;
+        margin-top: 1vw;
         flex-direction: row;
         align-items: center;
         width: 100%;
         justify-content: space-between;
+
+        .pictures {
+            position: relative;
+            margin: auto;
+
+            .customers-top {
+                position: absolute;
+                left: -27vw;
+            }
+            
+            .customers-bottom {
+                position: absolute;
+                top: 8.5vw;
+                right: -32.5vw;
+            }
+        }
     }
 
     .white-background {
@@ -27,12 +44,12 @@
         background-color: white;
         left: -10vw;
         top: -5vw;
-        height: 20vw;
+        height: 24vw;
         width: 100vw;
         z-index: -1;
         box-shadow: 0 0 2vw 0 #00000040;
 
-        transform: skew(0, -10deg);
+        transform: skew(0, -12deg);
     }
 
     .blue-background {
@@ -40,8 +57,8 @@
         background-color: $primary-color;
         right: -10vw;
         top: 0.5vw;
-        width: 48vw;
-        height: 20vw;
+        width: 50vw;
+        height: 22vw;
         z-index: -1;
 
         transform: skew(0, 12deg);
@@ -50,13 +67,13 @@
 }
 
 .CustomerPic-Component {
-    display: block;
+    display: flex;
     width: 11vw;
     height: 11vw;
-    margin: 0 auto;
+    margin-right: 6vw;
     transform: rotate(45deg);
     overflow: hidden;
-    box-shadow: 10px 10px 15px 0 #00000040;
+    box-shadow: 0 0 30px 0 #00000040;
 
     img {
         max-width: 100%;
