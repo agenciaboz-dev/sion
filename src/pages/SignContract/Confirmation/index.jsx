@@ -52,8 +52,13 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
                 setOpenSnackbar(true)
                 setError('Dados inválidos')
             } else {
-                setContract(contract)
-                setStage(2)
+                if (contract.signed) {
+                    setStage(3)
+                } else {
+
+                    setContract(contract)
+                    setStage(2)
+                }
             }
         })
         .catch(error => console.error(error))
