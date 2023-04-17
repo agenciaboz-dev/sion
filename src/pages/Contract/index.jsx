@@ -9,7 +9,7 @@ import useMeasure from 'react-use-measure';
 import { Button } from '@mui/material';
 import FileSaver from 'file-saver';
 
-export const Contract = () => {
+export const Contract = ({  }) => {
     const NavPdf = () => {
         const button_style = {
             backgroundColor: colors.primary,
@@ -66,10 +66,6 @@ export const Contract = () => {
             setUrl(api.getUri().split('/api')[0]+'/'+contract.filename)
         }
     }, [contract])
-
-    useEffect(() => {
-        console.log(contract.filename.split(contract.unit+'/'))
-    }, [url])
 
     useEffect(() => {
         api.post('/contract', { id })
