@@ -7,6 +7,7 @@ import { useClient } from '../../../../hooks/useClient';
 import { useState } from 'react';
 import { useValidateCNPJ } from '../../../../hooks/useValidateCNPJ';
 import { AddressFields } from '../AddressFields';
+import { Button } from '@mui/material';
 
 export const PessoaJuridica = ({ previousStage, nextStage }) => {
     const default_errors = useValidationErrors()
@@ -65,8 +66,8 @@ export const PessoaJuridica = ({ previousStage, nextStage }) => {
                     <AddressFields values={values} handleChange={handleChange} errors={errors} />
 
                     <div className="buttons-container">
-                        <button tabIndex={2} onClick={(event) => previousStage(event)} style={{backgroundColor: COLORS.gray}}>Voltar</button>
-                        <button tabIndex={1} type="submit">Avançar</button>
+                        <Button variant='contained' tabIndex={2} onClick={(event) => previousStage(event)} sx={{backgroundColor: COLORS.gray}}>Voltar</Button>
+                        <Button variant='contained' tabIndex={1} type="submit">Avançar</Button>
                     </div>
                 </Form>
             )}
