@@ -98,7 +98,7 @@ export const Login = () => {
 
                                    
                                 </div>
-                                <UpArrowIcon onClick={() => setLogin(!login)} className='up-arrow' />
+                                <UpArrowIcon onClick={() => setLogin(!login)} className='up-arrow' style={{transform: login && 'rotate(180deg)'}} />
                             </>
                             }
                             { login &&
