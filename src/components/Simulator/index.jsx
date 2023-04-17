@@ -25,9 +25,8 @@ export const Simulator = () => {
         return (
             <div className="econ-container">
                 <h3>Economize até:</h3>
-                <hr />
                 <div className="yearly-econ">
-                    <h4>Anual</h4>
+                    <h4>Anualmente</h4>
                     <CurrencyFormat
                         value={economy*12}
                         displayType='text'
@@ -41,7 +40,7 @@ export const Simulator = () => {
                 </div>
                 <hr />
                 <div className="monthly-econ">
-                    <p>Mensal</p>
+                    <p>Mensalmente</p>
                     <CurrencyFormat
                         value={economy}
                         displayType='text'
