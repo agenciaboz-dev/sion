@@ -91,6 +91,7 @@ export const Contrato = ({  }) => {
                 </div>
                 <Document file={api.getUri().split('/api')[0]+'/'+contract.filename} 
                     onLoadSuccess={onLoadSuccess} onLoadError={(error) => console.error(error)}
+                    error={<MuiLoading color={'primary'} size={'15vw'} />}
                     loading={<MuiLoading color={'primary'} size={'15vw'} />}
                 >
                     <Page pageNumber={page} width={245} renderInteractiveForms={false} />
