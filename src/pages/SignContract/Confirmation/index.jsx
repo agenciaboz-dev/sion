@@ -4,11 +4,12 @@ import Dropzone from 'react-dropzone';
 import { useParams } from 'react-router';
 import MaskedInput from 'react-text-mask';
 import { useDocumentMask } from '../../../hooks/useDocumentMask';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { api } from '../../../api';
 import { ReactComponent as CameraIcon } from '../../../images/camera.svg'
 import { useUser } from '../../../hooks/useUser';
 import { SafeEnvironment } from '../SafeEnvironment';
+import ReactSignatureCanvas from 'react-signature-canvas';
 
 export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract }) => {
     const [attachments, setAttachments] = useState([])
@@ -16,6 +17,8 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
 
     const params = useParams()
     const [user, setUser] = useUser()
+
+    const signatureRef = useRef(null)
 
     const documentMask = useDocumentMask()
 
@@ -26,9 +29,10 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
     }
 
     const handleSubmit = values => {
+        const rubric = handleSignature()
         setLoading(true)
         const formData = new FormData();
-        const data = { ...values, id: params.id, user };
+        const data = { ...values, id: params.id, user, rubric };
         console.log({data})
 
         formData.append("data", JSON.stringify(data));
@@ -69,9 +73,24 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
         setAttachments(acceptedFiles)
     }
 
+    const handleSignature = () => {
+        if (!(user?.adm || !user)) return
+
+        const signature = signatureRef.current
+        if (signature.isEmpty()) {
+            setOpenSnackbar(true)
+            setError('Rúbrica obrigatória')
+            return
+        }
+        
+        console.log(signature.toDataURL())
+        return signature.toDataURL()
+    }
+
     useEffect(() => {
         console.log(attachments)
     }, [attachments])
+
     
     return (
         <Formik initialValues={initialValues} onSubmit={handleSubmit}>
@@ -117,6 +136,10 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
                             </section>
                         )}
                     </Dropzone>
+                    { (user?.adm || !user) && <ReactSignatureCanvas penColor='black'
+                        ref={signatureRef}
+                        canvasProps={{width: 500, height: 200, className: 'sigCanvas'}} />
+                    }
                     <Button variant='contained' type='submit' >{loading ? <CircularProgress size={'1.5rem'} color='secondary' /> : 'Avançar'}</Button>
                     <SafeEnvironment />
                 </Form>
