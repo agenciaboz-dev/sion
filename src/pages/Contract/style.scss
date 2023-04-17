@@ -7,6 +7,7 @@
     position: relative;
 
     .react-pdf__Document {
+        flex-direction: column;
         align-self: flex-start;
     }
 

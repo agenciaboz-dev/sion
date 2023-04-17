@@ -20,27 +20,11 @@ export const Contract = ({  }) => {
             alignItems: 'center'
         }
 
-        const nextPage = () => {
-            if ((page+1) <= pages) setPage(page+1)
-        }
-
-        const previousPage = () => {
-            if ((page-1) > 0) setPage(page-1)
-        }
 
         return (
-            <div style={{flexDirection: 'column', gap: '5vw'}}>
-                <div className="pdf-bottom" style={{justifyContent: 'center', gap: '10vw', alignItems: 'center'}}>
-                    <div className="back-button" style={button_style} onClick={previousPage}>
-                        <p>{'<'}</p>
-                    </div>
-                    <p>{page} / {pages}</p>
-                    <div className="next-button" style={button_style} onClick={nextPage}>
-                        <p>{'>'}</p>
-                    </div>
-                </div>
+            <div style={{position: 'fixed', gap: '5vw', bottom: '5vw'}}>
+                <Button variant='contained' sx={{backgroundColor: 'white', color: colors.primary}} onClick={() => FileSaver.saveAs(url, contract.filename.split(contract.unit+'/')[1])} >Baixar</Button>
                 <Button variant='contained' onClick={() => navigate('/login/'+contract.id)} >Assinar</Button>
-                <Button variant='outlined' onClick={() => FileSaver.saveAs(url, contract.filename.split(contract.unit+'/')[1])} >Baixar</Button>
             </div>
         )
     } 
@@ -48,16 +32,17 @@ export const Contract = ({  }) => {
     const id = useParams().id
     const colors = useColors()
     const navigate = useNavigate()
+    const [ref, {width}] = useMeasure()
 
     const [loading, setLoading] = useState(true)
     const [page, setPage] = useState(1)
-    const [pages, setPages] = useState(0)
+    const [pages, setPages] = useState([])
     const [url, setUrl] = useState('')
     const [contract, setContract] = useState(null)
 
     const onLoadSuccess = pdf => {
         setLoading(false)
-        setPages(pdf.numPages)
+        setPages([...Array(pdf.numPages)].map((_, index) => index + 1))
     }
 
     useEffect(() => {
@@ -67,6 +52,7 @@ export const Contract = ({  }) => {
         }
     }, [contract])
 
+
     useEffect(() => {
         api.post('/contract', { id })
         .then(response => setContract(response.data))
@@ -75,12 +61,12 @@ export const Contract = ({  }) => {
     }, [])
 
     return (
-        <div className='Contract-Page' >
+        <div className='Contract-Page' ref={ref} >
             <Document file={url} 
                 onLoadSuccess={onLoadSuccess} onLoadError={(error) => console.error(error)}
                 loading={<MuiLoading color={'primary'} size={'15vw'} noData={''} />}
                 >
-                <Page pageNumber={page} renderForms={false} />
+                {pages.map(page => <Page pageNumber={page} renderForms={false} width={width} />)}
             </Document>
             {!loading && <NavPdf />}
         </div>
