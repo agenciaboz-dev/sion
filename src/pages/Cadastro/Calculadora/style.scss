@@ -39,15 +39,16 @@
             .flag-tone {
                 flex-direction: column;
                 align-items: center;
-                width: 35%;
                 font-size: 3.5vw;
                 text-align: center;
+                width: 35%;
             }
-
+            
             .yearly {
                 align-items: center;
                 flex-direction: column;
                 font-size: 3.5vw;
+                text-align: center;
                 width: 35%;
             }
             
@@ -55,6 +56,7 @@
                 align-items: center;
                 flex-direction: column;
                 font-size: 3vw;
+                text-align: center;
                 width: 25%;
             }
         }
