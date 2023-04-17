@@ -20,11 +20,11 @@ export const PessoaFisica = ({ previousStage, nextStage }) => {
 
     const [cpfError, setCpfError] = useState(false)
 
-    const initial_inputs = client.value?.form || {
+    const initial_inputs = client.value?.name ? client.value : {
         name: '',
         cpf: '',
         rg: '',
-        birth: new Date().toISOString().substring(0, 10),
+        birth: '',
         email: '',
         phone: '',
         cep: '',

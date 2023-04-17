@@ -23,7 +23,7 @@ export const RepresentanteLegal = ({ handleChange, values, errors }) => {
     const [cpfError, setCpfError] = useState(false)
     
     const [emails, setEmails] = useState([1])
-    const [initialInputs, setInitialInputs] = useState(client.value?.form?.name ? client.value.form : {
+    const [initialInputs, setInitialInputs] = useState(client.value?.name ? client.value : {
         name: '',
         cpf: '',
         email1: '',
@@ -44,7 +44,7 @@ export const RepresentanteLegal = ({ handleChange, values, errors }) => {
       });
 
     const nextStage = (values) => {
-        client.setValue({...client.value, form: {...client.value.form, ...values}, emails: emails.map(number => values[`email${number}`])})
+        client.setValue({...client.value, ...values, emails: emails.map(number => values[`email${number}`])})
         navigate('/cadastro/anexos')
     }
 

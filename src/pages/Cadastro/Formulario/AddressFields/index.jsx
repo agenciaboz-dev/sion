@@ -20,7 +20,7 @@ export const AddressFields = ({ values, handleChange, errors }) => {
     }
 
     useEffect(() => {
-        if (values.cep.length == 10) {
+        if (values?.cep?.length == 10) {
             api.post('/cep', { cep: values.cep })
             .then(response => {
                 const address = response.data

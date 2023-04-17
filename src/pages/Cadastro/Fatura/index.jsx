@@ -51,7 +51,7 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
 
 
     useEffect(() => {
-        if (!client?.value?.form?.name) navigate('/cadastro')
+        if (!client?.value?.name) navigate('/cadastro')
 
         setProgressBarStage(50)
         setStage(1)

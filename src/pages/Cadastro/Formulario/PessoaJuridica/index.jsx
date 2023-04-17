@@ -16,7 +16,7 @@ export const PessoaJuridica = ({ previousStage, nextStage }) => {
     
     const [cnpjError, setCnpjError] = useState(false)
 
-    const initial_inputs = client.value?.form ||  {
+    const initial_inputs = client.value?.name ? client.value :  {
         company: '',
         cnpj: '',
         category: '',
