@@ -9,6 +9,7 @@ import { useRef } from 'react';
 import { useValidateCPF } from '../../../../hooks/useValidateCPF';
 import { useState } from 'react';
 import { AddressFields } from '../AddressFields';
+import { Button } from '@mui/material';
 
 export const PessoaFisica = ({ previousStage, nextStage }) => {
     const default_errors = useValidationErrors()
@@ -77,8 +78,8 @@ export const PessoaFisica = ({ previousStage, nextStage }) => {
                     <AddressFields values={values} handleChange={handleChange} errors={errors} />
 
                     <div className="buttons-container">
-                        <button onClick={(event) => previousStage(event)} style={{backgroundColor: COLORS.gray}}>Voltar</button>
-                        <button type="submit">Avançar</button>
+                        <Button variant='contained' onClick={(event) => previousStage(event)} sx={{backgroundColor: COLORS.gray}}>Voltar</Button>
+                        <Button variant='contained' type="submit">Avançar</Button>
                     </div>
                 </Form>
             )}
