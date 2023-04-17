@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { useClient } from "../../../hooks/useClient"
 import { useStage } from "../../../hooks/useStage"
 import {ReactComponent as ChoseIcon} from '../../../images/check.svg'
+import {ReactComponent as ForwardArrowBlue} from '../../../images/forward_arrow_small_blue.svg';
 
 export const PessoaChooser = ({ pessoa, setPessoa }) => {
         
@@ -31,8 +32,8 @@ export const PessoaChooser = ({ pessoa, setPessoa }) => {
                     <h1>{name}</h1>
                     <p>{description}</p>
                 </div>
-                <div className="chose-container" style={{opacity: clicked ? 1 : 0.4}}>
-                    {clicked ? <ChoseIcon style={isMobile && {height:'11vw', width: '11vw'}} /> : <div className="circle"></div> }
+                <div className="chose-container" style={{backgroundColor: clicked ? '#384974' : 'white'}}>
+                    {clicked ? <ChoseIcon style={isMobile && {height:'18vw', width: '18vw'}} /> : <div className='forward-arrow-container'><ForwardArrowBlue /></div> }
                 </div>
             </div>
         )
