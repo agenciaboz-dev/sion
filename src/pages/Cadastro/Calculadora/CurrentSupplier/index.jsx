@@ -10,7 +10,7 @@ import { useClient } from "../../../../hooks/useClient"
 import { useSuppliers } from "../../../../hooks/useSuppliers"
 import { useUser } from "../../../../hooks/useUser"
 
-export const CurrentSupplier = ({ formRef }) => {
+export const CurrentSupplier = ({ formRef, setValidUnit }) => {
     const [unitError, setUnitError] = useState(false)
     const [unitErrorText, setUnitErrorText] = useState('')
     const [loading, setLoading] = useState(false)
@@ -29,6 +29,7 @@ export const CurrentSupplier = ({ formRef }) => {
         if (!values.unit) {
             setUnitError(true)
             setUnitErrorText('Campo obrigatório')
+            setValidUnit(false)
             unitInputRef.current.focus()
             return
         }
@@ -46,6 +47,7 @@ export const CurrentSupplier = ({ formRef }) => {
         if (!event.target.value) {
             setUnitError(true)
             setUnitErrorText('Campo obrigatório')
+            setValidUnit(false)
             unitInputRef.current.focus()
             return
         }
@@ -60,8 +62,11 @@ export const CurrentSupplier = ({ formRef }) => {
             if (error) {
                 setUnitError(true)
                 setUnitErrorText(error)
+                setValidUnit(false)
+                unitInputRef.current.focus()
             } else {
                 setUnitError(false)
+                setValidUnit(true)
             }
             console.log(response.data)
         })

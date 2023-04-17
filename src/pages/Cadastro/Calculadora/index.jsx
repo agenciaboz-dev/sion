@@ -7,6 +7,8 @@ import { useFlags } from '../../../hooks/useFlags';
 import { NavButtons } from '../NavButtons';
 import { CurrentSupplier } from './CurrentSupplier';
 import CurrencyFormat from 'react-currency-format';
+import { useUser } from '../../../hooks/useUser';
+import { useNavigate } from 'react-router-dom';
 
 export const Calculadora = ({  }) => {
 
@@ -61,9 +63,12 @@ export const Calculadora = ({  }) => {
 
     const client = useClient()
     const flags = useFlags()
-
+    const [user, setUser] = useUser()
+    const navigate = useNavigate()
+    
     const formRef = useRef(null)
-
+    
+    const [validUnit, setValidUnit] = useState(false)
     const [spent, setSpent] = useState(client.value?.spent || '')
     const [consumption, setConsumption] = useState(0)
 
@@ -82,11 +87,15 @@ export const Calculadora = ({  }) => {
         
     }, [spent])
 
+    useEffect(() => {
+        if (!user) navigate('/login')
+    }, [])
+
     return (
         <div className='Calculadora-Component' >
             <h1>Projeção de economia</h1>
 
-            <CurrentSupplier formRef={formRef} />
+            <CurrentSupplier formRef={formRef} setValidUnit={setValidUnit} />
 
             <InputField title={'Consumo mensal médio'} endAdornment={<p className='kwh'>kWh</p>} id={'spent'} value={spent} handleChange={event => setSpent(event.target.value)} not_required />
 
@@ -94,7 +103,7 @@ export const Calculadora = ({  }) => {
                 {flags.map(flag => <Flag key={flag.id} flag={flag} />)}
             </div>
 
-            <NavButtons nextOnly nextStage={nextStage} />
+            <NavButtons nextOnly nextStage={nextStage} disabledNext={!validUnit} />
         </div>
     )
 }

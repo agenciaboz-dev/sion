@@ -86,14 +86,13 @@ export const Contrato = ({  }) => {
                 <div className='description-container'>
                     <p>Clique avançar para enviar o contrato por email para todos os envolvidos cadastrados!</p>
                 </div>
-                <Document file={api.getUri().split('/api')[0]+'/'+client.filename} 
+                <Document file={api.getUri().split('/api')[0]+'/'+client.value.filename} 
                     onLoadSuccess={onLoadSuccess} onLoadError={(error) => console.error(error)}
                     loading={<MuiLoading color={'primary'} size={'15vw'} />}
                 >
                     <Page pageNumber={page} width={245} />
                 </Document>
             </div>
-            {!loading && <NavPdf />}
             <NavButtons goBack={() => navigate('/cadastro/anexos')} nextStage={nextStage} children={<p>Enviar</p>} />
 
         </div>
