@@ -50,12 +50,39 @@
         }
 
         form {
+            display: flex;
+            flex-direction: column;
             margin: 2vw;
             height: 22vw;
-            
-            input {
-                height: 1.5vw;
-                padding: 1vw;
+
+            div {
+                div {
+                    margin-top: 0.25vw;
+                    margin-bottom: 0.25vw;
+
+                    div{
+                        padding: 0.25vw;
+
+                        input {
+                            height: 2vw;
+                            padding: 0.25vw;
+                            font-size: 1.25vw;
+                        }
+                        textarea {
+                            height: 7vw !important;
+                            font-size: 1.25vw;
+                        }
+                    }
+                }
+            }
+
+            label {
+                font-size: 1vw !important;
+                top: -0.5vw;
+            }
+
+            .MuiInputLabel-shrink {
+                transform: translate(0.75vw, 0);
             }
         }
 
