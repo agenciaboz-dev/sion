@@ -12,6 +12,7 @@ export const Calculadora = ({  }) => {
 
     const Flag = ({ flag }) => {
         const Icon = () => flag.icon
+        const Tone = () => flag.name
         const [economy, setEconomy] = useState(0)
 
         useEffect(() => {
@@ -21,30 +22,38 @@ export const Calculadora = ({  }) => {
 
         return (
             <div className="flag-container">
-                <Icon />
+                <div className="flag-tone">
+                    <Icon />
+                    <Tone />
+                </div>
                 <hr />
-                <h3 style={{fontWeight: 'normal'}}>Anual</h3>
-                <CurrencyFormat
-                    value={economy*12} 
-                    displayType='text' 
-                    thousandSeparator='.'
-                    decimalSeparator=','
-                    decimalScale={2}
-                    fixedDecimalScale={true}
-                    prefix={'R$ '}
-                    style={{fontSize: '5vw', fontWeight: 'bold', color: COLORS.primary}}
-                />
+                <div className="yearly">
+                    <h3 style={{fontWeight: 'normal'}}>Anual</h3>
+                    <CurrencyFormat
+                        value={economy*12}
+                        displayType='text'
+                        thousandSeparator='.'
+                        decimalSeparator=','
+                        decimalScale={2}
+                        fixedDecimalScale={true}
+                        prefix={'R$ '}
+                        style={{fontSize: '5vw', fontWeight: 'bold', color: COLORS.primary}}
+                    />
+                </div>
+                <hr />
+                <div className="monthly">
                 <p>Mensal</p>
-                <CurrencyFormat
-                    value={economy} 
-                    displayType='text' 
-                    thousandSeparator='.'
-                    decimalSeparator=','
-                    decimalScale={2}
-                    fixedDecimalScale={true}
-                    prefix={'R$ '}
-                    style={{color: COLORS.primary}}
-                />
+                    <CurrencyFormat
+                        value={economy}
+                        displayType='text'
+                        thousandSeparator='.'
+                        decimalSeparator=','
+                        decimalScale={2}
+                        fixedDecimalScale={true}
+                        prefix={'R$ '}
+                        style={{color: COLORS.primary}}
+                    />
+                </div>
 
             </div>
         )
@@ -79,7 +88,7 @@ export const Calculadora = ({  }) => {
 
             <CurrentSupplier formRef={formRef} />
 
-            <InputField title={'Consumo mensal médio'} endAdornment={<p>kWh</p>} id={'spent'} value={spent} handleChange={event => setSpent(event.target.value)} not_required />
+            <InputField title={'Consumo mensal médio'} endAdornment={<p className='kwh'>kWh</p>} id={'spent'} value={spent} handleChange={event => setSpent(event.target.value)} not_required />
 
             <div className="flags-container">
                 {flags.map(flag => <Flag key={flag.id} flag={flag} />)}
