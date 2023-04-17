@@ -30,7 +30,6 @@ export const useContract = (setLoading, setError) => {
         
         lead: () => {
             const data = {...client?.value, ...client?.value?.form, seller: {id: user.id, name: user.name}}
-            delete data.form
             api.post('/contract/lead', data)
             .then(response => {if (response.data) client.setValue(response.data)})
             .catch(error => console.error(error))

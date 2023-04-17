@@ -56,6 +56,7 @@ export const Contrato = ({  }) => {
     const [loading, setLoading] = useState(true)
     const [page, setPage] = useState(1)
     const [pages, setPages] = useState(0)
+    const [contract, setContract] = useState({})
 
     const nextStage = () => {
         api.post('/contract/send', client.value)
@@ -71,7 +72,9 @@ export const Contrato = ({  }) => {
     useEffect(() => {
         if (!client?.value?.unit) navigate('/cadastro')
 
-        console.log(api.getUri())
+        api.post('/contract', { id: client.value.id })
+        .then(response => setContract(response.data))
+        .catch(error => console.error(error))
 
         // console.log(pdf)
     }, [])
@@ -86,12 +89,13 @@ export const Contrato = ({  }) => {
                 <div className='description-container'>
                     <p>Clique avançar para enviar o contrato por email para todos os envolvidos cadastrados!</p>
                 </div>
-                <Document file={api.getUri().split('/api')[0]+'/'+client.value.filename} 
+                <Document file={api.getUri().split('/api')[0]+'/'+contract.filename} 
                     onLoadSuccess={onLoadSuccess} onLoadError={(error) => console.error(error)}
                     loading={<MuiLoading color={'primary'} size={'15vw'} />}
                 >
-                    <Page pageNumber={page} width={245} />
+                    <Page pageNumber={page} width={245} renderInteractiveForms={false} />
                 </Document>
+                <NavPdf />
             </div>
             <NavButtons goBack={() => navigate('/cadastro/anexos')} nextStage={nextStage} children={<p>Enviar</p>} />
 

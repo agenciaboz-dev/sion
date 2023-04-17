@@ -1,4 +1,4 @@
-import { MenuItem } from '@mui/material';
+import { Alert, MenuItem, Snackbar } from '@mui/material';
 import { CustomDashedBorder } from 'custom-dashed-border';
 import { Form, Formik } from 'formik';
 import { useRef, useState } from 'react';
@@ -27,6 +27,7 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
     const [pdf, setPdf] = usePdf()
 
     const [loading, setLoading] = useState(false)
+    const [openSnackbar, setOpenSnackbar] = useState(false)
 
     const goBack = () => {
         setStage(0)
@@ -34,7 +35,10 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
     }
 
     const nextStage = () => {
-        if (!client?.value?.anexos?.fatura) return
+        if (!client?.value?.anexos?.fatura) {
+            setOpenSnackbar(true)
+            return
+        }
         
         setLoading(true)
         contract.generate((response) => {
@@ -62,6 +66,12 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
             <UploadContainer title={'Anexar fatura'} identifier='fatura' />
             <UploadContainer title={client?.value?.pessoa == 'juridica' ? 'Anexar contrato social' : 'Anexar documentos'} identifier='documentos' />
             <NavButtons goBack={goBack} nextStage={nextStage} children={loading && <MuiLoading size='5vw' />} />
+
+            <Snackbar open={openSnackbar} autoHideDuration={3000} onClose={() => setOpenSnackbar(false)} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
+                <Alert onClose={() => setOpenSnackbar(false)} severity={'error'} sx={{ width: '100%' }}>
+                    Fatura obrigatória
+                </Alert>
+            </Snackbar>
         </div>
     )
 }
