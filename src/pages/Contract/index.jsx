@@ -7,6 +7,7 @@ import './style.scss';
 import { useColors } from '../../hooks/useColors';
 import useMeasure from 'react-use-measure';
 import { Button } from '@mui/material';
+import FileSaver from 'file-saver';
 
 export const Contract = () => {
     const NavPdf = () => {
@@ -39,6 +40,7 @@ export const Contract = () => {
                     </div>
                 </div>
                 <Button variant='contained' onClick={() => navigate('/login/'+contract.id)} >Assinar</Button>
+                <Button variant='outlined' onClick={() => FileSaver.saveAs(url, contract.filename.split(contract.unit+'/')[1])} >Baixar</Button>
             </div>
         )
     } 
@@ -64,6 +66,10 @@ export const Contract = () => {
             setUrl(api.getUri().split('/api')[0]+'/'+contract.filename)
         }
     }, [contract])
+
+    useEffect(() => {
+        console.log(contract.filename.split(contract.unit+'/'))
+    }, [url])
 
     useEffect(() => {
         api.post('/contract', { id })
