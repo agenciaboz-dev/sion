@@ -7,8 +7,9 @@ import './style.scss';
 import { useColors } from '../../hooks/useColors';
 import useMeasure from 'react-use-measure';
 import { Button } from '@mui/material';
+import FileSaver from 'file-saver';
 
-export const Contract = () => {
+export const Contract = ({  }) => {
     const NavPdf = () => {
         const button_style = {
             backgroundColor: colors.primary,
@@ -39,6 +40,7 @@ export const Contract = () => {
                     </div>
                 </div>
                 <Button variant='contained' onClick={() => navigate('/login/'+contract.id)} >Assinar</Button>
+                <Button variant='outlined' onClick={() => FileSaver.saveAs(url, contract.filename.split(contract.unit+'/')[1])} >Baixar</Button>
             </div>
         )
     } 
