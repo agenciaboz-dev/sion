@@ -25,9 +25,14 @@
             right: 10vw;
             padding: 0.75vw 1vw;
             background-color: white;
-            color: black;
-            background-color: lighten($graybutton-color , 10);
+            color: $primary-color;
+            background-color: white;
             z-index: 9;
+            transition: 0.3s;
+        }
+
+        .login-button:hover {
+            transform: scale(1.1);
         }
 
         p {
