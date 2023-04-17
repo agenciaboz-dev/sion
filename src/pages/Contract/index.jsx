@@ -50,7 +50,7 @@ export const Contract = ({  }) => {
     const navigate = useNavigate()
 
     const [loading, setLoading] = useState(true)
-    const [page, setPage] = useState(5)
+    const [page, setPage] = useState(1)
     const [pages, setPages] = useState(0)
     const [url, setUrl] = useState('')
     const [contract, setContract] = useState(null)
