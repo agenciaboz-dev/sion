@@ -1,9 +1,11 @@
 @import '/src/sass/colors';
 
 .Login-Page {
-    width: 100%;
     flex-direction: column;
     align-items: center;
+    overflow-x: hidden;
+    height: 100vh;
+    width: 100%;
 
     .back-container {
         color: white;
@@ -26,24 +28,55 @@
     }
 
     .main-container {
-        width: 100%;
-        background-color: white;
         flex-direction: column;
+        justify-content: center;
         align-items: center;
-        padding: 5vw 0;
+        padding: 24vw 0 20vw;
+        background-color: white;
+        width: 100%;
+
+        > svg {
+            height: 35vw;
+            margin-bottom: 7vw;
+        }
 
         form {
-            width: 40%;
+            width: 80%;
 
             label {
                 cursor: pointer;
+                font-size: 5vw;
             }
 
+            .user-input-container {
+                flex-direction: column;
+
+                input {
+                    padding: 1vw;
+                }
+                
+            }
+            
+            .password-input-container {
+                flex-direction: column;
+                margin: 2vw 0;
+                
+                input {
+                    padding: 1vw;
+                }
+            }
+            
             .bottom-container {
-                margin-top: 1vw;
+                justify-content: space-between;
+                margin-top: 4vw;
                 width: 100%;
                 gap: 5vw;
-    
+
+                p {
+                    font-size: 4vw;
+                    margin-top: 1vw;
+                }
+
                 > div {
                     flex: 0.5;
                     flex-direction: column;
@@ -59,134 +92,90 @@
                     }
 
                 }
-                
-                .button-container {
-                    align-items: flex-end;
 
-                    button {
-                        flex: 1;
+                .remember-wrapper {
+                    align-items: flex-start;
+
+                    .remember-container {
+                        flex-direction: column;
                         width: 100%;
-                        justify-content: center;
-                        align-items: center;
-                    }
-                }
-            }
-        }
-    }
-}
+                        margin-left: -0.6vw;
 
-@media only screen and (max-width: 600px) {
-    .Login-Page {
-        height: 100vh;
-        overflow-x: hidden;
+                        label {
+                            margin-right: 0;
+                            height: 4vw;
+                            
+                            span {
+                                font-size: 3.5vw;
+                                margin-left: -2vw;
 
-        .main-container {
-            flex-direction: column;
-            justify-content: center;
-            padding: 24vw 0 20vw;
-
-            > svg {
-                height: 35vw;
-                margin-bottom: 7vw;
-            }
-
-            form {
-                width: 80%;
-
-                .user-input-container {
-                    flex-direction: column;
-
-                    input {
-                        padding: 1vw;
-                    }
-                    
-                }
-                
-                .password-input-container {
-                    flex-direction: column;
-                    margin: 2vw 0;
-                    
-                    input {
-                        padding: 1vw;
-                    }
-                }
-                
-                .bottom-container {
-                    justify-content: space-between;
-                    margin-top: 4vw;
-
-                    p {
-                        font-size: 4vw;
-                        margin-top: 1vw;
-                    }
-
-                    .remember-wrapper {
-                        align-items: flex-start;
-
-                        .remember-container {
-                            flex-direction: column;
-                            width: 100%;
-                            margin-left: -0.6vw;
-
-                            label {
-                                margin-right: 0;
-                                height: 4vw;
-                                
-                                span {
-                                    font-size: 3.5vw;
-                                    margin-left: -2vw;
+                                input,svg {
+                                    width: 4vw;
+                                    height: auto;
+                                    margin-right: 1vw;
                                 }
                             }
                         }
                     }
-
-                    .button-container {
-                        justify-content: flex-end;
-
-                        button {
-                            font-size: 5vw;
-                        }
-
-                        p {
-                            text-align: end;
-                        }
-                    }
-
                 }
 
-                .client-button {
-                    flex-direction: column;
-                    width: 100%;
-                    align-items: center;
-                    
-                    .or {
-                        margin: 5vw;
-                        color: $primary-color;
-                        gap: 5vw;
+                .button-container {
+                    justify-content: flex-end;
+                    align-items: flex-end;
+
+                    button {
+                        justify-content: center;
                         align-items: center;
+                        font-size: 5vw;
+                        flex: 1;
                         width: 100%;
-                        justify-content: space-between;
-                        
-
-                        > div {
-                            flex-direction: column;
-                            width: 100%;
-                        }
                     }
-                }
 
-                .up-arrow {
-                    transition: 1s;
-                    z-index: 5;
-                    position: absolute;
-                    bottom: 5vw;
-                    right: 5vw;
+                    p {
+                        text-align: end;
+                    }
                 }
             }
-        }
 
-        .Footer-Component {
-            margin-top: auto;
+            .client-button {
+                flex-direction: column;
+                width: 100%;
+                align-items: center;
+                
+                .or {
+                    margin: 5vw;
+                    color: $primary-color;
+                    gap: 5vw;
+                    align-items: center;
+                    width: 100%;
+                    justify-content: space-between;
+
+                    > div {
+                        flex-direction: column;
+                        width: 100%;
+                    }
+                }
+            }
+
+            .up-arrow {
+                transition: 1s;
+                z-index: 5;
+                position: absolute;
+                bottom: 5vw;
+                right: 5vw;
+            }
         }
+    }
+
+    .Footer-Component {
+        margin-top: auto;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+
+    .Login-Page {
+        // padding: 0 25vw;
+        // align-self: center;
     }
 }
