@@ -122,27 +122,26 @@
 
     .Advert-Component {
         flex-direction: column;
-        height: 150vw;
+        height: 170vw;
         // justify-content: space-between;
         margin-top: 8vw;
     
         .logo-branco {
             display: flex;
-            width: 60vw;
+            width: 70vw;
             height: auto;
-
         }
 
         .left {
             flex: 0.4;
             flex-direction: column;
             align-items: center;
-            gap: 4vw;
+            gap: 8vw;
 
             h1 {
                 font-size: 16vw;
-                margin-top: -6vw;
-                margin-bottom: -4vw;
+                margin-top: -2vw;
+                margin-bottom: -8vw;
                 text-shadow: 3px 3px 0 rgba(black, 0.63);
             }
             
@@ -165,8 +164,8 @@
             flex: 0.6;
             
             .blue-box{
-                margin-top: 8vw;
-                margin-bottom: 2vw;
+                margin-top: 12vw;
+                margin-bottom: 6vw;
                 // padding: 2vw 3vw;
                 // gap: 0.5vw;
                 
