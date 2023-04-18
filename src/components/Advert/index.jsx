@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './style.scss';
 import {ReactComponent as Checkmark} from '../../images/checkmark.svg';
 import {ReactComponent as Arrow} from '../../images/thin_arrow_right.svg';
+import {ReactComponent as LogoBranco} from '../../images/logo_branco.svg';
 
 export const Advert = ({ innerRef }) => {
     const navigate = useNavigate()
@@ -13,6 +14,7 @@ export const Advert = ({ innerRef }) => {
     
     return (
         <div className='Advert-Component' ref={innerRef}>
+            <LogoBranco className='logo-branco'/>
             <div className="left">
                 <h1>Até 15%</h1>
                 <h3>de economia na sua conta de luz!</h3>

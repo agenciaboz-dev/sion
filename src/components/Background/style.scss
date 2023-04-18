@@ -12,5 +12,14 @@
         // filter: saturate(3) contrast(1) brightness(0.6);
         filter: brightness(0.7);
     }
+}
 
+@media only screen and (max-width: 450px) {
+    
+    .Background-Component{
+        img {
+            height: 180vw;
+            object-fit: cover !important;
+        }
+    }
 }
