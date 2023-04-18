@@ -50,7 +50,8 @@
             .econ-container {
                 flex-direction: column;
                 width: 100%;
-                border: 1px solid grey;
+                border: 1px solid lighten($graybutton-color, 30);
+                border-radius: 4px;
                 align-items: center;
                 gap: 1vw;
                 padding: 1vw 0;
@@ -70,11 +71,6 @@
                 p {
                     color: lighten($text-color, 25);
                     font-size: 1vw;
-                }
-
-                svg {
-                    height: auto;
-                    width: 2vw;
                 }
 
                 hr {
@@ -176,4 +172,66 @@
     z-index: 100;
     border-radius: 20%;
     font-size: 0.8vw;
+}
+
+@media only screen and (max-width: 450px) {
+    
+    .Simulator-Component {
+        flex-direction: column;
+        height: 150vw;
+        margin-top: 6vw;
+
+        label {
+            font-size: 5vw;
+        }
+
+        .white-container {
+            width: 100%;
+            flex: 0.4;
+            align-items: center;
+            padding: 4vw;
+            gap: 4vw;
+
+            h1 {
+                font-size: 6vw;
+                margin-bottom: 2vw;
+            }
+    
+            input {
+                padding: 1vw;
+                font-size: 5vw;
+                height: 8vw;
+                width: 70vw;
+            }
+
+            .econ-wrapper {
+                width: 100%;
+                
+                .econ-container {
+                    padding: 4vw 0;
+    
+                    h3 {
+                        font-size: 5vw;
+                    }
+                    
+                    h4 {
+                        font-size: 5vw;
+                    }
+    
+                    p {
+                        font-size: 4vw;
+                    }
+    
+                    hr {
+                        width: 50%;
+                        margin: 2vw 0;
+                    }
+                }
+            }
+        }       
+        .blue-container {
+            width: 100%;
+            flex: 0.6;
+        }       
+    }
 }

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import useMeasure from 'react-use-measure';
 import { HowItem } from './HowItem';
 import './style.scss';
@@ -10,6 +11,7 @@ import {ReactComponent as DiscountsIcon} from '../../images/bb_discount_icon.svg
 export const HowWorks = ({ main_container_height, advert_height }) => {
 
     const [ref, {height}] = useMeasure()
+    const isMobile = useMediaQuery({maxWidth: 600})
 
     return (
         <div className='HowWorks-Component' id='how' ref={ref} >
@@ -17,7 +19,7 @@ export const HowWorks = ({ main_container_height, advert_height }) => {
 
             </div>
             <div className="blue-background"></div>
-            <div className="white-background" style={{height: height * 1.15}}></div>
+            <div className="white-background" style={{height: isMobile? height : height * 1.15}}></div>
             <div className="how-works-containers">
                 <div className="details-container">
                     <h1>Uma maneira simples de você economizar com a energia do seu negócio</h1>

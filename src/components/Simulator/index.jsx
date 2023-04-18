@@ -11,9 +11,12 @@ import {ReactComponent as RenewableEnergyIcon} from '../../images/wb_renewable_e
 import { TextField } from '@mui/material';
 // import { useFlags } from '../../hooks/useFlags';
 import CurrencyFormat from 'react-currency-format';
-import COLORS from '../../sass/_colors.scss'
+import COLORS from '../../sass/_colors.scss';
+import { useMediaQuery } from 'react-responsive';
 
 export const Simulator = () => {
+
+    const isMobile = useMediaQuery({maxWidth: 600})
     
     const Econ = () => {
         const [economy, setEconomy] = useState(0)
@@ -35,7 +38,7 @@ export const Simulator = () => {
                         decimalScale={2}
                         fixedDecimalScale={true}
                         prefix={'R$ '}
-                        style={{fontSize: '1.5vw', fontWeight: '500', color: COLORS.primary}}
+                        style={{fontSize: isMobile ? '5vw' : '1.5vw', fontWeight: '500', color: COLORS.primary}}
                     />
                 </div>
                 <hr />
@@ -49,7 +52,7 @@ export const Simulator = () => {
                         decimalScale={2}
                         fixedDecimalScale={true}
                         prefix={'R$ '}
-                        style={{fontSize: '1vw', color: COLORS.lightText}}
+                        style={{fontSize: isMobile ? '4vw' : '1vw', color: COLORS.lightText}}
                     />
                 </div>
             </div>
