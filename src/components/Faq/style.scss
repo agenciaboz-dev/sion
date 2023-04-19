@@ -108,70 +108,25 @@
         }
     
         .faq-container {
-    //         align-self: center;
-    //         background-color: white;
-    //         flex-direction: column;
-    //         width: 100%;
             padding: 4vw;
             padding-bottom: 10vw;
-    //         box-shadow: 0px 8px 16px 0px #00000040;
             gap: 8vw;
         }
-    
-    //     .faq-header-container {
-    //         flex-direction: column;
-    //         gap: 1vw;
-    //     }
-    
-    //     .questions-container {
-    //         justify-content: space-between;
-    //     }
-    
-    //     .qcolumn {
-    //         flex-direction: column;
-    //         flex: 0.32;
-    //         gap: 2vw;
-    //     }
-    
-    //     .question-answer {
-    //         flex-direction: column;
-    //         gap: 1vw;
-    //     }
-        
     }
     
     .Question-Component {
-    //     flex-direction: column;
         
         .question {
             gap: 2vw;
-    //         align-items: center;
-    //         cursor: pointer;
-    //         transition: 0.2s;
             
             svg {
                 flex-shrink: 0;
                 height: 4vw;
             }
-    
-    //         h3 {
-    //             font-weight: normal;
-    //         }
-     }
-    
-    //     .question:hover {
-    //         transform: scale(1.005);
-    //     }
-    
+        }
+
         .Collapsible {
             gap: 1vw;
         }
-    
-    //     p {
-    //         padding-left: 3vw;
-    //         margin-top: 0.7vw;
-    //         opacity: 0.7;
-    //     }
-        
     }
 }
