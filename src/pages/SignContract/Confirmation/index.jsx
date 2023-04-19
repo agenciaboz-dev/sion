@@ -1,4 +1,4 @@
-import { Button, CircularProgress, TextField } from '@mui/material';
+import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import { Form, Formik } from 'formik';
 import Dropzone from 'react-dropzone';
 import { useParams } from 'react-router';
@@ -10,13 +10,20 @@ import { ReactComponent as CameraIcon } from '../../../images/camera.svg'
 import { useUser } from '../../../hooks/useUser';
 import { SafeEnvironment } from '../SafeEnvironment';
 import ReactSignatureCanvas from 'react-signature-canvas';
+import useMeasure from 'react-use-measure';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { useColors } from '../../../hooks/useColors';
 
 export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract }) => {
     const [attachments, setAttachments] = useState([])
     const [loading, setLoading] = useState(false)
+    const [rubricModal, setRubricModal] = useState(false)
+    const [rubric, setRubric] = useState('')
 
     const params = useParams()
     const [user, setUser] = useUser()
+    const [ref, {width}] = useMeasure()
+    const colors = useColors()
 
     const signatureRef = useRef(null)
 
@@ -29,7 +36,12 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
     }
 
     const handleSubmit = values => {
-        const rubric = handleSignature()
+        if (!rubric && (user?.adm || !user)) {
+            setOpenSnackbar(true)
+            setError('Rúbrica obrigatória')
+            return
+        }
+
         setLoading(true)
         const formData = new FormData();
         const data = { ...values, id: params.id, user, rubric };
@@ -73,16 +85,24 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
         setAttachments(acceptedFiles)
     }
 
-    const handleSignature = () => {
-        if (!(user?.adm || !user)) return
+    const finishRubric = () => {
+        setRubric(signatureRef.current.getTrimmedCanvas().toDataURL())
+        setRubricModal(false)
+    }
 
+    const cancelRubric = () => {
+        setRubric('')
+        setRubricModal(false)
+    }
+
+    const handleSignature = () => {
         const signature = signatureRef.current
         if (signature.isEmpty()) {
             setOpenSnackbar(true)
             setError('Rúbrica obrigatória')
             return
         }
-        
+
         console.log(signature.toDataURL())
         return signature.toDataURL()
     }
@@ -93,9 +113,9 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
 
     
     return (
-        <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+        <Formik initialValues={initialValues} onSubmit={handleSubmit} >
             {({values, handleChange}) => 
-                <Form>
+                <Form ref={ref}>
                     <h3>Confirme seus dados</h3>
                     <TextField label='Nome Completo' name='name' value={values.name} onChange={handleChange} fullWidth required />
                     <MaskedInput
@@ -136,14 +156,42 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
                             </section>
                         )}
                     </Dropzone>
-                    { (user?.adm || !user) && <ReactSignatureCanvas penColor='black'
-                        ref={signatureRef}
-                        canvasProps={{width: 500, height: 200, className: 'sigCanvas'}} />
+                    { (user?.adm || !user) && 
+                    <>
+                        <h3>Assinatura</h3>
+                        { rubric ?
+                            <img style={{height: '30vw'}} onClick={() => setRubricModal(true)} src={rubric} alt="" />
+                        :   <Button variant='contained' onClick={() => setRubricModal(true)} >Clique aqui para assinar</Button>
+                        }
+                    </>
                     }
-                    <Button variant='contained' type='submit' >{loading ? <CircularProgress size={'1.5rem'} color='secondary' /> : 'Avançar'}</Button>
+                    {
+                        (rubric || (!(user?.adm || !user))) && 
+                        <Button variant='contained' type='submit' >{loading ? <CircularProgress size={'1.5rem'} color='secondary' /> : 'Avançar'}</Button>
+                    }
                     <SafeEnvironment />
+
+                    <Dialog open={rubricModal} onClose={() => setRubricModal(false)} style={{flexDirection: 'column'}} >
+                        <DialogTitle style={{alignSelf: 'center'}} >Desenhar sua assinatura</DialogTitle>
+                        <DialogContent style={{flexDirection: 'column'}} sx={{border: '1px dashed black', margin: '0 3vw', position: 'relative'}} >
+                            <div className="clear-rubric" onClick={() => signatureRef.current.clear()} style={{position: 'absolute', right: 0, top: 0, color: colors.primary}}>
+                                <p>Apagar</p>
+                                <DeleteForeverIcon sx={{color: colors.red}} />
+                            </div>
+                            <div style={{position: 'absolute', width: width*0.75, height: width*0.4, border: '2px dashed '+colors.red, top: ((width*0.8)-(width*0.4))/2, left: ((width*0.8)-(width*0.685))/2, pointerEvents: 'none'}} ></div>
+                            <ReactSignatureCanvas penColor='black'
+                                ref={signatureRef}
+                                canvasProps={{width: width*0.8, height: width*0.8, className: 'sigCanvas'}} 
+                            />
+                        </DialogContent>
+                        <DialogActions sx={{justifyContent: 'center'}} >
+                            <Button onClick={cancelRubric} sx={{flex: 1}} variant='outlined'>Cancelar</Button>
+                            <Button onClick={finishRubric} sx={{flex: 1}} variant='contained'>Assinar</Button>
+                        </DialogActions>
+                    </Dialog>
                 </Form>
             }
         </Formik>
     )
 }
+

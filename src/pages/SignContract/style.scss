@@ -16,6 +16,10 @@ input[type=number]::spin-button {
     overflow-x: hidden;
     padding: 15vw 5vw;
 
+    .rubric-container {
+        border: 1px dashed black;
+    }
+
     .safe-environment-statement {
         justify-content: center;
         margin-top: 4vw;
