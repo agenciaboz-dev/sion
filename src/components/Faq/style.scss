@@ -4,24 +4,23 @@
     flex-direction: column;
     margin-bottom: 5vw;
     
-    p,h2,h3,h4 {
+    h2,h4 {
         color: $text-color;
     }
     
-    p,h3 {
-        opacity: 0.7;
-    }
-
     h2 {
         font-size: 1.25vw;
     }
-
+    
     h3 {
+        text-decoration: underline;
+        color: lighten($text-color, 20);
         font-weight: 600;
         font-size: 1.25vw;
     }
-
+    
     p {
+        color: lighten($text-color, 30);
         font-size: 1vw;
     }
 
@@ -59,7 +58,6 @@
 
 .Question-Component {
     flex-direction: column;
-    gap: 1vw;
     
     .question {
         gap: 1vw;
@@ -89,6 +87,91 @@
     p {
         padding-left: 3vw;
         margin-top: 0.7vw;
-        opacity: 0.7;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+
+    .Faq-Component {
+        margin-top: 4vw;
+    
+        h2 {
+            font-size: 6vw;
+        }
+    
+        h3 {
+            font-size: 5vw;
+        }
+    
+        p {
+            font-size: 4vw;
+        }
+    
+        .faq-container {
+    //         align-self: center;
+    //         background-color: white;
+    //         flex-direction: column;
+    //         width: 100%;
+            padding: 4vw;
+            padding-bottom: 10vw;
+    //         box-shadow: 0px 8px 16px 0px #00000040;
+            gap: 8vw;
+        }
+    
+    //     .faq-header-container {
+    //         flex-direction: column;
+    //         gap: 1vw;
+    //     }
+    
+    //     .questions-container {
+    //         justify-content: space-between;
+    //     }
+    
+    //     .qcolumn {
+    //         flex-direction: column;
+    //         flex: 0.32;
+    //         gap: 2vw;
+    //     }
+    
+    //     .question-answer {
+    //         flex-direction: column;
+    //         gap: 1vw;
+    //     }
+        
+    }
+    
+    .Question-Component {
+    //     flex-direction: column;
+        
+        .question {
+            gap: 2vw;
+    //         align-items: center;
+    //         cursor: pointer;
+    //         transition: 0.2s;
+            
+            svg {
+                flex-shrink: 0;
+                height: 4vw;
+            }
+    
+    //         h3 {
+    //             font-weight: normal;
+    //         }
+     }
+    
+    //     .question:hover {
+    //         transform: scale(1.005);
+    //     }
+    
+        .Collapsible {
+            gap: 1vw;
+        }
+    
+    //     p {
+    //         padding-left: 3vw;
+    //         margin-top: 0.7vw;
+    //         opacity: 0.7;
+    //     }
+        
     }
 }
