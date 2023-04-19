@@ -80,3 +80,49 @@
         transform: rotate(-45deg) scale(1.42);
     }
 }
+
+@media only screen and (max-width: 450px) {
+    .WhoGets-Component {
+        height: 220vw;
+        
+        h1 {
+            font-size: 6vw;
+            text-align: center;
+            margin-top: 4vw;
+        }
+    
+        .main-container {
+            .pictures {
+                .customers-top {
+                    flex-direction: column;
+                    gap: 19vw;
+                    top: 5vw;
+                    left: -31vw;
+                }
+                
+                .customers-bottom {
+                    flex-direction: column;
+                    gap: 19vw;
+                    top: 32vw;
+                    right: -37vw;
+                }
+            }
+        }
+    
+        .white-background {
+            height: 220vw;
+        }
+    
+        .blue-background {
+            top: 160vw;
+            width: 50vw;
+            height: 60vw;
+        }
+    }
+    
+    .CustomerPic-Component {
+        width: 35vw;
+        height: 35vw;
+        box-shadow: 0 0 20px 0 #00000040;
+    }
+}
