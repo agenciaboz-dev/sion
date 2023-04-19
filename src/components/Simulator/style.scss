@@ -111,11 +111,6 @@
                 background-color: white;
             }
         }
-
-    .simulator-calculate-button {
-        font-weight: 500;
-        font-size: 1.2vw;
-    }
 }
 
 .Benefits-Component {
@@ -178,7 +173,7 @@
     
     .Simulator-Component {
         flex-direction: column;
-        height: 150vw;
+        height: 250vw;
         margin-top: 6vw;
 
         label {
@@ -187,7 +182,7 @@
 
         .white-container {
             width: 100%;
-            flex: 0.4;
+            flex: 0.3;
             align-items: center;
             padding: 4vw;
             gap: 4vw;
@@ -228,10 +223,62 @@
                     }
                 }
             }
-        }       
+        }
+
         .blue-container {
+            flex: 0.7;
+            padding: 4vw;
+            justify-content: space-between;
             width: 100%;
-            flex: 0.6;
+
+            h1 {
+                font-size: 6vw;
+            }
+
+            .benefits-container {
+                flex-direction: column;
+                margin: 0;
+                margin-bottom: 2vw;
+                gap: 10vw;
+                // justify-content: space-between;
+                // margin-bottom: 2.5vw;
+            }
+
+            .simulator-signup-button {
+                font-size: 4.5vw;
+                color: $primary-color;
+                background-color: white;
+            }
         }       
+    }
+
+    .Benefits-Component {
+        // flex: 0.3;
+        // flex-direction: column;
+        // align-items: center;
+        // color: white;
+        // text-align: center;
+        gap: 1vw;
+        width: 100%;
+    
+        .benefits-header {
+            // align-items: center;
+            // flex-direction: column;
+            gap: 0.5vw;
+        }
+        
+        svg {
+            height: 15vw;
+            width: 15vw;
+        }
+    
+        h2 {
+            font-size: 5vw;
+        }
+        
+        p {
+            font-size: 3.5vw;
+            line-height: 1.25;
+        }
     }
 }
