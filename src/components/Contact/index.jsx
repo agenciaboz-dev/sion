@@ -5,13 +5,15 @@ import {ReactComponent as FolderIcon} from '../../images/folder.svg'
 import {ReactComponent as MapIcon} from '../../images/map.svg'
 import {ReactComponent as WhatsappIcon} from '../../images/whatsapp.svg'
 import './style.scss';
+import { useMediaQuery } from 'react-responsive';
 
 export const Contact = () => {
 
     const [showForm, setShowForm] = useState(false)
+    const isMobile = useMediaQuery({maxWidth: 600})
 
     const wrapper_style = {
-        height: showForm ? '15vw' : null,
+        height: showForm ? (isMobile ? '125vw' : '15vw') : null,
         margin: showForm ? '7vw 0' : 0
     }
 
