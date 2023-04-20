@@ -7,8 +7,14 @@ import COLORS from '../../sass/_colors.scss'
 import { HeaderButton } from './HeaderButton';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
+import { Menu, MenuItem } from '@mui/material';
 
 export const Header = ({ alternative, setAlternative }) => {
+
+    const [anchorEl, setAnchorEl] = useState(null);
+    const handleClose = () => {
+        setAnchorEl(null);
+      };
 
     const menus = useHeaderMenus()
     const navigate = useNavigate()
@@ -55,6 +61,23 @@ export const Header = ({ alternative, setAlternative }) => {
     
     return (
         <div className='Header-Component'>
+            {isMobile ? 
+                <div className='mobile-header'>
+                    <button className='menu-button'>
+                        {/* <img src="../../images/menu_button.svg" alt="" /> */}
+                    </button>
+                    <Menu
+                        id="basic-menu"
+                        anchorEl={anchorEl}
+                        open={!!anchorEl}
+                        onClose={handleClose}
+                    >
+                        <MenuItem onClick={handleClose}>Profile</MenuItem>
+                        <MenuItem onClick={handleClose}>My account</MenuItem>
+                        <MenuItem onClick={handleClose}>Logout</MenuItem>
+                    </Menu>
+                </div>
+            : 
             <div className="menus-container" style={alternative ? alternative_style : null} >
                 {/* {alternative ? <LogoBranco /> : null} */}
                 <LogoBranco />
@@ -67,7 +90,7 @@ export const Header = ({ alternative, setAlternative }) => {
                     )
                 })}
                 <button className="login-button">Sou cliente</button>
-            </div>
+            </div>}
             {/* <LogoBranco style={{visibility: alternative && 'hidden', margin: location.pathname != '/' && '6vw 0 4vw'}} /> */}
         </div>
     )
