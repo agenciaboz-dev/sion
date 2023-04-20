@@ -8,10 +8,14 @@ import { HeaderButton } from './HeaderButton';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import { Menu, MenuItem } from '@mui/material';
+import { ReactComponent as MenuButton } from '../../images/menu_button.svg'
 
 export const Header = ({ alternative, setAlternative }) => {
 
     const [anchorEl, setAnchorEl] = useState(null);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+      };
     const handleClose = () => {
         setAnchorEl(null);
       };
@@ -63,9 +67,7 @@ export const Header = ({ alternative, setAlternative }) => {
         <div className='Header-Component'>
             {isMobile ? 
                 <div className='mobile-header'>
-                    <button className='menu-button'>
-                        {/* <img src="../../images/menu_button.svg" alt="" /> */}
-                    </button>
+                    <MenuButton className='menu-button' onClick={handleClick} />
                     <Menu
                         id="basic-menu"
                         anchorEl={anchorEl}

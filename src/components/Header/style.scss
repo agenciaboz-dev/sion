@@ -105,10 +105,11 @@
     .Header-Component {
         .mobile-header {
             .menu-button {
-                img {
-                    svg {
-                    }
-                }
+                position: absolute;
+                height: 12vw;
+                width: 12vw;
+                top: 2vw;
+                left: 4vw;
             }
         }
     }
