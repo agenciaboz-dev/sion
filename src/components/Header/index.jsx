@@ -6,12 +6,14 @@ import './style.scss';
 import COLORS from '../../sass/_colors.scss'
 import { HeaderButton } from './HeaderButton';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 
 export const Header = ({ alternative, setAlternative }) => {
 
     const menus = useHeaderMenus()
     const navigate = useNavigate()
     const location = useLocation()
+    const isMobile = useMediaQuery({maxWidth: 450})
 
     const alternative_style = {
         backgroundColor: COLORS.primary,
