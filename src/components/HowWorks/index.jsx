@@ -11,7 +11,7 @@ import {ReactComponent as DiscountsIcon} from '../../images/bb_discount_icon.svg
 export const HowWorks = ({ main_container_height, advert_height }) => {
 
     const [ref, {height}] = useMeasure()
-    const isMobile = useMediaQuery({maxWidth: 600})
+    const isMobile = useMediaQuery({maxWidth: 450})
 
     return (
         <div className='HowWorks-Component' id='how' ref={ref} >

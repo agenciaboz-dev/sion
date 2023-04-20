@@ -10,7 +10,7 @@ import { useMediaQuery } from 'react-responsive';
 export const Contact = () => {
 
     const [showForm, setShowForm] = useState(false)
-    const isMobile = useMediaQuery({maxWidth: 600})
+    const isMobile = useMediaQuery({maxWidth: 450})
 
     const wrapper_style = {
         height: showForm ? (isMobile ? '125vw' : '15vw') : null,

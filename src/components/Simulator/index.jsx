@@ -16,7 +16,7 @@ import { useMediaQuery } from 'react-responsive';
 
 export const Simulator = () => {
 
-    const isMobile = useMediaQuery({maxWidth: 600})
+    const isMobile = useMediaQuery({maxWidth: 450})
     
     const Econ = () => {
         const [economy, setEconomy] = useState(0)
