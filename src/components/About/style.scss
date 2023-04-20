@@ -46,38 +46,16 @@
         font-size: 4vw;
         gap: 8vw;
     
-    //     p {
-    //         color: $text-color;
-    //         font-weight: 300;
-    //     }
-    
-    //     .about-us {
-    //         font-weight: 300;
-    //         letter-spacing: 0.3vw;
-    //     }
-    
-    //     .about-item {
-    //         font-weight: 600;
-    //     }
-    
         .img-container {
-    //         flex-direction: column;
-    //         flex: 0.4;
-    //         font-weight: bold;
     
             img {
                 box-shadow: 0px 3px 5px 0px #00000040;
                 height: 100%;
-    //             object-fit: cover;
             }
         }
     
         .main-container {
             gap: 6vw;
-    //         flex-direction: column;
-    //         justify-content: space-between;
-    //         flex: 0.5;
-    //         color: $text-color;
         }
     }
 }

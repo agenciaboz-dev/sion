@@ -90,3 +90,81 @@
         }
     }
 }
+
+@media only screen and (max-width: 450px) {
+    .Footer-Component {
+        padding-top: 6vw;
+        font-size: 4vw;
+    
+    .top-content {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    
+            .info {
+                margin-bottom: 12vw;
+                
+                svg {
+                    width: 50vw;
+                    margin-left: 12vw;
+                }
+    
+                .address {
+                    margin-bottom: 4vw;
+                }
+            }
+    
+            .links {
+                margin-bottom: 12vw;
+                width: 80%;
+                padding: 0;
+    
+                section:nth-child(even){
+                    a{
+                        text-align: end;
+                    }
+                }
+            }
+    
+            .news {
+                align-items: flex-start;
+                width: 100%;
+    
+                .news-title {
+                    margin-bottom: 1vw;
+                }
+    
+                .news-a {
+                    align-self: flex-end;
+                    padding: 1vw 6vw;
+                }
+    
+                p {
+                    text-align: start;
+                }
+            }
+        }
+    
+        .bottom-content {
+            align-items: center;
+            flex-direction: column-reverse;
+            margin-top: 6vw;
+            border-top: none;
+            gap: 6vw;
+    
+            .icons {
+                gap: 8vw;
+    
+                svg {
+                    width: 10vw;
+                    height: 10vw;
+                }
+            }
+
+            p {
+                font-size: 3.5vw;
+                text-align: center;
+            }
+        }
+    }
+}
