@@ -9,3 +9,12 @@
     justify-content: center;
     align-items: center;
 }
+
+@media only screen and (max-width: 450px) {
+    .WhatsappButton-Component {
+        width: 15vw;
+        height: 15vw;
+        left: 84vw;
+        bottom: 17vw;
+    }
+}
