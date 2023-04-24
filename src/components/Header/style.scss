@@ -138,4 +138,41 @@
             }
         }
     }
+
+    // CHAT BOT
+
+    .push-widget-container {
+        margin: -2vw;
+
+        .push-launcher {
+            min-height: 15vw;
+            min-width: 15vw;
+            width: 15vw;
+            height: 15vw;
+
+            img {
+                width: 10vw;
+            }
+        }
+
+    //     .push-conversation-container {
+        
+    //         .push-close-button {
+    //             padding: 0;
+    //         }
+            
+    //         .push-send {
+    //             padding-right: 0.75vw;
+    //         }
+        
+    //         div, section {
+    //             display: block;
+    //         }
+
+    //         .push-title-and-subtitle, .push-header-buttons {
+    //             padding-top: 1vw;
+    //         }
+        
+    //     }
+    }
 }
