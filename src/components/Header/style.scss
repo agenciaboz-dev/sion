@@ -110,6 +110,7 @@
                 width: 15vw;
                 top: 2vw;
                 left: 4vw;
+                z-index: 10;
             }
         }
     }
@@ -129,6 +130,10 @@
                         color: white;
                         text-decoration: none;
                     }
+                }
+
+                .mobile-client-button {
+                    font-family: Poppins;
                 }
             }
         }

@@ -91,7 +91,7 @@ export const Header = ({ alternative, setAlternative }) => {
                         <MenuItem onClick={() => handleClose() }>
                             <AnchorLink href={'#about'} className='menu-title' >Quem somos</AnchorLink>
                         </MenuItem>
-                        <MenuItem onClick={() => navigate('/')}>Sou cliente</MenuItem>
+                        <MenuItem className='mobile-client-button' onClick={() => navigate('/')}>Sou cliente</MenuItem>
                     </Menu>
                 </div>
             : 
