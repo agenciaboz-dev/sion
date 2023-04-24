@@ -106,8 +106,8 @@
         .mobile-header {
             .menu-button {
                 position: absolute;
-                height: 12vw;
-                width: 12vw;
+                height: 15vw;
+                width: 15vw;
                 top: 2vw;
                 left: 4vw;
             }
@@ -123,6 +123,13 @@
                 border: 2px solid white;
                 padding-left: 6vw;
                 width: 90vw;
+
+                li{
+                    a{
+                        color: white;
+                        text-decoration: none;
+                    }
+                }
             }
         }
     }

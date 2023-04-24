@@ -75,11 +75,22 @@ export const Header = ({ alternative, setAlternative }) => {
                         open={!!anchorEl}
                         onClose={handleClose}
                     >
-                        <MenuItem onClick={() => navigate('/')}>Home</MenuItem>
-                        <MenuItem onClick={() => navigate('#how')}>Como funciona</MenuItem>
-                        <MenuItem onClick={() => navigate('#simulator')}>Simulador</MenuItem>
-                        <MenuItem onClick={() => navigate('#faq')}>FAQ</MenuItem>
-                        <MenuItem onClick={() => navigate('#about')}>Quem somos</MenuItem>
+                        
+                        <MenuItem onClick={() => handleClose() }>
+                            <AnchorLink href={'#home'} className='menu-title' >Home</AnchorLink>
+                        </MenuItem>
+                        <MenuItem onClick={() => handleClose() }>
+                            <AnchorLink href={'#how'} className='menu-title' >Como funciona</AnchorLink>
+                        </MenuItem>
+                        <MenuItem onClick={() => handleClose() }>
+                            <AnchorLink href={'#simulator'} className='menu-title' >Simulador</AnchorLink>
+                        </MenuItem>
+                        <MenuItem onClick={() => handleClose() }>
+                            <AnchorLink href={'#faq'} className='menu-title' >FAQ</AnchorLink>
+                        </MenuItem>
+                        <MenuItem onClick={() => handleClose() }>
+                            <AnchorLink href={'#about'} className='menu-title' >Quem somos</AnchorLink>
+                        </MenuItem>
                         <MenuItem onClick={() => navigate('/')}>Sou cliente</MenuItem>
                     </Menu>
                 </div>
