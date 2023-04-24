@@ -113,4 +113,17 @@
             }
         }
     }
+
+    #basic-menu {
+        div {
+            ul {
+                color: white;
+                background-color: $primary-color;
+                border-radius: 1.5vw;
+                border: 2px solid white;
+                padding-left: 6vw;
+                width: 90vw;
+            }
+        }
+    }
 }

@@ -16,8 +16,9 @@ export const Header = ({ alternative, setAlternative }) => {
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
       };
-    const handleClose = () => {
+    const handleClose = (test) => {
         setAnchorEl(null);
+        console.log(test)
       };
 
     const menus = useHeaderMenus()
@@ -74,9 +75,12 @@ export const Header = ({ alternative, setAlternative }) => {
                         open={!!anchorEl}
                         onClose={handleClose}
                     >
-                        <MenuItem onClick={handleClose}>Profile</MenuItem>
-                        <MenuItem onClick={handleClose}>My account</MenuItem>
-                        <MenuItem onClick={handleClose}>Logout</MenuItem>
+                        <MenuItem onClick={() => navigate('/')}>Home</MenuItem>
+                        <MenuItem onClick={() => navigate('#how')}>Como funciona</MenuItem>
+                        <MenuItem onClick={() => navigate('#simulator')}>Simulador</MenuItem>
+                        <MenuItem onClick={() => navigate('#faq')}>FAQ</MenuItem>
+                        <MenuItem onClick={() => navigate('#about')}>Quem somos</MenuItem>
+                        <MenuItem onClick={() => navigate('/')}>Sou cliente</MenuItem>
                     </Menu>
                 </div>
             : 
