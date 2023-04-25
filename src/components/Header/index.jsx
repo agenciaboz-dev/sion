@@ -24,7 +24,7 @@ export const Header = ({ alternative, setAlternative }) => {
     const menus = useHeaderMenus()
     const navigate = useNavigate()
     const location = useLocation()
-    const isMobile = useMediaQuery({maxWidth: 450})
+    const isMobile = useMediaQuery({maxWidth: 600})
 
     const alternative_style = {
         backgroundColor: COLORS.primary,
