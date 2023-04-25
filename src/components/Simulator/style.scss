@@ -193,7 +193,7 @@
             }
     
             input {
-                padding: 1vw;
+                padding: 2vw 1vw;
                 font-size: 5vw;
                 height: 8vw;
                 width: 70vw;
@@ -246,6 +246,7 @@
                 font-size: 4.5vw;
                 color: $primary-color;
                 background-color: white;
+                padding: 2vw 0;
             }
         }       
     }
