@@ -79,3 +79,85 @@
         transform: skew(0, -10deg);
     }
 }
+
+@media only screen and (max-width: 600px) {
+    // .NotFound-Page {
+
+    //     .main-container {
+    //         flex-direction: column;
+    //         align-items: center;
+    //         height: 72vw;
+    //         margin-top: 2vw;
+    //         margin-bottom: -2vw;
+    
+    //         .logo {
+    //             margin: 2vw 0 0;
+    //             width: 30vw;
+    //             height: 20vw;
+    //         }
+    //     }
+        
+    //     .error404-container {
+    //         position: relative;
+    //         background-color: white;
+    //         flex-direction: column;
+    //         justify-content: center;
+    //         align-items: center;
+    //         padding: 0 2vw 3vw;
+    //         width: 80vw;
+    //         margin-bottom: 23vw;
+    
+    //         .not-found-icon {
+    //             height: auto;
+    //             width: 30vw;
+    //             margin: 3vw 0 1vw;
+    //         }
+    
+    //         h1 {
+    //             text-transform: uppercase;
+    //             margin-top: 1vw;
+    //             font-size: 2.2vw;
+    //         }
+    
+    //         p {
+    //             text-align: center;
+    //             font-size: 1.5vw;
+    //         }
+    
+    //         .buttons-container {
+    //             gap: 1vw;
+    
+    //             button {
+    //                 margin-top: 2vw;
+    //                 padding: 0.5vw 0;
+    //                 width: 15vw;
+    //             }
+    //         }
+    //     }
+    
+    //     .white-background {
+    //         position: absolute;
+    //         background-color: white;
+    //         left: 0;
+    //         top: 65vw;
+    //         width: 100vw;
+    //         height: 25vw;
+    //         z-index: -1;
+    //         box-shadow: 0 1vw 2vw 0 #00000040;
+    
+    //         transform: skew(0, 12deg);
+    //     }
+    
+    //     .blue-background {
+    //         position: absolute;
+    //         background-color: $primary-color;
+    //         left: 0;
+    //         top: 65vw;
+    //         width: 100vw;
+    //         height: 25vw;
+    //         z-index: -1;
+    
+    //         transform: skew(0, -10deg);
+    //     }
+    // }
+}
