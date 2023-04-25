@@ -8,6 +8,7 @@
         height: 72vw;
         margin-top: 2vw;
         margin-bottom: -2vw;
+        overflow-x: hidden;
 
         .logo {
             margin: 2vw 0 0;
@@ -24,7 +25,7 @@
         align-items: center;
         padding: 0 2vw 3vw;
         width: 80vw;
-        margin-bottom: 23vw;
+        margin-bottom: 25vw;
 
         .not-found-icon {
             height: auto;
@@ -58,7 +59,7 @@
         position: absolute;
         background-color: white;
         left: 0;
-        top: 65vw;
+        top: 62vw;
         width: 100vw;
         height: 25vw;
         z-index: -1;
@@ -71,12 +72,12 @@
         position: absolute;
         background-color: $primary-color;
         left: 0;
-        top: 65vw;
+        top: 62vw;
         width: 100vw;
         height: 25vw;
         z-index: -1;
 
-        transform: skew(0, -10deg);
+        transform: skew(0, -12deg);
     }
 }
 
