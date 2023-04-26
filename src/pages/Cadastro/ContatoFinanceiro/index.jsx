@@ -37,7 +37,7 @@ export const ContatoFinanceiro = ({  }) => {
 			.finally(() => {
 				setLoading(false)
 				client.setValue(null)
-				navigate('/')
+				navigate('/cadastro/done')
 			})
 	}
 
