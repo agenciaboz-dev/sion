@@ -55,15 +55,16 @@ export const Login = () => {
 
     useEffect(() => {
         if (params.id) {
-            if (user?.username) navigate('/sign/'+params.id)
-        } else {
-            if (user?.username) navigate('/cadastro')
-        }
+			if (user?.username) navigate('/sign/' + params.id)
 
-        api.post('/contract', { id: params.id })
-        .then(response => setClientName('Assinar como '+response.data.name))
-        .catch(error => console.error(error))
-        .finally(() => setLoading(false))
+			api.post('/contract', { id: params.id })
+				.then((response) => setClientName('Assinar como ' + response.data.name))
+				.catch((error) => console.error(error))
+				.finally(() => setLoading(false))
+		} else {
+			if (user?.username) navigate('/cadastro')
+		}
+
         
     }, [])
 
