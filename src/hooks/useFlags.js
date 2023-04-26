@@ -5,27 +5,31 @@ import { ReactComponent as Red2Icon } from '../images/simulator/red2.svg'
 
 export const useFlags = () => {
     const flags = [
-        {
-            name: 'Verde',
-            factor: 0.046,
-            icon: <GreenIcon />
-        },
-        {
-            name: 'Amarela',
-            factor: 0.06,
-            icon: <YellowIcon />
-        },
-        {
-            name: 'Vermelha 1',
-            factor: 0.076,
-            icon: <RedIcon />
-        },
-        {
-            name: 'Vermelha 2',
-            factor: 0.1,
-            icon: <Red2Icon />
-        },
-    ]
+		{
+			id: 1,
+			name: 'Verde',
+			factor: 0.046,
+			icon: <GreenIcon />,
+		},
+		{
+			id: 2,
+			name: 'Amarela',
+			factor: 0.06,
+			icon: <YellowIcon />,
+		},
+		{
+			id: 3,
+			name: 'Vermelha 1',
+			factor: 0.076,
+			icon: <RedIcon />,
+		},
+		{
+			id: 4,
+			name: 'Vermelha 2',
+			factor: 0.1,
+			icon: <Red2Icon />,
+		},
+	]
 
     return flags
 }

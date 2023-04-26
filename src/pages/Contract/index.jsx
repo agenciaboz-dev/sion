@@ -61,14 +61,18 @@ export const Contract = ({  }) => {
     }, [])
 
     return (
-        <div className='Contract-Page' ref={ref} >
-            <Document file={url} 
-                onLoadSuccess={onLoadSuccess} onLoadError={(error) => console.error(error)}
-                loading={<MuiLoading color={'primary'} size={'15vw'} noData={''} />}
-                >
-                {pages.map(page => <Page pageNumber={page} renderForms={false} width={width} />)}
-            </Document>
-            {!loading && <NavPdf />}
-        </div>
-    )
+		<div className="Contract-Page" ref={ref}>
+			<Document
+				file={url}
+				onLoadSuccess={onLoadSuccess}
+				onLoadError={(error) => console.error(error)}
+				loading={<MuiLoading color={'primary'} size={'15vw'} noData={''} />}
+			>
+				{pages.map((page, index) => (
+					<Page key={index} pageNumber={page} renderForms={false} width={width} />
+				))}
+			</Document>
+			{!loading && <NavPdf />}
+		</div>
+	)
 }
