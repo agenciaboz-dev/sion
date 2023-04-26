@@ -51,7 +51,7 @@ export const Contact = () => {
                     <h1 className='contact-us-h1'>Entre em Contato</h1>
                     <div className="info-item">
                         <FolderIcon className='info-icon'/>
-                        <input type="text" className='readonly-contact-info' readOnly value={'comercial@sionenergia.com.br'} />
+                        <input type="text" className='readonly-contact-info' readOnly value={'cooperativa@sionenergia.com.br'} />
                     </div>
                     <div className="info-item">
                         <MapIcon className='info-icon'/>
@@ -59,7 +59,7 @@ export const Contact = () => {
                     </div>
                     <div className="info-item">
                         <WhatsappIcon className='info-icon'/>
-                        <input type="text" className='readonly-contact-info' readOnly value={'(41) 3533-5910'} />
+                        <input type="text" className='readonly-contact-info' readOnly value={'(41) 3028-3782'} />
                     </div>
                 </div>
             </div>

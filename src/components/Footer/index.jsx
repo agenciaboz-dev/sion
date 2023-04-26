@@ -41,7 +41,7 @@ export const Footer = () => {
                     </div>
                     <div className="contact">
                         <p>(41) 3028-3782</p>
-                        <p>comercial@sionenergia.com.br</p>
+                        <p>cooperativa@sionenergia.com.br</p>
                     </div>
                 </div>
                 <div className="links">
