@@ -1,20 +1,22 @@
-import { Form, Formik } from 'formik';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { api } from '../../../api';
-import { InputField } from '../../../components/InputField';
-import { MuiLoading } from '../../../components/MuiLoading';
-import { useClient } from '../../../hooks/useClient';
-import { NavButtons } from '../NavButtons';
-import './style.scss';
+import { Alert, Snackbar } from '@mui/material'
+import { Form, Formik } from 'formik'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { api } from '../../../api'
+import { InputField } from '../../../components/InputField'
+import { MuiLoading } from '../../../components/MuiLoading'
+import { useClient } from '../../../hooks/useClient'
+import { NavButtons } from '../NavButtons'
+import './style.scss'
 
-export const ContatoFinanceiro = ({  }) => {
-    const navigate = useNavigate()
-    const client = useClient()
-    
-    const [loading, setLoading] = useState(false)
+export const ContatoFinanceiro = ({}) => {
+	const navigate = useNavigate()
+	const client = useClient()
 
-    const initialValues = {
+	const [loading, setLoading] = useState(false)
+	const [snackbar, setSnackbar] = useState(false)
+
+	const initialValues = {
 		name: '',
 		phone: '',
 		email: '',
@@ -40,6 +42,10 @@ export const ContatoFinanceiro = ({  }) => {
 				navigate('/cadastro/done')
 			})
 	}
+
+	useEffect(() => {
+		setTimeout(() => setSnackbar(true), 1500)
+	}, [])
 
 	return (
 		<div className="ContatoFinanceiro-Component">
@@ -88,6 +94,16 @@ export const ContatoFinanceiro = ({  }) => {
 					</Form>
 				)}
 			</Formik>
+			<Snackbar
+				open={snackbar}
+				autoHideDuration={3000}
+				onClose={() => setSnackbar(false)}
+				anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+			>
+				<Alert onClose={() => setSnackbar(false)} severity={'success'} sx={{ width: '100%' }}>
+					Termo de adesão enviado para assinatura
+				</Alert>
+			</Snackbar>
 		</div>
 	)
 }
