@@ -27,7 +27,7 @@ export const Advert = ({ innerRef }) => {
             </div>
             <div className="right">
                 <div className="blue-box">
-                    <p className='be-part'>Faça parte da Sion Cooperativa</p>
+                    <p className='be-part'>Faça parte da Sion</p>
                     <div className="blue-box-ad">
                         <Checkmark />
                         <p className='blue-box-ad-p'>Economia na sua energia</p>
