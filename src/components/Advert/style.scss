@@ -17,7 +17,7 @@
     .left {
         flex: 0.4;
         flex-direction: column;
-        gap: 1vw;
+        gap: 1.75vw;
         
         h1 {
             font-size: 8vw;
@@ -53,7 +53,8 @@
             gap: 1vw;
             
             .be-part {
-                font-size: 1.5vw;
+                font-size: 2vw;
+                font-weight: 300;
                 margin-bottom: 1vw;
             }
 

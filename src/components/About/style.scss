@@ -6,13 +6,17 @@
     font-size: 1vw;
     margin-bottom: 4vw;
 
+    h2 {
+        font-size: 2vw;
+        font-weight: 300;
+    }
+
     p {
         color: $text-color;
         font-weight: 300;
     }
 
     .about-us {
-        font-weight: 300;
         // letter-spacing: 0.3vw;
     }
 
