@@ -53,12 +53,11 @@
                 border: 1px solid lighten($graybutton-color, 30);
                 border-radius: 4px;
                 align-items: center;
-                gap: 1vw;
-                padding: 1vw 0;
+                padding: 2.5vw 0;
 
                 h3 {
                     font-size: 1.5vw;
-                    color: $text-color;
+                    color: lighten($text-color, 20);
                     font-weight: 300;
                 }
                 
@@ -75,6 +74,7 @@
 
                 hr {
                     width: 50%;
+                    margin: 1vw 0;
                 }
 
                 div {
@@ -97,18 +97,22 @@
                 text-align: center;
                 color: white;
                 font-size: 1.75vw;
+                font-weight: 300;
             }
 
             .benefits-container {
                 margin: auto;
-                margin-bottom: 2.5vw;
+                margin-bottom: 3vw;
                 justify-content: space-between;
             }
 
             .simulator-signup-button {
+                align-self: center;
                 font-size: 1.2vw;
                 color: $primary-color;
                 background-color: white;
+                padding: 0.5vw 2vw;
+                width: fit-content;
             }
         }
 }
@@ -119,7 +123,7 @@
     align-items: center;
     color: white;
     text-align: center;
-    gap: 2.5vw;
+    gap: 1vw;
 
     .benefits-header {
         align-items: center;
@@ -133,7 +137,8 @@
     }
 
     h2 {
-        font-size: 1vw;
+        font-size: 1.2vw;
+        font-weight: 300;
     }
     
     p {
