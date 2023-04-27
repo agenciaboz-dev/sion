@@ -96,7 +96,7 @@ export const Simulator = () => {
                         <TextField
                             inputRef={ref}
                             {...props}
-                            label='Consumo mensal médio'
+                            label='Digite seu consumo mensal'
                             inputProps={{inputMode: 'numeric'}}
                         />
                     )}
