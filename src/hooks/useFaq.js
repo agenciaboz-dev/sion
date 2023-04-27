@@ -30,6 +30,26 @@ export const useFaq = () => {
             text: 'Se a Cooperativa não gerar os créditos de energia em algum mês, o que acontece?',
             answer: 'Você pagará sua conta de luz para a distribuidora, com os mesmos valores e da mesma forma que fazia antes de ser um cooperado da Sion Energia.'
         },
+        {
+            number: 7,
+            text: 'Como é feita a divisão e distribuição da energia entre os cooperados?',
+            answer: 'A Sion Cooperativa realiza um processo de análise e otimização (com base no histórico de consumo) para definir qual percentual da energia gerada vai para cada cooperado. Acompanhamos os resultados e, caso seja necessário, alteramos os percentuais. A gestão dos créditos é feita para entregar a maior economia para cada um dos nossos cooperados.'
+        },
+        {
+            number: 8,
+            text: 'Haverá uma rede elétrica exclusiva da usina até o meu estabelecimento?',
+            answer: 'Não. A responsabilidade de fornecimento de energia continua com a distribuidora local (Copel, Energisa, Enel, entre outras).'
+        },
+        {
+            number: 9,
+            text: 'Precisarei fazer alguma alteração física, obra ou reforma no meu estabelecimento para começar a receber a energia da usina?',
+            answer: 'Não! A energia continua sendo entregue por sua distribuidora local. Nós injetamos a energia na rede da distribuidora e você recebe no seu negócio.'
+        },
+        {
+            number: 10,
+            text: 'Meu desconto é o mesmo todos os meses?',
+            answer: 'O desconto na tarifa é fixo. O que pode variar é o percentual da sua conta atendido.'
+        },
     ]
 
     return questions
