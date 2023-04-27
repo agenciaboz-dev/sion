@@ -3,7 +3,7 @@ import { useMediaQuery } from 'react-responsive';
 import useMeasure from 'react-use-measure';
 import { HowItem } from './HowItem';
 import './style.scss';
-import {ReactComponent as BlackBackgroundSunIcon} from '../../images/bb_sun_icon.svg';
+import {ReactComponent as BlueBackgroundSunIcon} from '../../images/bb_sun_icon.svg';
 import {ReactComponent as CreditsConversionIcon} from '../../images/bb_credits_conversion_icon.svg';
 import {ReactComponent as CreditsDistributionIcon} from '../../images/bb_credits_distribution_icon.svg';
 import {ReactComponent as DiscountsIcon} from '../../images/bb_discount_icon.svg';
@@ -23,7 +23,7 @@ export const HowWorks = ({ main_container_height, advert_height }) => {
             <div className="how-works-containers">
                 <div className="details-container">
                     <h1>Uma maneira simples de você economizar com a energia do seu negócio</h1>
-                    <HowItem icon={() => <BlackBackgroundSunIcon className="how-item-icon" />} title='Energia Renovável' text='A usina produz e injeta energia renovável com custo inferior à distribuidora de energia.' />
+                    <HowItem icon={() => <BlueBackgroundSunIcon className="how-item-icon" />} title='Energia Renovável' text='A usina produz e injeta energia renovável com custo inferior à distribuidora de energia.' />
                     <hr />
                     <HowItem icon={() => <CreditsConversionIcon className="how-item-icon" />} title='Convertida em Créditos' text='A distribuidora local converte a energia injetada em créditos.' />
                     <hr />
