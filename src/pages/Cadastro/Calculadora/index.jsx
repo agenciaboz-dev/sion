@@ -79,7 +79,7 @@ export const Calculadora = ({}) => {
 
 	useEffect(() => {
 		if (spent) {
-			setConsumption(Number(spent.replace(/\D/, '')))
+			setConsumption(Number(spent.replace(/\D/g, "")))
 		} else {
 			setConsumption(0)
 		}
