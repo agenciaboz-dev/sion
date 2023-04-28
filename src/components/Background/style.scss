@@ -9,6 +9,7 @@
         object-fit: fill;
         // height: fit-content;
         margin-top: -3vw;
+        transform: scaleX(-1);
         // filter: saturate(3) contrast(1) brightness(0.6);
         filter: brightness(0.7);
     }
