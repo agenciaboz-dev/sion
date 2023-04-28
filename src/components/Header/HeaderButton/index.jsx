@@ -24,6 +24,7 @@ export const HeaderButton = ({ menu, alternative }) => {
         className={`HeaderButton-Component ${headerHovered && alternative ? "alternative-header" : "header-before"}`}
         onMouseEnter={() => setHeaderHovered(true)}
         onMouseLeave={() => setHeaderHovered(false)}
+        style={{ "--background-color": alternative ? COLORS.headerBackground : "white" }}
       >
         <AnchorLink
           ref={ref}
