@@ -104,18 +104,6 @@ export const Simulator = () => {
   const navigate = useNavigate()
   const numberMask = useNumberMask()
 
-  const kwhMask = createNumberMask({
-    prefix: "",
-    suffix: " kWh",
-    includeThousandsSeparator: true,
-    thousandsSeparatorSymbol: ".",
-    allowDecimal: true,
-    decimalSymbol: ",",
-    decimalLimit: 2,
-    allowNegative: false,
-    allowLeadingZeroes: false,
-  })
-
   const goToSignUp = () => {
     window.scrollTo(0, 200)
     navigate("/cadastro")
@@ -123,7 +111,7 @@ export const Simulator = () => {
 
   useEffect(() => {
     if (spent) {
-      setConsumption(parseInt(spent.replace(/\D/, "")))
+      setConsumption(Number(spent.replace(/\D/, "")))
     } else {
       setConsumption(0)
     }
@@ -134,16 +122,16 @@ export const Simulator = () => {
       <div className="white-container">
         <h1>Simule sua Economia</h1>
         <MaskedInput
-          mask={kwhMask}
           value={spent}
+          mask={numberMask}
           onChange={(event) => setSpent(event.target.value)}
           render={(ref, props) => (
             <TextField
               inputRef={ref}
               {...props}
               label="Digite seu consumo mensal"
+              InputProps={{ endAdornment: <p className="kwh">kWh</p> }}
               inputProps={{ inputMode: "numeric" }}
-              mask={numberMask}
             />
           )}
         />
@@ -155,9 +143,8 @@ export const Simulator = () => {
         </div> */}
 
         <div className="econ-wrapper">
-            <Econ />
+          <Econ />
         </div>
-
       </div>
       <div className="blue-container">
         <h1>Seus Benefícios</h1>
