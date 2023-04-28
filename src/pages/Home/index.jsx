@@ -56,25 +56,25 @@ const Home = () => {
     const [loading, setLoading] = useState(false)
 
     return (
-        <section className="home-page" id='home'>
-            <Background />
-            <ScrollTop />
-            <LoadingScreen loading={loading}/>
-            <Header alternative={stickyHeader} setAlternative={setstickyHeader} />
-            <div className="main-container" ref={main_container_ref}>
-                <Advert innerRef={advert_ref} />
-                <HowWorks main_container_height={main_container_dimensions.height} advert_height={advert_dimensions.height} />
-                <Simulator />
-                <WhoGets />
-                <Faq />
-                {/* <button onClick={() => navigate('/cadastro')}>Quero economizar!</button> */}
-                <Contact />
-                <About />
-            </div>
-            <StickyHomeButton show={stickyHeader} />
-            <WhatsappButton />
-            <Footer />
-        </section>
+      <section className="home-page" id="home">
+        <Background />
+        <ScrollTop />
+        <LoadingScreen loading={loading} />
+        <Header alternative={stickyHeader} setAlternative={setstickyHeader} />
+        <div className="main-container" ref={main_container_ref}>
+          <Advert innerRef={advert_ref} />
+          <HowWorks main_container_height={main_container_dimensions.height} advert_height={advert_dimensions.height} />
+          <Simulator />
+          <WhoGets />
+          <Faq />
+          {/* <button onClick={() => navigate('/cadastro')}>Quero economizar!</button> */}
+          <Contact />
+          <About />
+        </div>
+        <StickyHomeButton show={stickyHeader} />
+        <WhatsappButton />
+        <Footer />
+      </section>
     )
 }
 
