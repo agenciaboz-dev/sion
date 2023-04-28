@@ -69,25 +69,42 @@ export const Contract = ({}) => {
   }, [contract])
 
   useEffect(() => {
-    api
-      .post("/contract", { id })
-      .then((response) => setContract(response.data))
-      .catch((error) => console.error(error))
+      api.post("/contract", { id })
+          .then((response) => setContract(response.data))
+          .catch((error) => console.error(error))
   }, [])
 
   return (
-    <div className="Contract-Page" ref={ref}>
-      <Document
-        file={url}
-        onLoadSuccess={onLoadSuccess}
-        onLoadError={(error) => console.error(error)}
-        loading={<MuiLoading color={"primary"} size={"15vw"} noData={""} />}
-      >
-        {pages.map((page, index) => (
-          <Page key={index} pageNumber={page} renderForms={false} width={width} />
-        ))}
-      </Document>
-      {!loading && <NavPdf />}
-    </div>
+      <div className="Contract-Page" ref={ref} style={{ justifyContent: !contract && "center" }}>
+          {contract ? (
+              <>
+                  <Document
+                      file={url}
+                      onLoadSuccess={onLoadSuccess}
+                      onLoadError={(error) => console.error(error)}
+                      loading={
+                          <div
+                              style={{
+                                  width: "100vw",
+                                  height: "100vh",
+                                  display: "flex",
+                                  justifyContent: "center",
+                                  alignItems: "center",
+                              }}
+                          >
+                              <MuiLoading color={"primary"} size={"15vw"} noData={""} />
+                          </div>
+                      }
+                  >
+                      {pages.map((page, index) => (
+                          <Page key={index} pageNumber={page} renderForms={false} width={width} />
+                      ))}
+                  </Document>
+                  <NavPdf />
+              </>
+          ) : (
+              <MuiLoading color={"primary"} size={"15vw"} />
+          )}
+      </div>
   )
 }

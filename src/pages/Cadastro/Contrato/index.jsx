@@ -56,50 +56,56 @@ export const Contrato = ({  }) => {
     const [loading, setLoading] = useState(true)
     const [page, setPage] = useState(1)
     const [pages, setPages] = useState(0)
-    const [contract, setContract] = useState({})
+    const [contract, setContract] = useState(null)
 
     const nextStage = () => {
-        api.post('/contract/send', client.value)
-        .then(response => console.log(response.data))
-        navigate('/cadastro/financeiro')
+        api.post("/contract/send", client.value).then((response) => console.log(response.data))
+        navigate("/cadastro/financeiro")
     }
 
-    const onLoadSuccess = pdf => {
+    const onLoadSuccess = (pdf) => {
         setLoading(false)
         setPages(pdf.numPages)
     }
 
     useEffect(() => {
-        if (!client?.value?.unit) navigate('/cadastro')
+        if (!client?.value?.unit) navigate("/cadastro")
 
-        api.post('/contract', { id: client.value.id })
-        .then(response => setContract(response.data))
-        .catch(error => console.error(error))
+        api.post("/contract", { id: client.value.id })
+            .then((response) => setContract(response.data))
+            .catch((error) => console.error(error))
 
         // console.log(pdf)
     }, [])
-    
+
     return (
-        <div className='Contrato-Component' >
+        <div className="Contrato-Component">
             <div className="main-container">
                 <div className="title-container">
                     <h1>Cadastrado!</h1>
-                    <ChoseIcon style={{height:'10vw', width: '10vw'}} />
+                    <ChoseIcon style={{ height: "10vw", width: "10vw" }} />
                 </div>
-                <div className='description-container'>
+                <div className="description-container">
                     <p>Clique avançar para enviar o contrato por email para todos os envolvidos cadastrados!</p>
                 </div>
-                <Document file={api.getUri().split('/api')[0]+'/'+contract.filename} 
-                    onLoadSuccess={onLoadSuccess} onLoadError={(error) => console.error(error)}
-                    error={<MuiLoading color={'primary'} size={'15vw'} />}
-                    loading={<MuiLoading color={'primary'} size={'15vw'} />}
-                >
-                    <Page pageNumber={page} width={245} renderInteractiveForms={false} />
-                </Document>
-                <NavPdf />
+                {contract ? (
+                    <>
+                        <Document
+                            file={api.getUri().split("/api")[0] + "/" + contract.filename}
+                            onLoadSuccess={onLoadSuccess}
+                            onLoadError={(error) => console.error(error)}
+                            error={<MuiLoading color={"primary"} size={"15vw"} />}
+                            loading={<MuiLoading color={"primary"} size={"15vw"} />}
+                        >
+                            <Page pageNumber={page} width={245} renderInteractiveForms={false} />
+                        </Document>
+                        <NavPdf />
+                    </>
+                ) : (
+                    <MuiLoading color={"primary"} size={"15vw"} />
+                )}
             </div>
-            <NavButtons goBack={() => navigate('/cadastro/anexos')} nextStage={nextStage} children={<p>Enviar</p>} />
-
+            <NavButtons goBack={() => navigate("/cadastro/anexos")} nextStage={nextStage} children={<p>Enviar</p>} />
         </div>
     )
 }
