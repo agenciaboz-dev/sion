@@ -12,6 +12,7 @@ import { TextField } from '@mui/material';
 import { useFlags } from '../../hooks/useFlags';
 import CurrencyFormat from 'react-currency-format';
 import COLORS from '../../sass/_colors.scss'
+import { useNumberMask } from "../../hooks/useNumberMask"
 
 export const Simulator = () => {
 
