@@ -100,10 +100,10 @@ export const Header = ({ alternative, setAlternative }) => {
                 <LogoBranco />
                 {menus.map(menu => {
                     return (
-                        <section key={menu.id}>
-                            <HeaderButton menu={menu} alternative={alternative} />
-                            {menus.indexOf(menu) == (menus.length - 1) ? null : <p>/</p>}
-                        </section>
+                      <section key={menu.id}>
+                        <HeaderButton menu={menu} alternative={alternative} />
+                        {menus.indexOf(menu) == menus.length - 1 ? null : <p className="bar">/</p>}
+                      </section>
                     )
                 })}
                 <button className="login-button">Sou cliente</button>

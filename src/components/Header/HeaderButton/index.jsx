@@ -15,23 +15,51 @@ export const HeaderButton = ({ menu, alternative }) => {
     }
 
     const alternative_style_hovered = {
-        backgroundColor: 'white',
-        color: COLORS.primary,
+      //   backgroundColor: "white",
+      color: "white",
     }
 
     return (
-        <div className='HeaderButton-Component' >
-     
-            <AnchorLink ref={ref} href={'#'+menu.name} className='menu-title'
-                onMouseEnter={() => setHeaderHovered(true)} onMouseLeave={() => setHeaderHovered(false)}
-                style={location.pathname == '/' ? alternative ? headerHovered ? alternative_style_hovered : null : null : {display: 'none'}}
-            >{menu.title}</AnchorLink> 
-            
-            <div href={'#'+menu.name} className='menu-title'
-                onMouseEnter={() => setHeaderHovered(true)} onMouseLeave={() => setHeaderHovered(false)}
-                style={location.pathname == '/' ? {display: 'none'} : alternative ? headerHovered ? alternative_style_hovered : null : null}
-                onClick={event => goToHome(event)}
-            >{menu.title}</div>
+      <div
+        className={`HeaderButton-Component ${headerHovered && alternative ? "alternative-header" : "header-before"}`}
+        onMouseEnter={() => setHeaderHovered(true)}
+        onMouseLeave={() => setHeaderHovered(false)}
+      >
+        <AnchorLink
+          ref={ref}
+          href={"#" + menu.name}
+          className="menu-title"
+          style={
+            location.pathname == "/"
+              ? headerHovered
+                ? alternative
+                  ? alternative_style_hovered
+                  : null
+                : null
+              : { display: "none" }
+          }
+        >
+          {menu.title}
+        </AnchorLink>
+
+        <div
+          href={"#" + menu.name}
+          className="menu-title"
+          onMouseEnter={() => setHeaderHovered(true)}
+          onMouseLeave={() => setHeaderHovered(false)}
+          style={
+            location.pathname == "/"
+              ? { display: "none" }
+              : headerHovered
+              ? alternative
+                ? alternative_style_hovered
+                : { color: COLORS.primary }
+              : null
+          }
+          onClick={(event) => goToHome(event)}
+        >
+          {menu.title}
         </div>
+      </div>
     )
 }
