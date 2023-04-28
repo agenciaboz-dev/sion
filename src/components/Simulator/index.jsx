@@ -54,7 +54,7 @@ export const Simulator = () => {
         )
     }
 
-    const [spent, setSpent] = useState('2000')
+    const [spent, setSpent] = useState("")
     const [consumption, setConsumption] = useState(0)
 
     const navigate = useNavigate()
