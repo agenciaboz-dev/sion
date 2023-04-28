@@ -6,7 +6,7 @@ export const useNumberMask = () => {
     suffix: "",
     thousandsSeparatorSymbol: ".",
     decimalSymbol: ",",
-    allowDecimal: true,
+    allowDecimal: false,
     decimalLimit: 2,
     integerLimit: 9,
     allowNegative: false,
