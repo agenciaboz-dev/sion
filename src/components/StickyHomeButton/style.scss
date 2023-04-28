@@ -3,19 +3,19 @@
 .StickyHomeButton-Component {
     display: flex;
     position: sticky;
-    width: 5vw;
-    min-height: 5vw;
-    height: 5vw;
+    width: 3vw;
+    min-height: 3vw;
+    height: 3vw;
     bottom: 1vw;
-    left: 2.5vw;
+    left: 3.25vw;
     background-color: $primary-color;
     justify-content: center;
     align-items: center;
     outline: 2px solid white;
 
     svg {
-        width: 1.5vw;
-        height: 1.5vw;
+        width: 1vw;
+        height: 1vw;
         transform: rotate(-90deg);
         filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(72deg) brightness(110%) contrast(101%);
     }
