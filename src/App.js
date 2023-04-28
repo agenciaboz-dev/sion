@@ -22,36 +22,35 @@ function App() {
     const muiTheme = useMuiTheme()
 
   return (
-    <UserProvider>
-        <BrowserRouter>
-            <ThemeProvider theme={muiTheme}>
-                <ClientProvider>
-                    <AttachmentsProvider>
-                        <PdfProvider>
-                            <StageProvider>
-                                
-                                <Routes>
-                                        {/* <Route index element={<Home />} /> */}
-                                        <Route index element={<Login />} />
+		<UserProvider>
+			<BrowserRouter>
+				<ThemeProvider theme={muiTheme}>
+					<ClientProvider>
+						<AttachmentsProvider>
+							<PdfProvider>
+								<StageProvider>
+									<Routes>
+										{/* <Route index element={<Home />} /> */}
+										<Route index element={<Login />} />
 
-                                        <Route path='/login' element={<Login />} />
-                                        <Route path='/login/:id' element={<Login signing />} />
-                                        <Route path='/contract/:id' element={<Contract />} />
-                                        <Route path='/cadastro/*' element={<Cadastro />} />
-                                        <Route path='/links' element={<Links />} />
-                                        <Route path='/admin' element={<ControlPanel />} />
-                                        <Route path='/sign/:id' element={<SignContract />} />
-                                        <Route path='*' element={<NotFound />} />
-                                </Routes>
-
-                            </StageProvider>
-                        </PdfProvider>
-                    </AttachmentsProvider>
-                </ClientProvider>
-            </ThemeProvider>
-        </BrowserRouter>
-    </UserProvider>
-  );
+										<Route path="/login" element={<Login />} />
+										<Route path="/login/:id" element={<Login signing />} />
+										<Route path="/contract/:id" element={<Contract />} />
+										<Route path="/contract/:id/:signing" element={<Contract />} />
+										<Route path="/cadastro/*" element={<Cadastro />} />
+										<Route path="/links" element={<Links />} />
+										<Route path="/admin" element={<ControlPanel />} />
+										<Route path="/sign/:id/:signing" element={<SignContract />} />
+										<Route path="*" element={<NotFound />} />
+									</Routes>
+								</StageProvider>
+							</PdfProvider>
+						</AttachmentsProvider>
+					</ClientProvider>
+				</ThemeProvider>
+			</BrowserRouter>
+		</UserProvider>
+  )
 }
 
 export default App;
