@@ -9,55 +9,56 @@ import { ReactComponent as EconomyIcon } from "../../images/wb_economy_icon.svg"
 import { ReactComponent as NoInvestmentIcon } from "../../images/wb_no_investment_icon.svg"
 import { ReactComponent as RenewableEnergyIcon } from "../../images/wb_renewable_energy_icon.svg"
 import { TextField } from "@mui/material"
-import { useFlags } from "../../hooks/useFlags"
 import CurrencyFormat from "react-currency-format"
 import COLORS from "../../sass/_colors.scss"
 import { useNumberMask } from "../../hooks/useNumberMask"
+// import { useFlags } from "../../hooks/useFlags"
 
 export const Simulator = () => {
-  const Flag = ({ flag }) => {
-    const Icon = () => flag.icon
-    const [economy, setEconomy] = useState(0)
+//   const Flag = ({ flag }) => {
+//     const Icon = () => flag.icon
+//     const [economy, setEconomy] = useState(0)
 
-    useEffect(() => {
-      setEconomy(consumption * flag.factor)
-    }, [consumption])
-    return (
-      <div className="flag-container">
-        <Icon />
-        <hr />
-        <h3>Anual</h3>
-        <CurrencyFormat
-          value={economy * 12}
-          displayType="text"
-          thousandSeparator="."
-          decimalSeparator=","
-          decimalScale={2}
-          fixedDecimalScale={true}
-          prefix={"R$ "}
-          style={{ fontSize: "1vw", fontWeight: "bold", color: COLORS.primary }}
-        />
-        <hr />
-        <p>Mensal</p>
-        <CurrencyFormat
-          value={economy * 12}
-          displayType="text"
-          thousandSeparator="."
-          decimalSeparator=","
-          decimalScale={2}
-          fixedDecimalScale={true}
-          prefix={"R$ "}
-          style={{ fontSize: "0.7vw", color: COLORS.primary }}
-        />
-      </div>
-    )
-  }
+//     useEffect(() => {
+//       setEconomy(consumption * flag.factor)
+//     }, [consumption])
+//     return (
+//       <div className="flag-container">
+//         <Icon />
+//         <hr />
+//         <h3>Anual</h3>
+//         <CurrencyFormat
+//           value={economy * 12}
+//           displayType="text"
+//           thousandSeparator="."
+//           decimalSeparator=","
+//           decimalScale={2}
+//           fixedDecimalScale={true}
+//           prefix={"R$ "}
+//           style={{ fontSize: "1vw", fontWeight: "bold", color: COLORS.primary }}
+//         />
+//         <hr />
+//         <p>Mensal</p>
+//         <CurrencyFormat
+//           value={economy * 12}
+//           displayType="text"
+//           thousandSeparator="."
+//           decimalSeparator=","
+//           decimalScale={2}
+//           fixedDecimalScale={true}
+//           prefix={"R$ "}
+//           style={{ fontSize: "0.7vw", color: COLORS.primary }}
+//         />
+//       </div>
+//     )
+//   }
+
+//   const flags = useFlags()
 
   const [spent, setSpent] = useState("")
   const [consumption, setConsumption] = useState(0)
 
   const navigate = useNavigate()
-  const flags = useFlags()
   const numberMask = useNumberMask()
 
   const kwhMask = createNumberMask({
@@ -102,11 +103,11 @@ export const Simulator = () => {
             />
           )}
         />
-        <div className="flags-container">
+        {/* <div className="flags-container">
           {flags.map((flag) => (
             <Flag flag={flag} />
           ))}
-        </div>
+        </div> */}
       </div>
       <div className="blue-container">
         <div className="benefits-container">
