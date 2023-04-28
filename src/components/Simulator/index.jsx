@@ -15,6 +15,49 @@ import { useNumberMask } from "../../hooks/useNumberMask"
 // import { useFlags } from "../../hooks/useFlags"
 
 export const Simulator = () => {
+
+    const Econ = () => {
+        const [economy, setEconomy] = useState(0)
+
+        useEffect(() => {
+            setEconomy(consumption*0.1)
+        }, [consumption])
+
+        return (
+            <div className="econ-container">
+                <h3>Economize até:</h3>
+                {/* <hr /> */}
+                <div className="yearly-econ">
+                    {/* <h4>Anual</h4> */}
+                    <CurrencyFormat
+                        value={economy*12}
+                        displayType='text'
+                        thousandSeparator='.'
+                        decimalSeparator=','
+                        decimalScale={2}
+                        fixedDecimalScale={true}
+                        prefix={'R$ '}
+                        style={{fontSize: '1.5vw', fontWeight: 'bold', color: COLORS.primary}}
+                    />
+                </div>
+                <hr />
+                <div className="monthly-econ">
+                    <p>Mensalmente</p>
+                    <CurrencyFormat
+                        value={economy}
+                        displayType='text'
+                        thousandSeparator='.'
+                        decimalSeparator=','
+                        decimalScale={2}
+                        fixedDecimalScale={true}
+                        prefix={'R$ '}
+                        style={{fontSize: '1vw', color: COLORS.primary}}
+                    />
+                </div>
+            </div>
+        )
+    }
+    
 //   const Flag = ({ flag }) => {
 //     const Icon = () => flag.icon
 //     const [economy, setEconomy] = useState(0)
@@ -89,6 +132,7 @@ export const Simulator = () => {
   return (
     <div className="Simulator-Component" id="simulator">
       <div className="white-container">
+        <h1>Simule sua Economia</h1>
         <MaskedInput
           mask={kwhMask}
           value={spent}
@@ -97,19 +141,26 @@ export const Simulator = () => {
             <TextField
               inputRef={ref}
               {...props}
-              label="Consumo mensal"
+              label="Digite seu consumo mensal"
               inputProps={{ inputMode: "numeric" }}
               mask={numberMask}
             />
           )}
         />
+
         {/* <div className="flags-container">
           {flags.map((flag) => (
             <Flag flag={flag} />
           ))}
         </div> */}
+
+        <div className="econ-wrapper">
+            <Econ />
+        </div>
+
       </div>
       <div className="blue-container">
+        <h1>Seus Benefícios</h1>
         <div className="benefits-container">
           <Benefits
             icon={() => <EconomyIcon />}
