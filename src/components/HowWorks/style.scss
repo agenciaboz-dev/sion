@@ -67,7 +67,7 @@
     }
 
     .details-container {
-        flex: 0.9;
+        width: 40%;
         flex-direction: column;
         align-items: flex-start;
         justify-content: center;
@@ -92,7 +92,7 @@
 
     p {
         font-size: 0.9vw;
-        color: lighten($text-color, 30)
+        color: lighten($text-color, 30);
     }
 
     .HowItem-Texts {
