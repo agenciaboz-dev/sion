@@ -45,6 +45,7 @@
             cursor: pointer;
             text-decoration: none;
             align-items: center;
+            padding: 0 1vw;
         }
 
         .menu-title:hover {
@@ -66,7 +67,8 @@
     position: relative;
     height: 100%;
     margin: 1vw 0;
-    padding: 0 1vw;
+    // padding: 0 1vw;
+    background-color: transparent;
 }
 
 .HeaderButton-Component:hover::before {
@@ -79,19 +81,9 @@
     transform: skew(-15deg);
     transform-origin: left;
     z-index: -1;
-}
-
-.header-before::before {
-    background-color: white;
     transition: 0.3s;
-    
+    background-color: var(--background-color);
 }
-
-.alternative-header:hover::before {
-    content: "";
-    background-color: $header-background-color;
-    transition: 0.3s;
-  }
 
   .bar {
     margin: 0 -0.3vw;
