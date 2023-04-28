@@ -65,50 +65,59 @@ export const Header = ({ alternative, setAlternative }) => {
     }, [])
     
     return (
-        <div className='Header-Component'>
-            {isMobile ? 
-                <div className='mobile-header'>
-                    <MenuButton className='menu-button' onClick={handleClick} />
-                    <Menu
-                        id="basic-menu"
-                        anchorEl={anchorEl}
-                        open={!!anchorEl}
-                        onClose={handleClose}
-                    >
-                        
-                        <MenuItem onClick={() => handleClose() }>
-                            <AnchorLink href={'#home'} className='menu-title' >Home</AnchorLink>
-                        </MenuItem>
-                        <MenuItem onClick={() => handleClose() }>
-                            <AnchorLink href={'#how'} className='menu-title' >Como funciona</AnchorLink>
-                        </MenuItem>
-                        <MenuItem onClick={() => handleClose() }>
-                            <AnchorLink href={'#simulator'} className='menu-title' >Simulador</AnchorLink>
-                        </MenuItem>
-                        <MenuItem onClick={() => handleClose() }>
-                            <AnchorLink href={'#faq'} className='menu-title' >FAQ</AnchorLink>
-                        </MenuItem>
-                        <MenuItem onClick={() => handleClose() }>
-                            <AnchorLink href={'#about'} className='menu-title' >Quem somos</AnchorLink>
-                        </MenuItem>
-                        <MenuItem className='mobile-client-button' onClick={() => navigate('/')}>Sou cliente</MenuItem>
-                    </Menu>
-                </div>
-            : 
-            <div className="menus-container" style={alternative ? alternative_style : null} >
-                {/* {alternative ? <LogoBranco /> : null} */}
-                <LogoBranco />
-                {menus.map(menu => {
-                    return (
-                      <section key={menu.id}>
-                        <HeaderButton menu={menu} alternative={alternative} />
-                        {menus.indexOf(menu) == menus.length - 1 ? null : <p className="bar">/</p>}
-                      </section>
-                    )
-                })}
-                <button className="login-button">Sou cliente</button>
-            </div>}
-            {/* <LogoBranco style={{visibility: alternative && 'hidden', margin: location.pathname != '/' && '6vw 0 4vw'}} /> */}
-        </div>
+      <div className="Header-Component">
+        {isMobile ? (
+          <div className="mobile-header">
+            <MenuButton className="menu-button" onClick={handleClick} />
+            <Menu id="basic-menu" anchorEl={anchorEl} open={!!anchorEl} onClose={handleClose}>
+              <MenuItem onClick={() => handleClose()}>
+                <AnchorLink href={"#home"} className="menu-title">
+                  Home
+                </AnchorLink>
+              </MenuItem>
+              <MenuItem onClick={() => handleClose()}>
+                <AnchorLink href={"#how"} className="menu-title">
+                  Como funciona
+                </AnchorLink>
+              </MenuItem>
+              <MenuItem onClick={() => handleClose()}>
+                <AnchorLink href={"#simulator"} className="menu-title">
+                  Simulador
+                </AnchorLink>
+              </MenuItem>
+              <MenuItem onClick={() => handleClose()}>
+                <AnchorLink href={"#faq"} className="menu-title">
+                  FAQ
+                </AnchorLink>
+              </MenuItem>
+              <MenuItem onClick={() => handleClose()}>
+                <AnchorLink href={"#about"} className="menu-title">
+                  Quem somos
+                </AnchorLink>
+              </MenuItem>
+              <MenuItem className="mobile-client-button" onClick={() => navigate("/")}>
+                Sou cliente
+              </MenuItem>
+            </Menu>
+          </div>
+        ) : (
+          <div className="menus-container" style={alternative ? alternative_style : null}>
+            {/* {alternative ? <LogoBranco /> : null} */}
+            <LogoBranco />
+            {menus.map((menu) => {
+              return (
+                <section key={menu.id}>
+                  <HeaderButton menu={menu} alternative={alternative} />
+                  {menus.indexOf(menu) == menus.length - 1 ? null : <p className="bar">/</p>}
+                </section>
+              )
+            })}
+            <button className="login-button" onClick={() => (window.location.href = "https://wa.me/554130283782")}>
+              Sou cliente
+            </button>
+          </div>
+        )}
+        {/* <LogoBranco style={{visibility: alternative && 'hidden', margin: location.pathname != '/' && '6vw 0 4vw'}} /> */}
+      </div>
     )
 }
