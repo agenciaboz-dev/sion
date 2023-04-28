@@ -24,6 +24,7 @@
         height: 1.5vw;
         border: none;
         border-left: 2px solid $text-color;
+        margin: auto 0;
         margin-left: 1.5vw;
     }
 
@@ -73,13 +74,14 @@
     }
 
     .photo-container img {
-        width: 45vw;
+        width: 35vw;
     }
 }
 
 .HowItem-Component {
     position: relative;
     align-items: center;
+    height: 4vw;
     width: 100%;
 
     h3 {
