@@ -37,12 +37,12 @@
             font-weight: 300;
         }
 
-        input {
-            display: flex;
-            padding: 0.5vw;
+        // input {
+        //     display: flex;
+        //     padding: 0.5vw;
             font-size: 1.25vw;
-            height: 2vw;
-        }
+        //     height: 2vw;
+        // }
         
         .econ-wrapper {
             flex-wrap: wrap;
@@ -182,7 +182,7 @@
         margin-top: 6vw;
 
         label {
-            font-size: 5vw;
+            font-size: 4vw;
         }
 
         .white-container {
@@ -198,10 +198,10 @@
             }
     
             input {
-                padding: 2vw 1vw;
+                // padding: 2vw 1vw;
                 font-size: 5vw;
-                height: 8vw;
-                width: 70vw;
+                // height: 8vw;
+                // width: 70vw;
             }
 
             .econ-wrapper {
