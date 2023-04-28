@@ -130,7 +130,10 @@ export const Simulator = () => {
               inputRef={ref}
               {...props}
               label="Digite seu consumo mensal"
-              InputProps={{ endAdornment: <p className="kwh">kWh</p> }}
+              InputProps={{ endAdornment: <p className="kwh">kWh</p>, 
+              sx: {
+                width: '72vw'
+              }}}
               inputProps={{ inputMode: "numeric" }}
             />
           )}

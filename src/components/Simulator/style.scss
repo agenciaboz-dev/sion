@@ -194,7 +194,7 @@
 
             h1 {
                 font-size: 6vw;
-                margin-bottom: 2vw;
+                margin-bottom: 0;
             }
     
             input {
@@ -211,20 +211,24 @@
                     padding: 4vw 0;
     
                     h3 {
-                        font-size: 5vw;
+                        font-size: 6vw;
                     }
                     
-                    h4 {
-                        font-size: 5vw;
-                    }
+                    // h4 {
+                    //     font-size: 5vw;
+                    // }
     
                     p {
-                        font-size: 4vw;
+                        font-size: 5vw;
                     }
     
                     hr {
                         width: 50%;
                         margin: 2vw 0;
+                    }
+
+                    span {
+                        font-size: 5vw !important;
                     }
                 }
             }
@@ -251,7 +255,8 @@
                 font-size: 4.5vw;
                 color: $primary-color;
                 background-color: white;
-                padding: 2vw 0;
+                padding: 1vw 0;
+                width: 72vw;
             }
         }       
     }
