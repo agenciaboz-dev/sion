@@ -13,9 +13,11 @@ import CurrencyFormat from "react-currency-format"
 import COLORS from "../../sass/_colors.scss"
 import { useNumberMask } from "../../hooks/useNumberMask"
 // import { useFlags } from "../../hooks/useFlags"
+import { useMediaQuery } from 'react-responsive';
+
 
 export const Simulator = () => {
-
+  
     const Econ = () => {
         const [economy, setEconomy] = useState(0)
 
@@ -103,6 +105,7 @@ export const Simulator = () => {
 
   const navigate = useNavigate()
   const numberMask = useNumberMask()
+  const isMobile = useMediaQuery({maxWidth: 600})
 
   const goToSignUp = () => {
     window.scrollTo(0, 200)
@@ -132,7 +135,7 @@ export const Simulator = () => {
               label="Digite seu consumo mensal"
               InputProps={{ endAdornment: <p className="kwh">kWh</p>, 
               sx: {
-                width: '72vw'
+                width: isMobile ? '72vw' : '100%'
               }}}
               inputProps={{ inputMode: "numeric" }}
             />
