@@ -50,11 +50,44 @@
         }
 
         form {
+            display: flex;
+            flex-direction: column;
             margin: 2vw;
+            height: 22vw;
+
+            div {
+                div {
+                    margin-top: 0.25vw;
+                    margin-bottom: 0.25vw;
+
+                    div{
+                        padding: 0.25vw;
+
+                        input {
+                            height: 1.75vw;
+                            padding: 0.25vw;
+                            font-size: 1.25vw;
+                        }
+                        textarea {
+                            height: 6vw !important;
+                            font-size: 1.25vw;
+                        }
+                    }
+                }
+            }
+
+            label {
+                font-size: 1vw !important;
+                top: -0.5vw;
+            }
+
+            .MuiInputLabel-shrink {
+                transform: translate(0.75vw, 0);
+            }
         }
 
         .info {
-            padding: 3vw 0 4vw 3vw;
+            padding: 2vw 0 2vw 2vw;
             gap: 3vw;
 
             h1 {
@@ -85,5 +118,101 @@
         font-size: 1.1vw;
         height: 3vw;
         width: 100%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+
+    .Contact-Component {
+        
+        .title {
+            flex-direction: column;
+            padding: 4vw;
+
+            h4 {
+                font-size: 4vw;
+                margin: 0;
+                text-align: center;
+            }
+
+            .show-contact-form-button {
+                margin: 1vw;
+                margin-top: 4vw;
+                font-size: 4vw;
+                width: 100%;
+                padding: 2vw 0;
+            }
+        }
+    
+        .contact-form {
+            flex-direction: column ;
+            width: 100%;
+    
+            .info {
+                flex: 0.5;
+                width: 100%;
+                padding: 4vw 0 6vw;
+                margin-top: 6vw;
+
+                h1 {
+                    text-align: center;
+                    font-size: 5vw;
+                }
+
+                .info-icon {
+                    align-self: center;
+                    height: 3vw;
+                    margin: 0 -4vw;
+                }
+
+                .readonly-contact-info{
+                    margin-left: 0;
+                    font-size: 3vw;
+                    height: 6vw;
+                }
+            }
+    
+            form {
+                flex:0.5;
+                width: 95%;
+                height: 100%;
+    
+                div {
+                    div {
+                        margin-top: 0.5vw;
+                        margin-bottom: 0.5vw;
+    
+                        div{
+                            padding: 2vw;
+    
+                            input {
+                                height: 6vw;
+                                font-size: 5vw;
+                            }
+                            textarea {
+                                height: 24vw !important;
+                                font-size: 5vw;
+                            }
+                        }
+                    }
+                }
+    
+                label {
+                    font-size: 3.5vw !important;
+                    top: -1.75vw;
+                }
+    
+                .MuiInputLabel-shrink {
+                    transform: translate(4vw, 0);
+                }
+            }
+    
+            .contact-send-button {
+                margin-top: 4vw;
+                font-size: 4vw;
+                padding: 2vw;
+                width: 100%;
+            }
+        }
     }
 }

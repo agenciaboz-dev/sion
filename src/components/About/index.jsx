@@ -9,7 +9,7 @@ export const About = () => {
                 <p>Sede Sion em Curitiba</p>
             </div>
             <div className="main-container">
-                <h2 className='about-us'>SOBRE NÓS</h2>
+                <h2 className='about-us'>Sobre nós</h2>
                 <h2>A Sion Energia</h2>
                 <p>A Sion Energia é uma Holding com três Unidades de Negócio nas áreas de Geração e Comercialização de Energia.</p>
                 <p>A Sion Geração desenvolve e faz a operação de usinas. A Sion Gestão é uma gestora de energia de grandes consumidores e a Cooperativa de Energia atende empresas do Varejo.</p>

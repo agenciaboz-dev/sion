@@ -6,19 +6,31 @@ import './style.scss';
 import COLORS from '../../sass/_colors.scss'
 import { HeaderButton } from './HeaderButton';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
+import { Menu, MenuItem } from '@mui/material';
+import { ReactComponent as MenuButton } from '../../images/menu_button.svg'
 
 export const Header = ({ alternative, setAlternative }) => {
+
+    const [anchorEl, setAnchorEl] = useState(null);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+      };
+    const handleClose = (test) => {
+        setAnchorEl(null);
+        console.log(test)
+      };
 
     const menus = useHeaderMenus()
     const navigate = useNavigate()
     const location = useLocation()
+    const isMobile = useMediaQuery({maxWidth: 600})
 
     const alternative_style = {
         backgroundColor: COLORS.primary,
         position: 'fixed',
         top: 0,
         width: '100%',
-        zIndex: 5,
     }
 
     useEffect(() => {
@@ -51,12 +63,41 @@ export const Header = ({ alternative, setAlternative }) => {
             document.body.removeChild(script);
         };
     }, [])
-
     
     return (
         <div className='Header-Component'>
+            {isMobile ? 
+                <div className='mobile-header'>
+                    <MenuButton className='menu-button' onClick={handleClick} />
+                    <Menu
+                        id="basic-menu"
+                        anchorEl={anchorEl}
+                        open={!!anchorEl}
+                        onClose={handleClose}
+                    >
+                        
+                        <MenuItem onClick={() => handleClose() }>
+                            <AnchorLink href={'#home'} className='menu-title' >Home</AnchorLink>
+                        </MenuItem>
+                        <MenuItem onClick={() => handleClose() }>
+                            <AnchorLink href={'#how'} className='menu-title' >Como funciona</AnchorLink>
+                        </MenuItem>
+                        <MenuItem onClick={() => handleClose() }>
+                            <AnchorLink href={'#simulator'} className='menu-title' >Simulador</AnchorLink>
+                        </MenuItem>
+                        <MenuItem onClick={() => handleClose() }>
+                            <AnchorLink href={'#faq'} className='menu-title' >FAQ</AnchorLink>
+                        </MenuItem>
+                        <MenuItem onClick={() => handleClose() }>
+                            <AnchorLink href={'#about'} className='menu-title' >Quem somos</AnchorLink>
+                        </MenuItem>
+                        <MenuItem className='mobile-client-button' onClick={() => navigate('/')}>Sou cliente</MenuItem>
+                    </Menu>
+                </div>
+            : 
             <div className="menus-container" style={alternative ? alternative_style : null} >
-                {alternative ? <LogoBranco /> : null}
+                {/* {alternative ? <LogoBranco /> : null} */}
+                <LogoBranco />
                 {menus.map(menu => {
                     return (
                         <section key={menu.id}>
@@ -66,7 +107,7 @@ export const Header = ({ alternative, setAlternative }) => {
                     )
                 })}
                 <button className="login-button">Sou cliente</button>
-            </div>
+            </div>}
             {/* <LogoBranco style={{visibility: alternative && 'hidden', margin: location.pathname != '/' && '6vw 0 4vw'}} /> */}
         </div>
     )

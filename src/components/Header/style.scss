@@ -6,26 +6,32 @@
     align-items: center;
     align-self: center;
     margin-top: 1.5vw;
-    font-size: 1.25vw;
     width: 100%;
     
     .menus-container {
-        gap: 0.3vw;
-        top: 2vw;
-        // left: 9.5vw;
-        padding-left: 9.5vw;
+        gap: 0.5vw;
+        top: 1vw;
+        justify-content: center;
         transition: 0.5s;
         position: fixed;
-        height: 4vw;
+        height: 6vw;
         align-items: center;
         width: 100%;
+        z-index: 5;
 
         .login-button {
             position: absolute;
             right: 10vw;
-            padding: 0.5vw;
+            padding: 0.75vw 1vw;
             background-color: white;
             color: $primary-color;
+            background-color: white;
+            z-index: 9;
+            transition: 0.3s;
+        }
+
+        .login-button:hover {
+            transform: scale(1.1);
         }
 
         p {
@@ -34,6 +40,7 @@
         }
 
         .menu-title {
+            font-size: 1.25vw;
             color: white;
             padding: 0.5vw;
             display: flex;
@@ -47,10 +54,10 @@
         }
 
         svg {
-            margin: 2vw 0.7vw 2vw -8vw;
+            margin: 2.25vw 9vw 2vw -19.5vw;
             object-fit: contain;
-            height: 100%;
-            width: auto;
+            height: auto;
+            width: 6vw;
         }
 
     }
@@ -58,14 +65,115 @@
 }
 
 // CHAT BOT
-.push-conversation-container {
 
-    .push-close-button, .push-send {
-        padding: 0;
+.push-widget-container {
+    margin: 0 2.5vw 0.5vw 0;
+
+    .push-launcher {
+        min-height: 4vw;
+        min-width: 4vw;
+        width: 4vw;
+        height: 4vw;
+
+        img {
+            width: 2.5vw;
+        }
     }
 
-    div, section {
-        display: block;
+    .push-conversation-container {
+    
+        .push-close-button {
+            padding: 0;
+        }
+        
+        .push-send {
+            padding-right: 0.75vw;
+        }
+    
+        div, section {
+            display: block;
+        }
+
+        .push-title-and-subtitle, .push-header-buttons {
+            padding-top: 1vw;
+        }
+    
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .Header-Component {
+        .mobile-header {
+            .menu-button {
+                position: absolute;
+                height: 15vw;
+                width: 15vw;
+                top: 2vw;
+                left: 4vw;
+                z-index: 10;
+            }
+        }
     }
 
+    #basic-menu {
+        .MuiMenu-paper {
+            background-color: $primary-color;
+            border-radius: 0;
+
+            ul {
+                color: white;
+                border-radius: 1.5vw;
+                padding-left: 6vw;
+                width: 90vw;
+
+                li{
+                    a{
+                        color: white;
+                        text-decoration: none;
+                    }
+                }
+
+                .mobile-client-button {
+                    font-family: Poppins;
+                }
+            }
+        }
+    }
+
+    // CHAT BOT
+
+    .push-widget-container {
+        margin: -2vw;
+
+        .push-launcher {
+            min-height: 15vw;
+            min-width: 15vw;
+            width: 15vw;
+            height: 15vw;
+
+            img {
+                width: 10vw;
+            }
+        }
+
+    //     .push-conversation-container {
+        
+    //         .push-close-button {
+    //             padding: 0;
+    //         }
+            
+    //         .push-send {
+    //             padding-right: 0.75vw;
+    //         }
+        
+    //         div, section {
+    //             display: block;
+    //         }
+
+    //         .push-title-and-subtitle, .push-header-buttons {
+    //             padding-top: 1vw;
+    //         }
+        
+    //     }
+    }
 }

@@ -1,6 +1,8 @@
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { useNavigate } from 'react-router-dom';
 import './style.scss';
+import {ReactComponent as Checkmark} from '../../images/checkmark.svg';
+import {ReactComponent as Arrow} from '../../images/thin_arrow_right.svg';
 import {ReactComponent as LogoBranco} from '../../images/logo_branco.svg';
 
 export const Advert = ({ innerRef }) => {
@@ -12,28 +14,38 @@ export const Advert = ({ innerRef }) => {
     
     return (
         <div className='Advert-Component' ref={innerRef}>
+            <LogoBranco className='logo-branco'/>
             <div className="left">
-                <LogoBranco className='logo'/>
                 <h1>Até 15%</h1>
                 <h3>de economia na sua conta de luz!</h3>
-                <p>Sem Investimento<br />Sem instalação<br />Adesão 100% online<br />Uso de Energia Renovável</p>
-                <div className="advert-buttons-container">
+                {/* <p>Sem Investimento<br />Sem instalação<br />Adesão 100% online<br />Uso de Energia Renovável</p> */}
+                <p>Geramos energia mais barata para seu negócio!</p>
+                {/* <div className="advert-buttons-container">
                     <button onClick={() => goToSignUp()}>Quero economizar!</button>
                     <a href={'#how'}className='menu-title'>Saiba como funciona</a>
-                </div>
+                </div> */}
             </div>
             <div className="right">
-                <div className="images-container">
-                    <div className="large-image-container">
-                        <img src="/images/img1.webp" alt="" />
+                <div className="blue-box">
+                    <p className='be-part'>Faça parte da Sion</p>
+                    <div className="blue-box-ad">
+                        <Checkmark />
+                        <p className='blue-box-ad-p'>Economia na sua energia</p>
                     </div>
-                    <div className="small-images-container">
-                        <img src="/images/loja-juveve.webp" alt="" />
-                        <img src="/images/pexels-photo-2309235.webp" alt="" />
-                        <img src="/images/photo-1528698827591-e19ccd7bc23d.webp" alt="" />
+                    <div className="blue-box-ad">
+                        <Checkmark />
+                        <p className='blue-box-ad-p'>Sem investimento ou instalação</p>
                     </div>
+                    <div className="blue-box-ad">
+                        <Checkmark />
+                        <p className='blue-box-ad-p'>Adesão 100% online</p>
+                    </div>
+                    <div className="blue-box-ad">
+                        <Checkmark />
+                        <p className='blue-box-ad-p'>Uso de Energia Renovável</p>
+                    </div>
+                    <button className='blue-box-register-button'>Cadastre-se! <Arrow /></button>
                 </div>
-                <p>Oferecemos para sua empresa a energia mais barata que é gerada pelas nossas usinas</p>
             </div>
         </div>
     )

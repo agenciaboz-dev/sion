@@ -49,7 +49,7 @@
         z-index: -1;
         box-shadow: 0 1vw 2vw 0 #00000040;
 
-        transform: skew(0, -10deg);
+        transform: skew(0, -12deg);
     }
 
     .top-blue-background {
@@ -73,6 +73,59 @@
         height: 25vw;
         z-index: -1;
 
-        transform: skew(0, -10deg);
+        transform: skew(0, -12deg);
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .Links-Page {
+
+        .main-container {
+            margin-top: 12vw;
+            margin-bottom: 8vw;
+    
+            .logo {
+                width: 60vw;
+                height: 40vw;
+            }
+        }
+    
+        .links-container {
+            gap: 4vw;
+            margin-top: 18vw;
+    
+            button {
+                font-size: 5vw;
+                padding: 2vw;
+                width: 80vw;
+            }
+    
+            .socials-icons {
+    
+                svg {
+                    height: 9vw;
+                }
+                
+            }
+        }
+    
+        .white-background {
+            top: 60vw;
+            height: 80vw;
+    
+            transform: skew(0, -12deg);
+        }
+    
+        .top-blue-background {
+            top: 60vw;
+            height: 45vw;
+    
+        }
+    
+        .bottom-blue-background {
+            top: 136vw;
+            height: 45vw;
+    
+        }
     }
 }

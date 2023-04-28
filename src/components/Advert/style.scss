@@ -9,94 +9,171 @@
     margin-bottom: 12vw;
     position: relative;
     justify-content: space-between;
+
+    .logo-branco {
+        display: none;
+    }
     
     .left {
         flex: 0.4;
         flex-direction: column;
-        
-        .logo {
-            margin: 0 auto -1vw -2vw;
-            height: 11vw;
-            width: auto;
-        }
+        gap: 1.75vw;
         
         h1 {
-            font-size: 4.5vw;
-            margin-top: -1vw;
-            margin-bottom: -2vw;
+            font-size: 8vw;
+            margin-top: -3vw;
+            margin-bottom: -3vw;
+            text-shadow: 0 2px 0 rgba(black, 0.25);
         }
-            
+        
         h3 {
-            margin-top: 1vw;
             margin-right: 3vw;
-            font-size: 2vw;
-            color: $yellow-text-color;
+            font-size: 3vw;
+            text-shadow: 0 2px 0 rgba(black, 0.25);
+            line-height: 1.25;
+            // color: $yellow-text-color;
         }
         
         p {
-            font-size: 1.5vw;
+            font-size: 2vw;
             color: white;
-        }
-        
-        .advert-buttons-container {
-            width: 100%;
-            justify-content: space-between;
-
-            > * {
-                background-color: white;
-                color: $primary-color;
-                padding: 0.75vw;
-                margin-top: 1.5vw;
-                padding: 0.5vw 2.75vw;
-            }
-        }
-
-        a {
-            background-color: $primary-color;
-            font-size: 0.9vw;
-            font-weight: 700;
-            padding: 0 3vw;
-            border: none;
-            color: white;
-            transition: 0.3s;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        
-        a:hover {
-            background-color: darken($primary-color, 10%);
+            line-height: 1.25;
         }
     }
 
     .right {
-        flex: 0.45;
-        flex-direction: column;
-        padding-top: 1vw;
+        flex: 0.6;
 
-        .images-container {
-            justify-content: space-between;
+        .blue-box{
+            background-color: $primary-color;
+            border-radius: 2vw;
+            margin-left: auto;
+            flex-direction: column;
+            padding: 2vw;
+            gap: 1vw;
+            
+            .be-part {
+                font-size: 2vw;
+                font-weight: 300;
+                margin-bottom: 1vw;
+            }
 
-            .large-image-container{
-                flex: 0.49;
-                
-                img {
-                    width: 20vw;
+            .blue-box-ad {
+                svg {
+                    filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(72deg) brightness(130%) contrast(101%);
+                    width: 1.5vw;
+                    margin: -2vw 0.5vw -2vw 0;
                 }
             }
-            
-            .small-images-container {
-                flex: 0.49;
-                flex-direction: column;
-                justify-content: space-between;
 
-                img {
-                    width: 15vw;
+            .blue-box-ad-p{
+                font-size: 1.25vw;
+            }
+
+            .blue-box-register-button {
+                align-self: center;
+                font-weight: 300;
+                flex-direction: row;
+                border-radius: 4vw;
+                font-size: 1.5vw;
+                text-align: center;
+                color: $primary-color;
+                background-color: white;
+                padding: 0.5vw 1vw;
+                margin-top: 1vw;
+                justify-content: space-between;
+                width: 18vw;
+
+                svg {
+                    margin-left: 2vw;
+                    height: 0.75vw;
                 }
             }
         }
+    }
+}
 
-        p {
-            font-size: 1vw;
+@media only screen and (max-width: 600px){
+
+    .Advert-Component {
+        flex-direction: column;
+        height: 170vw;
+        // justify-content: space-between;
+        margin-top: 8vw;
+    
+        .logo-branco {
+            display: flex;
+            width: 70vw;
+            height: auto;
+        }
+
+        .left {
+            flex: 0.4;
+            flex-direction: column;
+            align-items: center;
+            gap: 8vw;
+
+            h1 {
+                font-size: 16vw;
+                margin-top: -2vw;
+                margin-bottom: -8vw;
+                text-shadow: 3px 3px 0 rgba(black, 0.63);
+            }
+            
+            h3 {
+                text-align: center;
+                font-size: 6vw;
+                text-shadow: 3px 3px 0 rgba(black, 0.6);
+                color: $yellow-text-color;
+            }
+            
+            p {
+                text-align: center;
+                text-shadow: 2px 2px 4px black;
+                font-size: 6vw;
+                color: white;
+            }
+        }
+
+        .right {
+            flex: 0.6;
+            
+            .blue-box{
+                margin-top: 12vw;
+                margin-bottom: 6vw;
+                // padding: 2vw 3vw;
+                // gap: 0.5vw;
+                
+                .be-part {
+                    text-align: center;
+                    font-size: 4.5vw;
+                    margin-bottom: 2vw;
+                }
+    
+                .blue-box-ad {
+                    svg {
+                        filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(72deg) brightness(130%) contrast(101%);
+                        width: 5vw;
+                        margin: -2vw 0.5vw -2vw 0;
+                    }
+                }
+    
+                .blue-box-ad-p{
+                    font-size: 4vw;
+                    margin: 0.5vw 0;
+                }
+
+                .blue-box-register-button {
+                    font-size: 4vw;
+                    padding: 1.5vw 2vw;
+                    margin-top: 3vw;
+    
+                    svg {
+                        margin-left: 30vw;
+                        height: 2vw;
+                    }
+                }
+            }
         }
     }
 }

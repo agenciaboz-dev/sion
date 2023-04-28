@@ -5,14 +5,16 @@ import {ReactComponent as FolderIcon} from '../../images/folder.svg'
 import {ReactComponent as MapIcon} from '../../images/map.svg'
 import {ReactComponent as WhatsappIcon} from '../../images/whatsapp.svg'
 import './style.scss';
+import { useMediaQuery } from 'react-responsive';
 
 export const Contact = () => {
 
     const [showForm, setShowForm] = useState(false)
+    const isMobile = useMediaQuery({maxWidth: 600})
 
     const wrapper_style = {
-        height: showForm ? '15vw' : null,
-        margin: showForm ? '7vw 0' : 0
+        height: showForm ? (isMobile ? '125vw' : '15vw') : null,
+        margin: showForm ? (isMobile ? '16vw 0' : '7vw') : (isMobile ? '7vw 0' : 0)
     }
 
     const initial_inputs = {
@@ -49,7 +51,7 @@ export const Contact = () => {
                     <h1 className='contact-us-h1'>Entre em Contato</h1>
                     <div className="info-item">
                         <FolderIcon className='info-icon'/>
-                        <input type="text" className='readonly-contact-info' readOnly value={'comercial@sionenergia.com.br'} />
+                        <input type="text" className='readonly-contact-info' readOnly value={'cooperativa@sionenergia.com.br'} />
                     </div>
                     <div className="info-item">
                         <MapIcon className='info-icon'/>
@@ -57,7 +59,7 @@ export const Contact = () => {
                     </div>
                     <div className="info-item">
                         <WhatsappIcon className='info-icon'/>
-                        <input type="text" className='readonly-contact-info' readOnly value={'(41) 3533-5910'} />
+                        <input type="text" className='readonly-contact-info' readOnly value={'(41) 3028-3782'} />
                     </div>
                 </div>
             </div>
