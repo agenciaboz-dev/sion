@@ -85,10 +85,6 @@ export const Calculadora = ({}) => {
 		}
 	}, [spent])
 
-	useEffect(() => {
-		if (!user) navigate('/login')
-	}, [])
-
 	return (
 		<div className="Calculadora-Component">
 			<h1>Projeção de economia</h1>
