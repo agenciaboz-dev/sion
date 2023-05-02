@@ -55,7 +55,10 @@ export const Contact = () => {
                     </div>
                     <div className="info-item">
                         <MapIcon className='info-icon'/>
-                        <input type="text" className='readonly-contact-info' readOnly value={'Rua Dr. Manoel Pedro, 365, 21º andar. Curitiba - PR'} />
+                        <div className="info-break-line">
+                            <input type="text" className='readonly-contact-info' readOnly value={'Rua Dr. Manoel Pedro, 365, 21º andar.'} />
+                            <input type="text" className='readonly-contact-info' readOnly value={'Curitiba - PR'} />
+                        </div>
                     </div>
                     <div className="info-item">
                         <WhatsappIcon className='info-icon'/>
