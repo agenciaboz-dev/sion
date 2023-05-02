@@ -12,12 +12,16 @@
 
     .container {
         width: 5vw;
+        height: 5vw;
+        border-radius: 50%;
         background-color: white;
         border: 0.2vw $primary-color solid;
         padding: 0.5vw;
         justify-content: center;
+        align-items: center;
         color: $primary-color;
         z-index: 2;
+        font-size: 3vw;
     }
 
     .progress-bar {
