@@ -1,89 +1,96 @@
 @import '/src/sass/colors';
 
 .Cadastro-Page {
+    height: max-content;
+    overflow-x: hidden;
 
     .main-container {
-        background-color: white;
         flex-direction: column;
-        align-items: center;
         width: 80vw;
-        padding: 3vw 2vw;
-    }
+        padding: 8vw 5vw;
+        margin-top: 10vw;
 
-    .content {
-        width: 100%;
-        padding-top: 5vw;
-    }
+        .content {
+            width: 100%;
+            padding-top: 5vw;
+        }
 
-    .pessoa-wrapper {
-        width: 100%;
-        justify-content: space-between;
-
-        .pessoa-container {
+        .pessoa-wrapper {
             flex-direction: column;
-            border: 2px solid $primary-color;
-            flex: 0.45;
-            height: 25vw;
-            cursor: pointer;
+            justify-content: flex-start;
+            gap: 5vw;
+            height: max-content;
 
-            .text-container {
-                flex: 0.75;
-                flex-direction: column;
-                padding: 2.5vw 2vw;
-            }
+            .pessoa-container {
+                flex-direction: row;
+                justify-content: space-between;
+                // flex: 1;
 
-            .chose-container {
-                flex: 0.25;
+                .text-container {
+                    padding: 6vw 3vw;
+
+                    h1 {
+                        font-size: 6vw;
+                        font-weight: 300;
+                        text-align: center;
+                    }
+                }
+
+                .chose-container {
+                    svg {
+                        width: 12vw;
+                    }
+                    
+                    justify-content: center;
+                    align-items: center;
+                    width: fit-content;
+                }
             }
+        }
+
+        .two-inputs {
+            gap: 3vw;
         }
     }
 }
 
-@media only screen and (max-width: 600px) {
+
+@media (orientation: landscape) {
     .Cadastro-Page {
-        height: max-content;
-        overflow-x: hidden;
 
         .main-container {
-            width: 90vw;
-            padding: 8vw 5vw;
-            margin-top: 10vw;
-
-            .pessoa-wrapper {
+            background-color: white;
+            flex-direction: column;
+            align-items: center;
+            width: 80vw;
+            padding: 3vw 2vw;
+        }
+    
+        .content {
+            width: 100%;
+            padding-top: 5vw;
+        }
+    
+        .pessoa-wrapper {
+            width: 100%;
+            justify-content: space-between;
+    
+            .pessoa-container {
                 flex-direction: column;
-                justify-content: flex-start;
-                gap: 5vw;
-                height: max-content;
-
-                .pessoa-container {
-                    flex-direction: row;
-                    justify-content: space-between;
-                    // flex: 1;
-
-                    .text-container {
-                        padding: 6vw 3vw;
-
-                        h1 {
-                            font-size: 6vw;
-                            font-weight: 300;
-                            text-align: center;
-                        }
-                    }
-
-                    .chose-container {
-                        svg {
-                            width: 12vw;
-                        }
-                        
-                        justify-content: center;
-                        align-items: center;
-                        width: fit-content;
-                    }
+                border: 2px solid $primary-color;
+                flex: 0.45;
+                height: 25vw;
+                cursor: pointer;
+    
+                .text-container {
+                    flex: 0.75;
+                    flex-direction: column;
+                    padding: 2.5vw 2vw;
                 }
-            }
-
-            .two-inputs {
-                gap: 3vw;
+    
+                .chose-container {
+                    flex: 0.25;
+                }
             }
         }
     }
