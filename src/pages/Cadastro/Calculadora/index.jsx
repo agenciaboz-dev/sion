@@ -74,8 +74,6 @@ export const Calculadora = ({}) => {
     const [consumption, setConsumption] = useState(0)
 
     const nextStage = () => {
-        client.setValue({ ...client.value, spent })
-
         formRef.current.submitForm()
     }
 

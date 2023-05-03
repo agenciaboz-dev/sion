@@ -56,7 +56,7 @@ export const CurrentSupplier = ({ formRef, setValidUnit }) => {
         setUnitErrorText("")
         setLoading(true)
 
-        api.post("/contract/unit", { unit: event.target.value, seller: user.name })
+        api.post("/contract/unit", { unit: event.target.value })
             .then((response) => {
                 const error = response.data?.error
                 if (error) {
