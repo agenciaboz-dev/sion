@@ -17,9 +17,9 @@ export const PessoaChooser = ({ pessoa, setPessoa }) => {
         const nextStage = () => {
             client.setValue({ ...client.value, pessoa: value })
             setPessoa(value)
-            // setTimeout(() => {
-            //     navigate("/cadastro/formulario")
-            // }, 500)
+            setTimeout(() => {
+                navigate("/cadastro/formulario")
+            }, 500)
         }
 
         useEffect(() => {
