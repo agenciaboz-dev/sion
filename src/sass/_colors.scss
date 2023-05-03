@@ -1,4 +1,5 @@
 $primary-color: #384974;
+$primary-light-color: lighten($primary-color, 40);
 $text-color: #333333;
 $yellow-text-color: #FFF493;
 $background-color: #F3F3F3;
@@ -10,6 +11,7 @@ $red: darken(#E12454, 20);
 :export {
     background: $background-color;
     primary: $primary-color;
+    primary_light: $primary-light-color;
     primary_dark: $darkbluebackground-color;
     text: $text-color;
     gray: $graybutton-color;
