@@ -45,21 +45,23 @@ export const Progress = ({  }) => {
     }, [])
 
     return (
-        <div className='Progress-Component' >
+        <div className="Progress-Component">
             <div className="progress-bar">
                 <ProgressBar
                     completed={bar}
-                    maxCompleted={6}
+                    maxCompleted={5}
                     isLabelVisible={false}
                     className="wrapper"
                     bgColor={COLORS.primary}
-                    borderRadius={'0'}
-                    height={isMobile ? '1.5vw' : '0.6vw'}
-                    baseBgColor='none'
-                    transitionDuration={'1s'}
+                    borderRadius={"0"}
+                    height={isMobile ? "1.5vw" : "0.6vw"}
+                    baseBgColor="none"
+                    transitionDuration={"1s"}
                 />
             </div>
-            {stages.map(item => <Container key={item} stage={item} current={stage} />)}
+            {stages.map((item) => (
+                <Container key={item} stage={item} current={stage} />
+            ))}
         </div>
     )
 }
