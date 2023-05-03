@@ -9,8 +9,20 @@
     
     button {
         flex: 1;
-        font-size: 6vw;
+        font-size: 5vw;
         height: auto;
         padding: 2vw 5vw;
+    }
+}
+
+@media (orientation: landscape) {
+    .buttons-container {
+        margin-top: 2vw;
+
+        button {
+            flex: 0.2;
+            font-size: 1.5vw;
+            padding: 1vw 2vw;
+        }
     }
 }

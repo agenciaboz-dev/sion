@@ -2,59 +2,85 @@
 
 .Progress-Component {
     position: relative;
-    width: 100%;
     justify-content: space-between;
+    width: 100%;
     align-items: center;
 
     > * {
-        // box-shadow: 0 2px 3px rgba(0,0,0,0.4);
+        box-shadow: 0 2px 3px rgba(0,0,0,0.4);
     }
-
+    
     .container {
-        width: 5vw;
-        height: 5vw;
+        height: 7vw;
+        width: 7vw;
+        align-items: center;
+        justify-content: center;
         border-radius: 50%;
-        background-color: white;
+        color: $primary-color;
+        font-size: 3vw;
+        z-index: 2;
         border: 0.2vw $primary-color solid;
         padding: 0.5vw;
-        justify-content: center;
-        align-items: center;
-        color: $primary-color;
-        z-index: 2;
-        font-size: 3vw;
+        background-color: white;
     }
 
     .progress-bar {
         position: absolute;
-        width: 100%;
+        // width: 100%;
         align-items: center;
         justify-content: center;
 
         .wrapper {
             width: 100%;
-            border: 3px solid $primary-color;
+            border: 1px solid white;
         }
-        
     }
-
 }
 
-@media only screen and (max-width: 600px) {
+// .Progress-Component {
+//     position: relative;
+//     width: 100%;
+//     justify-content: space-between;
+//     align-items: center;
+
+//     > * {
+//         // box-shadow: 0 2px 3px rgba(0,0,0,0.4);
+//     }
+
+//     .container {
+//         width: 5vw;
+//         height: 5vw;
+//         border-radius: 50%;
+//         background-color: white;
+//         border: 0.2vw $primary-color solid;
+//         padding: 0.5vw;
+//         justify-content: center;
+//         align-items: center;
+//         color: $primary-color;
+//         z-index: 2;
+//         font-size: 3vw;
+//     }
+
+//     .progress-bar {
+//         position: absolute;
+//         width: 100%;
+//         align-items: center;
+//         justify-content: center;
+
+//         .wrapper {
+//             width: 100%;
+//         }
+        
+//     }
+
+// }
+
+@media (orientation: landscape) {
     .Progress-Component {
-        justify-content: space-between;
         .container {
-            height: 7vw;
-            width: 7vw;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-        }
-
-        .progress-bar {
-
-            .wrapper {
-                border: 1px solid white;
-            }
+            width: 3vw;
+            height: 3vw;
+            font-size: 2vw;
         }
     }
 }

@@ -16,7 +16,6 @@
     .flags-container {
         flex-wrap: wrap;
         gap: 3vw;
-        margin-top: 2vw;
         
         .flag-container {
             padding: 2vw 1vw;
@@ -62,24 +61,48 @@
         }
     }
 
-    .buttons-container {
-        width: 100%;
-        height: max-content;
-        justify-content: space-between;
-        gap: 3vw;
-        margin-top: 7vw;
-        
-        button {
-            flex: 1;
-            font-size: 6vw;
-            height: auto;
-            padding: 2vw 5vw;
-        }
-    }
 }
 
 @media (orientation: landscape) {
     .Calculadora-Component {
-        
+        h1 {
+            font-size: 2vw;
+        }
+
+        .kwh {
+            font-size: 1.5vw;
+        }
+
+        .flags-container {
+            gap: 0;
+            justify-content: space-between;
+
+            .flag-container {
+                width: 49%;
+                margin: 1vw 0;
+                border-radius: 0.5vw;
+
+                svg {
+                    width: 3vw;
+                    margin-right: 0;
+                }
+
+                .flag-tone {
+                    font-size: 1vw;
+                    width: 20%;
+                }
+
+                .yearly {
+                    font-size: 1vw;
+                    width: 40%;
+                }
+
+                .monthly {
+                    font-size: 1vw;
+                    width: 20%;
+                }
+                
+            }
+        }
     }
 }

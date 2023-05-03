@@ -1,5 +1,5 @@
 {
-    "api": "https://app.agenciaboz.com.br:4101/api",
+    "api": "https://app.agenciaboz.com.br:4000/api/v1/sion",
     "_api": "http://localhost:4101/api",
     "timeout": 10
 }

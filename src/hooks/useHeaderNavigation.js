@@ -10,55 +10,55 @@ export const useHeaderNavigation = () => {
     const { setStage, setBar } = useStage()
 
     const paths = {
-		['/']: {
-			label: 'Site',
-			navigate: () => (window.location.href = 'https://cooperativasion.com.br'),
-		},
-		['/login']: {
-			label: 'Site',
-			navigate: () => (window.location.href = 'https://cooperativasion.com.br'),
-		},
-		['/cadastro']: {
-			label: 'Sair',
-			navigate: logout,
-			stage: 1,
-		},
-		['/cadastro/formulario']: {
-			label: 'Voltar',
-			navigate: () => navigate('/cadastro/pessoa'),
-			stage: 3,
-		},
-		['/cadastro/formulario/representante']: {
-			label: 'Voltar',
-			navigate: () => navigate('/cadastro/formulario'),
-			stage: 4,
-		},
-		['/cadastro/anexos']: {
-			label: 'Voltar',
-			navigate: () => navigate('/cadastro/formulario'),
-			stage: 5,
-		},
-		['/cadastro/pessoa']: {
-			label: 'Voltar',
-			navigate: () => navigate('/cadastro'),
-			stage: 2,
-		},
-		['/cadastro/contrato']: {
-			label: 'Voltar',
-			navigate: () => navigate('/cadastro/anexos'),
-			stage: 6,
-		},
-		['/cadastro/financeiro']: {
-			label: 'Voltar',
-			navigate: () => navigate('/cadastro/contrato'),
-			stage: 7,
-		},
-		['/cadastro/done']: {
-			label: 'Inicio',
-			navigate: () => navigate('/'),
-			stage: 7,
-		},
-	}
+        ["/"]: {
+            label: "Site",
+            navigate: () => (window.location.href = "https://cooperativasion.com.br"),
+        },
+        ["/login"]: {
+            label: "Site",
+            navigate: () => (window.location.href = "https://cooperativasion.com.br"),
+        },
+        ["/cadastro"]: {
+            label: "Sair",
+            navigate: logout,
+            stage: 1,
+        },
+        ["/cadastro/formulario"]: {
+            label: "Voltar",
+            navigate: () => navigate("/cadastro/pessoa"),
+            stage: 3,
+        },
+        ["/cadastro/formulario/representante"]: {
+            label: "Voltar",
+            navigate: () => navigate("/cadastro/formulario"),
+            stage: 4,
+        },
+        ["/cadastro/anexos"]: {
+            label: "Voltar",
+            navigate: () => navigate("/cadastro/formulario"),
+            stage: 4,
+        },
+        ["/cadastro/pessoa"]: {
+            label: "Voltar",
+            navigate: () => navigate("/cadastro"),
+            stage: 2,
+        },
+        ["/cadastro/contrato"]: {
+            label: "Voltar",
+            navigate: () => navigate("/cadastro/anexos"),
+            stage: 5,
+        },
+        ["/cadastro/financeiro"]: {
+            label: "Voltar",
+            navigate: () => navigate("/cadastro/contrato"),
+            stage: 6,
+        },
+        ["/cadastro/done"]: {
+            label: "Inicio",
+            navigate: () => navigate("/"),
+            stage: 6,
+        },
+    }
 
 
     const headerObject = useMemo(() => {

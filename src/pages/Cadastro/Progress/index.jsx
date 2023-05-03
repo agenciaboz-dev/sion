@@ -38,7 +38,7 @@ export const Progress = ({  }) => {
     const client = useClient().value
     const { stage, bar } = useStage()
 
-    const [stages, setStages] = useState([1, 2, 3, 4, 5, 6, 7])
+    const [stages, setStages] = useState([1, 2, 3, 4, 5, 6])
     
     useEffect(() => {
 
