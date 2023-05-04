@@ -92,6 +92,14 @@
         margin-left: 0vw;
         z-index: -3;
     }
+    
+    .white-triangle {
+        position: absolute;
+        border-top: 13vw solid transparent;
+        border-right: 100vw solid white;
+        margin-left: 0;
+        z-index: -1;
+    }
 
     svg {
         margin: 3vw;
@@ -148,13 +156,16 @@
 
         .bottom-triangle {
             position: absolute;
-            border-top: 10vw solid transparent;
+            border-top: 14vw solid transparent;
             border-bottom: 35vw solid transparent;
             border-left: 250vw solid $darkbluebackground-color;
             margin-left: 0vw;
             z-index: -1;
         }
         
+        .white-triangle {
+            display: none;
+        }
     }
 }
 

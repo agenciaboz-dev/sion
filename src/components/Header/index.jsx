@@ -49,6 +49,7 @@ export const Header = ({ alternative, setAlternative, vendas }) => {
                     <p>{headerNavigate.label}</p>
                 </div>
                 <div className="bottom-triangle"></div>
+                <div className="white-triangle"></div>
             </section>
             {!vendas && <Logo style={alternative ? { visibility: "hidden" } : null} />}
         </div>
