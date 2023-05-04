@@ -6,8 +6,7 @@ import { useClient } from "../../../hooks/useClient"
 import { useColors } from "../../../hooks/useColors"
 import { useStage } from "../../../hooks/useStage"
 import { ReactComponent as ChoseIcon } from "../../../images/check.svg"
-import { ReactComponent as ForwardArrowBlue } from "../../../images/forward_arrow_small_blue.svg"
-import { ReactComponent as ForwardArrow } from "../../../images/forward_arrow_small.svg"
+import { ReactComponent as WhiteCircle } from "../../../images/white_circle.svg"
 
 export const PessoaChooser = ({ pessoa, setPessoa }) => {
     const Pessoa = ({ name, value, description }) => {
@@ -32,7 +31,7 @@ export const PessoaChooser = ({ pessoa, setPessoa }) => {
                 setBackgroundColor(colors.primary)
             } else {
                 setClicked(false)
-                setBackgroundColor(isMobile ? "white" : colors.primary_light)
+                setBackgroundColor(colors.primary_light)
             }
         }, [pessoa])
 
@@ -44,10 +43,10 @@ export const PessoaChooser = ({ pessoa, setPessoa }) => {
                 </div>
                 <div className="chose-container" style={{ backgroundColor: backgroundColor }}>
                     {clicked ? (
-                        <ChoseIcon style={isMobile ? { height: "18vw", width: "18vw" } : { height: "4vw", width: "4vw" }} />
+                        <ChoseIcon style={isMobile ? { height: "8vw", width: "8vw" } : { height: "4vw", width: "4vw" }} />
                     ) : (
                         <div className="forward-arrow-container">
-                            {isMobile ? <ForwardArrowBlue /> : <ForwardArrow style={{ height: "4vw", width: "4vw" }} />}
+                            {<WhiteCircle style={ isMobile? {height: "8vw", width: "8vw "} : { height: "4vw", width: "4vw" }} />}
                         </div>
                     )}
                 </div>
