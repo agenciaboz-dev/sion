@@ -41,12 +41,12 @@ export const Footer = ({ vendas }) => {
     return vendas ? 
     <div className='Footer-Component' style={{
             backgroundColor: 'transparent',
-            marginLeft: '-10vw',
+            marginLeft: '0',
             width: 0, 
             height: 0,
-            borderTop: '35vw solid transparent',
+            borderTop: '13vw solid transparent',
             borderBottom: '0 solid transparent',
-            borderRight: `110vw solid ${COLORS.primary}`,
+            borderRight: `100vw solid ${COLORS.primary}`,
             padding: 0
         }} >
             {location.pathname == '/cadastro/contrato' &&

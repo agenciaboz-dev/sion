@@ -23,7 +23,12 @@ export const BackgroundContainer = ({ children, vendas }) => {
                 {children}
             </div>
 
-            <Footer vendas={vendas} />
+            {
+            isMobile?
+                <Footer vendas={vendas} />
+            :
+                <Footer />
+            }
         </div>
     )
 }
