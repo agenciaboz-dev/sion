@@ -2,16 +2,16 @@
 
 .StickyHomeButton-Component {
     display: flex;
-    position: sticky;
+    position: fixed;
     width: 3vw;
     min-height: 3vw;
     height: 3vw;
-    bottom: 1vw;
+    bottom: 0.75vw;
     left: 3.25vw;
     background-color: $primary-color;
     justify-content: center;
     align-items: center;
-    outline: 2px solid white;
+    outline: 1px solid white;
 
     svg {
         width: 1vw;
@@ -26,7 +26,7 @@
         width: 10vw;
         min-height: 10vw;
         height: 10vw;
-        left: 1vw;
+        left: 0.75vw;
     
         svg {
             width: 5vw;
