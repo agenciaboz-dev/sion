@@ -6,6 +6,7 @@ import { ReactComponent as FacebookIcon } from '../../images/socials/facebook.sv
 import { ReactComponent as WhatsappIcon } from '../../images/socials/whatsapp.svg'
 
 import './style.scss';
+import { WhatsappButton } from '../../components/WhatsappButton';
 
 export const Links = () => {
 
@@ -35,6 +36,7 @@ export const Links = () => {
                     <div className="bottom-blue-background"></div>
                 </div>
             </BackgroundContainer>
+            <WhatsappButton />
         </div>
     )
 }
