@@ -1,14 +1,18 @@
 @import '/src/sass/colors';
 
 .WhatsappButton-Component {
-    position: sticky;
-    width: 4.25vw;
-    height: 4.25vw;
-    left: 92.5vw;
-    bottom: 5.5vw;
+    position: fixed;
+    width: 4vw;
+    height: 4vw;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    background-color: #00B314;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px #b5b5b5;
+    right: 0;
+    margin-right: 2.75vw;
+    bottom: 5.5vw;
 }
 
 @media only screen and (max-width: 600px) {
