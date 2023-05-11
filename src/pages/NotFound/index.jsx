@@ -3,6 +3,7 @@ import {ReactComponent as NotFoundIcon} from '../../images/404.svg'
 import { BackgroundContainer } from '../../components/BackgroundContainer';
 import {ReactComponent as LogoBranco} from '../../images/logo_branco.svg';
 import './style.scss';
+import { WhatsappButton } from '../../components/WhatsappButton';
 
 export const NotFound = () => {
     const navigate = useNavigate()
@@ -25,6 +26,7 @@ export const NotFound = () => {
                     <div className="blue-background"></div>
                 </div>
             </BackgroundContainer>
+            <WhatsappButton />
         </div>
     )
 }
