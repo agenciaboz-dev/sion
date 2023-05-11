@@ -30,7 +30,6 @@ export const Header = ({ alternative, setAlternative }) => {
         backgroundColor: COLORS.primary,
         position: 'fixed',
         top: 0,
-        width: '100%',
     }
 
     useEffect(() => {
