@@ -1,21 +1,26 @@
 @import '/src/sass/colors';
 
 .Cadastro-Page {
+    height: 100vw;
 
+    h1 {
+        font-size: 3vw;
+    }
+    
     .main-container {
         background-color: white;
         flex-direction: column;
         align-items: center;
         width: 80vw;
         padding: 3vw 2vw;
-        margin-top: 5vw;
+        margin-top: 8vw;
     }
-
+    
     .content {
         width: 100%;
         padding-top: 5vw;
     }
-
+    
     .pessoa-wrapper {
         width: 100%;
         justify-content: space-between;
@@ -31,6 +36,7 @@
                 flex: 0.65;
                 flex-direction: column;
                 padding: 2.5vw 2vw;
+                font-size: 1.5vw;
             }
 
             .chose-container {
@@ -49,4 +55,67 @@
             }
         }
     }
+
+    .white-background {
+        position: absolute;
+        background-color: white;
+        left: 0;
+        top: 62vw;
+        width: 100vw;
+        height: 25vw;
+        z-index: -1;
+        box-shadow: 0 1vw 2vw 0 #00000040;
+
+        transform: skew(0, 12deg);
+    }
+
+    .blue-background {
+        position: absolute;
+        background-color: $primary-color;
+        left: 0;
+        top: 62vw;
+        width: 100vw;
+        height: 25vw;
+        z-index: -1;
+
+        transform: skew(0, -12deg);
+    }
 }
+ @media only screen and (max-width: 600px) {
+
+    .Cadastro-Page {
+        height: 300vw;
+
+        h1 {
+            font-size: 6vw;
+        }
+
+        .main-container {
+            margin-top: 180vw;
+            margin-bottom: 30vw;
+        }
+
+        .pessoa-wrapper {
+            flex-direction: column;
+
+            .pessoa-container {
+                .text-container {
+                    padding: 4vw 4vw 10vw;
+                    font-size: 5vw;
+                }
+            }
+        }
+            
+        .white-background {
+            top: 255vw;
+
+            transform: skew(0, 12deg);
+        }
+
+        .blue-background {
+            top: 255vw;
+
+            transform: skew(0, -12deg);
+        }
+    }
+ }

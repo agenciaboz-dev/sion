@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react';
 import { Route, useLocation, useNavigate } from 'react-router-dom';
 import { BackgroundContainer } from '../../components/BackgroundContainer';
 import { Progress } from './Progress';
-import {ReactComponent as ChoseIcon} from '../../images/check.svg'
+import { ReactComponent as ChoseIcon } from '../../images/check.svg'
 import './style.scss';
 import { Formulario } from './Formulario';
 import SlideRoutes from 'react-slide-routes';
 import { useClient } from '../../hooks/useClient';
 import { Fatura } from './Fatura';
 import { Contrato } from './Contrato';
+import { WhatsappButton } from '../../components/WhatsappButton';
 
 export const Cadastro = () => {
     const PessoaComponent = () => {
@@ -85,8 +86,11 @@ export const Cadastro = () => {
                             <Route path='/contrato' element={<Contrato setProgressBarStage={setProgressBarStage} setStage={setStage} />} />
                     </SlideRoutes>
                     </div>
+                    <div className="white-background"></div>
+                    <div className="blue-background"></div>
                 </div>
             </BackgroundContainer>
+            <WhatsappButton />
         </div>
     )
 }
