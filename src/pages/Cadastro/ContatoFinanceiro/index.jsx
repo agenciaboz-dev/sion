@@ -48,62 +48,63 @@ export const ContatoFinanceiro = ({}) => {
 	}, [])
 
 	return (
-		<div className="ContatoFinanceiro-Component">
-			<h2>Cadastro Financeiro</h2>
-			<Formik initialValues={initialValues} onSubmit={nextStage}>
-				{({ values, handleChange, submitForm }) => (
-					<Form
-						onKeyDown={(event) => {
-							if (event.key === 'Enter') {
-								event.preventDefault()
-								submitForm()
-							}
-						}}
-					>
-						<InputField
-							title={'Responsável Financeiro'}
-							id="name"
-							value={values.name}
-							handleChange={handleChange}
-						/>
-						<InputField
-							title={'Telefone Financeiro'}
-							inputMode={'tel'}
-							mask={['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
-							id="phone"
-							value={values.phone}
-							handleChange={handleChange}
-						/>
-						<InputField
-							title={'E-mail do responsável financeiro'}
-							id="email"
-							value={values.email}
-							handleChange={handleChange}
-						/>
-						<h2>Credenciais</h2>
-						<InputField title={'Login'} id="login" value={values.login} handleChange={handleChange} />
-						<InputField title={'Senha'} id="password" value={values.password} handleChange={handleChange} />
-						<NavButtons
-							goBack={(event) => goBack(event)}
-							nextStage={(event) => {
-								event.preventDefault()
-								submitForm()
-							}}
-							children={loading ? <MuiLoading size={'5vw'} /> : <>Finalizar</>}
-						/>
-					</Form>
-				)}
-			</Formik>
-			<Snackbar
-				open={snackbar}
-				autoHideDuration={3000}
-				onClose={() => setSnackbar(false)}
-				anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-			>
-				<Alert onClose={() => setSnackbar(false)} severity={'success'} sx={{ width: '100%' }}>
-					Termo de adesão enviado para assinatura
-				</Alert>
-			</Snackbar>
-		</div>
-	)
+        <div className="ContatoFinanceiro-Component">
+            <h2>Cadastro Financeiro</h2>
+            <Formik initialValues={initialValues} onSubmit={nextStage}>
+                {({ values, handleChange, submitForm }) => (
+                    <Form
+                        autoComplete="false"
+                        onKeyDown={(event) => {
+                            if (event.key === "Enter") {
+                                event.preventDefault()
+                                submitForm()
+                            }
+                        }}
+                    >
+                        <InputField
+                            title={"Responsável Financeiro"}
+                            id="name"
+                            value={values.name}
+                            handleChange={handleChange}
+                        />
+                        <InputField
+                            title={"Telefone Financeiro"}
+                            inputMode={"tel"}
+                            mask={["(", /\d/, /\d/, ")", " ", /\d/, /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/]}
+                            id="phone"
+                            value={values.phone}
+                            handleChange={handleChange}
+                        />
+                        <InputField
+                            title={"E-mail do responsável financeiro"}
+                            id="email"
+                            value={values.email}
+                            handleChange={handleChange}
+                        />
+                        <h2>Credenciais</h2>
+                        <InputField title={"Login"} id="login" value={values.login} handleChange={handleChange} />
+                        <InputField title={"Senha"} id="password" value={values.password} handleChange={handleChange} />
+                        <NavButtons
+                            goBack={(event) => goBack(event)}
+                            nextStage={(event) => {
+                                event.preventDefault()
+                                submitForm()
+                            }}
+                            children={loading ? <MuiLoading size={"5vw"} /> : <>Finalizar</>}
+                        />
+                    </Form>
+                )}
+            </Formik>
+            <Snackbar
+                open={snackbar}
+                autoHideDuration={3000}
+                onClose={() => setSnackbar(false)}
+                anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+            >
+                <Alert onClose={() => setSnackbar(false)} severity={"success"} sx={{ width: "100%" }}>
+                    Termo de adesão enviado para assinatura
+                </Alert>
+            </Snackbar>
+        </div>
+    )
 }
