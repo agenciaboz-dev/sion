@@ -23,9 +23,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ user }) => {
                 {menus
                     .filter((menu) => (menu.adm ? user.adm && menu : menu))
                     .map((menu) => (
-                        <p className="link" key={menu.id} onClick={() => navigate(menu.location)}>
-                            {menu.name}
-                        </p>
+                        <IconButton
+                            key={menu.id}
+                            onClick={() => navigate(menu.location)}
+                            sx={{ alignSelf: "flex-start", color: "white" }}
+                        >
+                            <p className="link">{menu.name}</p>
+                        </IconButton>
                     ))}
             </div>
             <IconButton

@@ -13,7 +13,6 @@
         width: 20%;
         flex-direction: column;
         padding: 1vw 3vw;
-        gap: 1vw;
 
         .title {
             font-size: 1.5vw;
@@ -22,10 +21,10 @@
         .list {
             flex-direction: column;
             padding-left: 2vw;
-            gap: 1vw;
             
             .link {
                 font-size: 1vw;
+                font-weight: normal;
                 cursor: pointer;
             }
         }
