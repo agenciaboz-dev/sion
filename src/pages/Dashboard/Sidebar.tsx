@@ -21,15 +21,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ user }) => {
             <p className="title">{user.adm ? "Administrativo" : "Vendedor"}</p>
             <div className="list">
                 {menus
-                    .filter((menu) => {
-                        if (menu.adm) {
-                            return user.adm && menu
-                        } else {
-                            return menu
-                        }
-                    })
+                    .filter((menu) => (menu.adm ? user.adm && menu : menu))
                     .map((menu) => (
-                        <p className="link" key={menu.id}>
+                        <p className="link" key={menu.id} onClick={() => navigate(menu.location)}>
                             {menu.name}
                         </p>
                     ))}
