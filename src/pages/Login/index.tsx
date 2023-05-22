@@ -1,7 +1,6 @@
 import { Button, Checkbox, FormControlLabel } from "@mui/material"
 import { Form, Formik } from "formik"
 import { useEffect, useLayoutEffect, useState } from "react"
-import { api } from "../../api"
 import { Footer } from "../../components/Footer"
 import { InputField } from "../../components/InputField"
 import { useLocalStorage } from "../../hooks/useLocalStorage"
@@ -13,6 +12,7 @@ import { MuiLoading } from "../../components/MuiLoading"
 import { Header } from "../../components/Header"
 import { ReactComponent as UpArrowIcon } from "../../images/login/up_arrow.svg"
 import { User } from "../../definitions/user"
+import { useApi } from "../../hooks/useApi"
 
 interface FormValues {
     user: string
@@ -24,6 +24,7 @@ export const Login = () => {
     const [user, setUser] = useUser()
     const navigate = useNavigate()
     const params = useParams()
+    const api = useApi()
 
     const [remind, setRemind] = useState(storage.get("remindme"))
     const [loading, setLoading] = useState(false)
@@ -35,8 +36,9 @@ export const Login = () => {
         setLoading(true)
         setError(false)
 
-        api.post("/login", values)
-            .then((response: { data: User }) => {
+        api.login({
+            data: values,
+            callback: (response: { data: User }) => {
                 if (response.data) {
                     const usuario = response.data
                     storage.set("user_sion", remind ? usuario : null)
@@ -44,11 +46,9 @@ export const Login = () => {
                 } else {
                     setError(true)
                 }
-            })
-            .catch((error: any) => console.error(error))
-            .finally(() => {
-                setLoading(false)
-            })
+            },
+            finallyCallback: () => setLoading(false),
+        })
     }
 
     useEffect(() => {
