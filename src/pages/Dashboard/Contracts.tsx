@@ -4,10 +4,13 @@ import { useApi } from "../../hooks/useApi"
 import { Contract } from "../../definitions/contract"
 import { Button, Skeleton, SxProps } from "@mui/material"
 import { useIndexedList } from "../../hooks/useIndexedList"
+import { useNavigate } from "react-router-dom"
 
 interface ContractsProps {}
 
 const ContractContainer = ({ contract }: { contract: Contract }) => {
+    const navigate = useNavigate()
+
     return (
         <div className="contract-container">
             <p className="title">
@@ -24,7 +27,9 @@ const ContractContainer = ({ contract }: { contract: Contract }) => {
                     <p>{new Date(contract.date).toLocaleDateString()}</p>
                 </div>
 
-                <Button variant="contained">Ver contrato</Button>
+                <Button onClick={() => navigate(`/dashboard/contract/${contract.id}`)} variant="contained">
+                    Ver contrato
+                </Button>
             </div>
         </div>
     )
@@ -37,6 +42,7 @@ export const Contracts: React.FC<ContractsProps> = ({}) => {
 
     const [contracts, setContracts] = useState<Contract[]>([])
     const [loading, setLoading] = useState(true)
+    const [contract, setContract] = useState<Contract>()
 
     const skeleton_style: SxProps = {
         width: "100%",

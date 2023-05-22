@@ -31,6 +31,14 @@ export const useApi = () => {
                     .catch((error) => defaultError(error, options.errorCallback))
                     .finally(() => defaultFinally(options.finallyCallback))
             },
+            find: {
+                id: (options: ApiOptions) => {
+                    api.post("/contracts/id", options.data)
+                        .then((response) => options.callback(response))
+                        .catch((error) => defaultError(error, options.errorCallback))
+                        .finally(() => defaultFinally(options.finallyCallback))
+                },
+            },
         },
         // user: {
         //     update: (options: ApiOptions) => {

@@ -75,5 +75,29 @@
                 }
             }
         }
+
+        .Contract-Component {
+            .info-container {
+                width: 100%;
+                box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.25);
+                padding: 2vw;
+                gap: 3vw;
+                
+                > div {
+                    flex-direction: column;
+                    gap: 1vw;
+                    width: 50%;
+
+                    input {
+                        padding: 1vw;
+                    }
+
+                    .number-district {
+                        width: 100%;
+                        gap: 1vw;
+                    }
+                }
+            }
+        }
     }
 }
