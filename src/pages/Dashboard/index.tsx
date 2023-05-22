@@ -21,6 +21,7 @@ export const Dashboard: React.FC<DashboardProps> = ({}) => {
             <div className="content-container">
                 <Routes>
                     <Route index element={<Contracts />} />
+                    <Route path="contracts/" element={<Contracts />} />
                 </Routes>
             </div>
         </div>

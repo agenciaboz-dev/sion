@@ -28,7 +28,7 @@ function App() {
                                         {/* <Route index element={<Home />} /> */}
                                         <Route index element={<Login />} />
                                         <Route path="/login" element={<Login />} />
-                                        <Route path="/dashboard" element={<Dashboard />} />
+                                        <Route path="/dashboard/*" element={<Dashboard />} />
                                         <Route path="*" element={<NotFound />} />
                                     </Routes>
                                 </StageProvider>

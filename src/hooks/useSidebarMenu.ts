@@ -10,7 +10,7 @@ export const useSidebarMenu = () => {
         {
             id: 1,
             name: "Clientes",
-            location: "/",
+            location: "/dashboard/contracts",
         },
         {
             id: 2,
