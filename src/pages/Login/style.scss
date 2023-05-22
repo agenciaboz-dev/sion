@@ -171,3 +171,53 @@
         margin-top: auto;
     }
 }
+
+@media (orientation: landscape) {
+    .Login-Page {
+        padding-top: 5vw;
+
+        .main-container {
+            padding: 0;
+            gap: 2vw;
+
+            >svg {
+                width: 30vw;
+                margin-bottom: 0;
+                height: auto;
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                width: 50vw;
+                gap: 1vw;
+
+                .password-input-container {
+                    margin: 0;
+                }
+
+                label {
+                    font-size: 1vw;
+                }
+
+                .bottom-container {
+                    margin-top: 0;
+
+                    p {
+                        font-size: 1vw;
+                    }
+
+                    .button-container {
+                        button {
+                            display: flex;
+                            font-size: 1vw;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}

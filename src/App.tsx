@@ -11,6 +11,7 @@ import { ThemeProvider } from "@mui/material"
 import { AttachmentsProvider } from "./contexts/attachmentsContext"
 import { PdfProvider } from "./contexts/pdfContext"
 import { StageProvider } from "./contexts/stageContext"
+import { Dashboard } from "./pages/Dashboard"
 
 function App() {
     const muiTheme = useMuiTheme()
@@ -26,8 +27,8 @@ function App() {
                                     <Routes>
                                         {/* <Route index element={<Home />} /> */}
                                         <Route index element={<Login />} />
-
                                         <Route path="/login" element={<Login />} />
+                                        <Route path="/dashboard" element={<Dashboard />} />
                                         <Route path="*" element={<NotFound />} />
                                     </Routes>
                                 </StageProvider>
