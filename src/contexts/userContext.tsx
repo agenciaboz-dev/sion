@@ -4,8 +4,8 @@ import { User } from "../definitions/user"
 import { useLocalStorage } from "../hooks/useLocalStorage.js"
 
 interface UserContextValue {
-    value: User | null
-    setValue: (value: User | null) => void
+    value: User
+    setValue: (value: User) => void
 }
 
 interface UserProviderProps {

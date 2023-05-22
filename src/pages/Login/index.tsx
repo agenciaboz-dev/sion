@@ -10,7 +10,6 @@ import { useUser } from "../../hooks/useUser"
 import { useNavigate, useParams } from "react-router-dom"
 import { MuiLoading } from "../../components/MuiLoading"
 import { Header } from "../../components/Header"
-import { ReactComponent as UpArrowIcon } from "../../images/login/up_arrow.svg"
 import { User } from "../../definitions/user"
 import { useApi } from "../../hooks/useApi"
 
@@ -21,7 +20,7 @@ interface FormValues {
 
 export const Login = () => {
     const storage = useLocalStorage()
-    const [user, setUser] = useUser()
+    const { setUser } = useUser()
     const navigate = useNavigate()
     const api = useApi()
 
