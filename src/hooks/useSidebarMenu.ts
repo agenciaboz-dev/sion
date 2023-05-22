@@ -5,7 +5,7 @@ export const useSidebarMenu = () => {
         {
             id: 0,
             name: "Perfil",
-            location: "/",
+            location: "/dashboard",
         },
         {
             id: 1,
@@ -15,36 +15,36 @@ export const useSidebarMenu = () => {
         {
             id: 2,
             name: "Vendedores",
-            location: "/",
+            location: "/dashboard",
         },
         {
             id: 3,
             name: "Novo vendedor",
-            location: "/",
+            location: "/dashboard",
             adm: true,
         },
         {
             id: 4,
             name: "Tarifa de energia",
-            location: "/",
+            location: "/dashboard",
             adm: true,
         },
         {
             id: 5,
             name: "Validações",
-            location: "/",
+            location: "/dashboard",
             adm: true,
         },
         {
             id: 6,
             name: "Visual",
-            location: "/",
+            location: "/dashboard",
             adm: true,
         },
         {
             id: 7,
             name: "Textos",
-            location: "/",
+            location: "/dashboard",
             adm: true,
         },
     ]
