@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { Contract as ContractType } from "../../definitions/contract"
-import { useIndexedList } from "../../hooks/useIndexedList"
 import { Skeleton, SxProps, TextField } from "@mui/material"
 import { useApi } from "../../hooks/useApi"
 
@@ -10,8 +9,6 @@ interface ContractProps {}
 export const Contract: React.FC<ContractProps> = ({}) => {
     const id = useParams().id
     const navigate = useNavigate()
-    const { newArray } = useIndexedList()
-    const skeletons = newArray(2)
     const api = useApi()
 
     const [contract, setContract] = useState<ContractType>()
@@ -19,7 +16,6 @@ export const Contract: React.FC<ContractProps> = ({}) => {
 
     const skeleton_style: SxProps = {
         width: "100%",
-        height: "5vw",
         flexShrink: 0,
     }
 
@@ -39,7 +35,11 @@ export const Contract: React.FC<ContractProps> = ({}) => {
     return id ? (
         <div className="Contract-Component">
             {!contract ? (
-                skeletons.map((item) => <Skeleton key={skeletons.indexOf(item)} variant="rectangular" sx={skeleton_style} />)
+                <>
+                    <Skeleton variant="rectangular" sx={skeleton_style} height={"21vw"} />
+                    <Skeleton variant="rectangular" sx={skeleton_style} height={"8vw"} />
+                    <Skeleton variant="rectangular" sx={skeleton_style} height={"5vw"} />
+                </>
             ) : (
                 <div className="info-container">
                     <div className="left-column">
