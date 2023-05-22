@@ -2,5 +2,37 @@
 
 .Dashboard-Component {
     width: 100%;
-    flex-direction: column;
+    height: 100vh;
+    padding-top: 10vw;
+    background-color: $primary-color;
+    
+    .Sidebar-Component {
+        background-color: $darkbluebackground-color;
+        flex-shrink: 0;
+        color: white;
+        width: 20%;
+        flex-direction: column;
+        padding: 1vw 3vw;
+        gap: 1vw;
+
+        .title {
+            font-size: 1.5vw;
+        }
+
+        .list {
+            flex-direction: column;
+            padding-left: 2vw;
+            gap: 1vw;
+            
+            .link {
+                font-size: 1vw;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .content-container {
+        width: 100%;
+        background-color: $background-color;
+    }
 }
