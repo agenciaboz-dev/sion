@@ -4,6 +4,7 @@ import { useUser } from "../../hooks/useUser"
 import { useNavigate } from "react-router-dom"
 import { Sidebar } from "./Sidebar"
 import { Route, Routes } from "react-router-dom"
+import { Contracts } from "./Contracts"
 
 interface DashboardProps {}
 
@@ -19,7 +20,7 @@ export const Dashboard: React.FC<DashboardProps> = ({}) => {
             <Sidebar user={user} />
             <div className="content-container">
                 <Routes>
-                    <Route />
+                    <Route index element={<Contracts />} />
                 </Routes>
             </div>
         </div>

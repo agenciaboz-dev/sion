@@ -3,12 +3,12 @@ import { User } from "./user"
 export interface Contract {
     id: number
     unit: string
-    date: Date
+    date: string
     ip: string
     pessoa: string
     supplier: string
     name: string
-    birth: Date
+    birth: string
     email: string
     phone: string
     cep: string
