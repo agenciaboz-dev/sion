@@ -4,8 +4,8 @@ import { User } from "../definitions/user"
 import { useLocalStorage } from "../hooks/useLocalStorage.js"
 
 interface UserContextValue {
-    value: User
-    setValue: (value: User) => void
+    value: User | null
+    setValue: (value: User | null) => void
 }
 
 interface UserProviderProps {
@@ -17,8 +17,7 @@ const UserContext = createContext<UserContextValue>({} as UserContextValue)
 export default UserContext
 
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
-    const storage = useLocalStorage()
-    const [value, setValue] = useState(storage.get("user_sion"))
+    const [value, setValue] = useState<User | null>(null)
 
     useEffect(() => {
         console.log(value)
