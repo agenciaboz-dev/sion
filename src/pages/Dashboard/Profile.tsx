@@ -167,6 +167,7 @@ export const Profile: React.FC<ProfileProps> = ({ user }) => {
                                     name="new_email"
                                     value={values.new_email}
                                     onChange={handleChange}
+                                    type="email"
                                 />
                                 <Button type="submit" variant="contained" sx={button_style}>
                                     {emailLoading ? <CircularProgress {...loading_props} /> : "Redefinir e-mail"}
