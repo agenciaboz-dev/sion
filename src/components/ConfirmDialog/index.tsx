@@ -13,9 +13,8 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({}) => {
     }
 
     const confirm = () => {
-        // alert("oi")
-        // handleClose()
         onConfirm()
+        handleClose()
     }
 
     return (
