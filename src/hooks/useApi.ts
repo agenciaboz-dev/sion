@@ -40,20 +40,26 @@ export const useApi = () => {
                 },
             },
         },
-        // user: {
-        //     update: (options: ApiOptions) => {
-        //         api.post("/user", options.data)
-        //             .then((response) => options.callback(response))
-        //             .catch((error) => defaultError(error, options.errorCallback))
-        //             .finally(() => defaultFinally(options.finallyCallback))
-        //     },
-        //     password: (options: ApiOptions) => {
-        //         api.post("/user/password", options.data)
-        //             .then((response) => options.callback(response))
-        //             .catch((error) => defaultError(error, options.errorCallback))
-        //             .finally(() => defaultFinally(options.finallyCallback))
-        //     },
-        // },
+        user: {
+            update: (options: ApiOptions) => {
+                api.post("/user/update", options.data)
+                    .then((response) => options.callback(response))
+                    .catch((error) => defaultError(error, options.errorCallback))
+                    .finally(() => defaultFinally(options.finallyCallback))
+            },
+            password: (options: ApiOptions) => {
+                api.post("/user/password", options.data)
+                    .then((response) => options.callback(response))
+                    .catch((error) => defaultError(error, options.errorCallback))
+                    .finally(() => defaultFinally(options.finallyCallback))
+            },
+            email: (options: ApiOptions) => {
+                api.post("/user/email", options.data)
+                    .then((response) => options.callback(response))
+                    .catch((error) => defaultError(error, options.errorCallback))
+                    .finally(() => defaultFinally(options.finallyCallback))
+            },
+        },
     }
 
     return methods
