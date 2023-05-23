@@ -57,7 +57,6 @@ export const Profile: React.FC<ProfileProps> = ({ user }) => {
                             text: "Usuário atualizado",
                         })
                     },
-                    errorCallback: () => snackbar({ severity: "error", text: "Erro desconhecido" }),
                     finallyCallback: () => setInfoLoading(false),
                 })
             },
@@ -93,7 +92,6 @@ export const Profile: React.FC<ProfileProps> = ({ user }) => {
                             text: "Senha atualizada",
                         })
                     },
-                    errorCallback: () => snackbar({ severity: "error", text: "Erro desconhecido" }),
                     finallyCallback: () => setPasswordLoading(false),
                 })
             },
@@ -118,7 +116,6 @@ export const Profile: React.FC<ProfileProps> = ({ user }) => {
                             text: "E=mail atualizado",
                         })
                     },
-                    errorCallback: () => snackbar({ severity: "error", text: "Erro desconhecido" }),
                     finallyCallback: () => setEmailLoading(false),
                 })
             },

@@ -35,15 +35,14 @@ export const Rate:React.FC<RateProps> = ({}) => {
         setInfoLoading(true)
 
         api.settings.rate({
-            data: values, 
-            callback: (response:{data:Settings}) => {
+            data: values,
+            callback: (response: { data: Settings }) => {
                 settings.setSettings(response.data)
                 snackbar({
                     severity: "success",
                     text: "Tarifa atualizada",
                 })
             },
-            errorCallback: () => snackbar({ severity: "error", text: "Erro desconhecido" }),
             finallyCallback: () => setInfoLoading(false),
         })
     }
