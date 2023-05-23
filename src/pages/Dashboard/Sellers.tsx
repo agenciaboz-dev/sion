@@ -25,7 +25,7 @@ const SellerContainer = ({ seller }: { seller: User }) => {
                 <p>Contratos verificados: {seller.contracts.filter((contract) => contract.active).length}</p>
             </div>
 
-            <Button onClick={() => null} variant="contained">
+            <Button onClick={() => navigate(`/dashboard/seller/${seller.id}`)} variant="contained">
                 Detalhes
             </Button>
         </div>

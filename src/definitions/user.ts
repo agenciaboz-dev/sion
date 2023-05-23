@@ -9,6 +9,11 @@ export interface User {
     phone: string
     birth: Date
     cpf: string
+    rg?: string
+    address?: string
+    number?: string
+    district?: string
+    cep?: string
     adm: boolean
     ip: string
     contracts: Contract[]

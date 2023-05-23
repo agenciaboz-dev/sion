@@ -20,7 +20,7 @@ export const useSidebarMenu = () => {
         {
             id: 3,
             name: "Novo vendedor",
-            location: "/dashboard/seller",
+            location: "/dashboard/new_seller",
             adm: true,
         },
         {

@@ -220,5 +220,37 @@
                 }
             }
         }
+
+        .Seller-Component {
+            gap: 2vw;
+
+            .info-container {
+                gap: 1vw;
+
+                .data-container {
+                    flex-direction: column;
+                    width: 100%;
+                    gap: 1vw;
+
+                    .number-district {
+                        gap: 1vw;
+                    }
+                }
+            }
+
+            .password-container {
+                form {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1vw;
+
+                    button {
+                        width: 20%;
+                        align-self: flex-end;
+                    }
+                }
+            }
+        }
     }
 }

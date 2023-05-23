@@ -10,6 +10,7 @@ import { Profile } from "./Profile"
 import { Rate } from "./Rate"
 import { NewSeller } from "./NewSeller"
 import { Sellers } from "./Sellers"
+import { Seller } from "./Seller"
 
 interface DashboardProps {}
 
@@ -30,8 +31,9 @@ export const Dashboard: React.FC<DashboardProps> = ({}) => {
                     <Route path="contract/:id" element={<Contract />} />
                     <Route path="profile/" element={<Profile user={user} />} />
                     <Route path="rate/" element={<Rate />} />
-                    <Route path="seller/" element={<NewSeller />} />
                     <Route path="sellers/" element={<Sellers />} />
+                    <Route path="seller/:id" element={<Seller />} />
+                    <Route path="new_seller/" element={<NewSeller />} />
 
                     <Route path="profile/" element={<Profile user={user} />} />
                 </Routes>
