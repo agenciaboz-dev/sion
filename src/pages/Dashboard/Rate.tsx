@@ -1,11 +1,12 @@
 import Button from '@mui/material/Button';
-import React from 'react';
+import React, { useState } from 'react';
 import './style.scss';
 import TextField from '@mui/material/TextField';
 import { Form, Formik } from 'formik';
 import { useApi } from '../../hooks/useApi';
 import { useSettings } from '../../hooks/useSettings';
 import { Settings } from '../../definitions/settings';
+import CircularProgress from '@mui/material/CircularProgress';
 
 interface RateProps {}
 
@@ -17,15 +18,28 @@ export const Rate:React.FC<RateProps> = ({}) => {
 
     const api = useApi()
     const settings = useSettings()
-    
+
     const initialValues:FormValues = settings
+    
+    const [infoLoading, setInfoLoading] = useState(false)
+
+    const loading_props = {
+        size: "1.5rem",
+        sx: { color: "white" },
+    }
+    
+    
+    
 
     const saveRate = (values: FormValues) => {
+        setInfoLoading(true)
+
         api.settings.rate({
             data: values, 
             callback: (response:{data:Settings}) => {
                 settings.setSettings(response.data)
-            }
+            },
+            finallyCallback: () => setInfoLoading(false),
         })
     }
     
@@ -40,7 +54,7 @@ export const Rate:React.FC<RateProps> = ({}) => {
                     </Form>
                 )}
             </Formik>
-            <Button  type= "submit" variant="contained">Salvar</Button>
+            <Button  type= "submit" variant="contained"> {infoLoading ? <CircularProgress {...loading_props} /> : "Salvar"}</Button>
         </div>
     )
 }
