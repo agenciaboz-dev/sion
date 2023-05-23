@@ -25,7 +25,7 @@ export const Dashboard: React.FC<DashboardProps> = ({}) => {
                     <Route index element={<Contracts />} />
                     <Route path="contracts/" element={<Contracts />} />
                     <Route path="contract/:id" element={<Contract />} />
-                    <Route path="profile/" element={<Profile />} />
+                    <Route path="profile/" element={<Profile user={user} />} />
                 </Routes>
             </div>
         </div>
