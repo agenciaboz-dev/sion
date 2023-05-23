@@ -7,6 +7,7 @@ import { Route, Routes } from "react-router-dom"
 import { Contracts } from "./Contracts"
 import { Contract } from "./Contract"
 import { Profile } from "./Profile"
+import { Rate } from "./Rate"
 
 interface DashboardProps {}
 
@@ -26,6 +27,8 @@ export const Dashboard: React.FC<DashboardProps> = ({}) => {
                     <Route path="contracts/" element={<Contracts />} />
                     <Route path="contract/:id" element={<Contract />} />
                     <Route path="profile/" element={<Profile />} />
+                    <Route path="rate/" element={<Rate />} />
+                    
                 </Routes>
             </div>
         </div>
