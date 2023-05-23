@@ -11,6 +11,6 @@ export interface User {
     cpf: string
     adm: boolean
     ip: string
-    contracts: Contract
+    contracts: Contract[]
     logs: any
 }
