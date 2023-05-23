@@ -12,6 +12,8 @@ import { AttachmentsProvider } from "./contexts/attachmentsContext"
 import { PdfProvider } from "./contexts/pdfContext"
 import { StageProvider } from "./contexts/stageContext"
 import { Dashboard } from "./pages/Dashboard"
+import { SnackbarProvider } from "./contexts/snackbarContext"
+import { Snackbar } from "./components/Snackbar"
 
 function App() {
     const muiTheme = useMuiTheme()
@@ -20,21 +22,24 @@ function App() {
         <UserProvider>
             <BrowserRouter>
                 <ThemeProvider theme={muiTheme}>
-                    <ClientProvider>
-                        <AttachmentsProvider>
-                            <PdfProvider>
-                                <StageProvider>
-                                    <Routes>
-                                        {/* <Route index element={<Home />} /> */}
-                                        <Route index element={<Login />} />
-                                        <Route path="/login" element={<Login />} />
-                                        <Route path="/dashboard/*" element={<Dashboard />} />
-                                        <Route path="*" element={<NotFound />} />
-                                    </Routes>
-                                </StageProvider>
-                            </PdfProvider>
-                        </AttachmentsProvider>
-                    </ClientProvider>
+                    <SnackbarProvider>
+                        <ClientProvider>
+                            <AttachmentsProvider>
+                                <PdfProvider>
+                                    <StageProvider>
+                                        <Snackbar />
+                                        <Routes>
+                                            {/* <Route index element={<Home />} /> */}
+                                            <Route index element={<Login />} />
+                                            <Route path="/login" element={<Login />} />
+                                            <Route path="/dashboard/*" element={<Dashboard />} />
+                                            <Route path="*" element={<NotFound />} />
+                                        </Routes>
+                                    </StageProvider>
+                                </PdfProvider>
+                            </AttachmentsProvider>
+                        </ClientProvider>
+                    </SnackbarProvider>
                 </ThemeProvider>
             </BrowserRouter>
         </UserProvider>

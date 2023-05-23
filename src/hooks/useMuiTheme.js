@@ -4,27 +4,25 @@ import COLORS from '../sass/_colors.scss'
 export const useMuiTheme = () => {
     const THEME = createTheme({
         typography: {
-         "fontFamily": ["Poppins"].join(','),
-        //  "fontSize": 14,
-        //  "fontWeightLight": 300,
-        //  "fontWeightRegular": 400,
-        //  "fontWeightMedium": 500
+            fontFamily: ["Poppins"].join(","),
+            //  "fontSize": 14,
+            //  "fontWeightLight": 300,
+            //  "fontWeightRegular": 400,
+            //  "fontWeightMedium": 500
         },
         palette: {
-            // mode: 'dark',
+            // mode: "dark",
 
             primary: {
                 main: COLORS.primary,
-
             },
             secondary: {
-                main: '#ffffff',
-
-            }, 
+                main: "#ffffff",
+            },
             // success: {
 
             // }
-        }
+        },
     })
     
     return THEME
