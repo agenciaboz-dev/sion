@@ -6,6 +6,7 @@ import { TextField, Button, SxProps, CircularProgress } from "@mui/material"
 import { useApi } from "../../hooks/useApi"
 import { useUser } from "../../hooks/useUser"
 import { useSnackbar } from "../../hooks/useSnackbar"
+import { useConfirmDialog } from "../../hooks/useConfirmDialog"
 
 interface ProfileProps {
     user: User
@@ -22,6 +23,7 @@ export const Profile: React.FC<ProfileProps> = ({ user }) => {
     const api = useApi()
     const { setUser } = useUser()
     const { snackbar } = useSnackbar()
+    const { confirm } = useConfirmDialog()
 
     const [infoLoading, setInfoLoading] = useState(false)
     const [passwordLoading, setPasswordLoading] = useState(false)
@@ -39,19 +41,26 @@ export const Profile: React.FC<ProfileProps> = ({ user }) => {
     }
 
     const handleInfoSubmit = (values: FormValues) => {
-        setInfoLoading(true)
+        confirm({
+            title: "Atualizar perfil",
+            content: "Deseja alterar os dados do seu perfil?",
+            onConfirm: () => {
+                setInfoLoading(true)
+                console.log({ data: { ...values, contracts: [] } })
 
-        api.user.update({
-            data: values,
-            callback: (response: { data: User }) => {
-                setUser(response.data)
-                snackbar({
-                    severity: "success",
-                    text: "Usuário atualizado",
+                api.user.update({
+                    data: { ...values, contracts: [] },
+                    callback: (response: { data: User }) => {
+                        setUser(response.data)
+                        snackbar({
+                            severity: "success",
+                            text: "Usuário atualizado",
+                        })
+                    },
+                    errorCallback: () => snackbar({ severity: "error", text: "Erro desconhecido" }),
+                    finallyCallback: () => setInfoLoading(false),
                 })
             },
-            errorCallback: () => snackbar({ severity: "error", text: "Erro desconhecido" }),
-            finallyCallback: () => setInfoLoading(false),
         })
     }
 
@@ -69,36 +78,50 @@ export const Profile: React.FC<ProfileProps> = ({ user }) => {
             return
         }
 
-        setPasswordLoading(true)
+        confirm({
+            title: "Atualizar senha",
+            content: "Certeza que deseja atualizar a sua senha?",
+            onConfirm: () => {
+                setPasswordLoading(true)
 
-        api.user.password({
-            data: { password: values.new_password, id: user.id },
-            callback: (response: { data: User }) => {
-                setUser(response.data)
-                snackbar({
-                    severity: "success",
-                    text: "Senha atualizada",
+                api.user.password({
+                    data: { password: values.new_password, id: user.id },
+                    callback: (response: { data: User }) => {
+                        setUser(response.data)
+                        snackbar({
+                            severity: "success",
+                            text: "Senha atualizada",
+                        })
+                    },
+                    errorCallback: () => snackbar({ severity: "error", text: "Erro desconhecido" }),
+                    finallyCallback: () => setPasswordLoading(false),
                 })
             },
-            errorCallback: () => snackbar({ severity: "error", text: "Erro desconhecido" }),
-            finallyCallback: () => setPasswordLoading(false),
         })
     }
 
     const handleEmailSubmit = (values: FormValues) => {
-        setEmailLoading(true)
+        if (!values.new_email) return
 
-        api.user.update({
-            data: { email: values.new_email },
-            callback: (response: { data: User }) => {
-                setUser(response.data)
-                snackbar({
-                    severity: "success",
-                    text: "E=mail atualizado",
+        confirm({
+            title: "Alterar e-mail",
+            content: "Certeza que deseja alterar o seu e-mail?",
+            onConfirm: () => {
+                setEmailLoading(true)
+
+                api.user.update({
+                    data: { email: values.new_email, id: user.id },
+                    callback: (response: { data: User }) => {
+                        setUser(response.data)
+                        snackbar({
+                            severity: "success",
+                            text: "E=mail atualizado",
+                        })
+                    },
+                    errorCallback: () => snackbar({ severity: "error", text: "Erro desconhecido" }),
+                    finallyCallback: () => setEmailLoading(false),
                 })
             },
-            errorCallback: () => snackbar({ severity: "error", text: "Erro desconhecido" }),
-            finallyCallback: () => setEmailLoading(false),
         })
     }
 
@@ -107,7 +130,7 @@ export const Profile: React.FC<ProfileProps> = ({ user }) => {
             <div className="main-container">
                 <Formik initialValues={initialValues} onSubmit={handleInfoSubmit}>
                     {({ values, handleChange }) => (
-                        <Form style={{ flex: 0.5 }}>
+                        <Form>
                             <p>Perfil</p>
                             <TextField
                                 label="Nome de usuário"
@@ -118,64 +141,67 @@ export const Profile: React.FC<ProfileProps> = ({ user }) => {
                             />
                             <TextField label="Nome" name="name" value={values.name} onChange={handleChange} />
                             <TextField label="Telefone" name="phone" value={values.phone} onChange={handleChange} />
-                            <Button type="submit" variant="contained" sx={button_style}>
+                            <Button type="submit" variant="contained" sx={{ width: "25%" }}>
                                 {infoLoading ? <CircularProgress {...loading_props} /> : "Salvar"}
                             </Button>
                         </Form>
                     )}
                 </Formik>
-                <div className="password-email">
-                    <Formik initialValues={initialValues} onSubmit={handlePasswordSubmit}>
-                        {({ values, handleChange }) => (
-                            <Form>
-                                <p>Redefinir senha</p>
-                                <TextField
-                                    label="Senha"
-                                    name="password"
-                                    value={values.password}
-                                    onChange={handleChange}
-                                    error={Boolean(passwordError)}
-                                    helperText={passwordError}
-                                />
-                                <TextField
-                                    label="Nova senha"
-                                    name="new_password"
-                                    value={values.new_password}
-                                    onChange={handleChange}
-                                    error={Boolean(newPasswordError)}
-                                    helperText={newPasswordError}
-                                />
-                                <Button type="submit" variant="contained" sx={button_style}>
-                                    {passwordLoading ? <CircularProgress {...loading_props} /> : "Redefinir senha"}
-                                </Button>
-                            </Form>
-                        )}
-                    </Formik>
-                    <Formik initialValues={initialValues} onSubmit={handleEmailSubmit}>
-                        {({ values, handleChange }) => (
-                            <Form>
-                                <p>Redefinir e-mail</p>
-                                <TextField
-                                    label="E-mail"
-                                    name="email"
-                                    value={values.email}
-                                    onChange={handleChange}
-                                    InputProps={{ readOnly: true }}
-                                />
-                                <TextField
-                                    label="Novo e-mail"
-                                    name="new_email"
-                                    value={values.new_email}
-                                    onChange={handleChange}
-                                    type="email"
-                                />
-                                <Button type="submit" variant="contained" sx={button_style}>
-                                    {emailLoading ? <CircularProgress {...loading_props} /> : "Redefinir e-mail"}
-                                </Button>
-                            </Form>
-                        )}
-                    </Formik>
-                </div>
+            </div>
+
+            <div className="main-container">
+                <Formik initialValues={initialValues} onSubmit={handlePasswordSubmit}>
+                    {({ values, handleChange }) => (
+                        <Form>
+                            <p>Redefinir senha</p>
+                            <TextField
+                                label="Senha"
+                                name="password"
+                                type="password"
+                                value={values.password}
+                                onChange={handleChange}
+                                error={Boolean(passwordError)}
+                                helperText={passwordError}
+                            />
+                            <TextField
+                                label="Nova senha"
+                                name="new_password"
+                                type="password"
+                                value={values.new_password}
+                                onChange={handleChange}
+                                error={Boolean(newPasswordError)}
+                                helperText={newPasswordError}
+                            />
+                            <Button type="submit" variant="contained" sx={button_style}>
+                                {passwordLoading ? <CircularProgress {...loading_props} /> : "Redefinir senha"}
+                            </Button>
+                        </Form>
+                    )}
+                </Formik>
+                <Formik initialValues={initialValues} onSubmit={handleEmailSubmit}>
+                    {({ values, handleChange }) => (
+                        <Form>
+                            <p>Redefinir e-mail</p>
+                            <TextField
+                                label="E-mail"
+                                name="email"
+                                value={values.email}
+                                onChange={handleChange}
+                                InputProps={{ readOnly: true }}
+                            />
+                            <TextField
+                                label="Novo e-mail"
+                                name="new_email"
+                                value={values.new_email}
+                                onChange={handleChange}
+                                type="email"
+                            />
+                            <Button type="submit" variant="contained" sx={button_style}>
+                                {emailLoading ? <CircularProgress {...loading_props} /> : "Redefinir e-mail"}
+                            </Button>
+                        </Form>
+                    )}
+                </Formik>
             </div>
         </div>
     )
