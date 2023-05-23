@@ -2,7 +2,7 @@ import Button from '@mui/material/Button';
 import React, { useState } from 'react';
 import './style.scss';
 import TextField from '@mui/material/TextField';
-import { Form, Formik } from 'formik';
+import { Form, Formik, useFormikContext, withFormik } from 'formik';
 import { useApi } from '../../hooks/useApi';
 import { useSettings } from '../../hooks/useSettings';
 import { Settings } from '../../definitions/settings';
@@ -28,8 +28,6 @@ export const Rate:React.FC<RateProps> = ({}) => {
         sx: { color: "white" },
     }
     
-    
-    
 
     const saveRate = (values: FormValues) => {
         setInfoLoading(true)
@@ -51,10 +49,10 @@ export const Rate:React.FC<RateProps> = ({}) => {
                     <Form>
                         <p className="title">Tarifa de Energia</p> 
                         <TextField label= "" placeholder= "Tarifa de energia em %" name="rate" value={values.rate} onChange={handleChange} fullWidth/>
+                        <Button type='submit' variant="contained"> {infoLoading ? <CircularProgress {...loading_props} /> : "Salvar"}</Button>
                     </Form>
                 )}
             </Formik>
-            <Button  type= "submit" variant="contained"> {infoLoading ? <CircularProgress {...loading_props} /> : "Salvar"}</Button>
         </div>
     )
 }
