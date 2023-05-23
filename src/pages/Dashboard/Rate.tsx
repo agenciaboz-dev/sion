@@ -7,6 +7,7 @@ import { useApi } from '../../hooks/useApi';
 import { useSettings } from '../../hooks/useSettings';
 import { Settings } from '../../definitions/settings';
 import CircularProgress from '@mui/material/CircularProgress';
+import { useSnackbar } from '../../hooks/useSnackbar';
 
 interface RateProps {}
 
@@ -21,6 +22,7 @@ export const Rate:React.FC<RateProps> = ({}) => {
 
     const initialValues:FormValues = settings
     
+    const { snackbar} = useSnackbar()
     const [infoLoading, setInfoLoading] = useState(false)
 
     const loading_props = {
@@ -36,7 +38,12 @@ export const Rate:React.FC<RateProps> = ({}) => {
             data: values, 
             callback: (response:{data:Settings}) => {
                 settings.setSettings(response.data)
+                snackbar({
+                    severity: "success",
+                    text: "Tarifa atualizada",
+                })
             },
+            errorCallback: () => snackbar({ severity: "error", text: "Erro desconhecido" }),
             finallyCallback: () => setInfoLoading(false),
         })
     }
