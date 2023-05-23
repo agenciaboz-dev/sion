@@ -38,6 +38,11 @@
             width: 100%;
             flex-direction: column;
             padding: 2vw 4vw;
+
+            > div {
+                padding: 1vw 2vw;
+
+            }
         }
 
         .Contracts-Component {
@@ -46,7 +51,6 @@
 
             .contract-container {
                 flex-shrink: 0;
-                padding: 1vw 2vw;
                 box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.25);
                 color: #333333;
                 align-items: center;
@@ -121,7 +125,6 @@
             .main-container {
                 box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.25);
                 width: 100%;
-                padding: 2vw 3vw;
                 gap: 1vw;
 
                 .password-email {
@@ -204,7 +207,6 @@
 
             .seller-container {
                 flex-shrink: 0;
-                padding: 1vw 2vw;
                 box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.25);
                 color: #333333;
                 align-items: center;
