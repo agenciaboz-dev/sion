@@ -41,6 +41,12 @@ export const useApi = () => {
             },
         },
         user: {
+            list: (options: ApiOptions) => {
+                api.get("/user", options.data)
+                    .then((response) => options.callback(response))
+                    .catch((error) => defaultError(error, options.errorCallback))
+                    .finally(() => defaultFinally(options.finallyCallback))
+            },
             update: (options: ApiOptions) => {
                 api.post("/user/update", options.data)
                     .then((response) => options.callback(response))
