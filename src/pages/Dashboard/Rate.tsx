@@ -15,10 +15,10 @@ interface FormValues {
 
 export const Rate:React.FC<RateProps> = ({}) => {
 
-    const initialValues:FormValues = { rate: 0 }
     const api = useApi()
-
     const settings = useSettings()
+    
+    const initialValues:FormValues = settings
 
     const saveRate = (values: FormValues) => {
         api.settings.rate({
@@ -32,7 +32,7 @@ export const Rate:React.FC<RateProps> = ({}) => {
     return (
         <div className="Rate-Component" >
           
-            <Formik initialValues={initialValues} onSubmit = {saveRate}>
+            <Formik initialValues={initialValues} onSubmit = {saveRate} enableReinitialize>
                 {({values, handleChange})=>(
                     <Form>
                         <p className="title">Tarifa de Energia</p> 
