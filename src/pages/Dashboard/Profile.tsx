@@ -4,6 +4,8 @@ import { Form, Formik } from "formik"
 import { User } from "../../definitions/user"
 import { TextField, Button, SxProps, CircularProgress } from "@mui/material"
 import { useApi } from "../../hooks/useApi"
+import { useUser } from "../../hooks/useUser"
+import { useSnackbar } from "../../hooks/useSnackbar"
 
 interface ProfileProps {
     user: User
@@ -15,12 +17,16 @@ interface FormValues extends User {
 }
 
 export const Profile: React.FC<ProfileProps> = ({ user }) => {
-    const initialValues: FormValues = { ...user, new_password: "", new_email: "" }
+    const initialValues: FormValues = { ...user, password: "", new_password: "", new_email: "" }
 
     const api = useApi()
+    const { setUser } = useUser()
+    const { snackbar } = useSnackbar()
 
     const [infoLoading, setInfoLoading] = useState(false)
     const [passwordLoading, setPasswordLoading] = useState(false)
+    const [passwordError, setPasswordError] = useState("")
+    const [newPasswordError, setNewPasswordError] = useState("")
     const [emailLoading, setEmailLoading] = useState(false)
 
     const button_style: SxProps = {
@@ -38,20 +44,43 @@ export const Profile: React.FC<ProfileProps> = ({ user }) => {
         api.user.update({
             data: values,
             callback: (response: { data: User }) => {
-                console.log(response.data)
+                setUser(response.data)
+                snackbar({
+                    severity: "success",
+                    text: "Usuário atualizado",
+                })
             },
+            errorCallback: () => snackbar({ severity: "error", text: "Erro desconhecido" }),
             finallyCallback: () => setInfoLoading(false),
         })
     }
 
     const handlePasswordSubmit = (values: FormValues) => {
+        setPasswordError("")
+        setNewPasswordError("")
+
+        if (!values.new_password) {
+            setNewPasswordError("Nova senha não pode ser vazia")
+            return
+        }
+
+        if (values.password != user.password) {
+            setPasswordError("Senha atual inválida")
+            return
+        }
+
         setPasswordLoading(true)
 
         api.user.password({
             data: { password: values.new_password, id: user.id },
             callback: (response: { data: User }) => {
-                console.log(response.data)
+                setUser(response.data)
+                snackbar({
+                    severity: "success",
+                    text: "Senha atualizada",
+                })
             },
+            errorCallback: () => snackbar({ severity: "error", text: "Erro desconhecido" }),
             finallyCallback: () => setPasswordLoading(false),
         })
     }
@@ -62,8 +91,13 @@ export const Profile: React.FC<ProfileProps> = ({ user }) => {
         api.user.update({
             data: { email: values.new_email },
             callback: (response: { data: User }) => {
-                console.log(response.data)
+                setUser(response.data)
+                snackbar({
+                    severity: "success",
+                    text: "E=mail atualizado",
+                })
             },
+            errorCallback: () => snackbar({ severity: "error", text: "Erro desconhecido" }),
             finallyCallback: () => setEmailLoading(false),
         })
     }
@@ -95,12 +129,21 @@ export const Profile: React.FC<ProfileProps> = ({ user }) => {
                         {({ values, handleChange }) => (
                             <Form>
                                 <p>Redefinir senha</p>
-                                <TextField label="Senha" name="password" value={values.password} onChange={handleChange} />
+                                <TextField
+                                    label="Senha"
+                                    name="password"
+                                    value={values.password}
+                                    onChange={handleChange}
+                                    error={Boolean(passwordError)}
+                                    helperText={passwordError}
+                                />
                                 <TextField
                                     label="Nova senha"
                                     name="new_password"
                                     value={values.new_password}
                                     onChange={handleChange}
+                                    error={Boolean(newPasswordError)}
+                                    helperText={newPasswordError}
                                 />
                                 <Button type="submit" variant="contained" sx={button_style}>
                                     {passwordLoading ? <CircularProgress {...loading_props} /> : "Redefinir senha"}
@@ -112,8 +155,19 @@ export const Profile: React.FC<ProfileProps> = ({ user }) => {
                         {({ values, handleChange }) => (
                             <Form>
                                 <p>Redefinir e-mail</p>
-                                <TextField label="Telefone" name="phone" value={values.phone} onChange={handleChange} />
-                                <TextField label="Telefone" name="phone" value={values.phone} onChange={handleChange} />
+                                <TextField
+                                    label="E-mail"
+                                    name="email"
+                                    value={values.email}
+                                    onChange={handleChange}
+                                    InputProps={{ readOnly: true }}
+                                />
+                                <TextField
+                                    label="Novo e-mail"
+                                    name="new_email"
+                                    value={values.new_email}
+                                    onChange={handleChange}
+                                />
                                 <Button type="submit" variant="contained" sx={button_style}>
                                     {emailLoading ? <CircularProgress {...loading_props} /> : "Redefinir e-mail"}
                                 </Button>
