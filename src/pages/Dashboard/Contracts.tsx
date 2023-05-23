@@ -9,8 +9,9 @@ import { useUser } from "../../hooks/useUser"
 
 interface ContractsProps {}
 
-const ContractContainer = ({ contract }: { contract: Contract }) => {
+export const ContractContainer = ({ contract, adm }: { contract: Contract; adm?: boolean }) => {
     const navigate = useNavigate()
+    console.log(contract)
 
     return (
         <div className="contract-container">
@@ -20,11 +21,12 @@ const ContractContainer = ({ contract }: { contract: Contract }) => {
 
             <div className="info">
                 <div className="data">
-                    <p>Vendedor responsável: </p>
+                    {!adm && <p>Vendedor responsável: </p>}
                     <p>Vigente até: </p>
                 </div>
+
                 <div className="value">
-                    <p>{contract.seller.name}</p>
+                    {!adm && <p>{contract.seller.name}</p>}
                     <p>{new Date(contract.date).toLocaleDateString()}</p>
                 </div>
 

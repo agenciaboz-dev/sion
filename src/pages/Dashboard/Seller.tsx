@@ -8,6 +8,7 @@ import { Form, Formik } from "formik"
 import { useSnackbar } from "../../hooks/useSnackbar"
 import { useUser } from "../../hooks/useUser"
 import { useConfirmDialog } from "../../hooks/useConfirmDialog"
+import { ContractContainer } from "./Contracts"
 
 interface SellerProps {}
 
@@ -144,32 +145,39 @@ export const Seller: React.FC<SellerProps> = ({}) => {
                     </div>
 
                     {user!.adm && (
-                        <div className="password-container">
-                            <Formik initialValues={initialValues} onSubmit={handlePasswordSubmit}>
-                                {({ values, handleChange }) => (
-                                    <Form>
-                                        <p>Alterar senha do vendedor</p>
-                                        <TextField
-                                            name="password"
-                                            type="password"
-                                            label={"Atualizar senha"}
-                                            value={values.password}
-                                            onChange={handleChange}
-                                            InputProps={{ sx: textfield_style }}
-                                            error={Boolean(passwordError)}
-                                            helperText={passwordError}
-                                        />
-                                        <Button type="submit" variant="contained">
-                                            {passwordLoading ? (
-                                                <CircularProgress size={"1.5rem"} sx={{ color: "white" }} />
-                                            ) : (
-                                                "Alterar senha"
-                                            )}
-                                        </Button>
-                                    </Form>
-                                )}
-                            </Formik>
-                        </div>
+                        <>
+                            <div className="password-container">
+                                <Formik initialValues={initialValues} onSubmit={handlePasswordSubmit}>
+                                    {({ values, handleChange }) => (
+                                        <Form>
+                                            <p>Alterar senha do vendedor</p>
+                                            <TextField
+                                                name="password"
+                                                type="password"
+                                                label={"Atualizar senha"}
+                                                value={values.password}
+                                                onChange={handleChange}
+                                                InputProps={{ sx: textfield_style }}
+                                                error={Boolean(passwordError)}
+                                                helperText={passwordError}
+                                            />
+                                            <Button type="submit" variant="contained">
+                                                {passwordLoading ? (
+                                                    <CircularProgress size={"1.5rem"} sx={{ color: "white" }} />
+                                                ) : (
+                                                    "Alterar senha"
+                                                )}
+                                            </Button>
+                                        </Form>
+                                    )}
+                                </Formik>
+                            </div>
+
+                            <p>Contratos</p>
+                            {seller.contracts.map((contract) => (
+                                <ContractContainer key={contract.id} contract={contract} adm />
+                            ))}
+                        </>
                     )}
                 </>
             )}

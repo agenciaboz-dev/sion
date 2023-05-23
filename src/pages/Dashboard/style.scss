@@ -215,6 +215,7 @@
 
         .Seller-Component {
             gap: 2vw;
+            overflow-y: auto;
 
             .info-container {
                 gap: 1vw;
@@ -243,6 +244,37 @@
                     }
                 }
             }
+
+                
+                .contract-container {
+                    justify-content: space-between;
+                    flex-shrink: 0;
+                    color: #333333;
+                    align-items: center;
+
+                    .title {
+                        font-weight: bold;
+                    }
+
+                    .info {
+                        margin-left: auto;
+                        align-items: center;
+                        gap: 2vw;
+    
+                        .data {
+                            flex-direction: column;
+                            text-align: end;
+                            font-size: 0.9vw;
+                            
+                        }
+                        
+                        .value {
+                            flex-direction: column;
+                            text-align: end;
+                            font-size: 1vw;
+                        }
+                    }
+                }
         }
     }
 }
