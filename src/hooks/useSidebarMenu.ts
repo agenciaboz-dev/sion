@@ -26,7 +26,7 @@ export const useSidebarMenu = () => {
         {
             id: 4,
             name: "Tarifa de energia",
-            location: "/dashboard",
+            location: "/dashboard/rate",
             adm: true,
         },
         {
