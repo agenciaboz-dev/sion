@@ -20,15 +20,16 @@ export const Rate:React.FC<RateProps> = ({}) => {
     
     return (
         <div className="Rate-Component" >
-            <span> Tarifa de Energia </span>
+          
             <Formik initialValues={initialValues} onSubmit = {saveRate}>
                 {({values, handleChange})=>(
                     <Form>
-                        <TextField label= "Tarifa de energia em %" name="rate" value={values.rate} onChange={handleChange} />
-                        <Button  variant="contained">Salvar</Button>
+                        <p className="title">Tarifa de Energia</p> 
+                        <TextField label= "" placeholder= "Tarifa de energia em %" name="rate" value={values.rate} onChange={handleChange} fullWidth/>
                     </Form>
                 )}
             </Formik>
+            <Button  type= "submit" variant="contained">Salvar</Button>
         </div>
     )
 }
