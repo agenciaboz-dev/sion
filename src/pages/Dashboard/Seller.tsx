@@ -7,6 +7,7 @@ import { Button, CircularProgress, Skeleton, SxProps, TextField } from "@mui/mat
 import { Form, Formik } from "formik"
 import { useSnackbar } from "../../hooks/useSnackbar"
 import { useUser } from "../../hooks/useUser"
+import { useConfirmDialog } from "../../hooks/useConfirmDialog"
 
 interface SellerProps {}
 
@@ -19,6 +20,7 @@ export const Seller: React.FC<SellerProps> = ({}) => {
     const navigate = useNavigate()
     const api = useApi()
     const { snackbar } = useSnackbar()
+    const { confirm } = useConfirmDialog()
     const { user } = useUser()
 
     const [seller, setSeller] = useState<User>()
@@ -46,19 +48,25 @@ export const Seller: React.FC<SellerProps> = ({}) => {
             return
         }
 
-        setPasswordLoading(true)
-        setPasswordError("")
+        confirm({
+            title: "Alterar senha",
+            content: "Deseja alterar a senha do usuário?",
+            onConfirm: () => {
+                setPasswordLoading(true)
+                setPasswordError("")
 
-        api.user.password({
-            data: { password: values.password, id: seller!.id },
-            callback: (response: { data: User }) => {
-                setSeller(response.data)
-                snackbar({
-                    severity: "success",
-                    text: "Senha atualizada",
+                api.user.password({
+                    data: { password: values.password, id: seller!.id },
+                    callback: (response: { data: User }) => {
+                        setSeller(response.data)
+                        snackbar({
+                            severity: "success",
+                            text: "Senha atualizada",
+                        })
+                    },
+                    finallyCallback: () => setPasswordLoading(false),
                 })
             },
-            finallyCallback: () => setPasswordLoading(false),
         })
     }
 
@@ -84,52 +92,52 @@ export const Seller: React.FC<SellerProps> = ({}) => {
                             <TextField
                                 label={"Nome"}
                                 value={seller.name}
-                                InputProps={{ readOnly: true, sx: textfield_style }}
+                                InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
                             />
                             <TextField
                                 label={"CPF"}
                                 value={seller.cpf}
-                                InputProps={{ readOnly: true, sx: textfield_style }}
+                                InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
                             />
                             <TextField
                                 label={"E-mail"}
                                 value={seller.email}
-                                InputProps={{ readOnly: true, sx: textfield_style }}
+                                InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
                             />
                             <TextField
                                 label={"Data de nascimento"}
                                 value={new Date(seller.birth).toLocaleDateString()}
-                                InputProps={{ readOnly: true, sx: textfield_style }}
+                                InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
                             />
                         </div>
                         <div className="data-container">
                             <TextField
                                 label={"Telefone"}
                                 value={seller.phone}
-                                InputProps={{ readOnly: true, sx: textfield_style }}
+                                InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
                             />
                             <TextField
                                 label={"CEP"}
                                 value={seller.cep}
-                                InputProps={{ readOnly: true, sx: textfield_style }}
+                                InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
                             />
                             <TextField
                                 label={"Endereço"}
                                 value={seller.address}
-                                InputProps={{ readOnly: true, sx: textfield_style }}
+                                InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
                             />
                             <div className="number-district">
                                 <TextField
                                     label={"Número"}
                                     value={seller.number}
                                     sx={{ width: "30%" }}
-                                    InputProps={{ readOnly: true, sx: textfield_style }}
+                                    InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
                                 />
                                 <TextField
                                     label={"Bairro"}
                                     value={seller.district}
                                     sx={{ width: "70%" }}
-                                    InputProps={{ readOnly: true, sx: textfield_style }}
+                                    InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
                                 />
                             </div>
                         </div>
