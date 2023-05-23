@@ -26,7 +26,12 @@ export const Sidebar: React.FC<SidebarProps> = ({ user }) => {
                         <IconButton
                             key={menu.id}
                             onClick={() => navigate(menu.location)}
-                            sx={{ alignSelf: "flex-start", color: "white" }}
+                            sx={{
+                                alignSelf: "flex-start",
+                                color: "white",
+                                transition: "0.1s",
+                                "&:hover": { transform: "scale(1.1)" },
+                            }}
                         >
                             <p className="link">{menu.name}</p>
                         </IconButton>
