@@ -3,6 +3,7 @@ import React from 'react';
 import './style.scss';
 import TextField from '@mui/material/TextField';
 import { Form, Formik } from 'formik';
+import { useApi } from '../../hooks/useApi';
 
 interface RateProps {}
 
@@ -13,9 +14,15 @@ interface FormValues {
 export const Rate:React.FC<RateProps> = ({}) => {
 
     const initialValues:FormValues = { rate: 0 }
+    const api = useApi()
 
     const saveRate = (values: FormValues) => {
-        console.log(values)
+        api.settings.rate({
+            data: values, 
+            callback: (response:{data:{rate:number}}) => {
+                console.log(response.data)
+            }
+        })
     }
     
     return (
