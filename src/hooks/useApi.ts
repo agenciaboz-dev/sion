@@ -1,4 +1,5 @@
 import { api } from "../api"
+import { useSnackbar } from "./useSnackbar"
 
 interface ApiOptions {
     data?: any
@@ -8,9 +9,15 @@ interface ApiOptions {
 }
 
 export const useApi = () => {
+    const { snackbar } = useSnackbar()
+
     const defaultError = (error: Error, errorCallback?: Function) => {
         errorCallback && errorCallback()
         console.error(error)
+        snackbar({
+            severity: "error",
+            text: "Erro desconhecido",
+        })
     }
 
     const defaultFinally = (finallyCallback?: Function) => {
