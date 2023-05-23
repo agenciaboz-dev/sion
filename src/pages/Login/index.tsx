@@ -37,7 +37,6 @@ export const Login = () => {
             callback: (response: { data: User }) => {
                 if (response.data) {
                     const usuario = response.data
-                    storage.set("user_sion", remind ? usuario : null)
                     setUser(usuario)
                     navigate("/dashboard")
                 } else {

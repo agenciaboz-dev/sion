@@ -6,6 +6,7 @@ import { Sidebar } from "./Sidebar"
 import { Route, Routes } from "react-router-dom"
 import { Contracts } from "./Contracts"
 import { Contract } from "./Contract"
+import { Profile } from "./Profile"
 
 interface DashboardProps {}
 
@@ -24,6 +25,7 @@ export const Dashboard: React.FC<DashboardProps> = ({}) => {
                     <Route index element={<Contracts />} />
                     <Route path="contracts/" element={<Contracts />} />
                     <Route path="contract/:id" element={<Contract />} />
+                    <Route path="profile/" element={<Profile />} />
                 </Routes>
             </div>
         </div>

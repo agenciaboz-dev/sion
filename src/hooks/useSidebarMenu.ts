@@ -5,7 +5,7 @@ export const useSidebarMenu = () => {
         {
             id: 0,
             name: "Perfil",
-            location: "/dashboard",
+            location: "/dashboard/profile",
         },
         {
             id: 1,
