@@ -21,8 +21,8 @@ const SellerContainer = ({ seller }: { seller: User }) => {
             </div>
 
             <div className="data">
-                <p>Contratos pendentes: {seller.contracts.length}</p>
-                <p>Contratos verificados: {seller.contracts.length}</p>
+                <p>Contratos pendentes: {seller.contracts.filter((contract) => !contract.active).length}</p>
+                <p>Contratos verificados: {seller.contracts.filter((contract) => contract.active).length}</p>
             </div>
 
             <Button onClick={() => null} variant="contained">
