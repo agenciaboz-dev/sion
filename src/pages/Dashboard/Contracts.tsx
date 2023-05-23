@@ -5,6 +5,7 @@ import { Contract } from "../../definitions/contract"
 import { Button, Skeleton, SxProps } from "@mui/material"
 import { useIndexedList } from "../../hooks/useIndexedList"
 import { useNavigate } from "react-router-dom"
+import { useUser } from "../../hooks/useUser"
 
 interface ContractsProps {}
 
@@ -39,6 +40,7 @@ export const Contracts: React.FC<ContractsProps> = ({}) => {
     const { newArray } = useIndexedList()
     const skeletons = newArray(6)
     const api = useApi()
+    const { user } = useUser()
 
     const [contracts, setContracts] = useState<Contract[]>([])
     const [loading, setLoading] = useState(true)
@@ -55,10 +57,18 @@ export const Contracts: React.FC<ContractsProps> = ({}) => {
     }, [contracts])
 
     useEffect(() => {
-        api.contracts.list({
-            callback: (response: { data: Contract[] }) => setContracts(response.data),
-            finallyCallback: () => setLoading(false),
-        })
+        if (user!.adm) {
+            api.contracts.list({
+                callback: (response: { data: Contract[] }) => setContracts(response.data),
+                finallyCallback: () => setLoading(false),
+            })
+        } else {
+            api.contracts.find.seller({
+                data: user,
+                callback: (response: { data: Contract[] }) => setContracts(response.data),
+                finallyCallback: () => setLoading(false),
+            })
+        }
     }, [])
 
     return (

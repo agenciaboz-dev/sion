@@ -38,6 +38,12 @@ export const useApi = () => {
                         .catch((error) => defaultError(error, options.errorCallback))
                         .finally(() => defaultFinally(options.finallyCallback))
                 },
+                seller: (options: ApiOptions) => {
+                    api.post("/contracts/seller", options.data)
+                        .then((response) => options.callback(response))
+                        .catch((error) => defaultError(error, options.errorCallback))
+                        .finally(() => defaultFinally(options.finallyCallback))
+                },
             },
         },
         user: {
