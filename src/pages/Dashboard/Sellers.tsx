@@ -5,11 +5,13 @@ import { useApi } from "../../hooks/useApi"
 import { User } from "../../definitions/user"
 import { Button, Skeleton, SxProps } from "@mui/material"
 import { useNavigate } from "react-router-dom"
+import { useUser } from "../../hooks/useUser"
 
 interface SellersProps {}
 
 const SellerContainer = ({ seller }: { seller: User }) => {
     const navigate = useNavigate()
+    const { user } = useUser()
 
     return (
         <div className="seller-container">
@@ -17,7 +19,7 @@ const SellerContainer = ({ seller }: { seller: User }) => {
 
             <div className="data">
                 <p>E-mail: {seller.email}</p>
-                <p>CPF: {seller.cpf}</p>
+                {user!.adm && <p>CPF: {seller.cpf}</p>}
             </div>
 
             <div className="data">
@@ -25,9 +27,11 @@ const SellerContainer = ({ seller }: { seller: User }) => {
                 <p>Contratos verificados: {seller.contracts.filter((contract) => contract.active).length}</p>
             </div>
 
-            <Button onClick={() => navigate(`/dashboard/seller/${seller.id}`)} variant="contained">
-                Detalhes
-            </Button>
+            {user!.adm && (
+                <Button onClick={() => navigate(`/dashboard/seller/${seller.id}`)} variant="contained">
+                    Detalhes
+                </Button>
+            )}
         </div>
     )
 }
