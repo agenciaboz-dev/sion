@@ -39,8 +39,9 @@
             flex-direction: column;
             padding: 2vw 4vw;
 
-            > div {
+            > div, form {
                 padding: 1vw 2vw;
+                box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.25);
 
             }
         }
@@ -51,7 +52,6 @@
 
             .contract-container {
                 flex-shrink: 0;
-                box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.25);
                 color: #333333;
                 align-items: center;
 
@@ -85,7 +85,6 @@
 
             .info-container {
                 width: 100%;
-                box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.25);
                 padding: 2vw;
                 gap: 3vw;
                 
@@ -107,7 +106,6 @@
 
             .seller-container {
                 width: 100%;
-                box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.25);
                 padding: 2vw;
                 justify-content: space-between;
                 align-items: center;
@@ -123,7 +121,6 @@
             width: 100%;
             
             .main-container {
-                box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.25);
                 width: 100%;
                 gap: 1vw;
 
@@ -159,7 +156,6 @@
                 position: relative;
                 padding: 2vw;
                 width: 100%;
-                box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.25);
             }
             
             button {
@@ -185,7 +181,6 @@
 
             .form {
                 padding: 2vw;
-                box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.25);
                 display: flex;
                 width: 100%;
                 gap: 1vw;
@@ -207,7 +202,6 @@
 
             .seller-container {
                 flex-shrink: 0;
-                box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.25);
                 color: #333333;
                 align-items: center;
                 justify-content: space-between;
