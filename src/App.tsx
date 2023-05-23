@@ -14,35 +14,38 @@ import { StageProvider } from "./contexts/stageContext"
 import { Dashboard } from "./pages/Dashboard"
 import { SnackbarProvider } from "./contexts/snackbarContext"
 import { Snackbar } from "./components/Snackbar"
+import { SettingsProvider } from "./contexts/settingsContext"
 
 function App() {
     const muiTheme = useMuiTheme()
 
     return (
-        <UserProvider>
-            <BrowserRouter>
-                <ThemeProvider theme={muiTheme}>
-                    <SnackbarProvider>
-                        <ClientProvider>
-                            <AttachmentsProvider>
-                                <PdfProvider>
-                                    <StageProvider>
-                                        <Snackbar />
-                                        <Routes>
-                                            {/* <Route index element={<Home />} /> */}
-                                            <Route index element={<Login />} />
-                                            <Route path="/login" element={<Login />} />
-                                            <Route path="/dashboard/*" element={<Dashboard />} />
-                                            <Route path="*" element={<NotFound />} />
-                                        </Routes>
-                                    </StageProvider>
-                                </PdfProvider>
-                            </AttachmentsProvider>
-                        </ClientProvider>
-                    </SnackbarProvider>
-                </ThemeProvider>
-            </BrowserRouter>
-        </UserProvider>
+        <SettingsProvider>
+            <UserProvider>
+                <BrowserRouter>
+                    <ThemeProvider theme={muiTheme}>
+                        <SnackbarProvider>
+                            <ClientProvider>
+                                <AttachmentsProvider>
+                                    <PdfProvider>
+                                        <StageProvider>
+                                            <Snackbar />
+                                            <Routes>
+                                                {/* <Route index element={<Home />} /> */}
+                                                <Route index element={<Login />} />
+                                                <Route path="/login" element={<Login />} />
+                                                <Route path="/dashboard/*" element={<Dashboard />} />
+                                                <Route path="*" element={<NotFound />} />
+                                            </Routes>
+                                        </StageProvider>
+                                    </PdfProvider>
+                                </AttachmentsProvider>
+                            </ClientProvider>
+                        </SnackbarProvider>
+                    </ThemeProvider>
+                </BrowserRouter>
+            </UserProvider>
+        </SettingsProvider>
     )
 }
 

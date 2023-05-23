@@ -61,6 +61,12 @@ export const useApi = () => {
             },
         },
         settings: {
+            get: (options: ApiOptions) => {
+                api.get("/settings", options.data)
+                    .then((response) => options.callback(response))
+                    .catch((error) => defaultError(error, options.errorCallback))
+                    .finally(() => defaultFinally(options.finallyCallback))
+            },
             rate: (options: ApiOptions) => {
                 api.post("/settings/rate", options.data)
                     .then((response) => options.callback(response))
