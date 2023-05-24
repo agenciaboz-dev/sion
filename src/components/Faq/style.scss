@@ -3,6 +3,14 @@
 .Faq-Component {
     flex-direction: column;
     margin-bottom: 5vw;
+
+    .faq-anchor {
+        // height: 5vw;
+        // width: 10vw;
+        // background-color: green;
+        position: absolute;
+        margin-top: -10vw;
+    }
     
     h2,h4 {
         color: $text-color;

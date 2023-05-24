@@ -133,7 +133,8 @@ export const Simulator = () => {
   }, [spent])
 
   return (
-    <div className="Simulator-Component" id="simulator">
+    <div className="Simulator-Component">
+      <div className="simulator-anchor" id="simulator"></div>
       <div className="white-container">
          {text({ text: <h1>{texts[0]?.text}</h1>, loading: textsLoading, height: "5vw" })}
         <MaskedInput

@@ -3,7 +3,8 @@ import './style.scss';
 export const About = () => {
     
     return (
-      <div className="About-Component" id="about">
+      <div className="About-Component">
+        <div className="about-anchor" id="about"></div>
         <div className="img-container">
           <img src="/images/about_building.webp" alt="" />
           <p>Sede Sion em Curitiba</p>
