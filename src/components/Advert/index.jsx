@@ -10,9 +10,9 @@ import { useEffect, useState } from "react"
 
 export const Advert = ({ innerRef }) => {
     const [textsLoading, setTextsLoading] = useState(true)
-
     const texts = useTexts().advert
     const { text } = useTexts()
+
     const navigate = useNavigate()
     const goToSignUp = () => {
         navigate("/cadastro")
