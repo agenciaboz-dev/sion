@@ -59,7 +59,7 @@ export const Footer = () => {
                 </div>
                 <div className="news">
                     <p className="news-title">Receba notícias</p>
-                    <p>Receba as últimas notícias e informações relevantes diretamente em sua caixa de entrada, não perca a oportunidade de ficar informado e se beneficiar das vantagens que oferecemos.</p>
+                    <p>Receba as principais notícias da SION e do setor elétrico.</p>
                     {/* <div className="email-container">
                         <input type="email" placeholder='Seu e-mail' value={email} onChange={event => setEmail(event.target.value)}/>
                         <button onClick={onMailSignUp}><span style={{whiteSpace: 'nowrap'}}>Inscrever-se</span></button>
