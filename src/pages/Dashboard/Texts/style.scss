@@ -19,8 +19,11 @@
 
             form {
                 display: flex;
-                gap: 1vw;
+                flex-direction: column;
+                // align-items: flex-end;
+                gap: 0.5vw;
                 width: 49%;
+                font-size: 0.7vw;
             }
         }
     }

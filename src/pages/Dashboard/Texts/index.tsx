@@ -10,12 +10,6 @@ interface TextsProps {
     user: User
 }
 
-interface TextContainer {
-    text: TextsType
-}
-
-interface FormValues extends Array<TextsType> {}
-
 export const Texts: React.FC<TextsProps> = ({ user }) => {
     const api = useApi()
     const { newArray } = useIndexedList()
@@ -40,7 +34,7 @@ export const Texts: React.FC<TextsProps> = ({ user }) => {
                         {texts
                             .filter((text) => text.section == section)
                             .map((text) => (
-                                <TextContainer key={text.id} text={text} />
+                                <TextContainer key={text.id} text={text} user={user} />
                             ))}
                     </div>
                 </div>
