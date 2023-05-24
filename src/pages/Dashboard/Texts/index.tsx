@@ -4,8 +4,9 @@ import { useApi } from "../../../hooks/useApi"
 import { Texts as TextsType } from "../../../definitions/texts"
 import { User } from "../../../definitions/user"
 import { useIndexedList } from "../../../hooks/useIndexedList"
-import { SxProps, TextField } from "@mui/material"
+import { Button, SxProps, TextField } from "@mui/material"
 import { Form, Formik } from "formik"
+import { useConfirmDialog } from "../../../hooks/useConfirmDialog"
 
 interface TextsProps {
     user: User
@@ -17,21 +18,32 @@ export const Texts: React.FC<TextsProps> = ({ user }) => {
     const api = useApi()
     const { newArray } = useIndexedList()
     const sections = newArray(7)
-    const [texts, setTexts] = useState<TextsType[]>([])
+    const { confirm } = useConfirmDialog()
 
+    const [texts, setTexts] = useState<TextsType[]>([])
     const initialValues = texts
 
     const textfield_style: SxProps = {
         width: "49%",
     }
 
-    const handleSubmit = (values: any) => {
-        console.log(values)
+    const button_style: SxProps = {
+        position: "fixed",
+        bottom: "2vw",
+        right: "8.5vw",
+        zIndex: 2,
+        fontSize: "1.7vw",
     }
 
-    useEffect(() => {
-        console.log(initialValues)
-    }, [initialValues])
+    const handleSubmit = (values: any) => {
+        confirm({
+            title: "Salvar Textos",
+            content: "Certeza que deseja aplicar esses textos?",
+            onConfirm: () => {
+                alert("api")
+            },
+        })
+    }
 
     useEffect(() => {
         api.texts({
@@ -53,6 +65,9 @@ export const Texts: React.FC<TextsProps> = ({ user }) => {
             >
                 {({ values, handleChange }) => (
                     <Form>
+                        <Button sx={button_style} variant="contained" type="submit">
+                            Salvar
+                        </Button>
                         {sections.map((section) => (
                             <div key={section} className="section-container">
                                 <p>Seção {section}</p>
