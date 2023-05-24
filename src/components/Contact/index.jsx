@@ -1,7 +1,7 @@
 import { Form, Formik } from 'formik';
 import { useState } from 'react';
 import { InputField } from '../InputField';
-import {ReactComponent as FolderIcon} from '../../images/folder.svg'
+import {ReactComponent as LetterIcon} from '../../images/letter.svg'
 import {ReactComponent as MapIcon} from '../../images/map.svg'
 import {ReactComponent as WhatsappIcon} from '../../images/whatsapp.svg'
 import './style.scss';
@@ -50,7 +50,7 @@ export const Contact = () => {
                 <div className="info">
                     <h1 className='contact-us-h1'>Entre em Contato</h1>
                     <div className="info-item">
-                        <FolderIcon className='info-icon'/>
+                        <LetterIcon className='info-icon'/>
                         <input type="text" className='readonly-contact-info' readOnly value={'cooperativa@sionenergia.com.br'} />
                     </div>
                     <div className="info-item">
