@@ -40,7 +40,9 @@ export const Texts: React.FC<TextsProps> = ({ user }) => {
             title: "Salvar Textos",
             content: "Certeza que deseja aplicar esses textos?",
             onConfirm: () => {
-                alert("api")
+                const keysArray = Object.keys(values)
+                const data = keysArray.map((item) => ({ id: item, text: values[item], user_id: user.id }))
+                console.log(data)
             },
         })
     }
