@@ -1,5 +1,5 @@
 $user = "cooperativasion"
-$subdomain = ""
+$subdomain = "public_html"
 $path = "/home/$user/$subdomain"
 
 yarn build
