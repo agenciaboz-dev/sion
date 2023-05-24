@@ -11,6 +11,7 @@ import { Rate } from "./Rate"
 import { NewSeller } from "./NewSeller"
 import { Sellers } from "./Sellers"
 import { Seller } from "./Seller"
+import { Texts } from "./Texts"
 
 interface DashboardProps {}
 
@@ -21,6 +22,7 @@ export const Dashboard: React.FC<DashboardProps> = ({}) => {
     useEffect(() => {
         if (!user) navigate("/")
     }, [])
+    
     return user ? (
         <div className="Dashboard-Component">
             <Sidebar user={user} />
@@ -34,8 +36,7 @@ export const Dashboard: React.FC<DashboardProps> = ({}) => {
                     <Route path="sellers/" element={<Sellers />} />
                     <Route path="seller/:id" element={<Seller />} />
                     <Route path="new_seller/" element={<NewSeller />} />
-
-                    <Route path="profile/" element={<Profile user={user} />} />
+                    <Route path="texts/" element={<Texts user={user} />} />
                 </Routes>
             </div>
         </div>

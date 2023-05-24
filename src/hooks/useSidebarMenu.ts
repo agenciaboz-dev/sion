@@ -44,7 +44,7 @@ export const useSidebarMenu = () => {
         {
             id: 7,
             name: "Textos",
-            location: "/dashboard",
+            location: "/dashboard/texts",
             adm: true,
         },
     ]
