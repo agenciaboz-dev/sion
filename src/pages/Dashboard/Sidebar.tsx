@@ -24,6 +24,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ user }) => {
                     .filter((menu) => (menu.adm ? user.adm && menu : menu))
                     .map((menu) => (
                         <IconButton
+                            edge="start"
                             key={menu.id}
                             onClick={() => navigate(menu.location)}
                             sx={{
