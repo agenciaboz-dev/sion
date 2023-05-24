@@ -4,8 +4,8 @@ import {ReactComponent as Arrow} from '../../../images/faq_arrow.svg'
 const QuestionBlock = ({ question, open }) => {
     return (
         <div className="question">
-            <Arrow style={open ? {transform: 'rotate(90deg)'} : null} />
-            <h3>{question.number}. {question.text}</h3>
+            <Arrow style={open ? { transform: "rotate(90deg)" } : null} />
+            <h3>{question.text}</h3>
         </div>
     )
 }
