@@ -1,13 +1,17 @@
 import { Form, Formik } from 'formik';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { InputField } from '../InputField';
 import {ReactComponent as LetterIcon} from '../../images/letter.svg'
 import {ReactComponent as MapIcon} from '../../images/map.svg'
 import {ReactComponent as WhatsappIcon} from '../../images/whatsapp.svg'
 import './style.scss';
 import { useMediaQuery } from 'react-responsive';
+import { useTexts } from "../../hooks/useTexts"
 
 export const Contact = () => {
+    const [textsLoading, setTextsLoading] = useState(true)
+    const texts = useTexts().contact
+    const { text } = useTexts()
 
     const [showForm, setShowForm] = useState(false)
     const isMobile = useMediaQuery({maxWidth: 600})
@@ -28,17 +32,22 @@ export const Contact = () => {
         setShowForm(false)
     }
     
+    useEffect(() => {
+        if (texts.length > 0) setTextsLoading(false)
+    }, [texts])
+    
     return (
         <div className='Contact-Component' style={wrapper_style} >
             { !showForm ? 
             <div className="title">
-                <h4>Ficou com mais alguma dúvida? Fale com um dos nossos assessores</h4>
+                {text({ text: <h4>{texts[5]?.text}</h4>, loading: textsLoading, height: "5vw" })}
                 <button className='show-contact-form-button' onClick={() => setShowForm(true)}>Entrar em contato</button>
             </div> : 
             <div className="contact-form">
                 <Formik initialValues={initial_inputs} onSubmit={(values) => sendForm(values)}>
                     {({handleChange}) => (
                         <Form>
+                            
                             <InputField className='contact-input' id='name' title={'Nome'} handleChange={handleChange} />
                             <InputField className='contact-input' id='phone' title={'Telefone'} handleChange={handleChange} />
                             <InputField className='contact-input' id='email' title={'Email'} handleChange={handleChange} />
@@ -48,21 +57,21 @@ export const Contact = () => {
                     )}
                 </Formik>
                 <div className="info">
-                    <h1 className='contact-us-h1'>Entre em Contato</h1>
+                    {text({ text: <h1 className='contact-us-h1'>{texts[0]?.text}</h1>, loading: textsLoading, height: "5vw" })}
                     <div className="info-item">
                         <LetterIcon className='info-icon'/>
-                        <input type="text" className='readonly-contact-info' readOnly value={'cooperativa@sionenergia.com.br'} />
+                        <input type="text" className='readonly-contact-info' readOnly value={texts[1]?.text} />
                     </div>
                     <div className="info-item">
                         <MapIcon className='info-icon'/>
                         <div className="info-break-line">
-                            <input type="text" className='readonly-contact-info' readOnly value={'Rua Dr. Manoel Pedro, 365,'} />
-                            <input type="text" className='readonly-contact-info' readOnly value={'21º andar - Curitiba - PR'} />
+                            <input type="text" className='readonly-contact-info' readOnly value={texts[2]?.text}  />
+                            <input type="text" className='readonly-contact-info' readOnly value={texts[3]?.text}  />
                         </div>
                     </div>
                     <div className="info-item">
                         <WhatsappIcon className='info-icon'/>
-                        <input type="text" className='readonly-contact-info' readOnly value={'(41) 3028-3782'} />
+                        <input type="text" className='readonly-contact-info' readOnly value={texts[4]?.text}  />
                     </div>
                 </div>
             </div>

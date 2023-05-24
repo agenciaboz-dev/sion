@@ -5,11 +5,17 @@ import {ReactComponent as FacebookIcon} from '../../images/facebook.svg';
 import {ReactComponent as LinkedInIcon} from '../../images/linkedin.svg';
 import { useHeaderMenus } from '../../hooks/useHeaderMenus';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import { api } from '../../api';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useTexts } from "../../hooks/useTexts"
+
 
 export const Footer = () => {
+
+    const [textsLoading, setTextsLoading] = useState(true)
+    const texts = useTexts().footer
+    const { text } = useTexts()
 
     const menus = useHeaderMenus()
     const location = useLocation()
@@ -30,18 +36,24 @@ export const Footer = () => {
         })
     }, [email])
     
+
+    useEffect(() => {
+        if (texts.length > 0) setTextsLoading(false)
+      }, [texts])
+
     return (
         <div className='Footer-Component' >
             <div className="top-content">
                 <div className="info">
                     <LogoBranco />
                     <div className="address">
-                        <p>Rua Dr. Manoel Pedro, 365,</p>
-                        <p>21º andar. Curitiba - PR</p>
+                    {text({ text: <p>{texts[0]?.text}</p>, loading: textsLoading, height: "5vw" })}
+                 
+                    
                     </div>
                     <div className="contact">
-                        <p>(41) 3028-3782</p>
-                        <p>cooperativa@sionenergia.com.br</p>
+                        {text({ text: <p>{texts[1]?.text}</p>, loading: textsLoading, height: "5vw" })}
+                        {text({ text: <p>{texts[2]?.text}</p>, loading: textsLoading, height: "5vw" })}
                     </div>
                 </div>
                 <div className="links">
@@ -58,8 +70,9 @@ export const Footer = () => {
                     })}
                 </div>
                 <div className="news">
-                    <p className="news-title">Receba notícias</p>
-                    <p>Receba as principais notícias da SION e do setor elétrico.</p>
+                    {text({ text: <p className="news-title">{texts[8]?.text}</p>, loading: textsLoading, height: "5vw" })}
+                    {text({ text: <p>{texts[9]?.text}</p>, loading: textsLoading, height: "5vw" })}
+                    
                     {/* <div className="email-container">
                         <input type="email" placeholder='Seu e-mail' value={email} onChange={event => setEmail(event.target.value)}/>
                         <button onClick={onMailSignUp}><span style={{whiteSpace: 'nowrap'}}>Inscrever-se</span></button>
