@@ -14,10 +14,16 @@ import COLORS from "../../sass/_colors.scss"
 import { useNumberMask } from "../../hooks/useNumberMask"
 // import { useFlags } from "../../hooks/useFlags"
 import { useMediaQuery } from 'react-responsive';
+import { useTexts } from '../../hooks/useTexts';
 
 
 export const Simulator = () => {
-  
+
+  const [textsLoading, setTextsLoading] = useState(true)
+  const texts = useTexts().simulator
+  const { text } = useTexts()
+
+
     const Econ = () => {
         const [economy, setEconomy] = useState(0)
 
@@ -27,7 +33,8 @@ export const Simulator = () => {
 
         return (
             <div className="econ-container">
-                <h3>Economize até:</h3>
+             {text({ text: <h3>{texts[1]?.text}</h3>, loading: textsLoading, height: "5vw" })}
+
                 {/* <hr /> */}
                 <div className="yearly-econ">
                     {/* <h4>Anual</h4> */}
@@ -41,7 +48,7 @@ export const Simulator = () => {
                         prefix={'R$ '}
                         style={{fontSize: '1.5vw', fontWeight: 'bold', color: COLORS.primary}}
                     />
-                    <p>ao ano</p>
+                    {text({ text: <p>{texts[2]?.text}</p>, loading: textsLoading, height: "5vw" })}
                 </div>
                 <hr />
                 <div className="monthly-econ">
@@ -55,7 +62,7 @@ export const Simulator = () => {
                         prefix={'R$ '}
                         style={{fontSize: '1vw', color: COLORS.primary}}
                         />
-                      <p>ao mês</p>
+                      {text({ text: <p>{texts[3]?.text}</p>, loading: textsLoading, height: "5vw" })}
                 </div>
             </div>
         )
@@ -114,6 +121,10 @@ export const Simulator = () => {
   }
 
   useEffect(() => {
+    if (texts.length > 0) setTextsLoading(false)
+  }, [texts])
+
+  useEffect(() => {
     if (spent) {
       setConsumption(Number(spent.replace(/\D/g, "")))
     } else {
@@ -124,7 +135,7 @@ export const Simulator = () => {
   return (
     <div className="Simulator-Component" id="simulator">
       <div className="white-container">
-        <h1>Simule sua Economia</h1>
+         {text({ text: <h1>{texts[0]?.text}</h1>, loading: textsLoading, height: "5vw" })}
         <MaskedInput
           value={spent}
           mask={numberMask}
@@ -156,22 +167,22 @@ export const Simulator = () => {
         </div>
       </div>
       <div className="blue-container">
-        <h1>Seus Benefícios</h1>
+      {text({ text: <h1>{texts[4]?.text}</h1>, loading: textsLoading, height: "5vw" })}
         <div className="benefits-container">
           <Benefits
             icon={() => <EconomyIcon />}
-            title={"Economia"}
-            text="Receba seus créditos de energia e economize em até 15% na sua fatura"
+            title= {texts[5]?.text}
+            text= {texts[6]?.text}
           />
           <Benefits
             icon={() => <NoInvestmentIcon />}
-            title={"Sem investimento"}
-            text="Sem necessidade de alteração física no seu negócio ou investimento"
+            title={texts[7]?.text}
+            text={texts[8]?.text}
           />
           <Benefits
             icon={() => <RenewableEnergyIcon />}
-            title={"Energia renovável"}
-            text="Os créditos de energia são gerados por fontes renováveis"
+            title={texts[9]?.text}
+            text={texts[10]?.text}
           />
         </div>
         <button onClick={() => goToSignUp()} className="simulator-signup-button">
