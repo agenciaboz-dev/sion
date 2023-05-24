@@ -27,9 +27,9 @@ export const HowWorks = ({ main_container_height, advert_height }) => {
                     <hr />
                     <HowItem icon={() => <CreditsConversionIcon className="how-item-icon" />} title='Convertida em Créditos' text='A distribuidora local converte a energia injetada em créditos.' />
                     <hr />
-                    <HowItem icon={() => <CreditsDistributionIcon className="how-item-icon" />} title='Créditos distribuídos' text='Distribuimos os créditos entre os cooperados e emitimos a cobrança incluindo o desconto que foi negociado.' />
+                    <HowItem icon={() => <CreditsDistributionIcon className="how-item-icon" />} title='Créditos distribuídos' text='Distribuimos os créditos entre os cooperados e emitimos a cobrança incluindo o benefício que foi negociado.' />
                     <hr />
-                    <HowItem icon={() => <DiscountsIcon className="how-item-icon" />} title='Desconto de até 15% na fatura' text='Os cooperados recebem o crédito na conta da distrivuidora e pagam com desconto o valor da energia consumida.' />
+                    <HowItem icon={() => <DiscountsIcon className="how-item-icon" />} title='Benefício de até 15% na energia' text='Os cooperados recebem o crédito na conta da distribuidora e pagam com benefício o valor da energia consumida.' />
                 </div>
                 <div className="photo-container">
                     <img src="../../images/como-funciona-cropped.webp" alt="" />
