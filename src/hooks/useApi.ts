@@ -31,11 +31,19 @@ export const useApi = () => {
                 .catch((error) => defaultError(error, options.errorCallback))
                 .finally(() => defaultFinally(options.finallyCallback))
         },
-        texts: (options: ApiOptions) => {
-            api.get("/texts", options.data)
-                .then((response) => options.callback(response))
-                .catch((error) => defaultError(error, options.errorCallback))
-                .finally(() => defaultFinally(options.finallyCallback))
+        texts: {
+            get: (options: ApiOptions) => {
+                api.get("/texts", options.data)
+                    .then((response) => options.callback(response))
+                    .catch((error) => defaultError(error, options.errorCallback))
+                    .finally(() => defaultFinally(options.finallyCallback))
+            },
+            update: (options: ApiOptions) => {
+                api.post("/texts/update", options.data)
+                    .then((response) => options.callback(response))
+                    .catch((error) => defaultError(error, options.errorCallback))
+                    .finally(() => defaultFinally(options.finallyCallback))
+            },
         },
         contracts: {
             list: (options: ApiOptions) => {

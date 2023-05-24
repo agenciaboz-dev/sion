@@ -74,7 +74,7 @@ export const Texts: React.FC<TextsProps> = ({ user }) => {
     }
 
     useEffect(() => {
-        api.texts({
+        api.texts.get({
             callback: (response: { data: TextsType[] }) => {
                 setTexts(response.data)
             },
