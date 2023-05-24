@@ -168,24 +168,44 @@
         }
 
         .NewSeller-Component {
-           width: 100%;
-            gap:2vw;
-
+            width: 100%;
+            gap: 1vw;
+            
+            
             .form {
                 padding: 2vw;
                 display: flex;
                 width: 100%;
-                gap: 1vw;
+                
+                
 
                 > div {
                     flex-direction: column;
                     width: 100%;
+                    gap: 0.8vw;
+                    padding: 1.5vw;
                 }
+
+                .infoComplement{
+                    flex-direction: column;
+                }
+                .title{
+                    font-weight: 500;
+                }
+
+                .subtitle{
+                    font-weight: 300;
+                    color: #33333380
+                }
+                .biometry{
+                    padding: 2vw;
+                    width: 100%;
+                    border: 0.015vw dashed;
+                    height: 8vw;
+                }   
+
                 
             }
-
-       
-            
         }
 
         .Sellers-Component {

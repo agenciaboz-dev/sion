@@ -25,6 +25,28 @@ export const NewSeller:React.FC<NewSellerProps> = ({  }) => {
                 </div>
                 
                 <div className="infoComplement">
+                    <p className="title">Biometria Facial</p>
+                    <p className='subtitle'>Foto do rosto do vendedor</p>
+                    <div className="biometry">
+                        Foto aqui
+                    </div>
+                    <TextField label="Login" className='login' placeholder="Login" value=""/>
+                    <TextField label="Senha"  className='login'placeholder="Senha" value=""/>
+                    <TextField label="Endereço Residencial" placeholder="Rua Exemplo" value=""/>
+                    <TextField label="Número" placeholder="123" value=""/>
+                    <TextField label="CEP (opcional)" placeholder="00000-000" value=""/>
+                    <TextField label="Bairro (opcional)" placeholder="Exemplo" value=""/>
+                
+                </div>
+                
+            </div>
+
+            <div className="infoAdress">
+                    <p className="title">Biometria Facial</p>
+                    <p className='subtitle'>Foto do rosto do vendedor</p>
+                    <div className="biometry">
+                        Foto aqui
+                    </div>
                     <TextField label="Login" placeholder="Login" value=""/>
                     <TextField label="Senha" placeholder="Senha" value=""/>
                     <TextField label="Endereço Residencial" placeholder="Rua Exemplo" value=""/>
@@ -33,7 +55,36 @@ export const NewSeller:React.FC<NewSellerProps> = ({  }) => {
                     <TextField label="Bairro (opcional)" placeholder="Exemplo" value=""/>
                 
                 </div>
-            </div>
+
+                <div className="documents">
+                    <p className="title">Biometria Facial</p>
+                    <p className='subtitle'>Foto do rosto do vendedor</p>
+                    <div className="biometry">
+                        Foto aqui
+                    </div>
+                    <TextField label="Login"  placeholder="Login" value=""/>
+                    <TextField label="Senha" className='login' placeholder="Senha" value=""/>
+                    <TextField label="Endereço Residencial" placeholder="Rua Exemplo" value=""/>
+                    <TextField label="Número" placeholder="123" value=""/>
+                    <TextField label="CEP (opcional)" placeholder="00000-000" value=""/>
+                    <TextField label="Bairro (opcional)" placeholder="Exemplo" value=""/>
+                
+                </div>
+
+                <div className="others">
+                    <p className="title">Biometria Facial</p>
+                    <p className='subtitle'>Foto do rosto do vendedor</p>
+                    <div className="biometry">
+                        Foto aqui
+                    </div>
+                    <TextField label="Login" placeholder="Login" value=""/>
+                    <TextField label="Senha" placeholder="Senha" value=""/>
+                    <TextField label="Endereço Residencial" placeholder="Rua Exemplo" value=""/>
+                    <TextField label="Número" placeholder="123" value=""/>
+                    <TextField label="CEP (opcional)" placeholder="00000-000" value=""/>
+                    <TextField label="Bairro (opcional)" placeholder="Exemplo" value=""/>
+                
+                </div>
             
         </div>
 
