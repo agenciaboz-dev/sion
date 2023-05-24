@@ -19,7 +19,7 @@ export const WhoGets = () => {
                         <img src="/images/customers/confiance.webp" alt="" />
                     </div>
                     <div className="c-img">
-                        <img src="/images/customers/toyota.webp" alt="" />
+                        <img src="/images/customers/toyota_sulpar.webp" alt="" />
                     </div>
                     <div className="c-img">
                         <img src="/images/customers/elasto.webp" alt="" />
@@ -34,10 +34,10 @@ export const WhoGets = () => {
                         <img src="/images/customers/varandas.webp" alt="" />
                     </div>
                     <div className="c-img">                        
-                        <img src="/images/customers/rededutra.webp" alt="" />
+                        <img src="/images/customers/dutra_ipiranga.webp" alt="" />
                     </div>
                     <div className="c-img">
-                        <img src="/images/customers/ipiranga.webp" alt="" />
+                        <img src="/images/customers/lojasmm.webp" alt="" />
                     </div>
                 </div>
             </div>
