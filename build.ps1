@@ -4,5 +4,5 @@ $path = "/home/$user/$subdomain"
 
 yarn build
 Write-Output 'Uploading build to server'
-scp -r -P 22022 build/* agenciaboz:$path
-ssh -p 22022 agenciaboz "chown -R $user`:$user $path/*"
+scp -r -P 22022 build/* root@agenciaboz.com.br:/home/cooperativasion/public_html/
+ssh -p 22022 root@agenciaboz.com.br "chown -R cooperativasion:cooperativasion /home/cooperativasion/public_html/*"
