@@ -3,11 +3,12 @@ import "./style.scss"
 import { Texts } from "../../../definitions/texts"
 import { useApi } from "../../../hooks/useApi"
 import { useConfirmDialog } from "../../../hooks/useConfirmDialog"
-import { IconButton, SxProps, TextField } from "@mui/material"
+import { CircularProgress, IconButton, SxProps, TextField } from "@mui/material"
 import { Form, Formik } from "formik"
 import CheckCircleIcon from "@mui/icons-material/CheckCircle"
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline"
 import { User } from "../../../definitions/user"
+import { useSnackbar } from "../../../hooks/useSnackbar"
 
 interface TextContainerProps {
     text: Texts
@@ -17,20 +18,33 @@ interface TextContainerProps {
 export const TextContainer: React.FC<TextContainerProps> = ({ text, user }) => {
     const api = useApi()
     const { confirm } = useConfirmDialog()
+    const { snackbar } = useSnackbar()
     const button_style: SxProps = { width: "3vw", height: "3vw" }
 
     const [currentText, setCurrentText] = useState(text)
+    const [loading, setLoading] = useState(false)
 
     const initialValues = currentText
 
     const handleSubmit = (values: Texts) => {
+        if (values.text == currentText.text) return
+        if (loading) return
+
         confirm({
             title: "Salvar Texto",
             content: "Certeza que deseja aplicar esse texto",
             onConfirm: () => {
+                setLoading(true)
                 api.texts.update({
                     data: { ...values, date: new Date(), user },
-                    callback: (response: { data: Texts }) => setCurrentText(response.data),
+                    callback: (response: { data: Texts }) => {
+                        setCurrentText(response.data)
+                        snackbar({
+                            severity: "success",
+                            text: "Texto atualizado.",
+                        })
+                    },
+                    finallyCallback: () => setLoading(false),
                 })
             },
         })
@@ -49,9 +63,15 @@ export const TextContainer: React.FC<TextContainerProps> = ({ text, user }) => {
                             onChange={handleChange}
                             fullWidth
                         />
-                        <IconButton type="submit" color="primary" sx={button_style}>
-                            {currentText.text == values.text ? <CheckCircleOutlineIcon /> : <CheckCircleIcon />}
-                        </IconButton>
+                        {loading ? (
+                            <IconButton color="primary" sx={button_style}>
+                                <CircularProgress size={"1rem"} />
+                            </IconButton>
+                        ) : (
+                            <IconButton type="submit" color="primary" sx={button_style}>
+                                {currentText.text == values.text ? <CheckCircleOutlineIcon /> : <CheckCircleIcon />}
+                            </IconButton>
+                        )}
                     </div>
                 </Form>
             )}
