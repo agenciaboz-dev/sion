@@ -11,7 +11,6 @@ interface ContractsProps {}
 
 export const ContractContainer = ({ contract, adm }: { contract: Contract; adm?: boolean }) => {
     const navigate = useNavigate()
-    console.log(contract)
 
     return (
         <div className="contract-container">
@@ -53,10 +52,6 @@ export const Contracts: React.FC<ContractsProps> = ({}) => {
         height: "5vw",
         flexShrink: 0,
     }
-
-    useEffect(() => {
-        console.log(contracts)
-    }, [contracts])
 
     useEffect(() => {
         if (user!.adm) {

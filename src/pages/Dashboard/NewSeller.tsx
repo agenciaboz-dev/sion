@@ -53,7 +53,6 @@ export const NewSeller:React.FC<NewSellerProps> = ({  }) => {
 
     const handleInfoSubmit = (values:FormValues) =>{
         setInfoLoading(true)
-        console.log(values)
 
     }
 

@@ -51,10 +51,6 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
     }
 
     useEffect(() => {
-        console.log(sellers)
-    }, [sellers])
-
-    useEffect(() => {
         api.user.list({
             callback: (response: { data: User[] }) => setSellers(response.data),
             finallyCallback: () => setLoading(false),

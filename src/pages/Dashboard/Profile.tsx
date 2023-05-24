@@ -46,7 +46,6 @@ export const Profile: React.FC<ProfileProps> = ({ user }) => {
             content: "Deseja alterar os dados do seu perfil?",
             onConfirm: () => {
                 setInfoLoading(true)
-                console.log({ data: { ...values, contracts: [] } })
 
                 api.user.update({
                     data: { ...values, contracts: [] },
