@@ -3,7 +3,7 @@ import "./style.scss"
 import { useUser } from "../../hooks/useUser"
 import { useNavigate } from "react-router-dom"
 import { Sidebar } from "./Sidebar"
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, useLocation } from "react-router-dom"
 import { Contracts } from "./Contracts"
 import { Contract } from "./Contract"
 import { Profile } from "./Profile"
@@ -18,11 +18,13 @@ interface DashboardProps {}
 export const Dashboard: React.FC<DashboardProps> = ({}) => {
     const { user } = useUser()
     const navigate = useNavigate()
+    const pathname = useLocation().pathname
 
     useEffect(() => {
         if (!user) navigate("/")
-    }, [])
-    
+        if (pathname == "/dashboard") navigate("/dashboard/contracts")
+    }, [pathname])
+
     return user ? (
         <div className="Dashboard-Component">
             <Sidebar user={user} />

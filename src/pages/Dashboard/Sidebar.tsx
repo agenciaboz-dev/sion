@@ -6,6 +6,7 @@ import { useSidebarMenu } from "../../hooks/useSidebarMenu"
 import LogoutIcon from "@mui/icons-material/Logout"
 import { IconButton } from "@mui/material"
 import { useUser } from "../../hooks/useUser"
+import { useLocation } from "react-router-dom"
 
 interface SidebarProps {
     user: User
@@ -15,6 +16,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ user }) => {
     const navigate = useNavigate()
     const menus = useSidebarMenu()
     const { logout } = useUser()
+    const pathname = useLocation().pathname
 
     return (
         <div className="Sidebar-Component">
@@ -31,9 +33,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ user }) => {
                                 alignSelf: "flex-start",
                                 color: "white",
                                 transition: "0.1s",
+                                gap: "0.5vw",
                                 "&:hover": { transform: "scale(1.1)" },
                             }}
                         >
+                            {menu.location == pathname && ">"}
                             <p className="link">{menu.name}</p>
                         </IconButton>
                     ))}
