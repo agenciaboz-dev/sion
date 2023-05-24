@@ -41,10 +41,10 @@ export const Simulator = () => {
                         prefix={'R$ '}
                         style={{fontSize: '1.5vw', fontWeight: 'bold', color: COLORS.primary}}
                     />
+                    <p>ao ano</p>
                 </div>
                 <hr />
                 <div className="monthly-econ">
-                    <p>Mensalmente</p>
                     <CurrencyFormat
                         value={economy}
                         displayType='text'
@@ -54,7 +54,8 @@ export const Simulator = () => {
                         fixedDecimalScale={true}
                         prefix={'R$ '}
                         style={{fontSize: '1vw', color: COLORS.primary}}
-                    />
+                        />
+                      <p>ao mês</p>
                 </div>
             </div>
         )
