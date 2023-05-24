@@ -89,7 +89,9 @@ export const Seller: React.FC<SellerProps> = ({}) => {
             ) : (
                 <>
                     <div className="info-container">
+                       
                         <div className="data-container">
+                            <p>Dados Pessoais</p>
                             <TextField
                                 label={"Nome"}
                                 value={seller.name}
