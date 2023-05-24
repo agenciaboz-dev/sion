@@ -7,7 +7,8 @@ export const Faq = () => {
     const questions = useFaq()
     
     return (
-        <div className='Faq-Component' id='faq' >
+        <div className='Faq-Component'>
+            <div className="faq-anchor" id='faq'></div>
             <div className="faq-container">
                 <div className="faq-header-container">
                     <h2>Dúvidas frequentes</h2>

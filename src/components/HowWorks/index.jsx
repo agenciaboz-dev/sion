@@ -14,7 +14,8 @@ export const HowWorks = ({ main_container_height, advert_height }) => {
     const isMobile = useMediaQuery({maxWidth: 600})
 
     return (
-        <div className='HowWorks-Component' id='how' ref={ref} >
+        <div className='HowWorks-Component' ref={ref} >
+            <div className="how-works-anchor" id='how'></div>
             <div className="background-container" style={{height: main_container_height - advert_height}}>
 
             </div>

@@ -122,7 +122,8 @@ export const Simulator = () => {
   }, [spent])
 
   return (
-    <div className="Simulator-Component" id="simulator">
+    <div className="Simulator-Component">
+      <div className="simulator-anchor" id="simulator"></div>
       <div className="white-container">
         <h1>Simule sua Economia</h1>
         <MaskedInput
