@@ -1,53 +1,81 @@
 import AnchorLink from 'react-anchor-link-smooth-scroll';
-import { useNavigate } from 'react-router-dom';
-import './style.scss';
-import {ReactComponent as Checkmark} from '../../images/checkmark.svg';
-import {ReactComponent as Arrow} from '../../images/thin_arrow_right.svg';
-import {ReactComponent as LogoBranco} from '../../images/logo_branco.svg';
+import { Skeleton } from "@mui/material"
+import { useNavigate } from "react-router-dom"
+import "./style.scss"
+import { ReactComponent as Checkmark } from "../../images/checkmark.svg"
+import { ReactComponent as Arrow } from "../../images/thin_arrow_right.svg"
+import { ReactComponent as LogoBranco } from "../../images/logo_branco.svg"
+import { useTexts } from "../../hooks/useTexts"
+import { useEffect, useState } from "react"
 
 export const Advert = ({ innerRef }) => {
+    const [textsLoading, setTextsLoading] = useState(true)
+
+    const texts = useTexts().advert
+    const { text } = useTexts()
     const navigate = useNavigate()
     const goToSignUp = () => {
-      navigate("/cadastro")
+        navigate("/cadastro")
     }
 
+    useEffect(() => {
+        if (texts.length > 0) setTextsLoading(false)
+    }, [texts])
+
     return (
-      <div className="Advert-Component" ref={innerRef}>
-        <LogoBranco className="logo-branco" />
-        <div className="left">
-          <h1>Até 15%</h1>
-          <h3>de economia na sua conta de luz!</h3>
-          {/* <p>Sem Investimento<br />Sem instalação<br />Adesão 100% online<br />Uso de Energia Renovável</p> */}
-          <p>Geramos energia mais barata para seu negócio!</p>
-          {/* <div className="advert-buttons-container">
-                    <button onClick={() => goToSignUp()}>Quero economizar!</button>
-                    <a href={'#how'}className='menu-title'>Saiba como funciona</a>
-                </div> */}
+        <div className="Advert-Component" ref={innerRef}>
+            <LogoBranco className="logo-branco" />
+            <div className="left">
+                {text({ text: <h1>{texts[0]?.text}</h1>, loading: textsLoading, height: "5vw" })}
+                {text({ text: <h3>{texts[1]?.text}</h3>, loading: textsLoading, height: "5vw" })}
+                {text({ text: <p>{texts[2]?.text}</p>, loading: textsLoading, height: "5vw" })}
+            </div>
+            <div className="right">
+                <div className="blue-box">
+                    {text({
+                        text: <p className="be-part">{texts[3]?.text}</p>,
+                        loading: textsLoading,
+                        height: "3vw",
+                        width: "22vw",
+                    })}
+
+                    <div className="blue-box-ad">
+                        <Checkmark />
+                        {text({
+                            text: <p className="blue-box-ad-p">{texts[4]?.text}</p>,
+                            loading: textsLoading,
+                            height: "2vw",
+                        })}
+                    </div>
+                    <div className="blue-box-ad">
+                        <Checkmark />
+                        {text({
+                            text: <p className="blue-box-ad-p">{texts[5]?.text}</p>,
+                            loading: textsLoading,
+                            height: "2vw",
+                        })}
+                    </div>
+                    <div className="blue-box-ad">
+                        <Checkmark />
+                        {text({
+                            text: <p className="blue-box-ad-p">{texts[6]?.text}</p>,
+                            loading: textsLoading,
+                            height: "2vw",
+                        })}
+                    </div>
+                    <div className="blue-box-ad">
+                        <Checkmark />
+                        {text({
+                            text: <p className="blue-box-ad-p">{texts[7]?.text}</p>,
+                            loading: textsLoading,
+                            height: "2vw",
+                        })}
+                    </div>
+                    <button className="blue-box-register-button" onClick={goToSignUp}>
+                        Cadastre-se! <Arrow />
+                    </button>
+                </div>
+            </div>
         </div>
-        <div className="right">
-          <div className="blue-box">
-            <p className="be-part">Faça parte da Sion</p>
-            <div className="blue-box-ad">
-              <Checkmark />
-              <p className="blue-box-ad-p">Economia na sua energia</p>
-            </div>
-            <div className="blue-box-ad">
-              <Checkmark />
-              <p className="blue-box-ad-p">Sem investimento ou instalação</p>
-            </div>
-            <div className="blue-box-ad">
-              <Checkmark />
-              <p className="blue-box-ad-p">Adesão 100% online</p>
-            </div>
-            <div className="blue-box-ad">
-              <Checkmark />
-              <p className="blue-box-ad-p">Uso de Energia Renovável</p>
-            </div>
-            <button className="blue-box-register-button" onClick={goToSignUp}>
-              Cadastre-se! <Arrow />
-            </button>
-          </div>
-        </div>
-      </div>
     )
 }
