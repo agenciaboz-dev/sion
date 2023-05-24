@@ -39,17 +39,16 @@ export const Footer = () => {
 
     useEffect(() => {
         if (texts.length > 0) setTextsLoading(false)
-      }, [texts])
+        console.log(texts)
+    }, [texts])
 
     return (
-        <div className='Footer-Component' >
+        <div className="Footer-Component">
             <div className="top-content">
                 <div className="info">
                     <LogoBranco />
                     <div className="address">
-                    {text({ text: <p>{texts[0]?.text}</p>, loading: textsLoading, height: "5vw" })}
-                 
-                    
+                        {text({ text: <p>{texts[0]?.text}</p>, loading: textsLoading, height: "5vw" })}
                     </div>
                     <div className="contact">
                         {text({ text: <p>{texts[1]?.text}</p>, loading: textsLoading, height: "5vw" })}
@@ -57,39 +56,54 @@ export const Footer = () => {
                     </div>
                 </div>
                 <div className="links">
-                    {menus.map(menu => {
+                    {menus.map((menu) => {
                         return (
                             <section key={menu.id}>
-                                { location.pathname == '/' ?
-                                    <AnchorLink href={'#'+menu.name} className='menu-title' >{menu.title}</AnchorLink>
-                                    :
-                                    <p onClick={() => navigate('/')} className='menu-title' >{menu.title}</p>
-                                }
+                                {location.pathname == "/" ? (
+                                    <AnchorLink href={"#" + menu.name} className="menu-title">
+                                        {menu.title}
+                                    </AnchorLink>
+                                ) : (
+                                    <p onClick={() => navigate("/")} className="menu-title">
+                                        {menu.title}
+                                    </p>
+                                )}
                             </section>
                         )
                     })}
                 </div>
                 <div className="news">
-                    {text({ text: <p className="news-title">{texts[8]?.text}</p>, loading: textsLoading, height: "5vw" })}
-                    {text({ text: <p>{texts[9]?.text}</p>, loading: textsLoading, height: "5vw" })}
-                    
+                    {text({ text: <p className="news-title">{texts[3]?.text}</p>, loading: textsLoading, height: "5vw" })}
+                    {text({ text: <p>{texts[4]?.text}</p>, loading: textsLoading, height: "5vw" })}
+
                     {/* <div className="email-container">
                         <input type="email" placeholder='Seu e-mail' value={email} onChange={event => setEmail(event.target.value)}/>
                         <button onClick={onMailSignUp}><span style={{whiteSpace: 'nowrap'}}>Inscrever-se</span></button>
                     </div> */}
-                    <a className="news-a" target="_blank" href="https://materiais.sionenergia.com.br/informativo-sion-energia?_ga=2.118441546.210694676.1678706322-1651090181.1662405999&_gl=1*ar7ggp*_ga*MTY1MTA5MDE4MS4xNjYyNDA1OTk5*_ga_7L363588WY*MTY3ODgwMzA1My4xMjMuMC4xNjc4ODAzMDUzLjAuMC4w">Inscrever-se</a>
+                    <a
+                        className="news-a"
+                        target="_blank"
+                        href="https://materiais.sionenergia.com.br/informativo-sion-energia?_ga=2.118441546.210694676.1678706322-1651090181.1662405999&_gl=1*ar7ggp*_ga*MTY1MTA5MDE4MS4xNjYyNDA1OTk5*_ga_7L363588WY*MTY3ODgwMzA1My4xMjMuMC4xNjc4ODAzMDUzLjAuMC4w"
+                    >
+                        Inscrever-se
+                    </a>
                 </div>
             </div>
 
             <div className="bottom-content">
                 <p>2023 © Direitos Reservados | Powered By BOZ</p>
                 <div className="icons">
-                    <a href="https://www.instagram.com/sion_energia/" target="_blank"><InstagramIcon /></a>
-                    <a href="https://www.facebook.com/SionEnergia" target="_blank"><FacebookIcon /></a>
-                    <a href="https://br.linkedin.com/company/sion-energia" target="_blank"><LinkedInIcon /></a>
+                    <a href="https://www.instagram.com/sion_energia/" target="_blank">
+                        <InstagramIcon />
+                    </a>
+                    <a href="https://www.facebook.com/SionEnergia" target="_blank">
+                        <FacebookIcon />
+                    </a>
+                    <a href="https://br.linkedin.com/company/sion-energia" target="_blank">
+                        <LinkedInIcon />
+                    </a>
                 </div>
             </div>
-            
         </div>
     )
 }
