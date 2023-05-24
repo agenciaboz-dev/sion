@@ -38,7 +38,7 @@ export const useSidebarMenu = () => {
         {
             id: 6,
             name: "Visual",
-            location: "/dashboard",
+            location: "/dashboard/images",
             adm: true,
         },
         {
