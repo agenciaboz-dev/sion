@@ -66,6 +66,11 @@
                 padding: 0.25vw 1vw;
                 font-weight: 300;
                 text-decoration: none;
+                transition: 0.3s;
+            }
+
+            .news-a:hover {
+                transform: scale(1.1);
             }
 
             p {

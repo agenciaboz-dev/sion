@@ -22,6 +22,10 @@
         margin: 2vw;
     }
     
+    .show-contact-form-button:hover {
+        transform: scale(1.1);
+    }
+
     .info {
         flex-direction: column;
         background-color: $primary-color;

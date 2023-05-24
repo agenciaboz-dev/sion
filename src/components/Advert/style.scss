@@ -83,11 +83,15 @@
                 margin-top: 1vw;
                 justify-content: space-between;
                 width: 18vw;
-
+                
                 svg {
                     margin-left: 2vw;
                     height: 0.75vw;
                 }
+            }
+
+            .blue-box-register-button:hover {
+                transform: scale(1.1);
             }
         }
     }
