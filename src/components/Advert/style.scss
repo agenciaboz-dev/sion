@@ -148,6 +148,7 @@
                 margin-bottom: 10vw;
                 padding: 5vw 6vw 6vw;
                 // gap: 0.5vw;
+                width: 80vw;
                 
                 .be-part {
                     text-align: center;
@@ -156,10 +157,11 @@
                 }
     
                 .blue-box-ad {
+                    justify-content: space-around;
                     svg {
                         filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(72deg) brightness(130%) contrast(101%);
                         width: 5vw;
-                        margin: -2vw 3vw -2vw 0;
+                        margin: -2vw 0;
                     }
                 }
     
@@ -170,14 +172,14 @@
                 }
 
                 .blue-box-register-button {
-                    font-size: 4vw;
+                    font-size: 5vw;
                     padding: 1.5vw 2vw;
                     margin-top: 2vw;
                     height: fit-content;
                     width: 100%;
     
                     svg {
-                        margin-left: 5vw;
+                        margin-left: 15vw;
                         height: 2vw;
                     }
                 }
