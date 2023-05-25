@@ -33,6 +33,7 @@ export const TextContainer: React.FC<TextContainerProps> = ({ text, user }) => {
         confirm({
             title: "Salvar Texto",
             content: "Certeza que deseja aplicar esse texto",
+            button: "Salvar",
             onConfirm: () => {
                 setLoading(true)
                 api.texts.update({
