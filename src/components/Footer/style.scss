@@ -101,7 +101,7 @@
     .Footer-Component {
         padding-top: 6vw;
         padding-bottom: 0;
-        font-size: 4vw;
+        font-size: 4.5vw;
     
     .top-content {
         flex-direction: column;
@@ -109,7 +109,9 @@
         width: 100%;
     
             .info {
-                margin-bottom: 12vw;
+                margin-bottom: 24vw;
+                border-right: none;
+                padding-right: 0;
                 
                 svg {
                     width: 50vw;
@@ -122,8 +124,8 @@
             }
     
             .links {
-                margin-bottom: 12vw;
-                width: 80%;
+                margin-bottom: 24vw;
+                width: 100%;
                 padding: 0;
     
                 section:nth-child(even){
@@ -148,6 +150,7 @@
     
                 p {
                     text-align: start;
+                    width: 60vw;
                 }
             }
         }
