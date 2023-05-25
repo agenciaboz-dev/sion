@@ -5,6 +5,7 @@ import { SxProps, Skeleton } from "@mui/material"
 import Dropzone from "react-dropzone"
 import { useApi } from "../../../hooks/useApi"
 import { useImages } from "../../../hooks/useImages"
+import { useColors } from "../../../hooks/useColors"
 
 interface ImageContainerProps {
     image: Image
@@ -12,17 +13,24 @@ interface ImageContainerProps {
 
 export const ImageContainer: React.FC<ImageContainerProps> = ({ image }) => {
     const [hover, setHover] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     const api = useApi()
     const { updateImage } = useImages()
+    const colors = useColors()
 
     const upload_icon_style: SxProps = {
         width: "30%",
         height: "auto",
+        color: "white",
     }
 
+    const skeleton_style = { width: "100%", height: "15vw" }
+
     const fileHandler = (file: File) => {
-        console.log(file)
+        if (loading) return
+
+        setLoading(true)
         const formData = new FormData()
         const data = { name: image.name, id: image.id }
 
@@ -38,7 +46,7 @@ export const ImageContainer: React.FC<ImageContainerProps> = ({ image }) => {
     }
 
     return (
-        <div className="ImageContainer-Component" style={{ width: "50%" }}>
+        <div className="ImageContainer-Component">
             <div className="container">
                 <p>{image.title}</p>
                 <Dropzone onDrop={(acceptedFiles) => fileHandler(acceptedFiles[0])}>
@@ -50,7 +58,13 @@ export const ImageContainer: React.FC<ImageContainerProps> = ({ image }) => {
                             onMouseLeave={() => setHover(false)}
                         >
                             <input {...getInputProps()} />
-                            <img src={image.src + "?" + Date.now()} alt={image.title} />
+                            <img
+                                onLoad={() => setLoading(false)}
+                                src={image.src + "?" + Date.now()}
+                                alt={image.title}
+                                style={{ display: loading ? "none" : "" }}
+                            />
+                            {loading && <Skeleton variant="rectangular" sx={skeleton_style} />}
                             <div className="icon-container" style={{ opacity: hover ? 1 : 0 }}>
                                 <FileUploadIcon sx={upload_icon_style} />
                             </div>
