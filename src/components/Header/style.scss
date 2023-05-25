@@ -149,12 +149,13 @@
             background-color: $primary-color;
             border-radius: 2vw;
             box-shadow: 0 0 0 100vh rgba(#000000, 0.5);
+            margin-left: 5vw;
 
             ul {
                 color: white;
                 border-radius: 1.5vw;
-                padding-left: 11vw;
-                width: 90vw;
+                padding-left: 5vw;
+                width: 80vw;
 
                 li{
                     a{
