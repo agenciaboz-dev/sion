@@ -55,11 +55,12 @@
 @media only screen and (max-width: 600px) {
     .About-Component {
         flex-direction: column;
-        font-size: 4vw;
+        font-size: 5vw;
         gap: 8vw;
+        margin-bottom: 18vw;
 
         h2 {
-            font-size: 6vw;
+            font-size: 7vw;
         }
     
         .img-container {
