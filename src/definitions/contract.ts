@@ -27,8 +27,8 @@ export interface Contract {
     active: boolean
     seller: User
     seller_id: number
-    rdstation: any
-    omie: any
-    financial: any
-    logs: any
+    rdstation: never
+    omie: never
+    financial: never
+    logs: never
 }

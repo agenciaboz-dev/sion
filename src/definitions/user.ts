@@ -17,5 +17,5 @@ export interface User {
     adm: boolean
     ip: string
     contracts: Contract[]
-    logs: any
+    logs: never
 }

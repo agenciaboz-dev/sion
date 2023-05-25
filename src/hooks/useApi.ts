@@ -2,7 +2,7 @@ import { api } from "../api"
 import { useSnackbar } from "./useSnackbar"
 
 interface ApiOptions {
-    data?: any
+    data?: object
     callback: Function
     errorCallback?: Function
     finallyCallback?: Function
@@ -34,7 +34,7 @@ export const useApi = () => {
         },
         texts: {
             get: (options: ApiOptions) => {
-                api.get("/texts", options.data)
+                api.get("/texts")
                     .then((response) => options.callback(response))
                     .catch((error) => defaultError(error, options.errorCallback))
                     .finally(() => defaultFinally(options.finallyCallback))
@@ -48,7 +48,7 @@ export const useApi = () => {
         },
         contracts: {
             list: (options: ApiOptions) => {
-                api.get("/contracts", options.data)
+                api.get("/contracts")
                     .then((response) => options.callback(response))
                     .catch((error) => defaultError(error, options.errorCallback))
                     .finally(() => defaultFinally(options.finallyCallback))
@@ -70,7 +70,7 @@ export const useApi = () => {
         },
         user: {
             list: (options: ApiOptions) => {
-                api.get("/user", options.data)
+                api.get("/user")
                     .then((response) => options.callback(response))
                     .catch((error) => defaultError(error, options.errorCallback))
                     .finally(() => defaultFinally(options.finallyCallback))
@@ -104,7 +104,7 @@ export const useApi = () => {
         },
         settings: {
             get: (options: ApiOptions) => {
-                api.get("/settings", options.data)
+                api.get("/settings")
                     .then((response) => options.callback(response))
                     .catch((error) => defaultError(error, options.errorCallback))
                     .finally(() => defaultFinally(options.finallyCallback))
