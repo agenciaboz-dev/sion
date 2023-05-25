@@ -5,7 +5,7 @@ import { User } from "../../definitions/user"
 import { TextField, Button, SxProps, CircularProgress } from "@mui/material"
 import { useApi } from "../../hooks/useApi"
 import { useUser } from "../../hooks/useUser"
-import { useSnackbar } from "../../hooks/useSnackbar"
+import { useSnackbar } from "burgos-snackbar"
 import { useConfirmDialog } from "../../hooks/useConfirmDialog"
 
 interface ProfileProps {

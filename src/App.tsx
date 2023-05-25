@@ -12,11 +12,10 @@ import { AttachmentsProvider } from "./contexts/attachmentsContext"
 import { PdfProvider } from "./contexts/pdfContext"
 import { StageProvider } from "./contexts/stageContext"
 import { Dashboard } from "./pages/Dashboard"
-import { SnackbarProvider } from "./contexts/snackbarContext"
-import { Snackbar } from "./components/Snackbar"
 import { SettingsProvider } from "./contexts/settingsContext"
 import { ConfirmDialogProvider } from "./contexts/confirmDialogContext"
 import { ConfirmDialog } from "./components/ConfirmDialog"
+import { Snackbar, SnackbarProvider } from "burgos-snackbar"
 
 function App() {
     const muiTheme = useMuiTheme()

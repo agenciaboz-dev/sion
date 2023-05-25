@@ -61,7 +61,7 @@ export const Contracts: React.FC<ContractsProps> = ({}) => {
             })
         } else {
             api.contracts.find.seller({
-                data: user,
+                data: user!,
                 callback: (response: { data: Contract[] }) => setContracts(response.data),
                 finallyCallback: () => setLoading(false),
             })

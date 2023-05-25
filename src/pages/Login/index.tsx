@@ -3,6 +3,7 @@ import { Form, Formik } from "formik"
 import { useEffect, useLayoutEffect, useState } from "react"
 import { Footer } from "../../components/Footer"
 import { useLocalStorage } from "../../hooks/useLocalStorage"
+// @ts-ignore
 import { ReactComponent as LogoEscuro } from "../../images/logo_bonita.svg"
 import "./style.scss"
 import { useUser } from "../../hooks/useUser"

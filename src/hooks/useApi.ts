@@ -1,5 +1,5 @@
 import { api } from "../api"
-import { useSnackbar } from "./useSnackbar"
+import { useSnackbar } from "burgos-snackbar"
 
 interface ApiOptions {
     data?: object

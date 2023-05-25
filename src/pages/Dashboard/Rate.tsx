@@ -7,7 +7,7 @@ import { useApi } from '../../hooks/useApi';
 import { useSettings } from '../../hooks/useSettings';
 import { Settings } from '../../definitions/settings';
 import CircularProgress from '@mui/material/CircularProgress';
-import { useSnackbar } from '../../hooks/useSnackbar';
+import { useSnackbar } from "burgos-snackbar"
 
 interface RateProps {}
 

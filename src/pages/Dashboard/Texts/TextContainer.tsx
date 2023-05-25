@@ -8,7 +8,7 @@ import { Form, Formik } from "formik"
 import CheckCircleIcon from "@mui/icons-material/CheckCircle"
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline"
 import { User } from "../../../definitions/user"
-import { useSnackbar } from "../../../hooks/useSnackbar"
+import { useSnackbar } from "burgos-snackbar"
 
 interface TextContainerProps {
     text: Texts
