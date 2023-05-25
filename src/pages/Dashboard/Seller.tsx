@@ -7,7 +7,7 @@ import { Button, CircularProgress, Skeleton, SxProps, TextField } from "@mui/mat
 import { Form, Formik } from "formik"
 import { useSnackbar } from "burgos-snackbar"
 import { useUser } from "../../hooks/useUser"
-import { useConfirmDialog } from "../../hooks/useConfirmDialog"
+import { useConfirmDialog } from "burgos-confirm"
 import { ContractContainer } from "./Contracts"
 
 interface SellerProps {}

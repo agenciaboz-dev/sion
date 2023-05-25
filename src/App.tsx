@@ -13,9 +13,8 @@ import { PdfProvider } from "./contexts/pdfContext"
 import { StageProvider } from "./contexts/stageContext"
 import { Dashboard } from "./pages/Dashboard"
 import { SettingsProvider } from "./contexts/settingsContext"
-import { ConfirmDialogProvider } from "./contexts/confirmDialogContext"
-import { ConfirmDialog } from "./components/ConfirmDialog"
 import { Snackbar, SnackbarProvider } from "burgos-snackbar"
+import { ConfirmDialog, ConfirmDialogProvider } from "burgos-confirm"
 
 function App() {
     const muiTheme = useMuiTheme()

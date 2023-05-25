@@ -2,13 +2,13 @@ import React, { useState } from "react"
 import "./style.scss"
 import { Texts } from "../../../definitions/texts"
 import { useApi } from "../../../hooks/useApi"
-import { useConfirmDialog } from "../../../hooks/useConfirmDialog"
 import { CircularProgress, IconButton, SxProps, TextField } from "@mui/material"
 import { Form, Formik } from "formik"
 import CheckCircleIcon from "@mui/icons-material/CheckCircle"
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline"
 import { User } from "../../../definitions/user"
 import { useSnackbar } from "burgos-snackbar"
+import { useConfirmDialog } from "burgos-confirm"
 
 interface TextContainerProps {
     text: Texts
