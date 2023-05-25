@@ -38,7 +38,7 @@ export const ImageContainer: React.FC<ImageContainerProps> = ({ image }) => {
     }
 
     return (
-        <div className="ImageContainer-Component">
+        <div className="ImageContainer-Component" style={{ width: "50%" }}>
             <div className="container">
                 <p>{image.title}</p>
                 <Dropzone onDrop={(acceptedFiles) => fileHandler(acceptedFiles[0])}>
@@ -50,7 +50,7 @@ export const ImageContainer: React.FC<ImageContainerProps> = ({ image }) => {
                             onMouseLeave={() => setHover(false)}
                         >
                             <input {...getInputProps()} />
-                            <img src={image.src} alt={image.title} />
+                            <img src={image.src + "?" + Date.now()} alt={image.title} />
                             <div className="icon-container" style={{ opacity: hover ? 1 : 0 }}>
                                 <FileUploadIcon sx={upload_icon_style} />
                             </div>
