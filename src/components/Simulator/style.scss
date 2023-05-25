@@ -190,7 +190,7 @@
     
     .Simulator-Component {
         flex-direction: column;
-        height: 250vw;
+        height: 280vw;
         margin-top: 6vw;
 
         label {
@@ -253,6 +253,7 @@
             width: 100%;
 
             h1 {
+                margin-top: 4vw;
                 font-size: 6vw;
             }
 
@@ -260,15 +261,15 @@
                 flex-direction: column;
                 margin: 0;
                 margin-bottom: 2vw;
-                gap: 10vw;
+                gap: 12vw;
             }
 
             .simulator-signup-button {
                 font-size: 4.5vw;
                 color: $primary-color;
                 background-color: white;
-                padding: 1vw 0;
-                width: 72vw;
+                padding: 3vw 6vw;
+                margin-bottom: 8vw;
             }
         }       
     }
