@@ -101,7 +101,7 @@
 
     .Advert-Component {
         flex-direction: column;
-        height: 170vw;
+        height: 174vw;
         // justify-content: space-between;
         margin-top: 12vw;
     
@@ -143,9 +143,9 @@
             flex: 0.6;
             
             .blue-box{
-                margin-top: 12vw;
-                margin-bottom: 6vw;
-                // padding: 2vw 3vw;
+                margin-top: 10vw;
+                margin-bottom: 10vw;
+                padding: 3vw 4vw 4vw;
                 // gap: 0.5vw;
                 
                 .be-part {
@@ -170,7 +170,7 @@
                 .blue-box-register-button {
                     font-size: 4vw;
                     padding: 1.5vw 2vw;
-                    margin-top: 3vw;
+                    margin-top: 2vw;
                     height: fit-content;
                     width: 70%;
     
