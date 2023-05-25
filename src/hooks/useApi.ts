@@ -2,7 +2,7 @@ import { api } from "../api"
 import { useSnackbar } from "burgos-snackbar"
 
 interface ApiOptions {
-    data?: object
+    data?: object | FormData
     callback: Function
     errorCallback?: Function
     finallyCallback?: Function
@@ -41,6 +41,20 @@ export const useApi = () => {
             },
             update: (options: ApiOptions) => {
                 api.post("/texts/update", options.data)
+                    .then((response) => options.callback(response))
+                    .catch((error) => defaultError(error, options.errorCallback))
+                    .finally(() => defaultFinally(options.finallyCallback))
+            },
+        },
+        images: {
+            get: (options: ApiOptions) => {
+                api.get("/images")
+                    .then((response) => options.callback(response))
+                    .catch((error) => defaultError(error, options.errorCallback))
+                    .finally(() => defaultFinally(options.finallyCallback))
+            },
+            update: (options: ApiOptions) => {
+                api.post("/images/update", options.data)
                     .then((response) => options.callback(response))
                     .catch((error) => defaultError(error, options.errorCallback))
                     .finally(() => defaultFinally(options.finallyCallback))

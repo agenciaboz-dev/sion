@@ -6,7 +6,7 @@ import { ImageContainer } from "./ImageContainer"
 interface ImagesProps {}
 
 export const Images: React.FC<ImagesProps> = ({}) => {
-    const images = useImages()
+    const { images } = useImages()
     console.log(images)
 
     return (

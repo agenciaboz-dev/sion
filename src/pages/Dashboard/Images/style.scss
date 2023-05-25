@@ -1,18 +1,23 @@
 @import '/src/sass/colors';
 
 .Images-Component {
+    overflow-y: auto;
+    gap: 2vw;
 
     .container {
         flex-direction: column;
+        width: 100%;
         
         .image-container {
             position: relative;
+            width: 100%;
+            padding: 2vw;
+            border: 1px dashed $primary-color;
 
             img {
                 width: 100%;
                 height: auto;
                 object-fit: contain;
-                border: 1px dashed $primary-color;
             }
             
             .icon-container {
