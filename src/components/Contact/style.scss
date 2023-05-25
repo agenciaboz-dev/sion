@@ -155,17 +155,19 @@
         .title {
             flex-direction: column;
             padding: 4vw;
+            box-shadow: 0px 8px 16px 0px #00000040;
 
             h4 {
-                font-size: 4vw;
+                font-size: 5vw;
                 margin: 0;
                 text-align: center;
             }
 
             .show-contact-form-button {
+                border-radius: 6vw;
                 margin: 1vw;
                 margin-top: 4vw;
-                font-size: 4vw;
+                font-size: 5vw;
                 width: 100%;
                 padding: 2vw 0;
             }
@@ -174,17 +176,18 @@
         .contact-form {
             flex-direction: column ;
             width: 100%;
+            box-shadow: 0px 8px 16px 0px #00000040;
     
             .info {
                 flex: 0.5;
                 width: 100%;
-                padding: 4vw 0 6vw;
+                padding: 8vw 0;
                 margin-top: 6vw;
-                gap: 6vw;
+                gap: 10vw;
 
                 h1 {
                     text-align: center;
-                    font-size: 5vw;
+                    font-size: 6vw;
                 }
 
                 .info-icon {
@@ -195,7 +198,7 @@
 
                 .readonly-contact-info{
                     margin-left: 0;
-                    font-size: 3.75vw;
+                    font-size: 4vw;
                     height: 5vw;
                 }
 
@@ -205,6 +208,7 @@
 
                 .info-break-line {
                     flex-direction: column;
+                    gap: 2vw;
                 }
             }
     
@@ -245,7 +249,7 @@
     
             .contact-send-button {
                 margin-top: 4vw;
-                font-size: 4vw;
+                font-size: 5vw;
                 padding: 2vw;
                 width: 100%;
             }

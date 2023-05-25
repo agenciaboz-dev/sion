@@ -18,7 +18,7 @@ export const Contact = () => {
 
     const wrapper_style = {
         height: showForm ? (isMobile ? '125vw' : '15vw') : null,
-        margin: showForm ? (isMobile ? '16vw 0' : '7vw') : (isMobile ? '7vw 0' : 0)
+        margin: showForm ? (isMobile ? '42vw 0' : '7vw') : (isMobile ? '18vw 0' : 0)
     }
 
     const initial_inputs = {
