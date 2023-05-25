@@ -103,21 +103,22 @@
 
     .Faq-Component {
         margin-top: 4vw;
-    
+        
         h2 {
             font-size: 6vw;
+            margin-bottom: 4vw;
         }
-    
+        
         h3 {
             font-size: 5vw;
         }
-    
+        
         p {
-            font-size: 4vw;
+            font-size: 4.5vw;
         }
     
         .faq-container {
-            padding: 4vw;
+            padding: 6vw;
             padding-bottom: 10vw;
             gap: 8vw;
         }
