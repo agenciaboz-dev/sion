@@ -64,7 +64,6 @@
             display: flex;
             flex-direction: column;
             margin: 2vw;
-            height: 22vw;
 
             div {
                 div {
@@ -100,7 +99,8 @@
 
         .info {
             padding: 2vw;
-            gap: 3vw;
+            gap: 2vw;
+            justify-content: space-between;
 
             h1 {
                 color: white;
@@ -131,7 +131,7 @@
             font-size: 1.2vw;
             padding: 0;
             width: 10vw;
-            margin-top: 1vw;
+            margin-top: 0.5vw;
         }
     }
 
