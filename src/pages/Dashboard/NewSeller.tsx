@@ -5,7 +5,7 @@ import {Form, Formik} from 'formik';
 import Button from '@mui/material/Button';
 import { useApi } from '../../hooks/useApi';
 import CircularProgress from '@mui/material/CircularProgress/CircularProgress';
-import { useConfirmDialog } from 'burgos-snackbar'
+import { useConfirmDialog } from 'burgos-confirm'
 
 interface NewSellerProps {
 }
