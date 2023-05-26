@@ -31,8 +31,9 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
                     setTimeout(
                         () =>
                             confirm({
-                                title: "Certeza?",
-                                content: "Tem certeza mesmo?",
+                                title: "Atenção",
+                                content:
+                                    "Essa ação não poderá ser desfeita. Os dados do vendedor serão perdidos. Deseja continuar?",
                                 onConfirm: () => {
                                     setDeleteLoading(true)
                                     api.user.delete({
