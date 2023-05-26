@@ -7,6 +7,7 @@ import { useApi } from '../../hooks/useApi';
 import CircularProgress from '@mui/material/CircularProgress/CircularProgress';
 import { useConfirmDialog } from 'burgos-confirm'
 import { useSnackbar } from "burgos-snackbar"
+import { User } from '../../definitions/user';
 
 interface NewSellerProps {
 }
@@ -15,10 +16,10 @@ interface FormValues {
     name: string
     rg: string
     cpf: string
-    birth: string
+    birth: Date
     email: string
     phone: string
-    login: string
+    username: string
     password: string
     adress: string
     number: string
@@ -43,10 +44,10 @@ export const NewSeller:React.FC<NewSellerProps> = ({  }) => {
         name: '',
         rg: '',
         cpf: '',
-        birth: '',
+        birth: new Date(),
         email: '',
         phone: '',
-        login: '',
+        username: '',
         password: '',
         adress: '',
         number: '',
@@ -63,12 +64,9 @@ export const NewSeller:React.FC<NewSellerProps> = ({  }) => {
             title: 'Salvar',
             content: 'Are you sure you want to delete this object?',
             onConfirm: () => {
-                console.log(' object deleted')
-                setTimeout(() => setInfoLoading(false), 1500)
-                snackbar({
-                    severity: "success",
-                    text: "Vendedor cadastrado",
-                })
+                api.user.new({data:values, callback: (response:{data:User}) => {
+                    console.log(response.data)
+                }})
             }
 
         })
@@ -89,7 +87,7 @@ export const NewSeller:React.FC<NewSellerProps> = ({  }) => {
                             <TextField name='name' label="Nome completo" value={values.name} onChange={handleChange}/>
                             <TextField name='rg' label="RG"  placeholder="000.000.000-00" value={values.rg} onChange={handleChange}/>
                             <TextField name='cpf' label="CPF" placeholder="000.000.000-00" value={values.cpf} onChange={handleChange}/>
-                            <TextField name='birth' label="Data de Nascimento" placeholder="dd/mm/aa" value={values.birth} onChange={handleChange}/>
+                            <TextField name='birth' type='date' label="Data de Nascimento" placeholder="dd/mm/aa" value={values.birth} onChange={handleChange}/>
                             <TextField name='email' label="E-mail" placeholder="Objeto Social" value={values.email} onChange={handleChange} />
                             <TextField name='phone' label="Telefone" placeholder="(DDD)9 9999-9999" value={values.phone} onChange={handleChange}/>
                         </div>
@@ -99,7 +97,7 @@ export const NewSeller:React.FC<NewSellerProps> = ({  }) => {
                             <p className='subtitle'>Foto do rosto do vendedor</p>
                             <div className="biometry">Upload de arquivo </div>
                             <div className="two-inputs">
-                                <TextField name= 'login' label="Login" placeholder="Login" value={values.login} onChange={handleChange}/>
+                                <TextField name= 'username' label="Login" placeholder="Login" value={values.username} onChange={handleChange}/>
                                 <TextField name= 'password' label="Senha"  placeholder="Senha" value={values.password} onChange={handleChange}/>
                             </div>
                             <div className="two-inputs">

@@ -115,6 +115,12 @@ export const useApi = () => {
                     .catch((error) => defaultError(error, options.errorCallback))
                     .finally(() => defaultFinally(options.finallyCallback))
             },
+            new: (options: ApiOptions) => {
+                api.post("/user/new", options.data)
+                    .then((response) => options.callback(response))
+                    .catch((error) => defaultError(error, options.errorCallback))
+                    .finally(() => defaultFinally(options.finallyCallback))
+            },
         },
         settings: {
             get: (options: ApiOptions) => {
