@@ -92,7 +92,7 @@ export const NewSeller: React.FC<NewSellerProps> = ({}) => {
                                 <TextField
                                     name="rg"
                                     label="RG"
-                                    placeholder="000.000.000-00"
+                                    placeholder="0000000000"
                                     value={values.rg}
                                     onChange={handleChange}
                                 />
@@ -117,7 +117,7 @@ export const NewSeller: React.FC<NewSellerProps> = ({}) => {
                                 <TextField
                                     name="email"
                                     label="E-mail"
-                                    placeholder="Objeto Social"
+                                    placeholder="seu@email.com"
                                     value={values.email}
                                     onChange={handleChange}
                                 />
@@ -132,7 +132,7 @@ export const NewSeller: React.FC<NewSellerProps> = ({}) => {
                                             inputRef={ref}
                                             {...props}
                                             label="Telefone"
-                                            placeholder="(DDD)9 9999-9999"
+                                            placeholder="(41) 9 9999-9999"
                                         />
                                     )}
                                 />
@@ -182,17 +182,12 @@ export const NewSeller: React.FC<NewSellerProps> = ({}) => {
                                         value={values.cep}
                                         onChange={handleChange}
                                         render={(ref, props) => (
-                                            <TextField
-                                                inputRef={ref}
-                                                {...props}
-                                                label="CEP (opcional)"
-                                                placeholder="00000-000"
-                                            />
+                                            <TextField inputRef={ref} {...props} label="CEP" placeholder="00.000-000" />
                                         )}
                                     />
                                     <TextField
                                         name="district"
-                                        label="Bairro (opcional)"
+                                        label="Bairro"
                                         placeholder="Exemplo"
                                         value={values.district}
                                         onChange={handleChange}
