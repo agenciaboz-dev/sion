@@ -5,6 +5,7 @@ import {Form, Formik} from 'formik';
 import Button from '@mui/material/Button';
 import { useApi } from '../../hooks/useApi';
 import CircularProgress from '@mui/material/CircularProgress/CircularProgress';
+import { useConfirmDialog } from 'burgos-snackbar'
 
 interface NewSellerProps {
 }
@@ -29,6 +30,7 @@ interface FormValues {
 export const NewSeller:React.FC<NewSellerProps> = ({  }) => {
     const api = useApi()
     const [infoLoading, setInfoLoading] = useState(false)
+    const {confirm} = useConfirmDialog()
 
     const loading_props = {
         size: "1.5rem",
@@ -53,6 +55,13 @@ export const NewSeller:React.FC<NewSellerProps> = ({  }) => {
 
     const handleInfoSubmit = (values:FormValues) =>{
         setInfoLoading(true)
+        console.log(values)
+
+        confirm({
+            title: 'Salvar',
+            content: 'Are you sure you want to delete this object?',
+            onConfirm: () => console.log(' object deleted')
+        })
 
     }
 
