@@ -58,7 +58,7 @@ export const ImageContainer: React.FC<ImageContainerProps> = ({ image }) => {
         <div className="ImageContainer-Component">
             <div className="container">
                 <p>
-                    {image.title} - {image.size}
+                    {image.title} - {image.size} px
                 </p>
                 <Dropzone onDrop={(acceptedFiles) => fileHandler(acceptedFiles[0])}>
                     {({ getRootProps, getInputProps }) => (
