@@ -58,9 +58,17 @@
         font-size: 5vw;
         gap: 8vw;
         margin-bottom: 18vw;
-
+        
         h2 {
             font-size: 7vw;
+        }
+        
+        p {
+            text-align: justify;
+        }
+
+        .about-item {
+            text-align: start;
         }
     
         .img-container {
