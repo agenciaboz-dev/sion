@@ -1,11 +1,9 @@
-import { api2 } from "../api"
+import { useContext } from "react"
+import ImagesContext from "../contexts/imagesContext"
 
 export const useImages = () => {
-    const url = api2.getUri().split("/api")[0] + "/static"
-
-    const images = {
-        cover: url + "/cover.webp",
-    }
+    const imagesContext = useContext(ImagesContext)
+    const images = imagesContext.value
 
     return images
 }
