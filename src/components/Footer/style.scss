@@ -109,17 +109,21 @@
         width: 100%;
     
             .info {
+                align-items: center;
                 margin-bottom: 16vw;
                 border-right: none;
                 padding-right: 0;
                 
                 svg {
                     width: 50vw;
-                    margin-left: 16vw;
                 }
     
                 .address {
                     margin-bottom: 4vw;
+                }
+
+                p {
+                    text-align: center;
                 }
             }
     
@@ -139,22 +143,18 @@
             }
     
             .news {
-                align-items: flex-start;
+                align-items: center;
                 width: 100%;
     
-                .news-title {
-                    margin-bottom: 1vw;
+                p {
+                    text-align: center;
+                    width: 100%;
                 }
     
                 .news-a {
                     align-self: center;
                     padding: 2vw 6vw;
                     margin-top: 2vw;
-                }
-    
-                p {
-                    text-align: start;
-                    width: 100%;
                 }
             }
         }
