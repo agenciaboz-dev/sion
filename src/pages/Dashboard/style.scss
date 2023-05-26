@@ -264,7 +264,7 @@
             .sellers-list {
                 flex-direction: column;
                 gap: 1vw;
-                
+
                 .seller-container {
                     flex-shrink: 0;
                     color: #333333;
@@ -273,13 +273,16 @@
     
                     .title {
                         font-weight: bold;
-                        width: 10%;
+                        width: 20%;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;  
+                        overflow: hidden;
                     }
     
                     .data {
                         flex-direction: column;
                         font-size: 0.9vw;
-                        width: 20%;
+                        width: 25%;
                         white-space: nowrap;
                         
                     }

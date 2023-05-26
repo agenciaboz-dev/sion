@@ -53,7 +53,9 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
 
         return (
             <div className="seller-container">
-                <p className="title">{seller.name}</p>
+                <p className="title" title={seller.name}>
+                    {seller.name}
+                </p>
 
                 <div className="data">
                     <p>E-mail: {seller.email}</p>
@@ -90,7 +92,7 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
 
     const skeleton_style: SxProps = {
         width: "100%",
-        height: "5vw",
+        height: "3.5vw",
         flexShrink: 0,
     }
 
@@ -103,8 +105,8 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
 
     return (
         <div className="Sellers-Component">
+            <p>Administradores</p>
             <div className="sellers-list">
-                <p>Administradores</p>
                 {loading
                     ? skeletons.map((item) => (
                           <Skeleton key={skeletons.indexOf(item)} variant="rectangular" sx={skeleton_style} />
@@ -113,8 +115,8 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
                           .filter((seller) => seller.adm)
                           .map((seller) => <SellerContainer key={seller.id} seller={seller} />)}
             </div>
+            <p>Vendedores</p>
             <div className="sellers-list">
-                <p>Vendedores</p>
                 {loading
                     ? skeletons.map((item) => (
                           <Skeleton key={skeletons.indexOf(item)} variant="rectangular" sx={skeleton_style} />
