@@ -156,35 +156,32 @@
     }
 
     .HowItem-Component {
+        flex-direction: column;
         height: fit-content;
-        justify-content: center;
-    
+        gap: 2vw;
+        
         h3 {
             color: $text-color;
             font-size: 5vw;
-            margin-left: 2vw;
+            margin-bottom: 2vw;
         }
     
         p {
             font-size: 5vw;
             width: 80vw;
-            margin-top: 2vw;
-            margin-left: -10vw;
         }
     
         .HowItem-Texts {
             flex-direction: column;
-            text-align: justify;
+            text-align: center;
         }
     
         .HowItem-Icon{
-            align-self: flex-start;
-            height: 9vw;
-            width: 9vw;
+            height: 18vw;
+            width: 18vw;
         }
 
         .HowItem-Icon:last-of-type {
-            margin-top: 8vw;
         }
     }
 
