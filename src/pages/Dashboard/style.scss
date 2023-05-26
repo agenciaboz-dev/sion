@@ -167,22 +167,21 @@
         }
 
         .NewSeller-Component {
-            box-shadow: none;
-            width: 100%;
             gap:2vw;
             overflow-y: auto;
     
     
             form {
-            gap:2vw;
-            display: flex;
-            flex-direction: column;
-            box-shadow: none;
+                padding: 0;
+                gap:2vw;
+                display: flex;
+                flex-direction: column;
+                box-shadow: none;
             }
  
             
             .form {
-                padding: 2vw;
+                padding: 1vw;
                 display: flex;
                 width: 100%;
                 box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.25);
@@ -192,7 +191,7 @@
                     flex-direction: column;
                     width: 100%;
                     gap: 1vw;
-                    padding: 1.5vw;
+                    padding: 1.0vw;
                 }
 
                 .infoComplement{
@@ -208,7 +207,7 @@
 
             .biometry{
                 padding: 2vw;
-                width: 100%;
+          
                 border: 0.015vw dashed;
                 height: 10.53vw;
             }   
