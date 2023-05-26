@@ -31,8 +31,9 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
                     setTimeout(
                         () =>
                             confirm({
-                                title: "Certeza?",
-                                content: "Tem certeza mesmo?",
+                                title: "Atenção",
+                                content:
+                                    "Essa ação não poderá ser desfeita. Os dados do vendedor serão perdidos. Deseja continuar?",
                                 onConfirm: () => {
                                     setDeleteLoading(true)
                                     api.user.delete({
@@ -53,7 +54,9 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
 
         return (
             <div className="seller-container">
-                <p className="title">{seller.name}</p>
+                <p className="title" title={seller.name}>
+                    {seller.name}
+                </p>
 
                 <div className="data">
                     <p>E-mail: {seller.email}</p>
@@ -67,12 +70,14 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
 
                 {user!.adm && (
                     <div className="buttons-container" style={{ gap: "1vw" }}>
+                        {!seller.adm && (
+                            <IconButton color="error" onClick={deleteUser} disabled={seller.adm}>
+                                {deleteLoading ? <CircularProgress size={"1.5rem"} color="error" /> : <DeleteForeverIcon />}
+                            </IconButton>
+                        )}
                         <Button onClick={() => navigate(`/dashboard/seller/${seller.id}`)} variant="contained">
                             Detalhes
                         </Button>
-                        <IconButton color="error" onClick={deleteUser} disabled={seller.adm}>
-                            {deleteLoading ? <CircularProgress size={"1.5rem"} color="error" /> : <DeleteForeverIcon />}
-                        </IconButton>
                     </div>
                 )}
             </div>
@@ -80,7 +85,7 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
     }
 
     const { newArray } = useArray()
-    const skeletons = newArray(6)
+    const skeletons = newArray(3)
     const api = useApi()
 
     const [sellers, setSellers] = useState<User[]>([])
@@ -88,7 +93,7 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
 
     const skeleton_style: SxProps = {
         width: "100%",
-        height: "5vw",
+        height: "3.5vw",
         flexShrink: 0,
     }
 
@@ -101,11 +106,26 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
 
     return (
         <div className="Sellers-Component">
-            {loading
-                ? skeletons.map((item) => (
-                      <Skeleton key={skeletons.indexOf(item)} variant="rectangular" sx={skeleton_style} />
-                  ))
-                : sellers.map((seller) => <SellerContainer key={seller.id} seller={seller} />)}
+            <p>Administradores</p>
+            <div className="sellers-list">
+                {loading
+                    ? skeletons.map((item) => (
+                          <Skeleton key={skeletons.indexOf(item)} variant="rectangular" sx={skeleton_style} />
+                      ))
+                    : sellers
+                          .filter((seller) => seller.adm)
+                          .map((seller) => <SellerContainer key={seller.id} seller={seller} />)}
+            </div>
+            <p>Vendedores</p>
+            <div className="sellers-list">
+                {loading
+                    ? skeletons.map((item) => (
+                          <Skeleton key={skeletons.indexOf(item)} variant="rectangular" sx={skeleton_style} />
+                      ))
+                    : sellers
+                          .filter((seller) => !seller.adm)
+                          .map((seller) => <SellerContainer key={seller.id} seller={seller} />)}
+            </div>
         </div>
     )
 }

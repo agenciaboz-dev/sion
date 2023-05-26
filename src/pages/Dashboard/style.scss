@@ -261,23 +261,31 @@
             gap: 2vw;
             overflow-y: auto;
 
-            .seller-container {
-                flex-shrink: 0;
-                color: #333333;
-                align-items: center;
-                justify-content: space-between;
+            .sellers-list {
+                flex-direction: column;
+                gap: 1vw;
 
-                .title {
-                    font-weight: bold;
-                    width: 10%;
-                }
-
-                .data {
-                    flex-direction: column;
-                    font-size: 0.9vw;
-                    width: 20%;
-                    white-space: nowrap;
-                    
+                .seller-container {
+                    flex-shrink: 0;
+                    color: #333333;
+                    align-items: center;
+                    justify-content: space-between;
+    
+                    .title {
+                        font-weight: bold;
+                        width: 20%;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;  
+                        overflow: hidden;
+                    }
+    
+                    .data {
+                        flex-direction: column;
+                        font-size: 0.9vw;
+                        width: 25%;
+                        white-space: nowrap;
+                        
+                    }
                 }
             }
         }
