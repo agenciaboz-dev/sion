@@ -2248,6 +2248,13 @@
     "@types/history" "^4.7.11"
     "@types/react" "*"
 
+"@types/react-text-mask@^5.4.11":
+  version "5.4.11"
+  resolved "https://registry.yarnpkg.com/@types/react-text-mask/-/react-text-mask-5.4.11.tgz#dfbfc8642ee27977ed0cdfb1c61b53c85248c01c"
+  integrity sha512-DIJ3/dS4jd7NK3lEgsOwcgpp+ZlVrNJEiUDRayZRE/PNMbV/nLWmOKGdL0BUS29hnx0CDgITgPudKx0BgbF5fA==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-transition-group@^4.4.6":
   version "4.4.6"
   resolved "https://registry.npmjs.org/@types/react-transition-group/-/react-transition-group-4.4.6.tgz"
@@ -3177,6 +3184,13 @@ burgos-estadosbrasil@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/burgos-estadosbrasil/-/burgos-estadosbrasil-1.0.0.tgz#08abec40d8069c6d23b19acabd961f7081868364"
   integrity sha512-7M4lmqRvT4vo+LD/TrQWJB5d3M4beqUVTguA2SD0mnSPR4lW7v2PSjBJx7ML7fPMWysQQdGKgRVKxRCDGnm42g==
+
+burgos-masks@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/burgos-masks/-/burgos-masks-1.0.3.tgz#df01813314bfdecc70f37df7153a01d49a8af301"
+  integrity sha512-Jsq0T4s1LuMYKfiMGBtsbwXVywYCTtnxdyr17uH7PRgftYISl6KDKPTLIyO1PSkRF4xAnShLT3O/5LpL9sJcEA==
+  dependencies:
+    text-mask-addons "^3.8.0"
 
 burgos-snackbar@^2.0.13:
   version "2.0.13"
@@ -8134,9 +8148,9 @@ react-slider@^2.0.4:
   dependencies:
     prop-types "^15.8.1"
 
-react-text-mask@^5.4.3:
+react-text-mask@^5.5.0:
   version "5.5.0"
-  resolved "https://registry.npmjs.org/react-text-mask/-/react-text-mask-5.5.0.tgz"
+  resolved "https://registry.yarnpkg.com/react-text-mask/-/react-text-mask-5.5.0.tgz#468ea690160b364981205f5633e7475e939383ff"
   integrity sha512-SLJlJQxa0uonMXsnXRpv5abIepGmHz77ylQcra0GNd7Jtk4Wj2Mtp85uGQHv1avba2uI8ZvRpIEQPpJKsqRGYw==
   dependencies:
     prop-types "^15.5.6"
