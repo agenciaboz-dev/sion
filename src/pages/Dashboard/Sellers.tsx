@@ -69,14 +69,14 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
 
                 {user!.adm && (
                     <div className="buttons-container" style={{ gap: "1vw" }}>
-                        <Button onClick={() => navigate(`/dashboard/seller/${seller.id}`)} variant="contained">
-                            Detalhes
-                        </Button>
                         {!seller.adm && (
                             <IconButton color="error" onClick={deleteUser} disabled={seller.adm}>
                                 {deleteLoading ? <CircularProgress size={"1.5rem"} color="error" /> : <DeleteForeverIcon />}
                             </IconButton>
                         )}
+                        <Button onClick={() => navigate(`/dashboard/seller/${seller.id}`)} variant="contained">
+                            Detalhes
+                        </Button>
                     </div>
                 )}
             </div>
