@@ -3,7 +3,7 @@ import "./style.scss"
 import { useApi } from "../../hooks/useApi"
 import { Contract } from "../../definitions/contract"
 import { Button, Skeleton, SxProps } from "@mui/material"
-import { useIndexedList } from "../../hooks/useIndexedList"
+import { useArray } from "burgos-array"
 import { useNavigate } from "react-router-dom"
 import { useUser } from "../../hooks/useUser"
 
@@ -38,7 +38,7 @@ export const ContractContainer = ({ contract, adm }: { contract: Contract; adm?:
 }
 
 export const Contracts: React.FC<ContractsProps> = ({}) => {
-    const { newArray } = useIndexedList()
+    const { newArray } = useArray()
     const skeletons = newArray(6)
     const api = useApi()
     const { user } = useUser()

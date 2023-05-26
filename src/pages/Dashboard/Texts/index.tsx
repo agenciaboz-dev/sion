@@ -3,7 +3,7 @@ import "./style.scss"
 import { useApi } from "../../../hooks/useApi"
 import { Texts as TextsType } from "../../../definitions/texts"
 import { User } from "../../../definitions/user"
-import { useIndexedList } from "../../../hooks/useIndexedList"
+import { useArray } from "burgos-array"
 import { TextContainer } from "./TextContainer"
 import { Skeleton, SxProps } from "@mui/material"
 
@@ -13,7 +13,7 @@ interface TextsProps {
 
 export const Texts: React.FC<TextsProps> = ({ user }) => {
     const api = useApi()
-    const { newArray } = useIndexedList()
+    const { newArray } = useArray()
     const sections = newArray(7)
     const skeletons = newArray(7)
 

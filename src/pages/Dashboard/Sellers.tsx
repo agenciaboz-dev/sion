@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import "./style.scss"
-import { useIndexedList } from "../../hooks/useIndexedList"
+import { useArray } from "burgos-array"
 import { useApi } from "../../hooks/useApi"
 import { User } from "../../definitions/user"
 import { Button, Skeleton, SxProps } from "@mui/material"
@@ -37,7 +37,7 @@ const SellerContainer = ({ seller }: { seller: User }) => {
 }
 
 export const Sellers: React.FC<SellersProps> = ({}) => {
-    const { newArray } = useIndexedList()
+    const { newArray } = useArray()
     const skeletons = newArray(6)
     const api = useApi()
 
