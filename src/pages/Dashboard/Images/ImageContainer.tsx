@@ -6,6 +6,8 @@ import Dropzone from "react-dropzone"
 import { useApi } from "../../../hooks/useApi"
 import { useImages } from "../../../hooks/useImages"
 import { useColors } from "../../../hooks/useColors"
+import { useUser } from "../../../hooks/useUser"
+import { useConfirmDialog } from "burgos-confirm"
 
 interface ImageContainerProps {
     image: Image
@@ -17,7 +19,8 @@ export const ImageContainer: React.FC<ImageContainerProps> = ({ image }) => {
 
     const api = useApi()
     const { updateImage } = useImages()
-    const colors = useColors()
+    const { user } = useUser()
+    const { confirm } = useConfirmDialog()
 
     const upload_icon_style: SxProps = {
         width: "30%",
@@ -30,17 +33,23 @@ export const ImageContainer: React.FC<ImageContainerProps> = ({ image }) => {
     const fileHandler = (file: File) => {
         if (loading) return
 
-        setLoading(true)
-        const formData = new FormData()
-        const data = { name: image.name, id: image.id }
+        confirm({
+            title: "Atualizar imagem",
+            content: "Tem certeza que deseja alterar essa imagem?",
+            onConfirm: () => {
+                setLoading(true)
+                const formData = new FormData()
+                const data = { name: image.name, id: image.id, user, date: new Date() }
 
-        formData.append("data", JSON.stringify(data))
-        formData.append("file", file)
+                formData.append("data", JSON.stringify(data))
+                formData.append("file", file)
 
-        api.images.update({
-            data: formData,
-            callback: (response: { data: Image }) => {
-                updateImage(response.data)
+                api.images.update({
+                    data: formData,
+                    callback: (response: { data: Image }) => {
+                        updateImage(response.data)
+                    },
+                })
             },
         })
     }
@@ -48,7 +57,9 @@ export const ImageContainer: React.FC<ImageContainerProps> = ({ image }) => {
     return (
         <div className="ImageContainer-Component">
             <div className="container">
-                <p>{image.title}</p>
+                <p>
+                    {image.title} - {image.size} px
+                </p>
                 <Dropzone onDrop={(acceptedFiles) => fileHandler(acceptedFiles[0])}>
                     {({ getRootProps, getInputProps }) => (
                         <div
@@ -71,6 +82,9 @@ export const ImageContainer: React.FC<ImageContainerProps> = ({ image }) => {
                         </div>
                     )}
                 </Dropzone>
+                <p style={{ fontSize: "0.9vw", textAlign: "end" }}>
+                    {image.user.name} - {new Date(image.date).toLocaleString()}
+                </p>
             </div>
         </div>
     )
