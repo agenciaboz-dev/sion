@@ -8,7 +8,7 @@ export const WhatsappButton = () => {
 
   return (
     <div className="WhatsappButton-Component" onClick={() => (window.location.href = "https://wa.me/554130283782")}>
-      <WhatsAppIcon sx= {isMobile? 'background: #00B314; color: white; height: 7.5vw; width: 7.5vw;' : 'background: #00B314; color: white; height: 2.5vw; width: 2.5vw;'
+      <WhatsAppIcon sx= {isMobile? 'background: #00B314; color: white; height: 12vw; width: 12vw;' : 'background: #00B314; color: white; height: 2.5vw; width: 2.5vw;'
         }/>
     </div>
   )
