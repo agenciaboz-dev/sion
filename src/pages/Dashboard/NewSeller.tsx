@@ -8,6 +8,7 @@ import CircularProgress from '@mui/material/CircularProgress/CircularProgress';
 import { useConfirmDialog } from 'burgos-confirm'
 import { useSnackbar } from "burgos-snackbar"
 import { User } from '../../definitions/user';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 interface NewSellerProps {
 }
@@ -34,6 +35,7 @@ export const NewSeller:React.FC<NewSellerProps> = ({  }) => {
     const [infoLoading, setInfoLoading] = useState(false)
     const {confirm} = useConfirmDialog()
     const { snackbar} = useSnackbar()
+    const navigate = useNavigate()
 
     const loading_props = {
         size: "1.5rem",
@@ -64,9 +66,15 @@ export const NewSeller:React.FC<NewSellerProps> = ({  }) => {
             title: 'Salvar',
             content: 'Are you sure you want to delete this object?',
             onConfirm: () => {
-                api.user.new({data:values, callback: (response:{data:User}) => {
-                    console.log(response.data)
-                }})
+                api.user.new({
+                    data:values, 
+                    callback: (response:{data:User}) => {
+                        const user = response.data
+                        snackbar({severity: 'success', text: 'Vendedor cadastrado'})
+                        navigate(`/dashboard/seller/${user.id}`)
+                    },
+                    finallyCallback: () => setInfoLoading(false)
+                })
             }
 
         })
