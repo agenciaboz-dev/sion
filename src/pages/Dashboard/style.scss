@@ -144,10 +144,11 @@
             width: 100%;
             
             form{
-                position: relative;
+                display: flex;
                 padding: 2vw;
+                flex-direction: column;
                 width: 100%;
-                gap: 3vw;
+                gap: 1vw;
             }
             
             button {

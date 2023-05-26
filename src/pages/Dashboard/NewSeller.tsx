@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import { useApi } from '../../hooks/useApi';
 import CircularProgress from '@mui/material/CircularProgress/CircularProgress';
 import { useConfirmDialog } from 'burgos-confirm'
+import { useSnackbar } from "burgos-snackbar"
 
 interface NewSellerProps {
 }
@@ -31,6 +32,7 @@ export const NewSeller:React.FC<NewSellerProps> = ({  }) => {
     const api = useApi()
     const [infoLoading, setInfoLoading] = useState(false)
     const {confirm} = useConfirmDialog()
+    const { snackbar} = useSnackbar()
 
     const loading_props = {
         size: "1.5rem",
@@ -60,8 +62,17 @@ export const NewSeller:React.FC<NewSellerProps> = ({  }) => {
         confirm({
             title: 'Salvar',
             content: 'Are you sure you want to delete this object?',
-            onConfirm: () => console.log(' object deleted')
+            onConfirm: () => {
+                console.log(' object deleted')
+                setTimeout(() => setInfoLoading(false), 1500)
+                snackbar({
+                    severity: "success",
+                    text: "Vendedor cadastrado",
+                })
+            }
+
         })
+
 
     }
 
