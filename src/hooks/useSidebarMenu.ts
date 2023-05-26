@@ -32,7 +32,7 @@ export const useSidebarMenu = () => {
         {
             id: 5,
             name: "Validações",
-            location: "/dashboard",
+            location: "/dashboard/validations",
             adm: true,
         },
         {

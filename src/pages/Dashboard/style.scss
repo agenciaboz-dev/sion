@@ -141,6 +141,7 @@
 
         .Rate-Component {
             position: relative;
+            overflow-y: auto;
             width: 100%;
             
             form{
@@ -153,9 +154,9 @@
             
             button {
                 position: absolute;
-                bottom: -5vw;
+                bottom: 28vw;
                 font-weight: 700;
-                right: 0;
+                right: 4vw;
                 width: 20%;
             }
 
