@@ -70,9 +70,11 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
                         <Button onClick={() => navigate(`/dashboard/seller/${seller.id}`)} variant="contained">
                             Detalhes
                         </Button>
-                        <IconButton color="error" onClick={deleteUser} disabled={seller.adm}>
-                            {deleteLoading ? <CircularProgress size={"1.5rem"} color="error" /> : <DeleteForeverIcon />}
-                        </IconButton>
+                        {!seller.adm && (
+                            <IconButton color="error" onClick={deleteUser} disabled={seller.adm}>
+                                {deleteLoading ? <CircularProgress size={"1.5rem"} color="error" /> : <DeleteForeverIcon />}
+                            </IconButton>
+                        )}
                     </div>
                 )}
             </div>
@@ -101,11 +103,26 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
 
     return (
         <div className="Sellers-Component">
-            {loading
-                ? skeletons.map((item) => (
-                      <Skeleton key={skeletons.indexOf(item)} variant="rectangular" sx={skeleton_style} />
-                  ))
-                : sellers.map((seller) => <SellerContainer key={seller.id} seller={seller} />)}
+            <div className="sellers-list">
+                <p>Administradores</p>
+                {loading
+                    ? skeletons.map((item) => (
+                          <Skeleton key={skeletons.indexOf(item)} variant="rectangular" sx={skeleton_style} />
+                      ))
+                    : sellers
+                          .filter((seller) => seller.adm)
+                          .map((seller) => <SellerContainer key={seller.id} seller={seller} />)}
+            </div>
+            <div className="sellers-list">
+                <p>Vendedores</p>
+                {loading
+                    ? skeletons.map((item) => (
+                          <Skeleton key={skeletons.indexOf(item)} variant="rectangular" sx={skeleton_style} />
+                      ))
+                    : sellers
+                          .filter((seller) => !seller.adm)
+                          .map((seller) => <SellerContainer key={seller.id} seller={seller} />)}
+            </div>
         </div>
     )
 }

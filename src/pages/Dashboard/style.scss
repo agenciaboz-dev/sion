@@ -260,23 +260,28 @@
             gap: 2vw;
             overflow-y: auto;
 
-            .seller-container {
-                flex-shrink: 0;
-                color: #333333;
-                align-items: center;
-                justify-content: space-between;
-
-                .title {
-                    font-weight: bold;
-                    width: 10%;
-                }
-
-                .data {
-                    flex-direction: column;
-                    font-size: 0.9vw;
-                    width: 20%;
-                    white-space: nowrap;
-                    
+            .sellers-list {
+                flex-direction: column;
+                gap: 1vw;
+                
+                .seller-container {
+                    flex-shrink: 0;
+                    color: #333333;
+                    align-items: center;
+                    justify-content: space-between;
+    
+                    .title {
+                        font-weight: bold;
+                        width: 10%;
+                    }
+    
+                    .data {
+                        flex-direction: column;
+                        font-size: 0.9vw;
+                        width: 20%;
+                        white-space: nowrap;
+                        
+                    }
                 }
             }
         }
