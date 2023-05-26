@@ -82,7 +82,7 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
     }
 
     const { newArray } = useArray()
-    const skeletons = newArray(6)
+    const skeletons = newArray(3)
     const api = useApi()
 
     const [sellers, setSellers] = useState<User[]>([])
