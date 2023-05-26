@@ -6,6 +6,7 @@ import Dropzone from "react-dropzone"
 import { useApi } from "../../../hooks/useApi"
 import { useImages } from "../../../hooks/useImages"
 import { useColors } from "../../../hooks/useColors"
+import { useUser } from "../../../hooks/useUser"
 
 interface ImageContainerProps {
     image: Image
@@ -18,6 +19,7 @@ export const ImageContainer: React.FC<ImageContainerProps> = ({ image }) => {
     const api = useApi()
     const { updateImage } = useImages()
     const colors = useColors()
+    const { user } = useUser()
 
     const upload_icon_style: SxProps = {
         width: "30%",
@@ -32,7 +34,7 @@ export const ImageContainer: React.FC<ImageContainerProps> = ({ image }) => {
 
         setLoading(true)
         const formData = new FormData()
-        const data = { name: image.name, id: image.id }
+        const data = { name: image.name, id: image.id, user, date: new Date() }
 
         formData.append("data", JSON.stringify(data))
         formData.append("file", file)
@@ -48,7 +50,9 @@ export const ImageContainer: React.FC<ImageContainerProps> = ({ image }) => {
     return (
         <div className="ImageContainer-Component">
             <div className="container">
-                <p>{image.title}</p>
+                <p>
+                    {image.title} - {image.size}
+                </p>
                 <Dropzone onDrop={(acceptedFiles) => fileHandler(acceptedFiles[0])}>
                     {({ getRootProps, getInputProps }) => (
                         <div
@@ -71,6 +75,9 @@ export const ImageContainer: React.FC<ImageContainerProps> = ({ image }) => {
                         </div>
                     )}
                 </Dropzone>
+                <p style={{ fontSize: "0.9vw", textAlign: "end" }}>
+                    {image.user.name} - {new Date(image.date).toLocaleString()}
+                </p>
             </div>
         </div>
     )
