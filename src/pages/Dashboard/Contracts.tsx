@@ -57,7 +57,10 @@ export const Contracts: React.FC<ContractsProps> = ({}) => {
     }
 
     const handleSubmit = (values: FormValues) => {
-        console.log(values)
+        api.contracts.find.name({
+            data: values, 
+            callback: (response: { data: Contract[] }) => setContracts(response.data),
+        })
     }
     
     const skeleton_style: SxProps = {

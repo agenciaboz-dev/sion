@@ -80,6 +80,12 @@ export const useApi = () => {
                         .catch((error) => defaultError(error, options.errorCallback))
                         .finally(() => defaultFinally(options.finallyCallback))
                 },
+                name: (options: ApiOptions) => {
+                    api.post("/contracts/search", options.data)
+                        .then((response) => options.callback(response))
+                        .catch((error) => defaultError(error, options.errorCallback))
+                        .finally(() => defaultFinally(options.finallyCallback))
+                },
             },
         },
         user: {
