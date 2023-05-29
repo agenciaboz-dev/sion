@@ -102,6 +102,12 @@ export const useApi = () => {
                         .catch((error) => defaultError(error, options.errorCallback))
                         .finally(() => defaultFinally(options.finallyCallback))
                 },
+                name: (options: ApiOptions) => {
+                    api.post("/user/search", options.data)
+                        .then((response) => options.callback(response))
+                        .catch((error) => defaultError(error, options.errorCallback))
+                        .finally(() => defaultFinally(options.finallyCallback))
+                },
             },
             update: (options: ApiOptions) => {
                 api.post("/user/update", options.data)

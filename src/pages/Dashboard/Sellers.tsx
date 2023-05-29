@@ -10,6 +10,7 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever"
 import { useConfirmDialog } from "burgos-confirm"
 import { useSnackbar } from "burgos-snackbar"
 import { Form, Formik } from "formik"
+import { SearchField } from "../../components/SearchField"
 
 interface SellersProps {}
 interface FormValues{search: string}
@@ -97,7 +98,10 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
     const initialValues = { search: ''}
 
     const handleSubmit = (values: FormValues) =>{
-        console.log(values)
+        api.user.find.name({
+            data: values,
+            callback: (response: { data:User[]}) => setSellers(response.data),
+        })
     }
     const skeleton_style: SxProps = {
         width: "100%",
@@ -117,7 +121,7 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
             {({values, handleChange}) => (
                 <Form>
-                    <TextField name='search' className="search" placeholder="Buscar" InputProps={{sx:{backgroundColor: 'white'}}} onChange={handleChange}></TextField>
+                   <SearchField values={values} onChange={handleChange}/>
                 </Form>
             )}
             </Formik>
