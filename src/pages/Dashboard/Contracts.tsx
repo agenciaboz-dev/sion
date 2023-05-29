@@ -2,10 +2,15 @@ import React, { useEffect, useState } from "react"
 import "./style.scss"
 import { useApi } from "../../hooks/useApi"
 import { Contract } from "../../definitions/contract"
-import { Button, Skeleton, SxProps } from "@mui/material"
+import { Button, Skeleton, SxProps, TextField } from "@mui/material"
 import { useArray } from "burgos-array"
 import { useNavigate } from "react-router-dom"
 import { useUser } from "../../hooks/useUser"
+import { Form, Formik } from "formik"
+
+interface FormValues{
+    search: string
+}
 
 interface ContractsProps {}
 
@@ -47,6 +52,14 @@ export const Contracts: React.FC<ContractsProps> = ({}) => {
     const [loading, setLoading] = useState(true)
     const [contract, setContract] = useState<Contract>()
 
+    const initialValues = {
+        search: ''
+    }
+
+    const handleSubmit = (values: FormValues) => {
+        console.log(values)
+    }
+    
     const skeleton_style: SxProps = {
         width: "100%",
         height: "5vw",
@@ -70,6 +83,13 @@ export const Contracts: React.FC<ContractsProps> = ({}) => {
 
     return (
         <div className="Contracts-Component">
+            <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+            {({ values, handleChange }) => (
+                <Form>
+                    <TextField name='search' className="search" placeholder="Buscar" InputProps={{sx:{backgroundColor: 'white'}}} onChange={handleChange}></TextField>
+                </Form>
+            )}
+            </Formik>
             {loading
                 ? skeletons.map((item) => (
                       <Skeleton key={skeletons.indexOf(item)} variant="rectangular" sx={skeleton_style} />

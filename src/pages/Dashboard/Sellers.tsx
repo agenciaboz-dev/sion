@@ -3,14 +3,16 @@ import "./style.scss"
 import { useArray } from "burgos-array"
 import { useApi } from "../../hooks/useApi"
 import { User } from "../../definitions/user"
-import { Button, CircularProgress, IconButton, Skeleton, SxProps } from "@mui/material"
+import { Button, CircularProgress, IconButton, Skeleton, SxProps, TextField } from "@mui/material"
 import { useNavigate } from "react-router-dom"
 import { useUser } from "../../hooks/useUser"
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever"
 import { useConfirmDialog } from "burgos-confirm"
 import { useSnackbar } from "burgos-snackbar"
+import { Form, Formik } from "formik"
 
 interface SellersProps {}
+interface FormValues{search: string}
 
 export const Sellers: React.FC<SellersProps> = ({}) => {
     const SellerContainer = ({ seller }: { seller: User }) => {
@@ -18,6 +20,7 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
         const { user } = useUser()
         const { confirm } = useConfirmDialog()
         const { snackbar } = useSnackbar()
+        
 
         const [deleteLoading, setDeleteLoading] = useState(false)
 
@@ -91,6 +94,11 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
     const [sellers, setSellers] = useState<User[]>([])
     const [loading, setLoading] = useState(true)
 
+    const initialValues = { search: ''}
+
+    const handleSubmit = (values: FormValues) =>{
+        console.log(values)
+    }
     const skeleton_style: SxProps = {
         width: "100%",
         height: "3.5vw",
@@ -106,6 +114,13 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
 
     return (
         <div className="Sellers-Component">
+            <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+            {({values, handleChange}) => (
+                <Form>
+                    <TextField name='search' className="search" placeholder="Buscar" InputProps={{sx:{backgroundColor: 'white'}}} onChange={handleChange}></TextField>
+                </Form>
+            )}
+            </Formik>
             <p>Administradores</p>
             <div className="sellers-list">
                 {loading
