@@ -15,6 +15,20 @@ interface FormValues{
 
 interface ContractsProps {}
 
+const ContractList = ({ contracts }: { contracts: Contract[] }) => {
+    return contracts.length > 0 ? (
+        <>
+            {contracts.map((contract) => (
+                <ContractContainer key={contract.id} contract={contract} />
+            ))}
+        </>
+    ) : (
+        <div className="empty" style={{ padding: "2vw" }}>
+            <p>Nenhum resultado</p>
+        </div>
+    )
+}
+
 export const ContractContainer = ({ contract, adm }: { contract: Contract; adm?: boolean }) => {
     const navigate = useNavigate()
 
@@ -54,7 +68,7 @@ export const Contracts: React.FC<ContractsProps> = ({}) => {
     const [contract, setContract] = useState<Contract>()
 
     const initialValues = {
-        search: ''
+        search: "",
     }
 
     const handleSubmit = (values: FormValues) => {
@@ -98,11 +112,11 @@ export const Contracts: React.FC<ContractsProps> = ({}) => {
                     </Form>
                 )}
             </Formik>
-            {loading
-                ? skeletons.map((item) => (
-                      <Skeleton key={skeletons.indexOf(item)} variant="rectangular" sx={skeleton_style} />
-                  ))
-                : contracts.map((contract) => <ContractContainer key={contract.id} contract={contract} />)}
+            {loading ? (
+                skeletons.map((item) => <Skeleton key={skeletons.indexOf(item)} variant="rectangular" sx={skeleton_style} />)
+            ) : (
+                <ContractList contracts={contracts} />
+            )}
         </div>
     )
 }
