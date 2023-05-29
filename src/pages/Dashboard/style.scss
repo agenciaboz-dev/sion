@@ -3,8 +3,33 @@
 .Dashboard-Component {
     width: 100%;
     height: 100vh;
-    padding-top: 5vw;
+    padding-top: 7.6vw;
     background-color: $primary-color;
+
+    .white-background {
+        position: absolute;
+        background-color: white;
+        left: 0;
+        top: 5vw;
+        width: 100vw;
+        height: 25vw;
+        z-index: 2;
+        // box-shadow: 0 1vw 2vw 0 #00000040;
+
+        transform: skew(0, -5deg);
+    }
+
+    .blue-background {
+        position: absolute;
+        background-color: $darkbluebackground-color;
+        left: 0;
+        top: 5vw;
+        width: 100vw;
+        height: 25vw;
+        z-index: 1;
+
+        transform: skew(0, 5deg);
+    }
     
     .Sidebar-Component {
         background-color: $darkbluebackground-color;
@@ -13,6 +38,7 @@
         width: 20%;
         flex-direction: column;
         padding: 1vw 3vw;
+        z-index: 3;
 
         .title {
             font-size: 1.5vw;
@@ -33,6 +59,7 @@
     .content-container {
         width: 100%;
         background-color: white;
+        z-index: 3;
 
         > div {
             width: 100%;

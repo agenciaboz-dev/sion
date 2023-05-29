@@ -29,6 +29,8 @@ export const Dashboard: React.FC<DashboardProps> = ({}) => {
 
     return user ? (
         <div className="Dashboard-Component">
+            <div className="white-background"></div>
+            <div className="blue-background"></div>
             <Sidebar user={user} />
             <div className="content-container">
                 <Routes>
