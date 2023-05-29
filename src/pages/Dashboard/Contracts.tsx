@@ -58,12 +58,16 @@ export const Contracts: React.FC<ContractsProps> = ({}) => {
     }
 
     const handleSubmit = (values: FormValues) => {
+        if (loading) return
+
+        setLoading(true)
         api.contracts.find.name({
-            data: values, 
+            data: values,
             callback: (response: { data: Contract[] }) => setContracts(response.data),
+            finallyCallback: () => setLoading(false),
         })
     }
-    
+
     const skeleton_style: SxProps = {
         width: "100%",
         height: "5vw",
@@ -88,11 +92,11 @@ export const Contracts: React.FC<ContractsProps> = ({}) => {
     return (
         <div className="Contracts-Component">
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-            {({ values, handleChange }) => (
-                <Form>
-                    <SearchField values={values} onChange={handleChange} />
-                </Form>
-            )}
+                {({ values, handleChange }) => (
+                    <Form>
+                        <SearchField values={values} onChange={handleChange} loading={loading} />
+                    </Form>
+                )}
             </Formik>
             {loading
                 ? skeletons.map((item) => (
