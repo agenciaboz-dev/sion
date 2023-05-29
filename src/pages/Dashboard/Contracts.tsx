@@ -7,6 +7,7 @@ import { useArray } from "burgos-array"
 import { useNavigate } from "react-router-dom"
 import { useUser } from "../../hooks/useUser"
 import { Form, Formik } from "formik"
+import { SearchField } from "../../components/SearchField"
 
 interface FormValues{
     search: string
@@ -89,7 +90,7 @@ export const Contracts: React.FC<ContractsProps> = ({}) => {
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
             {({ values, handleChange }) => (
                 <Form>
-                    <TextField name='search' className="search" placeholder="Buscar" InputProps={{sx:{backgroundColor: 'white'}}} onChange={handleChange}></TextField>
+                    <SearchField values={values} onChange={handleChange} />
                 </Form>
             )}
             </Formik>
