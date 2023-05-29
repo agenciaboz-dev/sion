@@ -14,7 +14,7 @@ export const Card:React.FC<CardProps> = ({  }) => {
                         <p className="name">[Nome do Cliente]/[UC]</p>
                         <p className="attach">3 anexos</p>
                         <p className="description">Adicionar descrição</p>
-                        <button type="submit">[Nome do Vendedor]</button>
+                        <button className='button' type="submit">[Nome do Vendedor]</button>
                     </div>
                 </div>
         </div>

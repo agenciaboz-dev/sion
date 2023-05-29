@@ -65,7 +65,7 @@ export const NewSeller: React.FC<NewSellerProps> = ({}) => {
 
         confirm({
             title: "Salvar",
-            content: "Are you sure you want to delete this object?",
+            content: "Salvar novo vendedor?",
             onConfirm: () => {
                 api.user.new({
                     data: values,
