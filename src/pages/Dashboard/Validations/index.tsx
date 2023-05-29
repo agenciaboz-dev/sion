@@ -28,27 +28,30 @@ export const Validations:React.FC<ValidationsProps> = ({  }) => {
     }, [])
 
     return (
-        <div className='Validations-Component' >
+        <div className="Validations-Component">
             <div className="header">
-                <button type='submit'> Arquivos </button>
-                <button type='submit'> Ativos </button>
-                <TextField  name="username"
-                            label="Buscar"
-                            placeholder="Buscar"
-                            value=''></TextField>
+                <button type="submit"> Arquivos </button>
+                <button type="submit"> Ativos </button>
+                <TextField name="username" label="Buscar" placeholder="Buscar" value=""></TextField>
             </div>
             <div className="columns">
-                
-                <Column contracts={contracts.filter(contract => !contract.active)} title='Fichas para validação'/>
-                <Column contracts={contracts.filter(contract => contract.wrong)} title='Correção'/>
+                <Column contracts={contracts.filter((contract) => !contract.active)} title="Fichas para validação" />
+                <Column contracts={contracts.filter((contract) => contract.wrong)} title="Correção" />
                 <div className="file approved">
-                    <p className="title">Aprovadas</p>
-                    <div className="drag">Arraste blocos aqui</div>
-                    <p className="title">Arquivadas</p>
+                    <Column
+                        approved
+                        contracts={contracts.filter((contract) => contract.active)}
+                        title="Aprovadas"
+                        style={{ width: "100%" }}
+                    />
+                    <Column
+                        contracts={contracts.filter((contract) => contract.archived)}
+                        title="Arquivadas"
+                        style={{ width: "100%" }}
+                    />
                 </div>
-                <Column contracts={contracts.filter(contract => contract.reproved)} title='Reprovadas'/>
+                <Column contracts={contracts.filter((contract) => contract.reproved)} title="Reprovadas" />
             </div>
-                        
         </div>
     )
 }
