@@ -25,6 +25,9 @@ export interface Contract {
     filename: string
     signatures: string
     active: boolean
+    archived: boolean
+    reproved: boolean
+    wrong: boolean
     seller: User
     seller_id: number
     rdstation: never
