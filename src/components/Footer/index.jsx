@@ -46,7 +46,7 @@ export const Footer = () => {
         <div className="Footer-Component">
             <div className="top-content">
                 <div className="info">
-                    <LogoBranco />
+                    <LogoBranco onClick={() => navigate("/")} />
                     <div className="address">
                         {text({ text: <p>{texts[0]?.text}</p>, loading: textsLoading, height: "5vw" })}
                     </div>
