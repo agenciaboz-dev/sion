@@ -98,9 +98,13 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
     const initialValues = { search: ''}
 
     const handleSubmit = (values: FormValues) =>{
+        if (loading) return 
+
+        setLoading(true)
         api.user.find.name({
             data: values,
             callback: (response: { data:User[]}) => setSellers(response.data),
+            finallyCallback: () => setLoading(false),
         })
     }
     const skeleton_style: SxProps = {
@@ -121,7 +125,7 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
             {({values, handleChange}) => (
                 <Form>
-                   <SearchField values={values} onChange={handleChange}/>
+                   <SearchField values={values} onChange={handleChange} loading = {loading}/>
                 </Form>
             )}
             </Formik>
