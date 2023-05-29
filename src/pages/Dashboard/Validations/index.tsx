@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import './style.scss';
-import { TextField } from '@mui/material';
+import { TextField} from '@mui/material';
 import { Card } from './Card';
 import { Contract } from '../../../definitions/contract';
 import { useApi } from '../../../hooks/useApi';
 import { Column } from './Column';
+import { useArray } from 'burgos-array';
 
 interface ValidationsProps {
     
@@ -13,9 +14,10 @@ interface ValidationsProps {
 export const Validations:React.FC<ValidationsProps> = ({  }) => {
     
     const api = useApi()
+
     const [contracts, setContracts] = useState<Contract[]>([])
     const [laoding, setLoading] = useState(true)
-
+    
     useEffect(() => {
 
         api.contracts.list({
@@ -36,6 +38,7 @@ export const Validations:React.FC<ValidationsProps> = ({  }) => {
                             value=''></TextField>
             </div>
             <div className="columns">
+                
                 <Column contracts={contracts.filter(contract => !contract.active)} title='Fichas para validação'/>
                 <Column contracts={contracts.filter(contract => contract.wrong)} title='Correção'/>
                 <div className="file approved">
