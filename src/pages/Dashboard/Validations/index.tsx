@@ -4,6 +4,7 @@ import { TextField } from '@mui/material';
 import { Card } from './Card';
 import { Contract } from '../../../definitions/contract';
 import { useApi } from '../../../hooks/useApi';
+import { Column } from './Column';
 
 interface ValidationsProps {
     
@@ -35,26 +36,14 @@ export const Validations:React.FC<ValidationsProps> = ({  }) => {
                             value=''></TextField>
             </div>
             <div className="columns">
-                <div className="file">
-                    <p className="title">Fichas para validação</p>
-                    {contracts.filter(contract => !contract.active).map((contract) => <Card key={contract.id} contract={contract}/>)}
-                </div>
-                <div className="file">
-                    <p className="title">Correção</p>
-                    {/* <Card /> */}
-                    
-                </div>
+                <Column contracts={contracts.filter(contract => !contract.active)} title='Fichas para validação'/>
+                <Column contracts={contracts.filter(contract => contract.wrong)} title='Correção'/>
                 <div className="file approved">
                     <p className="title">Aprovadas</p>
                     <div className="drag">Arraste blocos aqui</div>
                     <p className="title">Arquivadas</p>
-                    {/* <Card /> */}
-                    {/* <Card /> */}
                 </div>
-                <div className="file">
-                    <p className="title">Reprovadas</p>
-                    {/* <Card /> */}
-                </div>
+                <Column contracts={contracts.filter(contract => contract.reproved)} title='Reprovadas'/>
             </div>
                         
         </div>
