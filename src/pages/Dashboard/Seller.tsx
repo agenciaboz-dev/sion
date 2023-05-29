@@ -25,6 +25,7 @@ export const Seller: React.FC<SellerProps> = ({}) => {
     const { user } = useUser()
 
     const [seller, setSeller] = useState<User>()
+    const [idError, setIdError] = useState(false)
     const [passwordLoading, setPasswordLoading] = useState(false)
     const [passwordError, setPasswordError] = useState("")
 
@@ -76,20 +77,30 @@ export const Seller: React.FC<SellerProps> = ({}) => {
 
         api.user.find.id({
             data: { id },
-            callback: (response: { data: User }) => setSeller(response.data),
+            callback: (response: { data: User }) => {
+                const user = response.data
+                if (user) {
+                    setSeller(user)
+                } else {
+                    setIdError(true)
+                }
+            },
         })
     }, [])
 
     return id ? (
         <div className="Seller-Component">
-            {!seller ? (
+            {idError ? (
+                <div className="user-error">
+                    <p>Usuário não encontrado</p>
+                </div>
+            ) : !seller ? (
                 <>
                     <Skeleton variant="rectangular" sx={skeleton_style} height={"21vw"} />
                 </>
             ) : (
                 <>
                     <div className="info-container">
-                       
                         <div className="data-container">
                             <p>Dados Pessoais</p>
                             <TextField
