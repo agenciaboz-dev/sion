@@ -13,15 +13,30 @@ import { Form, Formik } from "formik"
 import { SearchField } from "../../components/SearchField"
 
 interface SellersProps {}
-interface FormValues{search: string}
+interface FormValues {
+    search: string
+}
 
 export const Sellers: React.FC<SellersProps> = ({}) => {
+    const SellerList = ({ sellers }: { sellers: User[] }) => {
+        return sellers.length > 0 ? (
+            <>
+                {sellers.map((seller) => (
+                    <SellerContainer key={seller.id} seller={seller} />
+                ))}
+            </>
+        ) : (
+            <div className="empty" style={{ padding: "0.5vw 0" }}>
+                <p>Nenhum resultado</p>
+            </div>
+        )
+    }
+
     const SellerContainer = ({ seller }: { seller: User }) => {
         const navigate = useNavigate()
         const { user } = useUser()
         const { confirm } = useConfirmDialog()
         const { snackbar } = useSnackbar()
-        
 
         const [deleteLoading, setDeleteLoading] = useState(false)
 
@@ -95,15 +110,15 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
     const [sellers, setSellers] = useState<User[]>([])
     const [loading, setLoading] = useState(true)
 
-    const initialValues = { search: ''}
+    const initialValues = { search: "" }
 
-    const handleSubmit = (values: FormValues) =>{
-        if (loading) return 
+    const handleSubmit = (values: FormValues) => {
+        if (loading) return
 
         setLoading(true)
         api.user.find.name({
             data: values,
-            callback: (response: { data:User[]}) => setSellers(response.data),
+            callback: (response: { data: User[] }) => setSellers(response.data),
             finallyCallback: () => setLoading(false),
         })
     }
@@ -123,31 +138,31 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
     return (
         <div className="Sellers-Component">
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-            {({values, handleChange}) => (
-                <Form>
-                   <SearchField values={values} onChange={handleChange} loading = {loading}/>
-                </Form>
-            )}
+                {({ values, handleChange }) => (
+                    <Form>
+                        <SearchField values={values} onChange={handleChange} loading={loading} />
+                    </Form>
+                )}
             </Formik>
             <p>Administradores</p>
             <div className="sellers-list">
-                {loading
-                    ? skeletons.map((item) => (
-                          <Skeleton key={skeletons.indexOf(item)} variant="rectangular" sx={skeleton_style} />
-                      ))
-                    : sellers
-                          .filter((seller) => seller.adm)
-                          .map((seller) => <SellerContainer key={seller.id} seller={seller} />)}
+                {loading ? (
+                    skeletons.map((item) => (
+                        <Skeleton key={skeletons.indexOf(item)} variant="rectangular" sx={skeleton_style} />
+                    ))
+                ) : (
+                    <SellerList sellers={sellers.filter((seller) => seller.adm)} />
+                )}
             </div>
             <p>Vendedores</p>
             <div className="sellers-list">
-                {loading
-                    ? skeletons.map((item) => (
-                          <Skeleton key={skeletons.indexOf(item)} variant="rectangular" sx={skeleton_style} />
-                      ))
-                    : sellers
-                          .filter((seller) => !seller.adm)
-                          .map((seller) => <SellerContainer key={seller.id} seller={seller} />)}
+                {loading ? (
+                    skeletons.map((item) => (
+                        <Skeleton key={skeletons.indexOf(item)} variant="rectangular" sx={skeleton_style} />
+                    ))
+                ) : (
+                    <SellerList sellers={sellers.filter((seller) => !seller.adm)} />
+                )}
             </div>
         </div>
     )
