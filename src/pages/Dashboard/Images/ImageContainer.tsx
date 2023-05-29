@@ -83,7 +83,7 @@ export const ImageContainer: React.FC<ImageContainerProps> = ({ image }) => {
                     )}
                 </Dropzone>
                 <p style={{ fontSize: "0.9vw", textAlign: "end" }}>
-                    {image.user.name} - {new Date(image.date).toLocaleString()}
+                    Editado por {image.user.name} em {new Date(image.date).toLocaleString()}
                 </p>
             </div>
         </div>
