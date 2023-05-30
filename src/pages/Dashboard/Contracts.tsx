@@ -108,7 +108,7 @@ export const Contracts: React.FC<ContractsProps> = ({}) => {
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
                 {({ values, handleChange }) => (
                     <Form>
-                        <SearchField values={values} onChange={handleChange} loading={loading} />
+                        <SearchField values={values.search} onChange={handleChange} loading={loading} />
                     </Form>
                 )}
             </Formik>
