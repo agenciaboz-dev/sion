@@ -47,13 +47,13 @@ export const Validations:React.FC<ValidationsProps> = ({  }) => {
     return (
         <div className="Validations-Component">
             <div className="header">
-                <Button type='submit'> Arquivos </Button>
-                <Button type='submit'> Ativos </Button>
-                
+                <Button type="submit"> Arquivos </Button>
+                <Button type="submit"> Ativos </Button>
+
                 <Formik initialValues={initialValues} onSubmit={handleSearchSubmit}>
-                    {({values, handleChange}) => (
+                    {({ values, handleChange }) => (
                         <Form>
-                            <SearchField values = {values.search} onChange={handleChange} />                      
+                            <SearchField values={values} onChange={handleChange} />
                         </Form>
                     )}
                 </Formik>

@@ -12,18 +12,10 @@ interface ColumnProps {
     style?: React.CSSProperties
 }
 
-<<<<<<< HEAD
-export const Column:React.FC<ColumnProps> = ({ contracts, title }) => {
-
-    const {newArray} = useArray()
-    const skeletons = newArray(3)
-    
-=======
 export const Column: React.FC<ColumnProps> = ({ contracts, title, approved, style }) => {
     const { newArray } = useArray()
     const skeletons = newArray(5)
 
->>>>>>> 90ff6a4805b07a05fdc741ce3e110947f80b3394
     const skeleton_style: SxProps = {
         width: "100%",
         height: "12vw",
