@@ -6,9 +6,10 @@ interface SearchFieldProps {
     onChange: (e: string | React.ChangeEvent<any>) => void
     loading?: boolean
     sx?: SxProps
+    fullWidth?: boolean
 }
 
-export const SearchField: React.FC<SearchFieldProps> = ({ onChange, values, loading, sx }) => {
+export const SearchField: React.FC<SearchFieldProps> = ({ onChange, values, loading, sx, fullWidth }) => {
     return (
         <TextField
             name="search"
@@ -21,6 +22,7 @@ export const SearchField: React.FC<SearchFieldProps> = ({ onChange, values, load
             onChange={onChange}
             value={values.search}
             sx={sx}
+            fullWidth={fullWidth}
         />
     )
 }

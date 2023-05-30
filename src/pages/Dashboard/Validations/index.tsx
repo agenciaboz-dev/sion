@@ -1,31 +1,30 @@
-import React, {useState, useEffect} from 'react';
-import './style.scss';
-import { TextField, Button} from '@mui/material';
-import { Card } from './Card';
-import { Contract } from '../../../definitions/contract';
-import { useApi } from '../../../hooks/useApi';
-import { Column } from './Column';
-import { useArray } from 'burgos-array';
-import { Formik, Form } from 'formik';
-import CircularProgress from '@mui/material/CircularProgress';
-import { SearchField } from '../../../components/SearchField';
+import React, { useState, useEffect } from "react"
+import "./style.scss"
+import { TextField, Button } from "@mui/material"
+import { Card } from "./Card"
+import { Contract } from "../../../definitions/contract"
+import { useApi } from "../../../hooks/useApi"
+import { Column } from "./Column"
+import { useArray } from "burgos-array"
+import { Formik, Form } from "formik"
+import CircularProgress from "@mui/material/CircularProgress"
+import { SearchField } from "../../../components/SearchField"
 
-
-interface ValidationsProps {
-    
+interface ValidationsProps {}
+interface FormValues {
+    search: string
 }
-interface FormValues{ search: string }
 
-export const Validations:React.FC<ValidationsProps> = ({  }) => {
-    
+export const Validations: React.FC<ValidationsProps> = ({}) => {
     const api = useApi()
 
     const [contracts, setContracts] = useState<Contract[]>([])
     const [loading, setLoading] = useState(true)
 
-       const initialValues = { search: '', }
+    const initialValues = { search: "" }
 
     const handleSearchSubmit = (values: FormValues) => {
+        setLoading(true)
         console.log(values)
 
         api.contracts.find.name({
@@ -36,12 +35,10 @@ export const Validations:React.FC<ValidationsProps> = ({  }) => {
     }
 
     useEffect(() => {
-
         api.contracts.list({
             callback: (response: { data: Contract[] }) => setContracts(response.data),
             finallyCallback: () => setLoading(false),
         })
-
     }, [])
 
     return (
@@ -53,7 +50,34 @@ export const Validations:React.FC<ValidationsProps> = ({  }) => {
                 <Formik initialValues={initialValues} onSubmit={handleSearchSubmit}>
                     {({ values, handleChange }) => (
                         <Form>
-                            <SearchField values={values} onChange={handleChange} />
+                            <SearchField
+                                values={values}
+                                onChange={handleChange}
+                                loading={ loading }
+                                fullWidth
+                                sx={{
+                                    width: "50%",
+                                    "& .MuiInputBase-root": {
+                                        height: "2vw",
+                                    },
+                                    "& .MuiInputBase-input": {
+                                        padding: "0 12px",
+                                        fontSize: "0.8vw",
+                                    },
+                                    "& .MuiOutlinedInput-root": {
+                                        "& fieldset": {
+                                            borderColor: "#384974",
+                                        },
+                                        "&:hover fieldset": {
+                                            borderColor: "#384974",
+                                        },
+                                        "&.Mui-focused fieldset": {
+                                            borderColor: "#384974",
+                                            borderWidth: "0.11vw",
+                                        },
+                                    },
+                                }}
+                            />
                         </Form>
                     )}
                 </Formik>
