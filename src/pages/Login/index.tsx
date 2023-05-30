@@ -10,6 +10,7 @@ import { useUser } from "../../hooks/useUser"
 import { useNavigate, useParams } from "react-router-dom"
 import { User } from "../../definitions/user"
 import { useApi } from "../../hooks/useApi"
+// import { FormHelperText } from '@mui/material';
 
 interface FormValues {
     user: string
@@ -53,6 +54,8 @@ export const Login = () => {
 
     return (
         <div className="Login-Page">
+            <div className="white-background"></div>
+            <div className="blue-background"></div>
             <div className="main-container" style={{}}>
                 <LogoEscuro />
                 <Formik initialValues={{ user: "", password: "" }} onSubmit={(values) => tryLogin(values)}>
@@ -77,6 +80,7 @@ export const Login = () => {
                                     value={values.password}
                                     error={error}
                                     helperText={"Não foi possível fazer login"}
+                                    FormHelperTextProps={{sx: {fontSize: "1vw", margin: "0.75vw 0"}}}
                                 />
                             </div>
                             <div className="bottom-container">
