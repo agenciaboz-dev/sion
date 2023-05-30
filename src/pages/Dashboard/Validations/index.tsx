@@ -53,7 +53,7 @@ export const Validations: React.FC<ValidationsProps> = ({}) => {
                             <SearchField
                                 values={values}
                                 onChange={handleChange}
-                                loading={ loading }
+                                loading={loading}
                                 fullWidth
                                 sx={{
                                     width: "50%",
@@ -83,32 +83,40 @@ export const Validations: React.FC<ValidationsProps> = ({}) => {
                 </Formik>
             </div>
             <div className="columns">
-                <Column contracts={contracts.filter((contract) => !contract.active) } title="Fichas para validação" loading={loading} />
-                <Column contracts={contracts.filter((contract) => contract.wrong)} title="Correção" loading={loading}/>
+                <Column
+                    contracts={contracts.filter((contract) => !contract.active)}
+                    title="Fichas para validação"
+                    loading={loading}
+                />
+                <Column contracts={contracts.filter((contract) => contract.wrong)} title="Correção" loading={loading} />
                 <div className="file approved">
                     <Column
                         approved
-                        contracts={contracts.filter((contract) => contract.active)}
+                        contracts={contracts.filter((contract) => contract.active && !contract.archived)}
                         title="Aprovadas"
-                        style={ { width: "100%" } }
+                        style={{ width: "100%" }}
                         loading={loading}
                     />
                     <Column
-                        contracts={contracts.filter((contract) => contract.archived)}
+                        contracts={contracts.filter((contract) => contract.active && contract.archived)}
                         title="Arquivadas"
-                        style={ { width: "100%" } }
+                        style={{ width: "100%" }}
                         loading={loading}
                     />
-                                   </div>
+                </div>
                 <div className="file">
-                    <Column contracts={ contracts.filter((contract) => contract.reproved) } style={ { width: "100%" } } title="Reprovadas" loading={ loading } />
                     <Column
-                            contracts={[]}
-                            title="Arquivadas"
-                            style={ { width: "100%" } }
-                            loading={loading}
+                        contracts={contracts.filter((contract) => contract.reproved && !contract.archived)}
+                        style={{ width: "100%" }}
+                        title="Reprovadas"
+                        loading={loading}
                     />
-                  
+                    <Column
+                        contracts={contracts.filter((contract) => contract.reproved && contract.archived)}
+                        title="Arquivadas"
+                        style={{ width: "100%" }}
+                        loading={loading}
+                    />
                 </div>
             </div>
         </div>
