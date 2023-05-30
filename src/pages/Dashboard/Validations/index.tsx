@@ -45,7 +45,7 @@ export const Validations:React.FC<ValidationsProps> = ({  }) => {
     }, [])
 
     return (
-        <div className='Validations-Component' >
+        <div className="Validations-Component">
             <div className="header">
                 <Button type='submit'> Arquivos </Button>
                 <Button type='submit'> Ativos </Button>
@@ -53,23 +53,29 @@ export const Validations:React.FC<ValidationsProps> = ({  }) => {
                 <Formik initialValues={initialValues} onSubmit={handleSearchSubmit}>
                     {({values, handleChange}) => (
                         <Form>
-                            <SearchField value={values.search} onChange={handleChange}  />                      
+                            <SearchField values = {values.search} onChange={handleChange} />                      
                         </Form>
                     )}
                 </Formik>
             </div>
             <div className="columns">
-                
-                <Column contracts={contracts.filter(contract => !contract.active)} title='Fichas para validação'/>
-                <Column contracts={contracts.filter(contract => contract.wrong)} title='Correção'/>
+                <Column contracts={contracts.filter((contract) => !contract.active)} title="Fichas para validação" />
+                <Column contracts={contracts.filter((contract) => contract.wrong)} title="Correção" />
                 <div className="file approved">
-                    <p className="title">Aprovadas</p>
-                    <div className="drag">Arraste blocos aqui</div>
-                    <p className="title">Arquivadas</p>
+                    <Column
+                        approved
+                        contracts={contracts.filter((contract) => contract.active)}
+                        title="Aprovadas"
+                        style={{ width: "100%" }}
+                    />
+                    <Column
+                        contracts={contracts.filter((contract) => contract.archived)}
+                        title="Arquivadas"
+                        style={{ width: "100%" }}
+                    />
                 </div>
-                <Column contracts={contracts.filter(contract => contract.reproved)} title='Reprovadas'/>
+                <Column contracts={contracts.filter((contract) => contract.reproved)} title="Reprovadas" />
             </div>
-                        
         </div>
     )
 }
