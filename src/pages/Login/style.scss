@@ -135,7 +135,7 @@
                             height: 4vw;
                             
                             span {
-                                font-size: 3.5vw;
+                                font-size: 4vw;
                                 margin-left: -2vw;
 
                                 input,svg {
@@ -204,7 +204,7 @@
 
 @media (orientation: landscape) {
     .Login-Page {
-        padding-top: 8vw;
+        padding-top: 8.5vw;
 
         .white-background {
             top: 5vw;
@@ -221,7 +221,7 @@
             gap: 2vw;
 
             >svg {
-                width: 30vw;
+                width: 20vw;
                 margin-bottom: 0;
                 height: auto;
             }
@@ -237,20 +237,20 @@
                 }
 
                 label {
-                    font-size: 1vw;
+                    font-size: 1.5vw;
                 }
 
                 .bottom-container {
                     margin-top: 0;
 
                     p {
-                        font-size: 1vw;
+                        font-size: 1.5vw;
                     }
 
                     .button-container {
                         button {
                             display: flex;
-                            font-size: 1vw;
+                            font-size: 1.5vw;
                             align-items: center;
                             justify-content: center;
                         }
