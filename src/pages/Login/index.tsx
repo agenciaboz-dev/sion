@@ -10,6 +10,7 @@ import { useUser } from "../../hooks/useUser"
 import { useNavigate, useParams } from "react-router-dom"
 import { User } from "../../definitions/user"
 import { useApi } from "../../hooks/useApi"
+import { useMediaQuery } from "react-responsive"
 // import { FormHelperText } from '@mui/material';
 
 interface FormValues {
@@ -18,6 +19,8 @@ interface FormValues {
 }
 
 export const Login = () => {
+    const isMobile = useMediaQuery({orientation: "portrait"})
+    
     const storage = useLocalStorage()
     const { setUser } = useUser()
     const navigate = useNavigate()
@@ -80,7 +83,7 @@ export const Login = () => {
                                     value={values.password}
                                     error={error}
                                     helperText={"Não foi possível fazer login"}
-                                    FormHelperTextProps={{sx: {fontSize: "1vw", margin: "0.75vw 0"}}}
+                                    FormHelperTextProps={{sx: {fontSize: isMobile ? "4vw" : "1.5vw", margin: "0.75vw 0"}}}
                                 />
                             </div>
                             <div className="bottom-container">
