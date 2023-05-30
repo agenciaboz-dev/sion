@@ -19,9 +19,8 @@ export const Card: React.FC<CardProps> = ({ contract }) => {
         <div className="Card-Component">
             <div className="one-column">
                 <div className="info-container">
-                    <p className="name">
-                        {contract.name}/<span>{contract.unit}</span>
-                    </p>
+                    <p className="uc">{contract.unit}</p>
+                    <p className="name"> {contract.name} </p>
                     <p className="attach">3 anexos</p>
                     <p className="description">Adicionar descrição</p>
                     <Button variant="contained" className="button" type="submit" onClick={handleSellerClick}>

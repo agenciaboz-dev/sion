@@ -29,9 +29,13 @@
         }
     }
     .title {
-        font-weight: 500;
+        font-weight:500;
         font-size: 1vw;
         color: #333333;
+    }
+    .uc{
+        color: #384974;
+        font-size: 0.8vw;
     }
 
     .name {
@@ -43,7 +47,7 @@
     .attach {
         font-weight: 300;
         color: #384974;
-        font-size: 1vw;
+        font-size: 0.9vw;
     }
 
     .description {
@@ -64,10 +68,15 @@
     .info-container {
         flex-direction: column;
         gap: 0.9vw;
+        
+        .header-card{
+             
+            
+        }
     }
     .one-column {
         width: 100%;
-        height: 12vw;
+        height: 13vw;
         padding: 1.5vw;
     }
 
@@ -95,13 +104,14 @@
 
         .button {
             background-color: #737373 !important;
+            
         }
     }
 
     .drag {
         padding: 2vw;
         border: 0.015vw dashed;
-        height: 12vw;
+        height: 13vw;
         color: #737373;
         align-items: center;
     }

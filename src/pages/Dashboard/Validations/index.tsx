@@ -83,22 +83,24 @@ export const Validations: React.FC<ValidationsProps> = ({}) => {
                 </Formik>
             </div>
             <div className="columns">
-                <Column contracts={contracts.filter((contract) => !contract.active)} title="Fichas para validação" />
-                <Column contracts={contracts.filter((contract) => contract.wrong)} title="Correção" />
+                <Column contracts={contracts.filter((contract) => !contract.active) } title="Fichas para validação" loading={loading} />
+                <Column contracts={contracts.filter((contract) => contract.wrong)} title="Correção" loading={loading}/>
                 <div className="file approved">
                     <Column
                         approved
                         contracts={contracts.filter((contract) => contract.active)}
                         title="Aprovadas"
-                        style={{ width: "100%" }}
+                        style={ { width: "100%" } }
+                        loading={loading}
                     />
                     <Column
                         contracts={contracts.filter((contract) => contract.archived)}
                         title="Arquivadas"
-                        style={{ width: "100%" }}
+                        style={ { width: "100%" } }
+                        loading={loading}
                     />
                 </div>
-                <Column contracts={contracts.filter((contract) => contract.reproved)} title="Reprovadas" />
+                <Column contracts={contracts.filter((contract) => contract.reproved)} title="Reprovadas" loading={loading}/>
             </div>
         </div>
     )
