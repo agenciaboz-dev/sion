@@ -13,7 +13,7 @@ interface ColumnProps {
 export const Column:React.FC<ColumnProps> = ({ contracts, title }) => {
 
     const {newArray} = useArray()
-    const skeletons = newArray(5)
+    const skeletons = newArray(3)
     
     const skeleton_style: SxProps = {
         width: "100%",

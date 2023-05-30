@@ -7,9 +7,12 @@
    
     .header{
         box-shadow: none !important;
-        width: 80%;
+        width: 50%;
         gap: 0.6vw;
         padding: 0 !important;
+        position: absolute;
+        left: 62.6vw;
+        top: 6vw;
 
         button{
             width: 12%;
@@ -17,7 +20,7 @@
             border: 0.1vw solid #384974;
              background-color: #ffffff;
         }
-
+        
     }
     .title{
         font-weight: 500;
