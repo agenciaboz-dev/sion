@@ -69,13 +69,13 @@ export const useApi = () => {
             },
             update: {
                 archive: (options: ApiOptions) => {
-                    api.post("/contracts/archive")
+                    api.post("/contracts/archive", options.data)
                         .then((response) => options.callback(response))
                         .catch((error) => defaultError(error, options.errorCallback))
                         .finally(() => defaultFinally(options.finallyCallback))
                 },
                 unarchive: (options: ApiOptions) => {
-                    api.post("/contracts/unarchive")
+                    api.post("/contracts/unarchive", options.data)
                         .then((response) => options.callback(response))
                         .catch((error) => defaultError(error, options.errorCallback))
                         .finally(() => defaultFinally(options.finallyCallback))
