@@ -21,9 +21,7 @@ const ContractList = ({ contracts }: { contracts: Contract[] }) => {
             ))}
         </>
     ) : (
-        <div className="empty" style={{ padding: "2vw" }}>
-            <p>Nenhum resultado</p>
-        </div>
+        <div className="drag">Arraste blocos aqui</div>
     )
 }
 
