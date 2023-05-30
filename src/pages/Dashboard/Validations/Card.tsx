@@ -49,15 +49,18 @@ export const Card: React.FC<CardProps> = ({ contract }) => {
                         <Button variant="contained" className="button" onClick={handleSellerClick}>
                             {contract.seller.name}
                         </Button>
-                        {contract.archived && (
-                            <IconButton sx={{ width: "auto" }} onClick={handleUnarchiveClick}>
-                                <RotateLeftIcon />
-                            </IconButton>
-                        )}
-                        {contract.reproved && (
-                            <IconButton>
-                                <Inventory2OutlinedIcon color="primary" onClick={handleArchiveClick} />
-                            </IconButton>
+                        {(contract.active || contract.reproved) && (
+                            <>
+                                {contract.archived ? (
+                                    <IconButton sx={{ width: "auto" }} onClick={handleUnarchiveClick}>
+                                        <RotateLeftIcon />
+                                    </IconButton>
+                                ) : (
+                                    <IconButton>
+                                        <Inventory2OutlinedIcon color="primary" onClick={handleArchiveClick} />
+                                    </IconButton>
+                                )}
+                            </>
                         )}
                     </div>
                 </div>

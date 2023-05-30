@@ -111,12 +111,7 @@ export const Validations: React.FC<ValidationsProps> = ({}) => {
                         title="Reprovadas"
                         loading={loading}
                     />
-                    <Column
-                        contracts={contracts.filter((contract) => contract.reproved && contract.archived)}
-                        title="Arquivadas"
-                        style={{ width: "100%" }}
-                        loading={loading}
-                    />
+                    <Column contracts={contracts.filter((contract) => contract.reproved && contract.archived)} title="Arquivadas" style={{ width: "100%" }} loading={loading} />
                 </div>
             </div>
         </div>
