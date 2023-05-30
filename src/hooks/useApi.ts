@@ -67,6 +67,20 @@ export const useApi = () => {
                     .catch((error) => defaultError(error, options.errorCallback))
                     .finally(() => defaultFinally(options.finallyCallback))
             },
+            update: {
+                archive: (options: ApiOptions) => {
+                    api.post("/contracts/archive")
+                        .then((response) => options.callback(response))
+                        .catch((error) => defaultError(error, options.errorCallback))
+                        .finally(() => defaultFinally(options.finallyCallback))
+                },
+                unarchive: (options: ApiOptions) => {
+                    api.post("/contracts/unarchive")
+                        .then((response) => options.callback(response))
+                        .catch((error) => defaultError(error, options.errorCallback))
+                        .finally(() => defaultFinally(options.finallyCallback))
+                },
+            },
             find: {
                 id: (options: ApiOptions) => {
                     api.post("/contracts/id", options.data)

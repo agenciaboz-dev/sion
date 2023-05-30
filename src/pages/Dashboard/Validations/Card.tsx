@@ -1,8 +1,10 @@
-import React from 'react';
-import './style.scss';
-import { Contract } from '../../../definitions/contract';
-import {Button} from '@mui/material'
+import React from "react"
+import "./style.scss"
+import { Contract } from "../../../definitions/contract"
+import { Button, IconButton } from "@mui/material"
 import { useNavigate } from "react-router-dom"
+import RotateLeftIcon from "@mui/icons-material/RotateLeft"
+import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined"
 
 interface CardProps {
     contract: Contract
@@ -19,13 +21,27 @@ export const Card: React.FC<CardProps> = ({ contract }) => {
         <div className="Card-Component">
             <div className="one-column">
                 <div className="info-container">
-                    <p className="uc">{contract.unit}</p>
-                    <p className="name"> {contract.name} </p>
+                    <div className="header-card">
+                        <p className="uc">{contract.unit}</p>
+                        <p className="name"> {contract.name} </p>
+                    </div>
                     <p className="attach">3 anexos</p>
                     <p className="description">Adicionar descrição</p>
-                    <Button variant="contained" className="button" type="submit" onClick={handleSellerClick}>
-                        {contract.seller.name}
-                    </Button>
+                    <div className="buttons-container">
+                        <Button variant="contained" className="button" type="submit" onClick={handleSellerClick}>
+                            {contract.seller.name}
+                        </Button>
+                        {contract.archived && (
+                            <IconButton sx={{ width: "auto" }}>
+                                <RotateLeftIcon />
+                            </IconButton>
+                        )}
+                        {contract.reproved && (
+                            <IconButton>
+                                <Inventory2OutlinedIcon color="primary" />
+                            </IconButton>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

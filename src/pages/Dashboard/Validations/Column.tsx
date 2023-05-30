@@ -41,7 +41,7 @@ export const Column: React.FC<ColumnProps> = ({ contracts, title, approved, styl
                 <p className="title">{title}</p>
                 <Button variant="outlined" type="submit" sx={{}}> Arquivar tudo </Button>
             </div>
-            <div className="drag">Arraste blocos aqui</div>
+            
             {contracts.length > 0 ? (
                 <>
                     {contracts.map((contract) => (
