@@ -1,13 +1,14 @@
 import React from "react"
-import { CircularProgress, TextField } from "@mui/material"
+import { CircularProgress, SxProps, TextField } from "@mui/material"
 
 interface SearchFieldProps {
     values: { search: string }
     onChange: (e: string | React.ChangeEvent<any>) => void
     loading?: boolean
+    sx?: SxProps
 }
 
-export const SearchField: React.FC<SearchFieldProps> = ({ onChange, values, loading }) => {
+export const SearchField: React.FC<SearchFieldProps> = ({ onChange, values, loading, sx }) => {
     return (
         <TextField
             name="search"
@@ -19,6 +20,7 @@ export const SearchField: React.FC<SearchFieldProps> = ({ onChange, values, load
             }}
             onChange={onChange}
             value={values.search}
-        ></TextField>
+            sx={sx}
+        />
     )
 }
