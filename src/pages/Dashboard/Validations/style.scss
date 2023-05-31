@@ -97,6 +97,16 @@
         .header-column{
             display: flex;
             justify-content: space-between;
+            .buttons-container{
+                gap: 0.3vw;
+                justify-content: space-between;
+
+                .iconButton{
+                    padding: 0.1vw;
+                    position: relative;
+                    top: -0.2vw;
+                }
+            }
           
             .button-quantity{
                 width: 1vw;

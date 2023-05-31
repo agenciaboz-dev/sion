@@ -63,7 +63,7 @@ export const Column: React.FC<ColumnProps> = ({ contracts, title, approved, styl
                 >
                     Arquivar tudo
                 </Button>
-                <Button variant="outlined" className="button-quantity" sx={{ minWidth: "0" }}>
+                <Button variant="outlined" className="button-quantity" sx={{ minWidth: "0", fontSize:"0.8vw", borderColor: "#384974" }}>
                     {contracts.length}
                 </Button>
             </div>
@@ -88,10 +88,15 @@ export const Column: React.FC<ColumnProps> = ({ contracts, title, approved, styl
         <div className="file" style={style}>
             <div className="header-column">
                 <p className="title">{title}</p>
-                <Button variant="contained" className="button-quantity" style={styleButton} sx={{ minWidth: "0" }}>
-                    {contracts.length}
-                </Button>
-                    <IconButton onClick={handleClick}>{isIcon ? <ExpandMoreIcon /> : <ExpandLessIcon />}</IconButton>
+
+                <div className="buttons-container">
+                    <Button variant="contained" className="button-quantity" style={styleButton} sx={{ minWidth: "0", fontSize:"0.8vw" }}>
+                        {contracts.length}
+                    </Button>
+                    <IconButton className="iconButton" sx={{ width: "auto" }} onClick={handleClick}>
+                        {isIcon ? <ExpandMoreIcon /> : <ExpandLessIcon />}
+                    </IconButton>
+                </div>
             </div>
 
             <>
