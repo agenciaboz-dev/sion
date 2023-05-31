@@ -105,6 +105,7 @@ export const Validations: React.FC<ValidationsProps> = ({}) => {
                         loading={loading}
                     />
                     <Column
+                        archive
                         contracts={contracts.filter((contract) => contract.active && contract.archived)}
                         title="Arquivadas"
                         style={{ width: "100%" }}
@@ -120,12 +121,13 @@ export const Validations: React.FC<ValidationsProps> = ({}) => {
                         loading={loading}
                     />
                     <Column
+                        archive={ true }
                         contracts={contracts.filter((contract) => contract.reproved && contract.archived)}
                         title="Arquivadas"
                         style={{ width: "100%", display: "flex", justifyContent: "flex-start" }}
                         styleButton={{ backgroundColor: "#737373" }}
                         loading={loading}
-                        archive
+                       
                     />
                 </div>
             </div>
