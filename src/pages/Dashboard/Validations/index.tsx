@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import "./style.scss"
-import { TextField, Button,makeStyles } from "@mui/material"
+import { TextField, Button, makeStyles } from "@mui/material"
 import { Card } from "./Card"
 import { Contract } from "../../../definitions/contract"
 import { useApi } from "../../../hooks/useApi"
@@ -22,7 +22,7 @@ export const Validations: React.FC<ValidationsProps> = ({}) => {
     const [loading, setLoading] = useState(true)
 
     const initialValues = { search: "" }
-    
+
     const handleSearchSubmit = (values: FormValues) => {
         setLoading(true)
         console.log(values)
@@ -44,11 +44,13 @@ export const Validations: React.FC<ValidationsProps> = ({}) => {
     return (
         <div className="Validations-Component">
             <div className="header">
-                <div  style={{gap:'0.6vw'}}>
-                    <Button type="submit" variant="outlined" sx={ { height: '2vw' } }>
+                <div style={{ gap: "0.6vw" }}>
+                    <Button type="submit" variant="outlined" sx={{ height: "1.7vw", fontSize: '0.7vw', borderRadius:'20vw', borderColor: "#384974" }}>
                         Arquivos
                     </Button>
-                    <Button type="submit" variant="outlined" sx={ { height: '2vw' } } > Ativos </Button>
+                    <Button type="submit" variant="outlined" sx={{ height: "1.7vw", fontSize: '0.7vw', borderRadius:'20vw',borderColor: "#384974", }}>
+                        Ativos
+                    </Button>
                 </div>
 
                 <Formik initialValues={initialValues} onSubmit={handleSearchSubmit}>
@@ -92,25 +94,22 @@ export const Validations: React.FC<ValidationsProps> = ({}) => {
                     title="Fichas para validação"
                     loading={loading}
                 />
-                
-                <Column
-                    contracts={ contracts.filter((contract) => contract.wrong) }
-                    title="Correção"
-                    loading={ loading } />
+
+                <Column contracts={contracts.filter((contract) => contract.wrong)} title="Correção" loading={loading} />
                 <div className="file approved">
                     <Column
                         approved
                         contracts={contracts.filter((contract) => contract.active && !contract.archived)}
                         title="Aprovadas"
                         style={{ width: "100%" }}
-                        loading={ loading }
+                        loading={loading}
                     />
                     <Column
                         contracts={contracts.filter((contract) => contract.active && contract.archived)}
                         title="Arquivadas"
                         style={{ width: "100%" }}
-                        loading={ loading }
-                        styleButton={{backgroundColor: '#737373'}}
+                        loading={loading}
+                        styleButton={{ backgroundColor: "#737373" }}
                     />
                 </div>
                 <div className="file">
@@ -121,11 +120,11 @@ export const Validations: React.FC<ValidationsProps> = ({}) => {
                         loading={loading}
                     />
                     <Column
-                        contracts={ contracts.filter((contract) => contract.reproved && contract.archived) }
+                        contracts={contracts.filter((contract) => contract.reproved && contract.archived)}
                         title="Arquivadas"
-                        style={ { width: "100%", display:'flex', justifyContent:'flex-start' } }
-                        styleButton={ { backgroundColor: '#737373'} }
-                        loading={ loading }
+                        style={{ width: "100%", display: "flex", justifyContent: "flex-start" }}
+                        styleButton={{ backgroundColor: "#737373" }}
+                        loading={loading}
                         archive
                     />
                 </div>

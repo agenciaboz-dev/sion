@@ -43,15 +43,15 @@ export const Column: React.FC<ColumnProps> = ({ contracts, title, approved, styl
                 <p className="title">{title}</p>
                 <Button
                     variant="outlined"
-                    size="medium"
                     type="submit"
+                    className="button-archived"
                     sx={{
-                        position: "relative",
-                        top: "0.3vw",
+                        fontSize: "0.6vw",
                         left: "0.5vw",
-                        height: "1.0vw",
-                        width: "5vw",
+                        height: "1.6vw",
+                        width: "7vw",
                         borderRadius: "20vw",
+                        borderColor: "#384974",
                     }}
                 >
                     Arquivar tudo
