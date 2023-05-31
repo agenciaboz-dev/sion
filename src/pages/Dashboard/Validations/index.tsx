@@ -44,7 +44,7 @@ export const Validations: React.FC<ValidationsProps> = ({}) => {
     return (
         <div className="Validations-Component">
             <div className="header">
-                <div className="header-button" style={{gap:'0.6vw'}}>
+                <div  style={{gap:'0.6vw'}}>
                     <Button type="submit" variant="outlined" sx={ { height: '2vw' } }>
                         Arquivos
                     </Button>
@@ -92,6 +92,7 @@ export const Validations: React.FC<ValidationsProps> = ({}) => {
                     title="Fichas para validação"
                     loading={loading}
                 />
+                
                 <Column contracts={contracts.filter((contract) => contract.wrong)} title="Correção" loading={loading} />
                 <div className="file approved">
                     <Column
@@ -115,7 +116,7 @@ export const Validations: React.FC<ValidationsProps> = ({}) => {
                         title="Reprovadas"
                         loading={loading}
                     />
-                    <Column contracts={contracts.filter((contract) => contract.reproved && contract.archived)} title="Arquivadas" style={{ width: "100%" }} loading={loading} />
+                    <Column contracts={contracts.filter((contract) => contract.reproved && contract.archived)} title="Arquivadas" style={{ width: "100%" }} styleButton={{backgroundColor: 'red'}} loading={loading} />
                 </div>
             </div>
         </div>

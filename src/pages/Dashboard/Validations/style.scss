@@ -21,6 +21,7 @@
             width: 49%;
         }
 
+
         
     }
     .title {
@@ -67,7 +68,6 @@
         
         .header-card{
             flex-direction: column;
-             gap: 0vw;
             
         }
 
@@ -90,10 +90,22 @@
 
     .file {
         width: 25%;
-
         flex-direction: column;
         gap: 1vw;
         box-shadow: none !important;
+
+        .header-column{
+            display: flex;
+            justify-content: space-between;
+            gap: 3vw !important;
+ 
+            .button-quantity{
+                width: 1vw;
+                height: 1vw;
+                border-radius: 50%;
+                padding: 0.85vw;  
+            }
+        } 
     }
 
     .approved {

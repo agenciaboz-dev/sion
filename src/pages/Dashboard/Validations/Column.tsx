@@ -10,6 +10,7 @@ interface ColumnProps {
     title: string
     approved?: boolean
     style?: React.CSSProperties
+    styleButton?: React.CSSProperties
     loading: boolean
 }
 
@@ -25,7 +26,7 @@ const ContractList = ({ contracts }: { contracts: Contract[] }) => {
     )
 }
 
-export const Column: React.FC<ColumnProps> = ({ contracts, title, approved, style,loading }) => {
+export const Column: React.FC<ColumnProps> = ({ contracts, title, approved, style, styleButton, loading }) => {
     const { newArray } = useArray()
     const skeletons = newArray(5)
 
@@ -37,9 +38,22 @@ export const Column: React.FC<ColumnProps> = ({ contracts, title, approved, styl
 
     return approved ? (
         <div className="file approved" style={ style }>
-            <div className="header-card">
+            <div className="header-column" style={{gap:'0.6vw'}} >
                 <p className="title">{title}</p>
-                <Button variant="outlined" type="submit" sx={{}}> Arquivar tudo </Button>
+                <Button variant="outlined" size="medium" type="submit"
+                    sx={ {
+                        position: 'relative',
+                        top: '0.3vw',
+                        left: '0.5vw',
+                        height: '1.0vw',
+                        width: '5vw',
+                        borderRadius: '20vw',
+                    } }>
+                    Arquivar tudo
+                </Button>
+                <Button variant="outlined" className="button-quantity" sx={ { minWidth: '0' } } >
+                    { contracts.length }
+                </Button>
             </div>
             
             {contracts.length > 0 ? (
@@ -60,7 +74,12 @@ export const Column: React.FC<ColumnProps> = ({ contracts, title, approved, styl
         </div>
     ) : (
         <div className="file" style={style}>
-            <p className="title">{title}</p>
+                <div className="header-column" >
+                    <p className="title">{ title }</p>
+                    <Button variant="contained" className="button-quantity" sx={ { minWidth: '0', styleButton } } >
+                        { contracts.length }
+                    </Button>
+                </div>
             {contracts.length > 0 ? (
                 <>
                     {contracts.map((contract) => (
