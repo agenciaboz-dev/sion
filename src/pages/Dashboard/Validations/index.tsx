@@ -93,20 +93,24 @@ export const Validations: React.FC<ValidationsProps> = ({}) => {
                     loading={loading}
                 />
                 
-                <Column contracts={contracts.filter((contract) => contract.wrong)} title="Correção" loading={loading} />
+                <Column
+                    contracts={ contracts.filter((contract) => contract.wrong) }
+                    title="Correção"
+                    loading={ loading } />
                 <div className="file approved">
                     <Column
                         approved
                         contracts={contracts.filter((contract) => contract.active && !contract.archived)}
                         title="Aprovadas"
                         style={{ width: "100%" }}
-                        loading={loading}
+                        loading={ loading }
                     />
                     <Column
                         contracts={contracts.filter((contract) => contract.active && contract.archived)}
                         title="Arquivadas"
                         style={{ width: "100%" }}
-                        loading={loading}
+                        loading={ loading }
+                        styleButton={{backgroundColor: '#737373'}}
                     />
                 </div>
                 <div className="file">
@@ -116,7 +120,14 @@ export const Validations: React.FC<ValidationsProps> = ({}) => {
                         title="Reprovadas"
                         loading={loading}
                     />
-                    <Column contracts={contracts.filter((contract) => contract.reproved && contract.archived)} title="Arquivadas" style={{ width: "100%" }} styleButton={{backgroundColor: 'red'}} loading={loading} />
+                    <Column
+                        contracts={ contracts.filter((contract) => contract.reproved && contract.archived) }
+                        title="Arquivadas"
+                        style={ { width: "100%", display:'flex', justifyContent:'flex-start' } }
+                        styleButton={ { backgroundColor: '#737373'} }
+                        loading={ loading }
+                        archive
+                    />
                 </div>
             </div>
         </div>
