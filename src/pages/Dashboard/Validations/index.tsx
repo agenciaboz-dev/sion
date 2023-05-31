@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import "./style.scss"
-import { TextField, Button } from "@mui/material"
+import { TextField, Button,makeStyles } from "@mui/material"
 import { Card } from "./Card"
 import { Contract } from "../../../definitions/contract"
 import { useApi } from "../../../hooks/useApi"
@@ -22,7 +22,7 @@ export const Validations: React.FC<ValidationsProps> = ({}) => {
     const [loading, setLoading] = useState(true)
 
     const initialValues = { search: "" }
-
+    
     const handleSearchSubmit = (values: FormValues) => {
         setLoading(true)
         console.log(values)
@@ -44,8 +44,12 @@ export const Validations: React.FC<ValidationsProps> = ({}) => {
     return (
         <div className="Validations-Component">
             <div className="header">
-                <Button type="submit"> Arquivos </Button>
-                <Button type="submit"> Ativos </Button>
+                <div className="header-button" style={{gap:'0.6vw'}}>
+                    <Button type="submit" variant="outlined" sx={ { height: '2vw' } }>
+                        Arquivos
+                    </Button>
+                    <Button type="submit" variant="outlined" sx={ { height: '2vw' } } > Ativos </Button>
+                </div>
 
                 <Formik initialValues={initialValues} onSubmit={handleSearchSubmit}>
                     {({ values, handleChange }) => (
