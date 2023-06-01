@@ -99,7 +99,6 @@ img {
 ::-webkit-scrollbar {
     width: 5px;
     height: 5px;
-    display: none;
 }
 
 /* Track */
@@ -120,10 +119,10 @@ img {
     display: none;
 }
 
-@media only screen and (orientation: landscape) {
+@media only screen and (orientation: portrait) {
     
     /* width */
     ::-webkit-scrollbar {
-        display: block;
+        display: none;
     }
 }
