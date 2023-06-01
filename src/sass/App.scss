@@ -99,6 +99,7 @@ img {
 ::-webkit-scrollbar {
     width: 5px;
     height: 5px;
+    display: none;
 }
 
 /* Track */
@@ -117,4 +118,12 @@ img {
 /* Corner */
 ::-webkit-scrollbar-corner {
     display: none;
+}
+
+@media only screen and (orientation: landscape) {
+    
+    /* width */
+    ::-webkit-scrollbar {
+        display: block;
+    }
 }
