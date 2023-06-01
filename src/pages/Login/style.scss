@@ -9,29 +9,29 @@
     width: 100%;
     background-color: $primary-color;
 
-        .white-background {
+    .white-background {
         position: absolute;
         background-color: white;
         left: 0;
-        top: 10vw;
+        top: 35vw;
         width: 100vw;
-        height: 125vw;
+        height: 140vw;
         z-index: 2;
         // box-shadow: 0 1vw 2vw 0 #00000040;
 
-        transform: skew(0, -5deg);
+        transform: skew(0, -10deg);
     }
 
     .blue-background {
         position: absolute;
         background-color: $darkbluebackground-color;
         left: 0;
-        top: 10vw;
+        top: 8vw;
         width: 100vw;
         height: 125vw;
         z-index: 1;
 
-        transform: skew(0, 5deg);
+        transform: skew(0, 10deg);
     }
 
     .back-container {
@@ -58,7 +58,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 24vw 0 20vw;
+        padding: 55vw 0;
         // background-color: white;
         width: 100%;
         z-index: 3;
