@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom"
 import RotateLeftIcon from "@mui/icons-material/RotateLeft"
 import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined"
 import { useApi } from "../../../hooks/useApi"
+import { DragDropContext, Droppable, Draggable, DropResult } from "react-beautiful-dnd"
 
 interface CardProps {
     contract: Contract

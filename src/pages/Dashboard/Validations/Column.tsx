@@ -5,8 +5,10 @@ import { useArray } from "burgos-array"
 import { Skeleton, SxProps, Button, IconButton } from "@mui/material"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 import ExpandLessIcon from "@mui/icons-material/ExpandLess"
+import { Droppable, Draggable } from "react-beautiful-dnd"
 
 interface ColumnProps {
+    id?: number
     contracts: Contract[]
     title: string
     approved?: boolean
@@ -28,7 +30,7 @@ const ContractList = ({ contracts }: { contracts: Contract[] }) => {
     )
 }
 
-export const Column: React.FC<ColumnProps> = ({ contracts, title, approved, style, styleButton, loading, archive }) => {
+export const Column: React.FC<ColumnProps> = ({ id, contracts, title, approved, style, styleButton, loading, archive }) => {
     const { newArray } = useArray()
     const skeletons = newArray(5)
     const [isIcon, setIcon] = useState(false)
@@ -44,6 +46,9 @@ export const Column: React.FC<ColumnProps> = ({ contracts, title, approved, styl
         setIcon(!isIcon)
         setIsVisibleContainer(!isVisibleContainer)
     }
+
+    const initialItems = () => {}
+
     return approved ? (
         <div className="file approved" style={style}>
             <div className="header-column" style={{ gap: "0.6vw" }}>
@@ -63,17 +68,51 @@ export const Column: React.FC<ColumnProps> = ({ contracts, title, approved, styl
                 >
                     Arquivar tudo
                 </Button>
-                <Button variant="outlined" className="button-quantity" sx={{ minWidth: "0", fontSize:"0.8vw", borderColor: "#384974" }}>
+                <Button
+                    variant="outlined"
+                    className="button-quantity"
+                    sx={{ minWidth: "0", fontSize: "0.8vw", borderColor: "#384974" }}
+                >
                     {contracts.length}
                 </Button>
             </div>
 
             {contracts.length > 0 ? (
-                <>
-                    {contracts.map((contract) => (
-                        <Card key={contract.id} contract={contract} />
-                    ))}
-                </>
+                <Droppable droppableId={String(id)}>
+                    {(provided) => (
+                        <>
+                            <div
+                                style={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    height: "14vw",
+                                    width: "100%",
+                                    gap: "1vw",
+                                }}
+                                ref={provided.innerRef}
+                                {...provided.droppableProps}
+                            >
+                                {contracts.map((contract, index) => (
+                                    <Draggable key={contract.id} draggableId={String(contract.id)} index={index}>
+                                        {(provided) => (
+                                            <div
+                                                style={{
+                                                    display: "flex",
+                                                    flexDirection: "column",
+                                                }}
+                                                ref={provided.innerRef}
+                                                {...provided.draggableProps}
+                                                {...provided.dragHandleProps}
+                                            >
+                                                <Card key={contract.id} contract={contract} />
+                                            </div>
+                                        )}
+                                    </Draggable>
+                                ))}
+                            </div>
+                        </>
+                    )}
+                </Droppable>
             ) : (
                 <>
                     {loading ? (
@@ -90,7 +129,12 @@ export const Column: React.FC<ColumnProps> = ({ contracts, title, approved, styl
                 <p className="title">{title}</p>
 
                 <div className="buttons-container">
-                    <Button variant="contained" className="button-quantity" style={styleButton} sx={{ minWidth: "0", fontSize:"0.8vw" }}>
+                    <Button
+                        variant="contained"
+                        className="button-quantity"
+                        style={styleButton}
+                        sx={{ minWidth: "0", fontSize: "0.8vw" }}
+                    >
                         {contracts.length}
                     </Button>
                     <IconButton className="iconButton" sx={{ width: "auto" }} onClick={handleClick}>
@@ -103,11 +147,41 @@ export const Column: React.FC<ColumnProps> = ({ contracts, title, approved, styl
                 {isVisibleContainer && (
                     <>
                         {contracts.length > 0 ? (
-                            <>
-                                {contracts.map((contract) => (
-                                    <Card key={contract.id} contract={contract} />
-                                ))}
-                            </>
+                            <Droppable droppableId={String(6)}>
+                                {(provided) => (
+                                    <>
+                                        <div
+                                            style={{
+                                                display: "flex",
+                                                flexDirection: "column",
+                                                height: "14vw",
+                                                width: "100%",
+                                                gap: "1vw",
+                                            }}
+                                            ref={provided.innerRef}
+                                            {...provided.droppableProps}
+                                        >
+                                            {contracts.map((contract, index) => (
+                                                <Draggable key={contract.id} draggableId={String(contract.id)} index={index}>
+                                                    {(provided) => (
+                                                        <div
+                                                            style={{
+                                                                width: "100%",
+                                                                height: "14vw",
+                                                            }}
+                                                            ref={provided.innerRef}
+                                                            {...provided.draggableProps}
+                                                            {...provided.dragHandleProps}
+                                                        >
+                                                            <Card key={contract.id} contract={contract} />
+                                                        </div>
+                                                    )}
+                                                </Draggable>
+                                            ))}
+                                        </div>
+                                    </>
+                                )}
+                            </Droppable>
                         ) : (
                             <>
                                 {loading ? (
