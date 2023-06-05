@@ -80,6 +80,18 @@ export const useApi = () => {
                         .catch((error) => defaultError(error, options.errorCallback))
                         .finally(() => defaultFinally(options.finallyCallback))
                 },
+                approve: (options: ApiOptions) => {
+                    api.post("/contracts/approve", options.data)
+                        .then((response) => options.callback(response))
+                        .catch((error) => defaultError(error, options.errorCallback))
+                        .finally(() => defaultFinally(options.finallyCallback))
+                },
+                disapprove: (options: ApiOptions) => {
+                    api.post("/contracts/disapprove", options.data)
+                        .then((response) => options.callback(response))
+                        .catch((error) => defaultError(error, options.errorCallback))
+                        .finally(() => defaultFinally(options.finallyCallback))
+                },
             },
             find: {
                 id: (options: ApiOptions) => {

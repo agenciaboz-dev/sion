@@ -9,7 +9,7 @@ import { useArray } from "burgos-array"
 import { Formik, Form } from "formik"
 import CircularProgress from "@mui/material/CircularProgress"
 import { SearchField } from "../../../components/SearchField"
-import { DragDropContext, Droppable, Draggable, DropResult } from "react-beautiful-dnd"
+import { DragDropContext, Droppable, Draggable, DropResult, DraggableLocation } from "react-beautiful-dnd"
 
 interface ValidationsProps {}
 interface FormValues {
@@ -73,8 +73,8 @@ export const Validations: React.FC<ValidationsProps> = ({}) => {
             contracts: contracts.filter((contract) => contract.active && !contract.archived),
         },
 
-        "3": {
-            id: 3,
+        "4": {
+            id: 4,
             name: "Reprovadas",
             contracts: contracts.filter((contract) => contract.reproved && !contract.archived),
         },
@@ -107,75 +107,37 @@ export const Validations: React.FC<ValidationsProps> = ({}) => {
                         contracts: response.data.filter((contract) => contract.reproved && !contract.archived),
                         id: 3,
                     },
+
+                    "4": {
+                        name: "Aprovadas e arquivadas",
+                        contracts: response.data.filter((contract) => contract.active && contract.archived),
+                        id: 2,
+                    },
+                    "5": {
+                        name: "Reprovadas",
+                        contracts: response.data.filter((contract) => contract.reproved && contract.archived),
+                        id: 3,
+                    },
                 })
             },
             finallyCallback: () => setLoading(false),
         })
     }, [])
+
     const onDragEnd = (result: DropResult) => {
         const { destination, source, draggableId } = result
 
+        // Verifique se existe um destino válido
         if (!destination) {
             return
         }
 
-        if (destination.droppableId === source.droppableId && destination.index === source.index) {
-            return
-        }
+        // Obtenha os IDs das colunas de origem e destino
+        const sourceColumnId = source.droppableId
+        const destinationColumnId = destination.droppableId
 
-        const start = columns[source.droppableId]
-        const finish = columns[destination.droppableId]
-
-        if (start === finish) {
-            const newContractIds = Array.from(start.contracts)
-            const draggedContract = newContractIds.find((contract) => contract.id === Number(draggableId)) // Convertendo draggableId em um número
-
-            if (!draggedContract) {
-                return
-            }
-
-            newContractIds.splice(source.index, 1)
-            newContractIds.splice(destination.index, 0, draggedContract)
-
-            const newColumn = {
-                ...start,
-                contracts: newContractIds,
-            }
-
-            setColumns({
-                ...columns,
-                [newColumn.id]: newColumn,
-            })
-
-            return
-        }
-
-        // Moving from one list to another
-        const startContractIds = Array.from(start.contracts)
-        startContractIds.splice(source.index, 1)
-        const newStart = {
-            ...start,
-            contracts: startContractIds,
-        }
-
-        const finishContractIds = Array.from(finish.contracts)
-        const draggedContract = finishContractIds.find((contract) => contract.id === Number(draggableId)) // Convertendo draggableId em um número
-
-        if (!draggedContract) {
-            return
-        }
-
-        finishContractIds.splice(destination.index, 0, draggedContract)
-        const newFinish = {
-            ...finish,
-            contracts: finishContractIds,
-        }
-
-        setColumns({
-            ...columns,
-            [newStart.id]: newStart,
-            [newFinish.id]: newFinish,
-        })
+        console.log("Coluna de Origem:", sourceColumnId)
+        console.log("Coluna de Destino:", destinationColumnId)
     }
 
     return (
@@ -207,7 +169,6 @@ export const Validations: React.FC<ValidationsProps> = ({}) => {
                                 loading={loading}
                                 fullWidth
                                 sx={{
-                                    width: "50%",
                                     "& .MuiInputBase-root": {
                                         height: "2vw",
                                     },
@@ -258,6 +219,7 @@ export const Validations: React.FC<ValidationsProps> = ({}) => {
                         />
                         <Column
                             archive
+                            id={3}
                             contracts={contracts.filter((contract) => contract.active && contract.archived)}
                             title="Arquivadas"
                             style={{ width: "100%" }}
@@ -267,13 +229,14 @@ export const Validations: React.FC<ValidationsProps> = ({}) => {
                     </div>
                     <div className="file">
                         <Column
-                            id={3}
+                            id={4}
                             contracts={contracts.filter((contract) => contract.reproved && !contract.archived)}
                             style={{ width: "100%" }}
                             title="Reprovadas"
                             loading={loading}
                         />
                         <Column
+                            id={5}
                             archive={true}
                             contracts={contracts.filter((contract) => contract.reproved && contract.archived)}
                             title="Arquivadas"

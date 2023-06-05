@@ -4,10 +4,12 @@
     gap: 1vw;
     width: 25%;
     overflow-y: auto;
+    
 
     .header {
+        overflow-x: auto;
         box-shadow: none !important;
-        width: 50%;
+        
         gap: 0.6vw;
         position: absolute;
         left: 59.75vw;

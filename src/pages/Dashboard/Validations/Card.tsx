@@ -57,8 +57,8 @@ export const Card: React.FC<CardProps> = ({ contract }) => {
                                         <RotateLeftIcon />
                                     </IconButton>
                                 ) : (
-                                    <IconButton>
-                                        <Inventory2OutlinedIcon color="primary" onClick={handleArchiveClick} />
+                                    <IconButton onClick={handleArchiveClick}>
+                                        <Inventory2OutlinedIcon color="primary" />
                                     </IconButton>
                                 )}
                             </>

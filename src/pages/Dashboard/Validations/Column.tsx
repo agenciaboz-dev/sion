@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Contract } from "../../../definitions/contract"
 import { Card } from "./Card"
 import { useArray } from "burgos-array"
@@ -9,6 +9,7 @@ import { Droppable, Draggable } from "react-beautiful-dnd"
 
 interface ColumnProps {
     id?: number
+    name?: string
     contracts: Contract[]
     title: string
     approved?: boolean
@@ -30,7 +31,17 @@ const ContractList = ({ contracts }: { contracts: Contract[] }) => {
     )
 }
 
-export const Column: React.FC<ColumnProps> = ({ id, contracts, title, approved, style, styleButton, loading, archive }) => {
+export const Column: React.FC<ColumnProps> = ({
+    id,
+    contracts,
+    title,
+    approved,
+    style,
+    styleButton,
+    loading,
+    archive,
+    name,
+}) => {
     const { newArray } = useArray()
     const skeletons = newArray(5)
     const [isIcon, setIcon] = useState(false)
@@ -48,6 +59,10 @@ export const Column: React.FC<ColumnProps> = ({ id, contracts, title, approved, 
     }
 
     const initialItems = () => {}
+
+    useEffect(() => {
+        console.log({ id })
+    }, [])
 
     return approved ? (
         <div className="file approved" style={style}>
@@ -79,7 +94,7 @@ export const Column: React.FC<ColumnProps> = ({ id, contracts, title, approved, 
 
             {contracts.length > 0 ? (
                 <Droppable droppableId={String(id)}>
-                    {(provided) => (
+                    {(provided, snapshot) => (
                         <>
                             <div
                                 style={{
@@ -88,10 +103,12 @@ export const Column: React.FC<ColumnProps> = ({ id, contracts, title, approved, 
                                     height: "14vw",
                                     width: "100%",
                                     gap: "1vw",
+                                    backgroundColor: snapshot.isDraggingOver ? "#384974" : "gray",
                                 }}
                                 ref={provided.innerRef}
                                 {...provided.droppableProps}
                             >
+                                {provided.placeholder}
                                 {contracts.map((contract, index) => (
                                     <Draggable key={contract.id} draggableId={String(contract.id)} index={index}>
                                         {(provided) => (
@@ -147,8 +164,8 @@ export const Column: React.FC<ColumnProps> = ({ id, contracts, title, approved, 
                 {isVisibleContainer && (
                     <>
                         {contracts.length > 0 ? (
-                            <Droppable droppableId={String(6)}>
-                                {(provided) => (
+                            <Droppable droppableId={String(id)}>
+                                {(provided, snapshot) => (
                                     <>
                                         <div
                                             style={{
@@ -157,10 +174,12 @@ export const Column: React.FC<ColumnProps> = ({ id, contracts, title, approved, 
                                                 height: "14vw",
                                                 width: "100%",
                                                 gap: "1vw",
+                                                backgroundColor: snapshot.isDraggingOver ? "#384974" : "gray",
                                             }}
                                             ref={provided.innerRef}
                                             {...provided.droppableProps}
                                         >
+                                            {provided.placeholder}
                                             {contracts.map((contract, index) => (
                                                 <Draggable key={contract.id} draggableId={String(contract.id)} index={index}>
                                                     {(provided) => (
