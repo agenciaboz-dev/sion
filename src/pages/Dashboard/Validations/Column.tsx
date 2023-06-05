@@ -19,17 +19,7 @@ interface ColumnProps {
     archive?: boolean
 }
 
-const ContractList = ({ contracts }: { contracts: Contract[] }) => {
-    return contracts.length > 0 ? (
-        <>
-            {contracts.map((contract) => (
-                <Card key={contract.id} contract={contract} />
-            ))}
-        </>
-    ) : (
-        <div className="drag">Arraste blocos aqui</div>
-    )
-}
+
 
 export const Column: React.FC<ColumnProps> = ({
     id,
@@ -42,11 +32,25 @@ export const Column: React.FC<ColumnProps> = ({
     archive,
     name,
 }) => {
+
+
     const { newArray } = useArray()
     const skeletons = newArray(5)
     const [isIcon, setIcon] = useState(false)
     const [isVisibleContainer, setIsVisibleContainer] = useState(true)
+    const [contract, setContract] = useState<Contract | null>(null)
 
+    const ContractList = ({ contracts }: { contracts: Contract[] }) => {
+        return contracts.length > 0 ? (
+            <>
+                {contracts.map((contract) => (
+                    <Card key={contract.id} contract={contract} setContract={setContract} />
+                ))}
+            </>
+        ) : (
+            <div className="drag">Arraste blocos aqui</div>
+        )
+    }
     const skeleton_style: SxProps = {
         width: "100%",
         height: "12vw",
@@ -103,7 +107,7 @@ export const Column: React.FC<ColumnProps> = ({
                                     height: "14vw",
                                     width: "100%",
                                     gap: "1vw",
-                                    backgroundColor: snapshot.isDraggingOver ? "#384974" : "gray",
+                                    backgroundColor: snapshot.isDraggingOver ? "#384974" : "",
                                 }}
                                 ref={provided.innerRef}
                                 {...provided.droppableProps}
@@ -121,7 +125,7 @@ export const Column: React.FC<ColumnProps> = ({
                                                 {...provided.draggableProps}
                                                 {...provided.dragHandleProps}
                                             >
-                                                <Card key={contract.id} contract={contract} />
+                                                <Card key={contract.id} contract={contract} setContract={setContract} />
                                             </div>
                                         )}
                                     </Draggable>
@@ -174,7 +178,7 @@ export const Column: React.FC<ColumnProps> = ({
                                                 height: "14vw",
                                                 width: "100%",
                                                 gap: "1vw",
-                                                backgroundColor: snapshot.isDraggingOver ? "#384974" : "gray",
+                                                backgroundColor: snapshot.isDraggingOver ? "#384974" : "",
                                             }}
                                             ref={provided.innerRef}
                                             {...provided.droppableProps}
@@ -192,7 +196,11 @@ export const Column: React.FC<ColumnProps> = ({
                                                             {...provided.draggableProps}
                                                             {...provided.dragHandleProps}
                                                         >
-                                                            <Card key={contract.id} contract={contract} />
+                                                            <Card
+                                                                key={contract.id}
+                                                                contract={contract}
+                                                                setContract={setContract}
+                                                            />
                                                         </div>
                                                     )}
                                                 </Draggable>

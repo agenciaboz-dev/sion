@@ -10,9 +10,10 @@ import { DragDropContext, Droppable, Draggable, DropResult } from "react-beautif
 
 interface CardProps {
     contract: Contract
+    setContract: (updatedContract: Contract) => void
 }
 
-export const Card: React.FC<CardProps> = ({ contract }) => {
+export const Card: React.FC<CardProps> = ({ contract, setContract }) => {
     const navigate = useNavigate()
     const api = useApi()
 
@@ -24,7 +25,10 @@ export const Card: React.FC<CardProps> = ({ contract }) => {
         console.log(contract)
         api.contracts.update.unarchive({
             data: contract,
-            callback: (response: any) => console.log(response.data),
+            callback: (response: any) => {
+                const updatedContract = { ...contract, archived: false }
+                setContract(updatedContract)
+            },
         })
     }
 
@@ -32,7 +36,10 @@ export const Card: React.FC<CardProps> = ({ contract }) => {
         console.log(contract)
         api.contracts.update.archive({
             data: contract,
-            callback: (response: any) => console.log(response.data),
+            callback: (response: any) => {
+                const updatedContract = { ...contract, archived: true }
+                setContract(updatedContract)
+            },
         })
     }
 
