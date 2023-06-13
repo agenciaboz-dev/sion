@@ -138,6 +138,107 @@ export const Validations: React.FC<ValidationsProps> = ({}) => {
 
         console.log("Coluna de Origem:", sourceColumnId)
         console.log("Coluna de Destino:", destinationColumnId)
+
+        if (!destination) {
+            return
+        }
+
+        if (destination.droppableId === source.droppableId && destination.index === source.index) {
+            return
+        }
+
+        const sourceColumn = columns[source.droppableId]
+        const destinationColumn = columns[destination.droppableId]
+
+        // Check if source and destination columns exist
+        if (!sourceColumn || !destinationColumn) {
+            return
+        }
+
+        // Find the correct contract
+        const contract = sourceColumn.contracts.find((c) => c.id === Number(draggableId))
+        if (!contract) {
+            return
+        }
+
+        // Moving inside the same list
+        if (sourceColumn === destinationColumn) {
+            const newContracts = Array.from(sourceColumn.contracts)
+            newContracts.splice(source.index, 1)
+            newContracts.splice(destination.index, 0, contract)
+
+            const newColumn = {
+                ...sourceColumn,
+                contracts: newContracts,
+            }
+
+            setColumns({
+                ...columns,
+                [source.droppableId]: newColumn,
+            })
+
+            return
+        }
+
+        // Define this function to replace the contract in state after it is updated
+        const replaceContractInState = (updatedContract: Contract, destinationId: string) => {
+            const destinationColumn = columns[destinationId]
+            const newDestinationContracts = destinationColumn.contracts.map((c) =>
+                c.id === updatedContract.id ? updatedContract : c
+            )
+            const newDestinationColumn = {
+                ...destinationColumn,
+                contracts: newDestinationContracts,
+            }
+
+            setColumns((prevColumns) => ({
+                ...prevColumns,
+                [destinationId]: newDestinationColumn,
+            }))
+        }
+
+        // Moving from one list to another
+        const newSourceContracts = Array.from(sourceColumn.contracts)
+        newSourceContracts.splice(source.index, 1)
+        const newSourceColumn = {
+            ...sourceColumn,
+            contracts: newSourceContracts,
+        }
+
+        const newDestinationContracts = Array.from(destinationColumn.contracts)
+        newDestinationContracts.splice(destination.index, 0, contract)
+        const newDestinationColumn = {
+            ...destinationColumn,
+            contracts: newDestinationContracts,
+        }
+
+        // Update contract status based on destination column
+        if (destination.droppableId === "0") {
+            // No active the contract
+
+            console.log("Success0")
+        } else if (destination.droppableId === "1") {
+            // Correction the contract
+            console.log("Success1")
+        } else if (destination.droppableId === "2") {
+            // Approve the contract
+            api.contracts.update.approve({
+                data: contract,
+                callback: (updatedContract: Contract) => {
+                    replaceContractInState(updatedContract, destination.droppableId)
+                },
+            })
+            console.log("Approved")
+        } else if (destination.droppableId === "4") {
+            // Approve the contract
+            api.contracts.update.disapprove({
+                data: contract,
+                callback: (updatedContract: Contract) => {
+                    replaceContractInState(updatedContract, destination.droppableId)
+                },
+            })
+            console.log("Disapproved")
+        }
     }
 
     return (
@@ -167,10 +268,10 @@ export const Validations: React.FC<ValidationsProps> = ({}) => {
                                 values={values}
                                 onChange={handleChange}
                                 loading={loading}
-                                fullWidth
                                 sx={{
                                     "& .MuiInputBase-root": {
                                         height: "2vw",
+                                        width: "100%",
                                     },
                                     "& .MuiInputBase-input": {
                                         padding: "0 12px",

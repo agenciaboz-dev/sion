@@ -72,74 +72,85 @@ export const Column: React.FC<ColumnProps> = ({
         <div className="file approved" style={style}>
             <div className="header-column" style={{ gap: "0.6vw" }}>
                 <p className="title">{title}</p>
-                <Button
-                    variant="outlined"
-                    type="submit"
-                    className="button-archived"
-                    sx={{
-                        fontSize: "0.6vw",
-                        left: "0.5vw",
-                        height: "1.6vw",
-                        width: "7vw",
-                        borderRadius: "20vw",
-                        borderColor: "#384974",
-                    }}
-                >
-                    Arquivar tudo
-                </Button>
-                <Button
-                    variant="outlined"
-                    className="button-quantity"
-                    sx={{ minWidth: "0", fontSize: "0.8vw", borderColor: "#384974" }}
-                >
-                    {contracts.length}
-                </Button>
+                <div className="buttons-container">
+                    <Button
+                        variant="outlined"
+                        type="submit"
+                        className="button-archived"
+                        sx={{
+                            fontSize: "0.45vw",
+                            left: "0.5vw",
+                            height: "1.6vw",
+                            borderRadius: "20vw",
+                            borderColor: "#384974",
+                        }}
+                    >
+                        Arquivar tudo
+                    </Button>
+                    <Button
+                        variant="outlined"
+                        className="button-quantity"
+                        sx={{ minWidth: "0", fontSize: "0.8vw", borderColor: "#384974" }}
+                    >
+                        {contracts.length}
+                    </Button>
+                    <IconButton className="iconButtonArchive" sx={{ width: "auto" }} onClick={handleClick}>
+                        {isIcon ? <ExpandMoreIcon /> : <ExpandLessIcon />}
+                    </IconButton>
+                </div>
             </div>
-
-            {contracts.length > 0 ? (
-                <Droppable droppableId={String(id)}>
-                    {(provided, snapshot) => (
-                        <>
-                            <div
-                                style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    height: "14vw",
-                                    width: "100%",
-                                    gap: "1vw",
-                                    backgroundColor: snapshot.isDraggingOver ? "#384974" : "",
-                                }}
-                                ref={provided.innerRef}
-                                {...provided.droppableProps}
-                            >
-                                {provided.placeholder}
-                                {contracts.map((contract, index) => (
-                                    <Draggable key={contract.id} draggableId={String(contract.id)} index={index}>
-                                        {(provided) => (
-                                            <div
-                                                style={{
-                                                    display: "flex",
-                                                    flexDirection: "column",
-                                                }}
-                                                ref={provided.innerRef}
-                                                {...provided.draggableProps}
-                                                {...provided.dragHandleProps}
-                                            >
-                                                <Card key={contract.id} contract={contract} setContract={setContract} />
-                                            </div>
-                                        )}
-                                    </Draggable>
-                                ))}
-                            </div>
-                        </>
-                    )}
-                </Droppable>
-            ) : (
+            {isVisibleContainer && (
                 <>
-                    {loading ? (
-                        skeletons.map((index) => <Skeleton key={index} variant="rectangular" sx={skeleton_style} />)
+                    {contracts.length > 0 ? (
+                        <Droppable droppableId={String(id)}>
+                            {(provided, snapshot) => (
+                                <>
+                                    <div
+                                        style={{
+                                            display: "flex",
+                                            flexDirection: "column",
+                                            height: "14vw",
+                                            width: "100%",
+                                            gap: "1vw",
+                                            backgroundColor: snapshot.isDraggingOver ? "#384974" : "",
+                                        }}
+                                        ref={provided.innerRef}
+                                        {...provided.droppableProps}
+                                    >
+                                        {provided.placeholder}
+                                        {contracts.map((contract, index) => (
+                                            <Draggable key={contract.id} draggableId={String(contract.id)} index={index}>
+                                                {(provided) => (
+                                                    <div
+                                                        style={{
+                                                            display: "flex",
+                                                            flexDirection: "column",
+                                                        }}
+                                                        ref={provided.innerRef}
+                                                        {...provided.draggableProps}
+                                                        {...provided.dragHandleProps}
+                                                    >
+                                                        <Card
+                                                            key={contract.id}
+                                                            contract={contract}
+                                                            setContract={setContract}
+                                                        />
+                                                    </div>
+                                                )}
+                                            </Draggable>
+                                        ))}
+                                    </div>
+                                </>
+                            )}
+                        </Droppable>
                     ) : (
-                        <ContractList contracts={contracts} />
+                        <>
+                            {loading ? (
+                                skeletons.map((index) => <Skeleton key={index} variant="rectangular" sx={skeleton_style} />)
+                            ) : (
+                                <ContractList contracts={contracts} />
+                            )}
+                        </>
                     )}
                 </>
             )}
