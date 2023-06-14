@@ -36,7 +36,10 @@ export const Validations: React.FC<ValidationsProps> = ({}) => {
 
     const handleFilterFiles = () => {}
 
-    const handleFilterActive = () => {}
+    const handleFilterActive = () => {
+        const filtered = contracts.filter((contract) => contract.active && !contract.archived)
+        setContracts(filtered)
+    }
 
     useEffect(() => {
         api.contracts.list({
@@ -127,12 +130,9 @@ export const Validations: React.FC<ValidationsProps> = ({}) => {
     const onDragEnd = (result: DropResult) => {
         const { destination, source, draggableId } = result
 
-        // Verifique se existe um destino válido
         if (!destination) {
             return
         }
-
-        // Obtenha os IDs das colunas de origem e destino
         const sourceColumnId = source.droppableId
         const destinationColumnId = destination.droppableId
 
@@ -270,8 +270,9 @@ export const Validations: React.FC<ValidationsProps> = ({}) => {
                                 loading={loading}
                                 sx={{
                                     "& .MuiInputBase-root": {
-                                        height: "2vw",
-                                        width: "100%",
+                                        height: "1.9vw",
+                                        width: "23vw",
+                                        borderRadius: "20vw",
                                     },
                                     "& .MuiInputBase-input": {
                                         padding: "0 12px",
@@ -323,7 +324,7 @@ export const Validations: React.FC<ValidationsProps> = ({}) => {
                             id={3}
                             contracts={contracts.filter((contract) => contract.active && contract.archived)}
                             title="Arquivadas"
-                            style={{ width: "100%" }}
+                            style={{ width: "100%", display: "flex" }}
                             loading={loading}
                             styleButton={{ backgroundColor: "#737373" }}
                         />
@@ -341,7 +342,7 @@ export const Validations: React.FC<ValidationsProps> = ({}) => {
                             archive={true}
                             contracts={contracts.filter((contract) => contract.reproved && contract.archived)}
                             title="Arquivadas"
-                            style={{ width: "100%", display: "flex", justifyContent: "flex-start" }}
+                            style={{ width: "100%", display: "flex", justifyContent: "space-between" }}
                             styleButton={{ backgroundColor: "#737373" }}
                             loading={loading}
                         />

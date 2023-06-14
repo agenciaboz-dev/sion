@@ -6,6 +6,7 @@ import { Skeleton, SxProps, Button, IconButton } from "@mui/material"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 import ExpandLessIcon from "@mui/icons-material/ExpandLess"
 import { Droppable, Draggable } from "react-beautiful-dnd"
+import { useApi } from "../../../hooks/useApi"
 
 interface ColumnProps {
     id?: number
@@ -19,8 +20,6 @@ interface ColumnProps {
     archive?: boolean
 }
 
-
-
 export const Column: React.FC<ColumnProps> = ({
     id,
     contracts,
@@ -32,13 +31,13 @@ export const Column: React.FC<ColumnProps> = ({
     archive,
     name,
 }) => {
-
-
     const { newArray } = useArray()
     const skeletons = newArray(5)
     const [isIcon, setIcon] = useState(false)
     const [isVisibleContainer, setIsVisibleContainer] = useState(true)
     const [contract, setContract] = useState<Contract | null>(null)
+    const [isContracts, setContracts] = useState<Contract[]>([])
+    const api = useApi()
 
     const ContractList = ({ contracts }: { contracts: Contract[] }) => {
         return contracts.length > 0 ? (
@@ -62,6 +61,24 @@ export const Column: React.FC<ColumnProps> = ({
         setIsVisibleContainer(!isVisibleContainer)
     }
 
+    const handleAllArchive = () => {
+        const updatedContracts = contracts.map((contract) => {
+            if (contract.active && !contract.archived) {
+                const updatedContract: Contract = { ...contract, archived: true }
+                api.contracts.update.archive({
+                    data: updatedContract,
+                    callback: (response: any) => {
+                        // Perform any necessary actions after successful update
+                    },
+                })
+                return updatedContract
+            }
+            return contract
+        })
+
+        setContracts(updatedContracts)
+    }
+
     const initialItems = () => {}
 
     useEffect(() => {
@@ -77,6 +94,7 @@ export const Column: React.FC<ColumnProps> = ({
                         variant="outlined"
                         type="submit"
                         className="button-archived"
+                        onClick={handleAllArchive}
                         sx={{
                             fontSize: "0.45vw",
                             left: "0.5vw",
@@ -190,6 +208,7 @@ export const Column: React.FC<ColumnProps> = ({
                                                 width: "100%",
                                                 gap: "1vw",
                                                 backgroundColor: snapshot.isDraggingOver ? "#384974" : "",
+                                                alignSelf: "flex-end",
                                             }}
                                             ref={provided.innerRef}
                                             {...provided.droppableProps}
