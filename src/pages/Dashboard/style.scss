@@ -111,7 +111,8 @@
 
         .Contract-Component {
             gap: 3vw;
-
+            overflow-y: auto;
+            padding-top: 0;
             .info-container {
                 width: 100%;
                 padding: 2vw;
@@ -131,6 +132,11 @@
                         gap: 1vw;
                     }
                 }
+            }
+            .unit-container{
+                padding:2vw;
+                flex-direction: column;
+                gap: 1vw;
             }
 
             .seller-container {

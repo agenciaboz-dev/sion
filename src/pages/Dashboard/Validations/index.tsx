@@ -300,7 +300,7 @@ export const Validations: React.FC<ValidationsProps> = ({}) => {
                 <div className="columns">
                     <Column
                         id={0}
-                        contracts={contracts.filter((contract) => !contract.active)}
+                        contracts={contracts.filter((contract) => !contract.active && !contract.reproved)}
                         title="Fichas para validação"
                         loading={loading}
                     />
