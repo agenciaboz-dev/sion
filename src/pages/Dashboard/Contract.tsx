@@ -5,7 +5,14 @@ import { Skeleton, SxProps, TextField } from "@mui/material"
 import { useApi } from "../../hooks/useApi"
 import MaskedInput from "react-text-mask"
 import CircleIcon from "@mui/icons-material/Circle"
-
+import { Document, Page, pdfjs } from "react-pdf"
+import { MuiLoading } from "../../components/MuiLoading"
+import { useSign } from "../../hooks/useSign"
+import useMeasure from "react-use-measure"
+import { useColors } from "../../hooks/useColors"
+import { api } from "../../api"
+import { Button } from "@mui/material"
+import "./style.scss"
 import { useCepMask, usePhoneMask, useCpfMask, useCnpjMask } from "burgos-masks"
 
 interface ContractProps {}
@@ -13,14 +20,48 @@ interface ContractProps {}
 export const Contract: React.FC<ContractProps> = ({}) => {
     const id = useParams().id
     const navigate = useNavigate()
-    const api = useApi()
+    const apio = useApi()
+    const signing = useParams().signing
+    const colors = useColors()
 
     const [contract, setContract] = useState<ContractType>()
+    const [contracts, setContracts] = useState(null)
     const [loading, setLoading] = useState(false)
+    const [ref, { width }] = useMeasure()
+    const { canSign } = useSign()
+    const [page, setPage] = useState(1)
+    const [pages, setPages] = useState([])
+    const [url, setUrl] = useState("")
+    const [signatures, setSignatures] = useState<string[]>([])
 
     const skeleton_style: SxProps = {
         width: "100%",
         flexShrink: 0,
+    }
+
+    const NavPdf = () => {
+        const [disabledSign, setDisabledSign] = useState(!canSign(signing, signatures))
+
+        const button_style = {
+            backgroundColor: colors.primary,
+            color: "white",
+            width: "8vw",
+            height: "8vw",
+            justifyContent: "center",
+            alignItems: "center",
+        }
+
+        return (
+            <div style={{ position: "fixed", gap: "5vw", bottom: "5vw" }}>
+                <Button
+                    disabled={disabledSign}
+                    variant="contained"
+                    onClick={() => navigate("/sign/" + contract?.id + "/" + signing)}
+                >
+                    Assinar
+                </Button>
+            </div>
+        )
     }
 
     const textfield_style = {
@@ -30,7 +71,7 @@ export const Contract: React.FC<ContractProps> = ({}) => {
     useEffect(() => {
         if (!id) navigate("/dashboard/contracts")
 
-        api.contracts.find.id({
+        apio.contracts.find.id({
             data: { id },
             callback: (response: { data: ContractType }) => setContract(response.data),
         })
@@ -41,6 +82,20 @@ export const Contract: React.FC<ContractProps> = ({}) => {
         width: "1vw",
         color: !contract?.active && !contract?.reproved ? "yellow" : contract.active && !contract.archived ? "green" : "red",
     }
+
+    useEffect(() => {
+        if (contract) {
+            console.log(contract)
+            setUrl(api.getUri().split("/api")[0] + "/" + contract.filename)
+            setSignatures(contract.signatures?.split(",") || [])
+        }
+    }, [contract])
+
+    useEffect(() => {
+        api.post("/contract", { id })
+            .then((response) => setContract(response.data))
+            .catch((error) => console.error(error))
+    }, [])
     return id ? (
         <div className="Contract-Component">
             {!contract ? (
@@ -230,6 +285,33 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                     </div>
                     <div>
                         <b>Contrato</b>
+                        <div className="Contract-Page" ref={ref} style={{ justifyContent: "center" }}>
+                            {contract ? (
+                                <>
+                                    <Document
+                                        file={url}
+                                        onLoadError={(error) => console.error(error)}
+                                        loading={
+                                            <div
+                                                style={{
+                                                    width: "100vw",
+                                                    height: "100vh",
+                                                    display: "flex",
+                                                    justifyContent: "center",
+                                                    alignItems: "center",
+                                                }}
+                                            ></div>
+                                        }
+                                    >
+                                        {pages.map((page, index) => (
+                                            <Page key={index} pageNumber={page} renderForms={false} width={width} />
+                                        ))}
+                                    </Document>
+                                </>
+                            ) : (
+                                <MuiLoading color={"primary"} size={"15vw"} />
+                            )}
+                        </div>
                     </div>
                 </>
             )}
