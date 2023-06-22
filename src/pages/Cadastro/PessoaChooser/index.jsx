@@ -32,8 +32,14 @@ export const PessoaChooser = ({ pessoa, setPessoa }) => {
                     <h1>{name}</h1>
                     <p>{description}</p>
                 </div>
-                <div className="chose-container" style={{backgroundColor: clicked ? '#384974' : 'white'}}>
-                    {clicked ? <ChoseIcon style={isMobile && {height:'18vw', width: '18vw'}} /> : <div className='forward-arrow-container'><ForwardArrowBlue /></div> }
+                <div className="chose-container" style={{ backgroundColor: clicked ? "#384974" : "white" }}>
+                    {clicked ? (
+                        <ChoseIcon style={isMobile ? { height: "18vw", width: "18vw" } : {}} />
+                    ) : (
+                        <div className="forward-arrow-container">
+                            <ForwardArrowBlue />
+                        </div>
+                    )}
                 </div>
             </div>
         )
