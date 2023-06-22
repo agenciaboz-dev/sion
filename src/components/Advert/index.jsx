@@ -14,9 +14,10 @@ export const Advert = ({ innerRef }) => {
     const { text } = useTexts()
 
     const navigate = useNavigate()
-    const goToSignUp = () => {
-        navigate("/cadastro")
-    }
+
+    // const goToSignUp = () => {
+    //     navigate("/cadastro")
+    // }
 
     useEffect(() => {
         if (texts.length > 0) setTextsLoading(false)
@@ -71,7 +72,7 @@ export const Advert = ({ innerRef }) => {
                             height: "2vw",
                         })}
                     </div>
-                    <button className="blue-box-register-button" onClick={goToSignUp}>
+                    <button className="blue-box-register-button" onClick={() => window.open("https://wa.me/554130283782", "_blank")}>
                         Cadastre-se! <Arrow />
                     </button>
                 </div>
