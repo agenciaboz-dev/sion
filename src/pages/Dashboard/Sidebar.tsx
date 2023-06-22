@@ -20,6 +20,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ user }) => {
     const { logout } = useUser()
     const pathname = useLocation().pathname
 
+    const contractRegex = /^\/dashboard\/contract\/\d+$/
+
     return (
         <div className="Sidebar-Component">
             <p className="title">{user.adm ? "Administrativo" : "Vendedor"}</p>
@@ -39,7 +41,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ user }) => {
                                 "&:hover": { transform: "scale(1.1)" },
                             }}
                         >
-                            {menu.location == pathname &&
+                            {[pathname, contractRegex.test(menu.location)].includes(menu.location) &&
                                 <ArrowForwardIosOutlinedIcon
                                     sx={{
                                         border: "0.15vw solid white",
