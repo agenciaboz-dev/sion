@@ -111,126 +111,122 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
 	}, [attachments])
 
 	return (
-		<Formik initialValues={initialValues} onSubmit={handleSubmit}>
-			{({ values, handleChange }) => (
-				<Form ref={ref}>
-					<h3>Confirme seus dados</h3>
-					<TextField
-						label="Nome Completo"
-						name="name"
-						value={values.name}
-						onChange={handleChange}
-						fullWidth
-						required
-					/>
-					<MaskedInput
-						mask={[/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/]}
-						name={'document'}
-						onChange={handleChange}
-						value={values.document}
-						guide={false}
-						render={(ref, props) => (
-							<TextField
-								inputRef={ref}
-								{...props}
-								label="CPF"
-								inputProps={{ inputMode: 'numeric' }}
-								fullWidth
-								required
-							/>
-						)}
-					/>
-					<TextField
-						label="Data de nascimento"
-						name="birth"
-						value={values.birth}
-						onChange={handleChange}
-						type="date"
-						fullWidth
-						required
-					/>
+        <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+            {({ values, handleChange }) => (
+                <Form ref={ref}>
+                    <h3>Confirme seus dados</h3>
+                    <TextField
+                        label="Nome Completo"
+                        name="name"
+                        value={values.name}
+                        onChange={handleChange}
+                        fullWidth
+                        required
+                    />
+                    <MaskedInput
+                        mask={[/\d/, /\d/, /\d/, ".", /\d/, /\d/, /\d/, ".", /\d/, /\d/, /\d/, "-", /\d/, /\d/]}
+                        name={"document"}
+                        onChange={handleChange}
+                        value={values.document}
+                        guide={false}
+                        render={(ref, props) => (
+                            <TextField
+                                inputRef={ref}
+                                {...props}
+                                label="CPF"
+                                inputProps={{ inputMode: "numeric" }}
+                                fullWidth
+                                required
+                            />
+                        )}
+                    />
+                    <TextField
+                        label="Data de nascimento"
+                        name="birth"
+                        value={values.birth}
+                        onChange={handleChange}
+                        type="date"
+                        fullWidth
+                        required
+                    />
 
-					<Dropzone onDrop={(acceptedFiles) => onDrop(acceptedFiles)}>
-						{({ getRootProps, getInputProps }) => (
-							<section>
-								<div {...getRootProps()} className="dropzone">
-									<input {...getInputProps()} />
-									{attachments[0] ? (
-										<div className="uploaded-container">
-											<h3>{attachments[0].name}</h3>
-										</div>
-									) : (
-										<div className="upload-container">
-											<CameraIcon />
-											<h3>Clique aqui para tirar uma foto</h3>
-										</div>
-									)}
-								</div>
-							</section>
-						)}
-					</Dropzone>
-					{params.signing != 'seller' && (
-						<>
-							<h3>Assinatura</h3>
-							{rubric ? (
-								<img style={{ height: '30vw' }} onClick={() => setRubricModal(true)} src={rubric} alt="" />
-							) : (
-								<Button variant="contained" onClick={() => setRubricModal(true)}>
-									Clique aqui para assinar
-								</Button>
-							)}
-						</>
-					)}
-					{(rubric || !(params.signing != 'seller')) && (
-						<Button variant="contained" type="submit">
-							{loading ? <CircularProgress size={'1.5rem'} color="secondary" /> : 'Avançar'}
-						</Button>
-					)}
-					<SafeEnvironment />
+                    <Dropzone onDrop={(acceptedFiles) => onDrop(acceptedFiles)}>
+                        {({ getRootProps, getInputProps }) => (
+                            <section>
+                                <div {...getRootProps()} className="dropzone">
+                                    <input {...getInputProps()} />
+                                    {attachments[0] ? (
+                                        <div className="uploaded-container">
+                                            <h3>{attachments[0].name}</h3>
+                                        </div>
+                                    ) : (
+                                        <div className="upload-container">
+                                            <CameraIcon />
+                                            <h3>Clique aqui para tirar uma foto</h3>
+                                        </div>
+                                    )}
+                                </div>
+                            </section>
+                        )}
+                    </Dropzone>
+                    <h3>Assinatura</h3>
+                    {rubric ? (
+                        <img style={{ height: "30vw" }} onClick={() => setRubricModal(true)} src={rubric} alt="" />
+                    ) : (
+                        <Button variant="contained" onClick={() => setRubricModal(true)}>
+                            Clique aqui para assinar
+                        </Button>
+                    )}
+                    {(rubric || !(params.signing != "seller")) && (
+                        <Button variant="contained" type="submit">
+                            {loading ? <CircularProgress size={"1.5rem"} color="secondary" /> : "Avançar"}
+                        </Button>
+                    )}
+                    <SafeEnvironment />
 
-					<Dialog open={rubricModal} onClose={() => setRubricModal(false)} style={{ flexDirection: 'column' }}>
-						<DialogTitle style={{ alignSelf: 'center' }}>Desenhar sua assinatura</DialogTitle>
-						<DialogContent
-							style={{ flexDirection: 'column' }}
-							sx={{ border: '1px dashed black', margin: '0 3vw', position: 'relative' }}
-						>
-							<div
-								className="clear-rubric"
-								onClick={() => signatureRef.current.clear()}
-								style={{ position: 'absolute', right: 0, top: 0, color: colors.primary }}
-							>
-								<p>Apagar</p>
-								<DeleteForeverIcon sx={{ color: colors.red }} />
-							</div>
-							<div
-								style={{
-									position: 'absolute',
-									width: width * 0.75,
-									height: width * 0.4,
-									border: '2px dashed ' + colors.red,
-									top: (width * 0.8 - width * 0.4) / 2,
-									left: (width * 0.8 - width * 0.685) / 2,
-									pointerEvents: 'none',
-								}}
-							></div>
-							<ReactSignatureCanvas
-								penColor="black"
-								ref={signatureRef}
-								canvasProps={{ width: width * 0.8, height: width * 0.8, className: 'sigCanvas' }}
-							/>
-						</DialogContent>
-						<DialogActions sx={{ justifyContent: 'center' }}>
-							<Button onClick={cancelRubric} sx={{ flex: 1 }} variant="outlined">
-								Cancelar
-							</Button>
-							<Button onClick={finishRubric} sx={{ flex: 1 }} variant="contained">
-								Assinar
-							</Button>
-						</DialogActions>
-					</Dialog>
-				</Form>
-			)}
-		</Formik>
-	)
+                    <Dialog open={rubricModal} onClose={() => setRubricModal(false)} style={{ flexDirection: "column" }}>
+                        <DialogTitle style={{ alignSelf: "center" }}>Desenhar sua assinatura</DialogTitle>
+                        <DialogContent
+                            style={{ flexDirection: "column" }}
+                            sx={{ border: "1px dashed black", margin: "0 3vw", position: "relative" }}
+                        >
+                            <div
+                                className="clear-rubric"
+                                onClick={() => signatureRef.current.clear()}
+                                style={{ position: "absolute", right: 0, top: 0, color: colors.primary }}
+                            >
+                                <p>Apagar</p>
+                                <DeleteForeverIcon sx={{ color: colors.red }} />
+                            </div>
+                            <div
+                                style={{
+                                    position: "absolute",
+                                    width: width * 0.75,
+                                    height: width * 0.4,
+                                    border: "2px dashed " + colors.red,
+                                    top: (width * 0.8 - width * 0.4) / 2,
+                                    left: (width * 0.8 - width * 0.685) / 2,
+                                    pointerEvents: "none",
+                                }}
+                            ></div>
+                            <ReactSignatureCanvas
+                                penColor="black"
+                                ref={signatureRef}
+                                canvasProps={{ width: width * 0.8, height: width * 0.8, className: "sigCanvas" }}
+                            />
+                        </DialogContent>
+                        <DialogActions sx={{ justifyContent: "center" }}>
+                            <Button onClick={cancelRubric} sx={{ flex: 1 }} variant="outlined">
+                                Cancelar
+                            </Button>
+                            <Button onClick={finishRubric} sx={{ flex: 1 }} variant="contained">
+                                Assinar
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
+                </Form>
+            )}
+        </Formik>
+    )
 }
 
