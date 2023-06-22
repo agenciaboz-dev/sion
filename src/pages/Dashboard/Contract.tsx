@@ -106,6 +106,19 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                 </>
             ) : (
                 <>
+                    <Button
+                        onClick={() => navigate("/dashboard/contracts")}
+                        variant="outlined"
+                        sx={{
+                            position: "absolute",
+                            right: "4.25vw",
+                            top: "3vw",
+                            fontSize: "1vw",
+                            padding: "0.5vw 2vw 0.25vw",
+                        }}
+                    >
+                        Voltar
+                    </Button>
                     <div
                         style={{
                             gap: "1vw",
