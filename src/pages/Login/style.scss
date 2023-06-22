@@ -204,16 +204,20 @@
 
 @media (orientation: landscape) {
     .Login-Page {
-        padding-top: 8.5vw;
+        padding-top: 8vw;
+        // overflow-y: hidden;
 
         .white-background {
             top: 5vw;
             height: 40vw;
+            transform: skew(0, -5deg);
         }
     
         .blue-background {
-            top: 5vw;
+            top: 3vw;
             height: 25vw;
+            width: 60vw;
+            transform: skew(0, 6deg);
         }
 
         .main-container {

@@ -1,7 +1,6 @@
 import { Button, Checkbox, CircularProgress, FormControlLabel, TextField } from "@mui/material"
 import { Form, Formik } from "formik"
 import { useEffect, useLayoutEffect, useState } from "react"
-import { Footer } from "../../components/Footer"
 import { useLocalStorage } from "../../hooks/useLocalStorage"
 // @ts-ignore
 import { ReactComponent as LogoEscuro } from "../../images/logo_bonita.svg"
@@ -72,6 +71,7 @@ export const Login = () => {
                                     value={values.user}
                                     error={Boolean(errors.user)}
                                     helperText={errors.user}
+                                    InputProps={{sx:{height: "4vw"}}}
                                 />
                             </div>
                             <div className="password-input-container">
@@ -84,6 +84,7 @@ export const Login = () => {
                                     error={error}
                                     helperText={"Não foi possível fazer login"}
                                     FormHelperTextProps={{sx: {fontSize: isMobile ? "4vw" : "1.5vw", margin: "0.75vw 0"}}}
+                                    InputProps={{sx:{height: "4vw"}}}
                                 />
                             </div>
                             <div className="bottom-container">
@@ -98,7 +99,6 @@ export const Login = () => {
                     )}
                 </Formik>
             </div>
-            <Footer />
         </div>
     )
 }
