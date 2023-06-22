@@ -91,7 +91,7 @@ export const Login = () => {
                                 <p>Perdeu a senha?</p>
                                 <div className="button-container">
                                     <button type="submit">
-                                        {loading ? <CircularProgress size="1.5rem" sx={{ color: "white" }} /> : "Entrar"}
+                                        {loading ? <CircularProgress size="2.2vw" sx={{ color: "white" }} /> : "Entrar"}
                                     </button>
                                 </div>
                             </div>
