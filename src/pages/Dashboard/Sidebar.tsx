@@ -47,8 +47,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ user }) => {
                                         border: "0.15vw solid white",
                                         borderRadius: "50%",
                                         padding: "0.1vw",
-                                        height: "1.5vw",
-                                        width: "1.5vw",
+                                        height: "1.2vw",
+                                        width: "1.2vw",
                                     }}
                                 />
                             }
