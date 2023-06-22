@@ -243,15 +243,16 @@
                     width: 100%;
                     gap: 1vw;
                     padding: 1.0vw;
+                    justify-content: space-between;
                 }
-
+                
                 .infoComplement{
-            
                     width: 100%;
                 }
-
+                
                 .two-inputs {
-                    gap: 1vw;
+                    width: 100%;
+                    justify-content: space-between;
                 }
                
             }
