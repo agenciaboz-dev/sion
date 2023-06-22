@@ -7,6 +7,8 @@ import LogoutIcon from "@mui/icons-material/Logout"
 import { IconButton } from "@mui/material"
 import { useUser } from "../../hooks/useUser"
 import { useLocation } from "react-router-dom"
+import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
+
 
 interface SidebarProps {
     user: User
@@ -37,7 +39,17 @@ export const Sidebar: React.FC<SidebarProps> = ({ user }) => {
                                 "&:hover": { transform: "scale(1.1)" },
                             }}
                         >
-                            {menu.location == pathname && ">"}
+                            {menu.location == pathname &&
+                                <ArrowForwardIosOutlinedIcon
+                                    sx={{
+                                        border: "0.15vw solid white",
+                                        borderRadius: "50%",
+                                        padding: "0.1vw",
+                                        height: "1.5vw",
+                                        width: "1.5vw",
+                                    }}
+                                />
+                            }
                             <p className="link">{menu.name}</p>
                         </IconButton>
                     ))}
