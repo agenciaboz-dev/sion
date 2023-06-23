@@ -171,3 +171,86 @@
         margin-top: auto;
     }
 }
+
+@media (orientation: landscape) {
+    .Login-Page {
+        .main-container {
+            padding: 0;
+            gap: 2vw;
+
+            >svg {
+                margin: 0;
+                width: 30vw;
+                height: auto;
+            }
+            
+            form {
+                display: flex;
+                flex-direction: column;
+                width: 50%;
+                gap: 1vw;
+
+                label {
+                    font-size: 1vw;
+                }
+
+                .password-input-container {
+                    margin: 0;
+                }
+
+                .bottom-container {
+                    margin: 0;
+                    
+                    p {
+                        font-size: 1vw;
+                    }
+                }
+                
+                
+                .bottom-container {
+
+                    p {
+                        margin: 0;
+                    }
+
+                    .remember-wrapper {
+
+                        .remember-container {
+                            align-items: flex-start;
+                            margin-left: 2vw;
+
+                            label {
+                                height: 1vw;
+                                gap: 1vw;
+
+                                span {
+                                    font-size: 1vw!important;
+    
+                                    input,svg {
+                                        width: 2vw;
+                                    }
+                                }
+                            }
+
+                        }
+                    } 
+
+                    .button-container {
+                        justify-content: flex-start;
+
+                        button {
+                            font-size: 1vw;
+                            padding: 1vw;
+                            flex: none
+                        }
+    
+                        p {
+                            text-align: end;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}

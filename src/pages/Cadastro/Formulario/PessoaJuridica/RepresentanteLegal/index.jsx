@@ -153,11 +153,14 @@ export const RepresentanteLegal = ({ handleChange, values, errors }) => {
 						<button
 							tabIndex={2}
 							onClick={(event) => previousStage(event)}
-							style={{ backgroundColor: COLORS.gray }}
+							style={{ backgroundColor: COLORS.gray, borderRadius: "0.2vw" }}
 						>
 							Voltar
 						</button>
-						<button tabIndex={1} type="submit">
+						<button tabIndex={1}
+								type="submit"
+								style={{ borderRadius: "0.2vw" }}
+						>
 							Avançar
 						</button>
 					</div>

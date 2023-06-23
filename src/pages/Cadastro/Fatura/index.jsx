@@ -67,7 +67,7 @@ export const Fatura = ({ setProgressBarStage, setStage }) => {
                 <UploadContainer className="upload-container" title={'Anexar fatura'} identifier='fatura' />
                 <UploadContainer className="upload-container" title={client?.value?.pessoa == 'juridica' ? 'Anexar contrato social' : 'Anexar documentos'} identifier='documentos' />
             </div>
-            <NavButtons goBack={goBack} nextStage={nextStage} children={loading && <MuiLoading size='5vw' />} />
+            <NavButtons goBack={goBack} nextStage={nextStage} children={loading && <MuiLoading size='2vw' />} />
 
             <Snackbar open={openSnackbar} autoHideDuration={3000} onClose={() => setOpenSnackbar(false)} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
                 <Alert onClose={() => setOpenSnackbar(false)} severity={'error'} sx={{ width: '100%' }}>

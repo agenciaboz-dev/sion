@@ -47,7 +47,7 @@ export const InputField = ({ children, id, title, handleChange, value, type, mas
                     rows={1}
                     sx={{fontFamily: "Montserrats"}}
                     select={select}
-                    InputProps={{readOnly, endAdornment}}
+                    InputProps={{readOnly, endAdornment, style:{fontSize: "1.25vw"}}}
                     inputProps={{inputMode, onBlur}}
                     />
                 )}
@@ -76,7 +76,7 @@ export const InputField = ({ children, id, title, handleChange, value, type, mas
                 rows={1}
                 sx={{fontFamily: "Montserrats"}}
                 select={select}
-                InputProps={{readOnly, endAdornment}}
+                InputProps={{readOnly, endAdornment, style:{fontSize: "1.25vw"}}}
                 inputProps={{inputMode, onBlur}}
             />
             }
