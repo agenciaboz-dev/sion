@@ -40,7 +40,13 @@ export const Calculadora = ({}) => {
                         decimalScale={2}
                         fixedDecimalScale={true}
                         prefix={"R$ "}
-                        style={{ fontSize: "0.9vw", fontWeight: "bold", color: COLORS.primary }}
+                        style={{
+                            fontSize: "0.9vw",
+                            fontWeight: "bold",
+                            color: COLORS.primary,
+                            flexShrink: 0,
+                            whiteSpace: "nowrap",
+                        }}
                     />
                 </div>
                 <hr />
@@ -54,7 +60,7 @@ export const Calculadora = ({}) => {
                         decimalScale={2}
                         fixedDecimalScale={true}
                         prefix={"R$ "}
-                        style={{ color: COLORS.primary }}
+                        style={{ color: COLORS.primary, flexShrink: 0, whiteSpace: "nowrap" }}
                     />
                 </div>
             </div>

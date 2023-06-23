@@ -21,17 +21,20 @@
         
         .flag-pair{
             gap:1vw;
+
             .flag-container {
-                padding:  1vw;
+                padding:  0;
                 border: 1px solid lighten($graybutton-color, 33);
                 border-radius: 0.5vw;
                 width: 32vw;
                 height: 6vw;
                 align-items: center;
                 gap: 1vw;
+                justify-content: space-between;
 
                 hr {
-                    width:80%;
+                    width:20%;
+                    flex-shrink: 1;
                 }
 
                 svg {
