@@ -3,4 +3,12 @@
 .ContatoFinanceiro-Component {
     width: 100%;
     flex-direction: column;
+
+    h2 {
+        font-size: 2vw;
+    }
+
+    .credentials-header {
+        margin-top: 2vw;
+    }
 }
