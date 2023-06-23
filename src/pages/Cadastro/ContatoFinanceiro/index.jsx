@@ -81,7 +81,7 @@ export const ContatoFinanceiro = ({}) => {
                             value={values.email}
                             handleChange={handleChange}
                         />
-                        <h2>Credenciais</h2>
+                        <h2 style={{marginTop: "2vw"}}>Credenciais</h2>
                         <InputField title={"Login"} id="login" value={values.login} handleChange={handleChange} />
                         <InputField title={"Senha"} id="password" value={values.password} handleChange={handleChange} />
                         <NavButtons
