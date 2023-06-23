@@ -38,7 +38,7 @@ export const Contrato = ({  }) => {
         }
 
         return (
-            <div className="pdf-bottom" style={{width: '100%',justifyContent: 'space-between'}}>
+            <div className="pdf-bottom" style={{fontSize: '1.5vw',width: '100%',justifyContent: 'space-between'}}>
                 <div className="back-button" style={button_style} onClick={previousPage}>
                     <p>{'<'}</p>
                 </div>
