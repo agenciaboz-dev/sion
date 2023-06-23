@@ -10,9 +10,10 @@ import CurrencyFormat from 'react-currency-format';
 import { useUser } from '../../../hooks/useUser';
 import { useNavigate } from 'react-router-dom';
 import { useNumberMask } from '../../../hooks/useNumberMask'
+import { Box } from "@mui/material"
 
 export const Calculadora = ({}) => {
-	const Flag = ({ flag }) => {
+    const Flag = ({ flag }) => {
         const Icon = () => flag.icon
         const Tone = () => flag.name
         const [economy, setEconomy] = useState(0)
@@ -123,7 +124,9 @@ export const Calculadora = ({}) => {
                     ))}
             </div>
 
-            <NavButtons nextOnly nextStage={nextStage} disabledNext={!validUnit} />
+            <Box sx={{ justifyContent: "flex-end", width: "100%" }}>
+                <NavButtons nextOnly nextStage={nextStage} disabledNext={!validUnit} />
+            </Box>
         </div>
     )
 }
