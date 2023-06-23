@@ -1,24 +1,35 @@
 @import '/src/sass/colors';
 
-$dash-length: 1vw;
-$dash-spacing: 1vw;
+$dash-length: 0.1vw;
+$dash-spacing: 0.1vw;
 
 .Fatura-Component {
     flex-direction: column;
     width: 100%;
 
-    .UploadContainer-Component {
-        flex-direction: column;
+    .fatura-uploads {
+    width: 100%;
+    justify-content: space-between;
 
-        .dropzone {
-            position: relative;
-            width: 100%;
+        .UploadContainer-Component {
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 10vw 5vw;
-            
+            color: $primary-color;
+            font-weight: 400;
+            width: 35vw;
 
+                .upload-container {
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+            .dropzone {
+                position: relative;
+                width: 100%;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 5vw;
+            }
         }
     }
 
