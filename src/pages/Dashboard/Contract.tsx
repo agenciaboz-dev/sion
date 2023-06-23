@@ -279,7 +279,7 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                             />
                             <TextField
                                 sx={{ width: "50%" }}
-                                label={"Fornecedor"}
+                                label={"Distribuidora Atual"}
                                 value={contract.supplier}
                                 InputProps={{ readOnly: true, sx: textfield_style }}
                             />
