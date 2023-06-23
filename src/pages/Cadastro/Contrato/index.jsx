@@ -96,15 +96,15 @@ export const Contrato = ({  }) => {
                             file={api.getUri().split("/api")[0] + "/" + contract.filename}
                             onLoadSuccess={onLoadSuccess}
                             onLoadError={(error) => console.error(error)}
-                            error={<MuiLoading color={"primary"} size={"15vw"} />}
-                            loading={<MuiLoading color={"primary"} size={"15vw"} />}
+                            error={<MuiLoading color={"primary"} size={"5vw"} />}
+                            loading={<MuiLoading color={"primary"} size={"5vw"} />}
                         >
                             <Page pageNumber={page} /*width={800}*/ renderInteractiveForms={false} />
                         </Document>
                         <NavPdf />
                     </>
                 ) : (
-                    <MuiLoading color={"primary"} size={"15vw"} />
+                    <MuiLoading color={"primary"} size={"5vw"} />
                 )}
             </div>
             <NavButtons goBack={() => navigate("/cadastro/anexos")} nextStage={nextStage} children={<p>Enviar</p>} />
