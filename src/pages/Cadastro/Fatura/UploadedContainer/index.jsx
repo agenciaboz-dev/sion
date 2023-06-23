@@ -32,13 +32,13 @@ export const UploadedContainer = ({ files, setCurrentAttachments, identifier }) 
                     <section>
                     <div {...getRootProps()} className="dropzone">
                         <input {...getInputProps()} />
-                        <button>Escolher arquivo</button>
+                        <button>Escolher outro arquivo</button>
                     </div>
                     </section>
                 )}
                 </Dropzone>
                 <p>{file.name}</p>
-                <DeleteForeverIcon onClick={() => removeFile(file)} sx={{color: COLORS.primary}} />
+                <DeleteForeverIcon onClick={() => removeFile(file)} sx={{color: COLORS.red}} />
             </div>
         )
     }

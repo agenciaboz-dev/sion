@@ -11,11 +11,47 @@ $dash-spacing: 0.3vw;
     width: 100%;
     justify-content: space-between;
 
+    .uploaded-container {
+        flex-direction: column;
+        color: $primary-color;
+        font-weight: 400;
+        width: 30vw;
+        gap: 1vw;
+
+        h1 {
+            font-size: 2vw;
+        }
+
+        .file-container {
+            flex-direction: column;
+            align-items: center;
+            gap: 1vw;
+
+            > p {
+                width: 30vw;
+                text-align: center;
+                white-space: nowrap; 
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            button {
+                background-color: white;
+                color: $text-color;
+                border: 1px solid $text-color;
+                border-radius: 0.2vw;
+                padding: 0.5vw;
+                font-size: 1vw;
+                font-weight: 400;
+            }
+        }
+    }
+
         .UploadContainer-Component {
             flex-direction: column;
             color: $primary-color;
             font-weight: 400;
-            width: 35vw;
+            width: 30vw;
 
             h1 {
                 font-size: 2vw;
@@ -98,7 +134,5 @@ $dash-spacing: 0.3vw;
                 }
             }
         }
-
-        
     }
 }
