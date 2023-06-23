@@ -25,19 +25,23 @@ export const Contract = ({}) => {
     }
 
     return (
-      <div style={{ position: "fixed", gap: "5vw", bottom: "5vw" }}>
-        <Button
-          disabled={disabledDownload}
-          variant="contained"
-          sx={{ backgroundColor: "white", color: colors.primary }}
-          onClick={() => FileSaver.saveAs(url, contract.filename.split(contract.unit + "/")[1])}
-        >
-          Baixar
-        </Button>
-        <Button disabled={disabledSign} variant="contained" onClick={() => navigate("/sign/" + contract.id + "/" + signing)}>
-          Assinar
-        </Button>
-      </div>
+        <div style={{ position: "fixed", gap: "5vw", bottom: "5vw", zIndex: 5 }}>
+            <Button
+                disabled={disabledDownload}
+                variant="contained"
+                sx={{ backgroundColor: "white", color: colors.primary }}
+                onClick={() => FileSaver.saveAs(url, contract.filename.split(contract.unit + "/")[1])}
+            >
+                Baixar
+            </Button>
+            <Button
+                disabled={disabledSign}
+                variant="contained"
+                onClick={() => navigate("/sign/" + contract.id + "/" + signing)}
+            >
+                Assinar
+            </Button>
+        </div>
     )
   }
 
