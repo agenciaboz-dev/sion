@@ -8,14 +8,14 @@
     color: $primary-color;
 
     h1 {
-        font-size: 7vw;
+        font-size: 2vw;
     }
 
     .main-container {
         width: 100%;
         margin: 0;
         padding: 0;
-        gap: 5vw;
+        gap: 1vw;
         text-align: center;
         align-items: center;
 
@@ -28,15 +28,14 @@
         }
 
         .title-container {
-            gap: 3vw;
+            gap: 1vw;
             align-items: center;
         }
 
         .description-container {
-            margin-top: -3vw;
             flex-direction: column;
             align-items: center;
-            font-size: 3.5vw;
+            font-size: 1vw;
         }
 
         button {

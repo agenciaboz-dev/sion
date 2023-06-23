@@ -22,10 +22,12 @@ export const Contrato = ({  }) => {
         const button_style = {
             backgroundColor: COLORS.primary,
             color: 'white',
-            width: '8vw',
-            height: '8vw',
+            width: '3vw',
+            height: '4vw',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
+            fontSize: '4vw',
+            cursor: 'pointer'
         }
 
         const nextPage = () => {
@@ -37,7 +39,7 @@ export const Contrato = ({  }) => {
         }
 
         return (
-            <div className="pdf-bottom" style={{width: '100%',justifyContent: 'space-between'}}>
+            <div className="pdf-bottom" style={{fontSize: '1.5vw',width: '100%',justifyContent: 'space-between'}}>
                 <div className="back-button" style={button_style} onClick={previousPage}>
                     <p>{'<'}</p>
                 </div>
@@ -83,7 +85,7 @@ export const Contrato = ({  }) => {
             <div className="main-container">
                 <div className="title-container">
                     <h1>Cadastrado!</h1>
-                    <ChoseIcon style={{ height: "10vw", width: "10vw" }} />
+                    <ChoseIcon style={{ height: "2.5vw", width: "2.5vw" }} />
                 </div>
                 <div className="description-container">
                     <p>Clique avançar para enviar o contrato por email para todos os envolvidos cadastrados!</p>
@@ -94,15 +96,15 @@ export const Contrato = ({  }) => {
                             file={api.getUri().split("/api")[0] + "/" + contract.filename}
                             onLoadSuccess={onLoadSuccess}
                             onLoadError={(error) => console.error(error)}
-                            error={<MuiLoading color={"primary"} size={"15vw"} />}
-                            loading={<MuiLoading color={"primary"} size={"15vw"} />}
+                            error={<MuiLoading color={"primary"} size={"5vw"} />}
+                            loading={<MuiLoading color={"primary"} size={"5vw"} />}
                         >
-                            <Page pageNumber={page} width={245} renderInteractiveForms={false} />
+                            <Page pageNumber={page} /*width={800}*/ renderInteractiveForms={false} />
                         </Document>
                         <NavPdf />
                     </>
                 ) : (
-                    <MuiLoading color={"primary"} size={"15vw"} />
+                    <MuiLoading color={"primary"} size={"5vw"} />
                 )}
             </div>
             <NavButtons goBack={() => navigate("/cadastro/anexos")} nextStage={nextStage} children={<p>Enviar</p>} />
