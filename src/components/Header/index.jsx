@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { useHeaderMenus } from '../../hooks/useHeaderMenus';
-import {ReactComponent as Logo} from '../../images/logo.svg';
+import {ReactComponent as Logo} from '../../images/logo_bonita.svg';
 import {ReactComponent as BackArrow} from '../../images/back_arrow_small.svg';
 import './style.scss';
 import COLORS from '../../sass/_colors.scss'
@@ -42,15 +42,16 @@ export const Header = ({ alternative, setAlternative, vendas }) => {
         <div className="Header-Component" style={vendas && { backgroundColor: COLORS.primary_dark }}>
             <section>
                 <div className="top-triangle"></div>
+                <div className="bottom-triangle"></div>
+                <div className="white-triangle"></div>
                 <div className="top-container" onClick={() => headerNavigate.navigate()}>
                     <div className="back-arrow-container">
                         <BackArrow />
                     </div>
                     <p>{headerNavigate.label}</p>
                 </div>
-                <div className="bottom-triangle"></div>
             </section>
-            {!vendas && <Logo style={alternative ? { visibility: "hidden" } : null} />}
+            <Logo className='logo' />
         </div>
     )
 }
