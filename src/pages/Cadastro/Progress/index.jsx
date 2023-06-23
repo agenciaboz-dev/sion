@@ -13,7 +13,7 @@ const Container = ({ stage, current }) => {
 
     const active_style = {
         backgroundColor: COLORS.primary,
-        color: 'white'
+        color: "white",
     }
 
     useEffect(() => {
@@ -26,26 +26,23 @@ const Container = ({ stage, current }) => {
 
     return (
         <div className="container" style={active ? active_style : null}>
-            <p>{stage}</p>
+            <p style={{ fontSize: "1.6vw" }}>{stage}</p>
         </div>
     )
 }
 
-export const Progress = ({  }) => {
-
-    const isMobile = useMediaQuery({maxWidth: 600})
+export const Progress = ({}) => {
+    const isMobile = useMediaQuery({ maxWidth: 600 })
 
     const client = useClient().value
     const { stage, bar } = useStage()
 
     const [stages, setStages] = useState([1, 2, 3, 4, 5, 6, 7])
-    
-    useEffect(() => {
 
-    }, [])
+    useEffect(() => {}, [])
 
     return (
-        <div className='Progress-Component' >
+        <div className="Progress-Component">
             <div className="progress-bar">
                 <ProgressBar
                     completed={bar}
@@ -53,13 +50,15 @@ export const Progress = ({  }) => {
                     isLabelVisible={false}
                     className="wrapper"
                     bgColor={COLORS.primary}
-                    borderRadius={'0'}
-                    height={isMobile ? '1.5vw' : '0.6vw'}
-                    baseBgColor='none'
-                    transitionDuration={'1s'}
+                    borderRadius={"0"}
+                    height={isMobile ? "1.5vw" : "0.6vw"}
+                    baseBgColor="none"
+                    transitionDuration={"1s"}
                 />
             </div>
-            {stages.map(item => <Container key={item} stage={item} current={stage} />)}
+            {stages.map((item) => (
+                <Container key={item} stage={item} current={stage} />
+            ))}
         </div>
     )
 }

@@ -35,12 +35,12 @@
 
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (min-width: 600px) {
     .Progress-Component {
         justify-content: space-between;
         .container {
-            height: 7vw;
-            width: 7vw;
+            height: 4vw;
+            width: 4vw;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
