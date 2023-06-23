@@ -30,7 +30,7 @@ export const PessoaChooser = ({ pessoa, setPessoa }) => {
             <div className="pessoa-container" onClick={() => nextStage()}>
                 <div className="text-container">
                     <h1>{name}</h1>
-                    <p style={{ color: "gray" }}>{description}</p>
+                    <p style={{ color: "333333", fontSize: "1vw" }}>{description}</p>
                 </div>
                 <div className="chose-container" style={{ backgroundColor: clicked ? "#384974" : " #38497461" }}>
                     {clicked ? (
