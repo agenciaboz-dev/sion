@@ -203,7 +203,7 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
                         <DialogTitle style={{ alignSelf: "center" }}>Desenhar sua assinatura</DialogTitle>
                         <DialogContent
                             style={{ flexDirection: "column" }}
-                            sx={{ border: "1px dashed black", margin: isMobile ? "0 3vw" : "0 1vw", position: "relative" }}
+                            sx={{ border: "1px dashed black", margin: isMobile ? "0 3vw" : "0", position: "relative" }}
                         >
                             <div
                                 className="clear-rubric"
