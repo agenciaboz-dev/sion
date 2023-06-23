@@ -41,17 +41,17 @@ export const Header = ({ alternative, setAlternative, vendas }) => {
     return (
         <div className="Header-Component" style={vendas && { backgroundColor: COLORS.primary_dark }}>
             <section>
-                <div className="top-triangle"></div>
-                <div className="bottom-triangle"></div>
-                <div className="white-triangle"></div>
                 <div className="top-container" onClick={() => headerNavigate.navigate()}>
                     <div className="back-arrow-container">
                         <BackArrow />
                     </div>
                     <p>{headerNavigate.label}</p>
                 </div>
+                <div className="bottom-triangle"></div>
+                <div className="top-triangle"></div>
+                <div className="white-triangle"></div>
             </section>
-            <Logo className='logo' />
+            {!vendas && <Logo style={alternative ? { visibility: "hidden" } : null} />}
         </div>
     )
 }

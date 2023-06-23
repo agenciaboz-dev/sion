@@ -8,7 +8,7 @@
     font-size: 1.25vw;
     z-index: 5;
     width: 100%;
-    margin-bottom: 10vw;
+    margin-bottom: 13vw;
 
     .logo {
         position: absolute;
@@ -69,18 +69,14 @@
         padding: 10vw 0;
         position: relative;
         align-self: flex-start;
-
-        .logo {
-            display: none;
-        }
         
         .top-container {
             position: absolute;
             height: 100%;
             color: white;
             align-self: flex-start;
-            margin-left: 7vw;
-            margin-top: 5vw;
+            left: 7vw;
+            top: 15vw;
             align-items: center;
             gap: 2vw;
             cursor: pointer;
@@ -118,5 +114,22 @@
             margin-left: 0vw;
             z-index: -1;
         }
+
+        .white-triangle {
+            display: none;
+        }
     }
+}
+
+// CHAT BOT
+.push-conversation-container {
+
+    .push-close-button, .push-send {
+        padding: 0;
+    }
+
+    div, section {
+        display: block;
+    }
+
 }
