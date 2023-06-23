@@ -1,4 +1,4 @@
-import { MenuItem, TextField } from "@mui/material"
+import { MenuItem, TextField, useMediaQuery } from "@mui/material"
 import { Form, Formik } from "formik"
 import { useRef } from "react"
 import { useState } from "react"
@@ -19,6 +19,7 @@ export const CurrentSupplier = ({ formRef, setValidUnit }) => {
     const [user, setUser] = useUser()
     const navigate = useNavigate()
     const suppliers = useSuppliers()
+    const isMobile = useMediaQuery("(orientation: portrait)")
 
     const unitInputRef = useRef(null)
 
@@ -109,7 +110,7 @@ export const CurrentSupplier = ({ formRef, setValidUnit }) => {
                             errorText={unitErrorText}
                             innerRef={unitInputRef}
                         />
-                        {loading && <MuiLoading color="primary" size="5vw" />}
+                        {loading && <MuiLoading color="primary" size={isMobile ? "5vw" : "1.5rem"} />}
                     </div>
                     <TextField
                         label="Outras unidades"
