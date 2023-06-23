@@ -218,7 +218,7 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
                                     position: "absolute",
                                     width: width * 0.75,
                                     height: width * 0.4,
-                                    border: "2px dashed " + colors.red,
+                                    // border: "2px dashed " + colors.red,
                                     top: (width * 0.8 - width * 0.4) / 2,
                                     left: (width * 0.8 - width * 0.685) / 2,
                                     pointerEvents: "none",
