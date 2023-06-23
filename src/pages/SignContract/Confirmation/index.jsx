@@ -1,116 +1,126 @@
-import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
-import { Form, Formik } from 'formik';
-import Dropzone from 'react-dropzone';
-import { useParams } from 'react-router';
-import MaskedInput from 'react-text-mask';
-import { useDocumentMask } from '../../../hooks/useDocumentMask';
-import { useEffect, useRef, useState } from 'react';
-import { api } from '../../../api';
-import { ReactComponent as CameraIcon } from '../../../images/camera.svg'
-import { useUser } from '../../../hooks/useUser';
-import { SafeEnvironment } from '../SafeEnvironment';
-import ReactSignatureCanvas from 'react-signature-canvas';
-import useMeasure from 'react-use-measure';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { useColors } from '../../../hooks/useColors';
+import {
+    Button,
+    CircularProgress,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    TextField,
+    useMediaQuery,
+} from "@mui/material"
+import { Form, Formik } from "formik"
+import Dropzone from "react-dropzone"
+import { useParams } from "react-router"
+import MaskedInput from "react-text-mask"
+import { useDocumentMask } from "../../../hooks/useDocumentMask"
+import { useEffect, useRef, useState } from "react"
+import { api } from "../../../api"
+import { ReactComponent as CameraIcon } from "../../../images/camera.svg"
+import { useUser } from "../../../hooks/useUser"
+import { SafeEnvironment } from "../SafeEnvironment"
+import ReactSignatureCanvas from "react-signature-canvas"
+import useMeasure from "react-use-measure"
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever"
+import { useColors } from "../../../hooks/useColors"
 
 export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract }) => {
     const [attachments, setAttachments] = useState([])
     const [loading, setLoading] = useState(false)
     const [rubricModal, setRubricModal] = useState(false)
-    const [rubric, setRubric] = useState('')
+    const [rubric, setRubric] = useState("")
 
     const params = useParams()
     const [user, setUser] = useUser()
-    const [ref, {width}] = useMeasure()
+    const [ref, { width }] = useMeasure()
     const colors = useColors()
 
     const signatureRef = useRef(null)
+    const isMobile = useMediaQuery("(orientation: portrait)")
 
     const documentMask = useDocumentMask()
 
     const initialValues = {
-        name: '',
-        document: '',
-        birth: new Date().toISOString().substring(0, 10)
+        name: "",
+        document: "",
+        birth: new Date().toISOString().substring(0, 10),
     }
 
     const handleSubmit = (values) => {
-		if (!rubric && (user?.adm || !user)) {
-			setOpenSnackbar(true)
-			setError('Rúbrica obrigatória')
-			return
-		}
+        if (!rubric && (user?.adm || !user)) {
+            setOpenSnackbar(true)
+            setError("Rúbrica obrigatória")
+            return
+        }
 
-		setLoading(true)
-		const formData = new FormData()
-		const data = { ...values, id: params.id, signing: params.signing, user, rubric }
-		console.log({ data })
+        setLoading(true)
+        const formData = new FormData()
+        const data = { ...values, id: params.id, signing: params.signing, user, rubric }
+        console.log({ data })
 
-		formData.append('data', JSON.stringify(data))
+        formData.append("data", JSON.stringify(data))
 
-		// Assuming you have the files in the `attachments` state
-		if (attachments[0]) {
-			attachments.map((file) => {
-				formData.append('biometria', file)
-			})
-		} else {
-			setOpenSnackbar(true)
-			setError('Foto obrigatória')
-			setLoading(false)
-			return
-		}
+        // Assuming you have the files in the `attachments` state
+        if (attachments[0]) {
+            attachments.map((file) => {
+                formData.append("biometria", file)
+            })
+        } else {
+            setOpenSnackbar(true)
+            setError("Foto obrigatória")
+            setLoading(false)
+            return
+        }
 
-		api.post('/contract/confirm', formData)
-			.then((response) => {
-				const contract = response.data
-				if (!contract) {
-					setOpenSnackbar(true)
-					setError('Dados inválidos')
-				} else {
-					if (contract.signed) {
-						setStage(3)
-					} else {
-						setContract(contract)
-						setStage(2)
-					}
-				}
-			})
-			.catch((error) => console.error(error))
-			.finally(() => setLoading(false))
-	}
+        api.post("/contract/confirm", formData)
+            .then((response) => {
+                const contract = response.data
+                if (!contract) {
+                    setOpenSnackbar(true)
+                    setError("Dados inválidos")
+                } else {
+                    if (contract.signed) {
+                        setStage(3)
+                    } else {
+                        setContract(contract)
+                        setStage(2)
+                    }
+                }
+            })
+            .catch((error) => console.error(error))
+            .finally(() => setLoading(false))
+    }
 
-	const onDrop = (acceptedFiles) => {
-		setAttachments(acceptedFiles)
-	}
+    const onDrop = (acceptedFiles) => {
+        setAttachments(acceptedFiles)
+    }
 
-	const finishRubric = () => {
-		setRubric(signatureRef.current.getTrimmedCanvas().toDataURL())
-		setRubricModal(false)
-	}
+    const finishRubric = () => {
+        setRubric(signatureRef.current.getTrimmedCanvas().toDataURL())
+        setRubricModal(false)
+    }
 
-	const cancelRubric = () => {
-		setRubric('')
-		setRubricModal(false)
-	}
+    const cancelRubric = () => {
+        setRubric("")
+        setRubricModal(false)
+    }
 
-	const handleSignature = () => {
-		const signature = signatureRef.current
-		if (signature.isEmpty()) {
-			setOpenSnackbar(true)
-			setError('Rúbrica obrigatória')
-			return
-		}
+    const handleSignature = () => {
+        const signature = signatureRef.current
+        if (signature.isEmpty()) {
+            setOpenSnackbar(true)
+            setError("Rúbrica obrigatória")
+            return
+        }
 
-		console.log(signature.toDataURL())
-		return signature.toDataURL()
-	}
+        console.log(signature.toDataURL())
+        return signature.toDataURL()
+    }
 
-	useEffect(() => {
-		console.log(attachments)
-	}, [attachments])
+    useEffect(() => {
+        console.log(attachments)
+    }, [attachments])
 
-	return (
+    return (
         <Formik initialValues={initialValues} onSubmit={handleSubmit}>
             {({ values, handleChange }) => (
                 <Form ref={ref}>
@@ -162,19 +172,24 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
                                     ) : (
                                         <div className="upload-container">
                                             <CameraIcon />
-                                            <h3>Clique aqui para tirar uma foto</h3>
+                                            <h3>Clique aqui para {isMobile ? "tirar" : "subir"} uma foto</h3>
                                         </div>
                                     )}
                                 </div>
                             </section>
                         )}
                     </Dropzone>
-                    <h3>Assinatura</h3>
+                    <h3>Rúbrica</h3>
                     {rubric ? (
-                        <img style={{ height: "30vw" }} onClick={() => setRubricModal(true)} src={rubric} alt="" />
+                        <img
+                            style={{ height: isMobile ? "30vw" : "5vw" }}
+                            onClick={() => setRubricModal(true)}
+                            src={rubric}
+                            alt=""
+                        />
                     ) : (
                         <Button variant="contained" onClick={() => setRubricModal(true)}>
-                            Clique aqui para assinar
+                            Clique aqui para rubricar
                         </Button>
                     )}
                     {(rubric || !(params.signing != "seller")) && (
@@ -188,7 +203,7 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
                         <DialogTitle style={{ alignSelf: "center" }}>Desenhar sua assinatura</DialogTitle>
                         <DialogContent
                             style={{ flexDirection: "column" }}
-                            sx={{ border: "1px dashed black", margin: "0 3vw", position: "relative" }}
+                            sx={{ border: "1px dashed black", margin: isMobile ? "0 3vw" : "0 1vw", position: "relative" }}
                         >
                             <div
                                 className="clear-rubric"
@@ -229,4 +244,3 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
         </Formik>
     )
 }
-
