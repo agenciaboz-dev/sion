@@ -8,7 +8,7 @@ import { IconButton } from "@mui/material"
 import { useUser } from "../../hooks/useUser"
 import { useLocation } from "react-router-dom"
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
-
+import ListAltIcon from "@mui/icons-material/ListAlt"
 
 interface SidebarProps {
     user: User
@@ -41,7 +41,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ user }) => {
                                 "&:hover": { transform: "scale(1.1)" },
                             }}
                         >
-                            {[pathname, contractRegex.test(menu.location)].includes(menu.location) &&
+                            {[pathname, contractRegex.test(menu.location)].includes(menu.location) && (
                                 <ArrowForwardIosOutlinedIcon
                                     sx={{
                                         border: "0.15vw solid white",
@@ -51,16 +51,23 @@ export const Sidebar: React.FC<SidebarProps> = ({ user }) => {
                                         width: "1.2vw",
                                     }}
                                 />
-                            }
+                            )}
                             <p className="link">{menu.name}</p>
                         </IconButton>
                     ))}
             </div>
             <IconButton
                 sx={{ marginTop: "auto", color: "white", gap: "1vw", alignSelf: "flex-start", fontWeight: "normal" }}
+                onClick={() => (window.location.href = "https://controle.cooperativasion.com.br")}
+            >
+                <ListAltIcon />
+                Controle
+            </IconButton>
+            <IconButton
+                sx={{ color: "white", gap: "1vw", alignSelf: "flex-start", fontWeight: "normal", fontSize: "1vw" }}
                 onClick={() => logout()}
             >
-                <LogoutIcon />
+                <LogoutIcon sx={{ width: "1vw" }} />
                 Sair
             </IconButton>
         </div>
