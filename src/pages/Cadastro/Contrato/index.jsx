@@ -98,7 +98,7 @@ export const Contrato = ({  }) => {
                             error={<MuiLoading color={"primary"} size={"15vw"} />}
                             loading={<MuiLoading color={"primary"} size={"15vw"} />}
                         >
-                            <Page pageNumber={page} width={800} renderInteractiveForms={false} />
+                            <Page pageNumber={page} /*width={800}*/ renderInteractiveForms={false} />
                         </Document>
                         <NavPdf />
                     </>
