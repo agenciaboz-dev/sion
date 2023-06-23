@@ -27,6 +27,7 @@ export const Contrato = ({  }) => {
             justifyContent: 'center',
             alignItems: 'center',
             fontSize: '4vw',
+            cursor: 'pointer'
         }
 
         const nextPage = () => {
