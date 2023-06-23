@@ -17,10 +17,15 @@ $dash-spacing: 0.3vw;
             font-weight: 400;
             width: 35vw;
 
-                .upload-container {
-                    flex-direction: column;
-                    align-items: center;
-                }
+            h1 {
+                font-size: 2vw;
+            }
+
+            .upload-container {
+                flex-direction: column;
+                align-items: center;
+                font-size: 1vw;
+            }
 
             .dropzone {
                 position: relative;
