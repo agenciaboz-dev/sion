@@ -97,7 +97,7 @@ export const CurrentSupplier = ({ formRef, setValidUnit }) => {
                     </InputField>
                     <div
                         className="unit-container"
-                        style={{ width: "100%", justifyContent: "space-between", alignItems: "center", gap: "3vw" }}
+                        style={{ width: "100%", justifyContent: "space-between", alignItems: "center", gap: "2vw" }}
                     >
                         <InputField
                             title="Unidade consumidora"
@@ -117,6 +117,7 @@ export const CurrentSupplier = ({ formRef, setValidUnit }) => {
                         value={values.subunits}
                         onChange={handleChange}
                         fullWidth
+                        sx={{ marginTop: "0.65vw" }}
                     />
                 </Form>
             )}

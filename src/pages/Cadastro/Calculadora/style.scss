@@ -3,6 +3,7 @@
 .Calculadora-Component {
     width: 100%;
     flex-direction: column;
+    gap:0.3vw;
 
     h1 {
         font-size: 6vw;
@@ -16,7 +17,7 @@
     .flags-container {
         flex-wrap: wrap;
         gap: 1vw;
-        margin-top: 2vw;
+        margin-top: 0.3vw;
         
         .flag-pair{
             gap:1vw;
@@ -73,15 +74,15 @@
     }
 
     .buttons-container {
-        width: 4%;
-        height: 2.8vw;
+        width: 15%;
+        height: 3vw;
         justify-content: space-between;
         gap: 3vw;
-        margin-top: 2vw;
+        margin-top: 3vw;
         border-radius: 1vw;
         
         button {
-            //flex: 1;
+            flex: 1;
             font-size: 1vw;
             height: auto;
           

@@ -12,7 +12,7 @@
 
     .content {
         width: 100%;
-        padding-top: 5vw;
+        padding-top: 2.5vw;
     }
 
     .pessoa-wrapper {
@@ -50,34 +50,36 @@
             margin-top: 10vw;
 
             .pessoa-wrapper {
-                flex-direction: column;
-                justify-content: flex-start;
-                gap: 5vw;
+                flex-direction: row;
+                justify-content: space-between;
+               
                 height: max-content;
+                
 
                 .pessoa-container {
-                    flex-direction: row;
+                    flex-direction: column;
                     justify-content: space-between;
+                    width:50%;
                     // flex: 1;
 
                     .text-container {
-                        padding: 6vw 3vw;
+                       padding: 2.5vw 2vw;
 
                         h1 {
-                            font-size: 6vw;
-                            font-weight: 300;
-                            text-align: center;
+                            font-size: 2vw;
+                            font-weight: 600;
+                            text-align: left;
                         }
                     }
 
                     .chose-container {
                         svg {
-                            width: 12vw;
+                            width: 2.6vw;
                         }
-                        
+                        width:100%;
                         justify-content: center;
                         align-items: center;
-                        width: fit-content;
+                        //width: fit-content;
                     }
                 }
             }
