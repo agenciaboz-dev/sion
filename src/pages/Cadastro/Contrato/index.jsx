@@ -22,10 +22,11 @@ export const Contrato = ({  }) => {
         const button_style = {
             backgroundColor: COLORS.primary,
             color: 'white',
-            width: '8vw',
-            height: '8vw',
+            width: '3vw',
+            height: '4vw',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
+            fontSize: '4vw',
         }
 
         const nextPage = () => {
@@ -83,7 +84,7 @@ export const Contrato = ({  }) => {
             <div className="main-container">
                 <div className="title-container">
                     <h1>Cadastrado!</h1>
-                    <ChoseIcon style={{ height: "10vw", width: "10vw" }} />
+                    <ChoseIcon style={{ height: "3vw", width: "3vw" }} />
                 </div>
                 <div className="description-container">
                     <p>Clique avançar para enviar o contrato por email para todos os envolvidos cadastrados!</p>
@@ -97,7 +98,7 @@ export const Contrato = ({  }) => {
                             error={<MuiLoading color={"primary"} size={"15vw"} />}
                             loading={<MuiLoading color={"primary"} size={"15vw"} />}
                         >
-                            <Page pageNumber={page} width={245} renderInteractiveForms={false} />
+                            <Page pageNumber={page} width={800} renderInteractiveForms={false} />
                         </Document>
                         <NavPdf />
                     </>
