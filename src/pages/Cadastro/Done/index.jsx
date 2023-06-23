@@ -12,7 +12,7 @@ export const Done = () => {
             <CheckCircleIcon color="primary" sx={{ width: isMobile ? "15vw" : "5vw", height: "auto" }} />
             <h1>Seja bem-vindo à Sion Energia!</h1>
             <Button sx={{ fontSize: isMobile ? "5vw" : "2vw" }} variant="contained" onClick={() => navigate("/cadastro")}>
-                Reiniciar
+                Concluir
             </Button>
         </div>
     )
