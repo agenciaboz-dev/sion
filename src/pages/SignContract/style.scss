@@ -110,3 +110,58 @@ input[type=number]::spin-button {
 
     }
 }
+
+@media (orientation: landscape) {
+    .Header-Component {
+        z-index: -5;
+    }
+
+    .SignContract-Page {
+        justify-content: center;
+
+        form {
+            width: 50%;
+            gap: 1vw;
+        }
+
+        .safe-environment-statement {
+            gap: 1vw;
+            margin: 0;
+
+            .padlock-icon {
+                width: 1.5vw;
+                margin: 0
+            }
+
+            .safe-environment-p {
+                font-size: 1vw;
+            }
+        }
+
+        .Token-Component {
+            width: 50%;
+            gap: 1vw;
+
+            .token-insert-container {
+                width: 100%;
+                margin: 0;
+                padding: 1vw;
+                gap: 1vw;
+            }
+        }
+
+        .Signed-Component {
+            gap: 1vw;
+
+            svg {
+                font-size: 5vw;
+            }
+
+            h3 {
+                font-size: 3vw;
+            }
+        }
+    }
+
+
+}

@@ -39,32 +39,18 @@ export const Header = ({ alternative, setAlternative, vendas }) => {
 
     
     return (
-        <div className='Header-Component' style={vendas && {backgroundColor: COLORS.primary_dark}}>
-            {isMobile ? 
+        <div className="Header-Component" style={vendas && { backgroundColor: COLORS.primary_dark }}>
             <section>
                 <div className="top-triangle"></div>
                 <div className="top-container" onClick={() => headerNavigate.navigate()}>
-                    <div className='back-arrow-container'>
+                    <div className="back-arrow-container">
                         <BackArrow />
                     </div>
                     <p>{headerNavigate.label}</p>
                 </div>
                 <div className="bottom-triangle"></div>
             </section>
-            : 
-            <div className="menus-container" style={alternative ? alternative_style : null} >
-                {alternative ? <Logo /> : null}
-                {menus.map(menu => {
-                    return (
-                        <section key={menu.id}>
-                            <HeaderButton menu={menu} alternative={alternative} />
-                            {menus.indexOf(menu) == (menus.length - 1) ? null : <p>/</p>}
-                        </section>
-                    )
-                })}
-                <button className="login-button" onClick={() => navigate('/login')}>Sou cliente</button>
-            </div>}
-            {!vendas && <Logo style={alternative ? {visibility: 'hidden'} : null} />}
+            {!vendas && <Logo style={alternative ? { visibility: "hidden" } : null} />}
         </div>
     )
 }
