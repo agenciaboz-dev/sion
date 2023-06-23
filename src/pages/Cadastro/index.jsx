@@ -37,66 +37,66 @@ export const Cadastro = () => {
 		setStage(0)
 		setProgressBarStage(30)
 	}, [])
-
-	return (
-		<div className="Cadastro-Page">
-			{isMobile && <ScrollTop />}
-			<BackgroundContainer vendas>
-				<div className="main-container" style={{ opacity: loaded ? 1 : 0, transition: '0.5s' }}>
-					<Progress stage={stage} progressBarStage={progressBarStage} />
-					<div className="content">
-						<SlideRoutes location={location} duration={1000}>
-							<Route index element={<Calculadora />} />
-							<Route
-								path="/pessoa"
-								element={
-									<PessoaChooser
-										setProgressBarStage={setProgressBarStage}
-										setStage={setStage}
-										pessoa={pessoa}
-										setPessoa={setPessoa}
-									/>
-								}
-							/>
-							<Route
-								path="/formulario"
-								element={
-									<Formulario
-										pessoa={pessoa}
-										setPessoa={setPessoa}
-										setProgressBarStage={setProgressBarStage}
-										setStage={setStage}
-									/>
-								}
-							/>
-							<Route
-								path="/formulario/representante"
-								element={
-									<RepresentanteLegal
-										pessoa={pessoa}
-										setPessoa={setPessoa}
-										setProgressBarStage={setProgressBarStage}
-										setStage={setStage}
-									/>
-								}
-							/>
-							<Route
-								path="/anexos"
-								element={<Fatura setProgressBarStage={setProgressBarStage} setStage={setStage} />}
-							/>
-							<Route
-								path="/contrato"
-								element={<Contrato setProgressBarStage={setProgressBarStage} setStage={setStage} />}
-							/>
-							<Route
-								path="/financeiro"
-								element={<ContatoFinanceiro setProgressBarStage={setProgressBarStage} setStage={setStage} />}
-							/>
-							<Route path="/done" element={<Done />} />
-						</SlideRoutes>
-					</div>
-				</div>
-			</BackgroundContainer>
-		</div>
-	)
+    
+    return (
+        <div className="Cadastro-Page">
+            {isMobile && <ScrollTop />}
+            <BackgroundContainer vendas>
+                <div className="main-container" style={{ opacity: loaded ? 1 : 0, transition: "0.5s" }}>
+                    <Progress stage={stage} progressBarStage={progressBarStage} />
+                    <div className="content">
+                        <SlideRoutes location={location} duration={1000}>
+                            <Route index element={<Calculadora />} />
+                            <Route
+                                path="/pessoa"
+                                element={
+                                    <PessoaChooser
+                                        setProgressBarStage={setProgressBarStage}
+                                        setStage={setStage}
+                                        pessoa={pessoa}
+                                        setPessoa={setPessoa}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/formulario"
+                                element={
+                                    <Formulario
+                                        pessoa={pessoa}
+                                        setPessoa={setPessoa}
+                                        setProgressBarStage={setProgressBarStage}
+                                        setStage={setStage}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/formulario/representante"
+                                element={
+                                    <RepresentanteLegal
+                                        pessoa={pessoa}
+                                        setPessoa={setPessoa}
+                                        setProgressBarStage={setProgressBarStage}
+                                        setStage={setStage}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/anexos"
+                                element={<Fatura setProgressBarStage={setProgressBarStage} setStage={setStage} />}
+                            />
+                            <Route
+                                path="/contrato"
+                                element={<Contrato setProgressBarStage={setProgressBarStage} setStage={setStage} />}
+                            />
+                            <Route
+                                path="/financeiro"
+                                element={<ContatoFinanceiro setProgressBarStage={setProgressBarStage} setStage={setStage} />}
+                            />
+                            <Route path="/done" element={<Done />} />
+                        </SlideRoutes>
+                    </div>
+                </div>
+            </BackgroundContainer>
+        </div>
+    )
 }

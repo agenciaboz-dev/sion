@@ -20,20 +20,22 @@ export const PessoaFisica = ({ previousStage, nextStage }) => {
 
     const [cpfError, setCpfError] = useState(false)
 
-    const initial_inputs = client.value?.name ? client.value : {
-        name: '',
-        cpf: '',
-        rg: '',
-        birth: '',
-        email: '',
-        phone: '',
-        cep: '',
-        address: '',
-        district: '',
-        number: '',
-        city: '',
-        state: 'PR',
-    }
+    const initial_inputs = client.value?.name
+        ? client.value
+        : {
+              name: "",
+              cpf: "",
+              rg: "",
+              birth: "dd/mm/aa",
+              email: "",
+              phone: "",
+              cep: "",
+              address: "",
+              district: "",
+              number: "",
+              city: "",
+              state: "PR",
+          }
 
     const validationSchema = object({
         name: string().required(default_errors.required),
