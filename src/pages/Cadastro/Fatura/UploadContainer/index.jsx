@@ -48,8 +48,8 @@ export const UploadContainer = ({ title, identifier }) => {
                                 <input {...getInputProps()} />
                                 <div className="upload-container">
                                     <DropIcon />
-                                    <p style={{fontWeight: 'bold', color: fileError && COLORS.red}}>Clique para tirar uma foto</p>
-                                    <p>ou selecione um arquivo</p>
+                                    <p style={{fontWeight: 'bold', color: fileError && COLORS.red}}>Selecione um arquivo para fazer upload</p>
+                                    <p>ou arraste e solte aqui</p>
                                 </div> 
 
                             </CustomDashedBorder>
