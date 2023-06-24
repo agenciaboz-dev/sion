@@ -80,7 +80,7 @@
                 > div {
                     flex: 0.5;
                     flex-direction: column;
-                    gap: 1vw;
+                    gap: 0.5vw;
 
                     > p {
                         color: $graybutton-color;
@@ -239,9 +239,10 @@
                         justify-content: flex-start;
 
                         button {
-                            font-size: 1vw;
-                            padding: 1vw;
-                            flex: none
+                            font-size: 1.5vw;
+                            padding: 0.5vw 3vw;
+                            flex: none;
+                            width: 16vw;
                         }
     
                         p {
