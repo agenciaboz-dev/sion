@@ -23,18 +23,20 @@ $dash-spacing: 0.3vw;
         }
 
         .file-container {
-            flex-direction: column;
             align-items: center;
             gap: 1vw;
-
+            width: 100%;
+            justify-content: space-between;
+            
             > p {
-                width: 30vw;
+                font-size: 1vw;
                 text-align: center;
                 white-space: nowrap; 
                 overflow: hidden;
                 text-overflow: ellipsis;
+                max-width: 13vw;
             }
-
+            
             button {
                 background-color: white;
                 color: $text-color;
@@ -43,6 +45,7 @@ $dash-spacing: 0.3vw;
                 padding: 0.5vw;
                 font-size: 1vw;
                 font-weight: 400;
+                height: 3vw;
             }
         }
     }

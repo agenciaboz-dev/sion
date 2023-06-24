@@ -38,7 +38,7 @@ export const UploadedContainer = ({ files, setCurrentAttachments, identifier }) 
                 )}
                 </Dropzone>
                 <p>{file.name}</p>
-                <DeleteForeverIcon onClick={() => removeFile(file)} sx={{color: COLORS.red}} />
+                <DeleteForeverIcon onClick={() => removeFile(file)} sx={{color: COLORS.primary}} />
             </div>
         )
     }
