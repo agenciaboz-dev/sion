@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { Contract as ContractType } from "../../definitions/contract"
-import { Skeleton, SxProps, TextField } from "@mui/material"
+import { Skeleton, SxProps, TextField, Box, LinearProgress } from "@mui/material"
 import { useApi } from "../../hooks/useApi"
 import MaskedInput from "react-text-mask"
 import CircleIcon from "@mui/icons-material/Circle"
@@ -262,37 +262,32 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                         </h2>
                     </div>
 
-                    <div className="Contract-Page" ref={ref}>
+                    <Box className="Contract-Page" ref={ref} sx={{ alignItems: "center", gap: "1vw" }}>
                         {contract ? (
                             <>
                                 <Document
                                     file={`https://app.agenciaboz.com.br:4000/${contract.filename}`}
                                     onLoadSuccess={onLoadSuccess}
                                     onLoadError={(error) => console.error(error)}
-                                    className={"document-container"}
-                                    loading={
-                                        <div
-                                            style={{
-                                                width: "100vw",
-                                                height: "100vh",
-                                                display: "flex",
-                                                justifyContent: "center",
-                                                alignItems: "center",
-                                            }}
-                                        >
-                                            <MuiLoading color={"primary"} size={"15vw"} />
-                                        </div>
-                                    }
+                                    //className={"document-container"}
+                                    loading={<LinearProgress sx={{ width: width - width * 0.03 }} />}
                                 >
                                     {pages.map((page, index) => (
-                                        <Page key={index} pageNumber={page} renderForms={false} width={width} />
+                                        <Page
+                                            key={index}
+                                            pageNumber={page}
+                                            renderForms={false}
+                                            width={width - width * 0.03}
+                                            renderTextLayer={false}
+                                            renderAnnotationLayer={false}
+                                        />
                                     ))}
                                 </Document>
                             </>
                         ) : (
                             <MuiLoading color={"primary"} size={"15vw"} />
                         )}
-                    </div>
+                    </Box>
                 </>
             )}
         </div>

@@ -403,14 +403,28 @@
                     }
                 }
         }
-        .contract-page{
-            justify-content: center; 
-            flex-direction: column; 
-            gap: 2vw;
-            width: 50%;
-
-            .document-container{
+        .Contract-Page {
+            width: 72.5vw;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            padding: 1vw;
+        
+            .react-pdf__Document {
+                
                 flex-direction: column;
+                align-self: flex-start;
+
+                .react-pdf__Page__canvas{
+                    width:100%;
+                }
+            }
+            
+            .pdf-bottom {
+                position: sticky;
+                top: 0;
+                left: 0;
+                width: 100vw;
             }
         }
     }
