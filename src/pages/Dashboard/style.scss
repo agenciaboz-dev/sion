@@ -403,5 +403,15 @@
                     }
                 }
         }
+        .contract-page{
+            justify-content: center; 
+            flex-direction: column; 
+            gap: 2vw;
+            width: 50%;
+
+            .document-container{
+                flex-direction: column;
+            }
+        }
     }
 }
