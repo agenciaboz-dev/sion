@@ -2,28 +2,28 @@ export const useHeaderMenus = () => {
     const menus = [
         {
             id: 0,
-            title: 'Home',
-            name: 'home',
+            title: "Home",
+            name: "home",
         },
         {
             id: 1,
-            title: 'Como Funciona',
-            name: 'how',
+            title: "Como Funciona",
+            name: "how",
         },
         {
             id: 2,
-            title: 'Simulador',
-            name: 'simulator',
+            title: "Simulador",
+            name: "simulator",
         },
         {
             id: 4,
-            title: 'FAQ',
-            name: 'faq',
+            title: "Dúvidas",
+            name: "faq",
         },
         {
             id: 3,
-            title: 'Quem Somos',
-            name: 'about',
+            title: "Quem Somos",
+            name: "about",
         },
     ]
 
