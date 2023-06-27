@@ -3,12 +3,13 @@ import "./style.scss"
 import { useNavigate, useParams } from "react-router-dom"
 import { useApi } from "../../hooks/useApi"
 import { User } from "../../definitions/user"
-import { Button, CircularProgress, Skeleton, SxProps, TextField } from "@mui/material"
+import { Button, CircularProgress, Skeleton, SxProps, TextField, Box, MenuItem } from "@mui/material"
 import { Form, Formik } from "formik"
 import { useSnackbar } from "burgos-snackbar"
 import { useUser } from "../../hooks/useUser"
 import { useConfirmDialog } from "burgos-confirm"
 import { ContractContainer } from "./Contracts"
+import { useRoles } from "../../hooks/useRoles"
 
 interface SellerProps {}
 
@@ -20,6 +21,7 @@ export const Seller: React.FC<SellerProps> = ({}) => {
     const id = useParams().id
     const navigate = useNavigate()
     const api = useApi()
+    const roles = useRoles()
     const { snackbar } = useSnackbar()
     const { confirm } = useConfirmDialog()
     const { user } = useUser()
@@ -126,15 +128,33 @@ export const Seller: React.FC<SellerProps> = ({}) => {
                         </div>
                         <div className="data-container">
                             <TextField
-                                label={"Telefone"}
-                                value={seller.phone}
+                                label={"Função"}
+                                value={seller.role}
                                 InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
-                            />
-                            <TextField
-                                label={"CEP"}
-                                value={seller.cep}
-                                InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
-                            />
+                                select
+                            >
+                                {roles.map((role) => (
+                                    <MenuItem key={role.id} value={role.id}>
+                                        {role.name}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+
+                            <Box sx={{ gap: "1vw" }}>
+                                <TextField
+                                    label={"Telefone"}
+                                    value={seller.phone}
+                                    sx={{ width: "50%" }}
+                                    InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
+                                />
+                                <TextField
+                                    label={"CEP"}
+                                    value={seller.cep}
+                                    sx={{ width: "50%" }}
+                                    InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
+                                />
+                            </Box>
+
                             <TextField
                                 label={"Endereço"}
                                 value={seller.address}
