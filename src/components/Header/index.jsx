@@ -69,35 +69,17 @@ export const Header = ({ alternative, setAlternative }) => {
                 <div className="mobile-header">
                     <MenuButton className="menu-button" onClick={handleClick} />
                     <Menu id="basic-menu" anchorEl={anchorEl} open={!!anchorEl} onClose={handleClose}>
-                        <MenuItem onClick={() => handleClose()}>
-                            <AnchorLink href={"#home"} className="menu-title">
-                                Home
-                            </AnchorLink>
-                        </MenuItem>
-                        <MenuItem onClick={() => handleClose()}>
-                            <AnchorLink href={"#how"} className="menu-title">
-                                Como funciona
-                            </AnchorLink>
-                        </MenuItem>
-                        <MenuItem onClick={() => handleClose()}>
-                            <AnchorLink href={"#simulator"} className="menu-title">
-                                Simulador
-                            </AnchorLink>
-                        </MenuItem>
-                        <MenuItem onClick={() => handleClose()}>
-                            <AnchorLink href={"#faq"} className="menu-title">
-                                FAQ
-                            </AnchorLink>
-                        </MenuItem>
-                        <MenuItem onClick={() => handleClose()}>
-                            <AnchorLink href={"#about"} className="menu-title">
-                                Quem somos
-                            </AnchorLink>
-                        </MenuItem>
-                        <MenuItem className="mobile-client-button" onClick={() => navigate("/")}>
+                        {menus.map((menuItem) => (
+                            <MenuItem key={menuItem.id} onClick={handleClose}>
+                                <AnchorLink href={"#" + menuItem.name} className="menu-title">
+                                    {menuItem.title}
+                                </AnchorLink>
+                            </MenuItem>
+                        ))}
+                        {/* <MenuItem className="mobile-client-button" onClick={() => window.open("https://wa.me/554130283782", "_blank")}>
                             Sou cliente
-                        </MenuItem>
-                    </Menu>
+                        </MenuItem> */}
+                        </Menu>
                 </div>
             ) : (
                 <div className="menus-container" style={alternative ? alternative_style : null}>
