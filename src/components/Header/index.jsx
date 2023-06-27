@@ -111,7 +111,7 @@ export const Header = ({ alternative, setAlternative }) => {
                             </section>
                         )
                     })}
-                    <button className="login-button" onClick={() => (window.location.href = "https://wa.me/554130283782")}>
+                    <button className="login-button" onClick={() => window.open("https://wa.me/554130283782", "_blank")}>
                         Sou cliente
                     </button>
                 </div>
