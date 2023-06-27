@@ -15,6 +15,7 @@ export interface User {
     district?: string
     cep?: string
     adm: boolean
+    role: number
     ip: string
     contracts: Contract[]
     logs: never
