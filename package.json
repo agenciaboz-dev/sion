@@ -3,8 +3,10 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
+        "@caldwell619/react-kanban": "^0.0.8",
         "@emotion/react": "^11.10.6",
         "@emotion/styled": "^11.10.6",
+        "@hello-pangea/dnd": "^16.2.0",
         "@mui/icons-material": "^5.11.11",
         "@mui/material": "^5.11.14",
         "@ramonak/react-progress-bar": "^5.0.3",

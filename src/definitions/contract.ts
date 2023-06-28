@@ -1,7 +1,15 @@
 import { User } from "./user"
 
+interface Status {
+    id: number
+    name: string
+    contracts?: Contract[]
+}
+
 export interface Contract {
     id: number
+    status?: Status
+    statusId?: number
     unit: string
     date: string
     ip: string

@@ -68,6 +68,12 @@ export const useSidebarMenu = () => {
                     location: "/dashboard/validations",
                     adm: true,
                 },
+                {
+                    id: 21,
+                    name: "Quadros",
+                    location: "/dashboard/boards",
+                    adm: true,
+                },
             ],
         },
         {

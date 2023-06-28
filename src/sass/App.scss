@@ -82,7 +82,7 @@ section {
     display: contents;
 }
 
-div {
+div:not(.react-kanban-board div) {
     display: flex;
 }
 

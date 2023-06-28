@@ -60,6 +60,14 @@ export const useApi = () => {
                     .finally(() => defaultFinally(options.finallyCallback))
             },
         },
+        boards: {
+            get: (options: ApiOptions) => {
+                api.get("/boards")
+                    .then((response) => options.callback(response))
+                    .catch((error) => defaultError(error, options.errorCallback))
+                    .finally(() => defaultFinally(options.finallyCallback))
+            },
+        },
         contracts: {
             list: (options: ApiOptions) => {
                 api.get("/contracts")
