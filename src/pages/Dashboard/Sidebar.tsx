@@ -50,76 +50,83 @@ export const Sidebar: React.FC<SidebarProps> = ({ user }) => {
         navigate(submenu.location)
     }
 
+    const filteredMenus = menus.filter((menu) => {
+        if (user.role == 4 && menu) {
+            return menu.adm
+        } else if (user.role == 2 && menu) {
+            return menu.seller
+        } else {
+            return menu.site
+        }
+    })
     return (
         <div className="Sidebar-Component">
             <div className="list">
-                {menus
-                    .filter((menu) => (user.adm && menu ? menu.adm : menu.seller))
-                    .map((menu) => (
-                        <React.Fragment key={menu.id}>
-                            <IconButton
-                                edge="start"
-                                onClick={() => handleMenuClick(menu)}
-                                sx={{
-                                    alignSelf: "flex-start",
-                                    color: "white",
-                                    transition: "0.1s",
-                                    gap: "0.5vw",
-                                    "&:hover": { transform: "scale(1.1)" },
-                                }}
-                            >
-                                {[pathname, contractRegex.test(menu.location)].includes(menu.location) && (
-                                    <ArrowForwardIosOutlinedIcon
-                                        sx={{
-                                            border: "0.15vw solid white",
-                                            borderRadius: "50%",
-                                            padding: "0.1vw",
-                                            height: "1.2vw",
-                                            width: "1.2vw",
-                                        }}
-                                    />
-                                )}
-                                <p className={`link ${selectedMenu === menu.id ? "fontWeight: 600" : ""}`}>{menu.name}</p>
-                            </IconButton>
-                            {showSubmenu && selectedMenu === menu.id && menu.submenu && (
-                                <ul className="submenu">
-                                    {menu.submenu.map((submenuItem) => (
-                                        <li
-                                            key={submenuItem.id}
-                                            style={{ listStyle: "none" }}
-                                            className={`SubmenuItem ${selectedSubmenu === submenuItem.id ? "selected" : ""}`}
-                                        >
-                                            <IconButton
-                                                onClick={() => handleSubmenuClick(submenuItem)}
-                                                sx={{
-                                                    alignSelf: "flex-start",
-                                                    color: "white",
-                                                    transition: "0.1s",
-                                                    gap: "0.5vw",
-                                                    "&:hover": { transform: "scale(1.1)" },
-                                                }}
-                                            >
-                                                {[pathname, contractRegex.test(submenuItem.location)].includes(
-                                                    submenuItem.location
-                                                ) && (
-                                                    <ArrowForwardIosOutlinedIcon
-                                                        sx={{
-                                                            border: "0.15vw solid white",
-                                                            borderRadius: "50%",
-                                                            padding: "0.1vw",
-                                                            height: "1.2vw",
-                                                            width: "1.2vw",
-                                                        }}
-                                                    />
-                                                )}
-                                                <p className="submenu-link">{submenuItem.name}</p>
-                                            </IconButton>
-                                        </li>
-                                    ))}
-                                </ul>
+                {filteredMenus.map((menu) => (
+                    <React.Fragment key={menu.id}>
+                        <IconButton
+                            edge="start"
+                            onClick={() => handleMenuClick(menu)}
+                            sx={{
+                                alignSelf: "flex-start",
+                                color: "white",
+                                transition: "0.1s",
+                                gap: "0.5vw",
+                                "&:hover": { transform: "scale(1.1)" },
+                            }}
+                        >
+                            {[pathname, contractRegex.test(menu.location)].includes(menu.location) && (
+                                <ArrowForwardIosOutlinedIcon
+                                    sx={{
+                                        border: "0.15vw solid white",
+                                        borderRadius: "50%",
+                                        padding: "0.1vw",
+                                        height: "1.2vw",
+                                        width: "1.2vw",
+                                    }}
+                                />
                             )}
-                        </React.Fragment>
-                    ))}
+                            <p className={`link ${selectedMenu === menu.id ? "fontWeight: 600" : ""}`}>{menu.name}</p>
+                        </IconButton>
+                        {showSubmenu && selectedMenu === menu.id && menu.submenu && (
+                            <ul className="submenu">
+                                {menu.submenu.map((submenuItem) => (
+                                    <li
+                                        key={submenuItem.id}
+                                        style={{ listStyle: "none" }}
+                                        className={`SubmenuItem ${selectedSubmenu === submenuItem.id ? "selected" : ""}`}
+                                    >
+                                        <IconButton
+                                            onClick={() => handleSubmenuClick(submenuItem)}
+                                            sx={{
+                                                alignSelf: "flex-start",
+                                                color: "white",
+                                                transition: "0.1s",
+                                                gap: "0.5vw",
+                                                "&:hover": { transform: "scale(1.1)" },
+                                            }}
+                                        >
+                                            {[pathname, contractRegex.test(submenuItem.location)].includes(
+                                                submenuItem.location
+                                            ) && (
+                                                <ArrowForwardIosOutlinedIcon
+                                                    sx={{
+                                                        border: "0.15vw solid white",
+                                                        borderRadius: "50%",
+                                                        padding: "0.1vw",
+                                                        height: "1.2vw",
+                                                        width: "1.2vw",
+                                                    }}
+                                                />
+                                            )}
+                                            <p className="submenu-link">{submenuItem.name}</p>
+                                        </IconButton>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </React.Fragment>
+                ))}
             </div>
             <IconButton
                 sx={{ marginTop: "auto", color: "white", gap: "1vw", alignSelf: "flex-start", fontWeight: "normal" }}
