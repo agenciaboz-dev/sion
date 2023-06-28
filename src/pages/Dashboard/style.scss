@@ -49,9 +49,14 @@
             padding-left: 2vw;
             
             .link {
-                font-size: 1vw;
-                font-weight: normal;
+                font-size: 1.3vw;
+                font-weight: 500;
                 cursor: pointer;
+            }
+            .submenu-link{
+                font-size: 1.0vw ;
+                font-weight: 100;
+                
             }
         }
     }

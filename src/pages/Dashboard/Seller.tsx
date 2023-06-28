@@ -9,6 +9,8 @@ import { useSnackbar } from "burgos-snackbar"
 import { useUser } from "../../hooks/useUser"
 import { useConfirmDialog } from "burgos-confirm"
 import { ContractContainer } from "./Contracts"
+import { useCpfMask, useCepMask, usePhoneMask } from "burgos-masks"
+import MaskedInput from "react-text-mask"
 
 interface SellerProps {}
 
@@ -108,11 +110,21 @@ export const Seller: React.FC<SellerProps> = ({}) => {
                                 value={seller.name}
                                 InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
                             />
-                            <TextField
-                                label={"CPF"}
+                            <MaskedInput
+                                mask={useCpfMask}
+                                guide={false}
+                                name="cpf"
                                 value={seller.cpf}
-                                InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
+                                render={(ref, props) => (
+                                    <TextField
+                                        label={"CPF"}
+                                        inputRef={ref}
+                                        {...props}
+                                        InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
+                                    />
+                                )}
                             />
+
                             <TextField
                                 label={"E-mail"}
                                 value={seller.email}
@@ -125,15 +137,28 @@ export const Seller: React.FC<SellerProps> = ({}) => {
                             />
                         </div>
                         <div className="data-container">
-                            <TextField
-                                label={"Telefone"}
+                            <MaskedInput
+                                mask={usePhoneMask}
+                                guide={false}
+                                name="phone"
                                 value={seller.phone}
-                                InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
+                                render={(ref, props) => (
+                                    <TextField
+                                        inputRef={ref}
+                                        {...props}
+                                        label={"Telefone"}
+                                        InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
+                                    />
+                                )}
                             />
-                            <TextField
-                                label={"CEP"}
+                            <MaskedInput
+                                mask={useCepMask}
+                                guide={false}
+                                name="cep"
                                 value={seller.cep}
-                                InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
+                                render={(ref, props) => (
+                                    <TextField label={"CEP"} inputRef={ref} {...props} InputProps={{ readOnly: !user!.adm, sx: textfield_style }} />
+                                )}
                             />
                             <TextField
                                 label={"Endereço"}
