@@ -1,6 +1,5 @@
 import { Box } from "@mui/material"
 import React, { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
 import { ControlledBoard, OnDragEndNotification, moveCard, KanbanBoard, Card } from "@caldwell619/react-kanban"
 import { Card as CardContainer } from "../Validations/Card"
 import { Contract } from "../../../definitions/contract"
@@ -15,15 +14,29 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
     const [contracts, setContracts] = useState<Contract[]>([])
     const [loading, setLoading] = useState(true)
     const [boards, setBoards] = useState<Board[]>([])
+    const [currentBoard, setCurrentBoard] = useState<Board>()
     const [board, setBoard] = useState<KanbanBoard<Card>>()
 
     const handleCardMove: OnDragEndNotification<Card> = (_card, source, destination) => {
         setBoard((currentBoard) => {
             return moveCard(currentBoard, source, destination)
         })
+
+        const contract = contracts.filter((contract) => contract.id == _card.id)[0]
+        const columns: Column[] = JSON.parse(currentBoard!.columns)
+        const status = columns.filter((column) => column.id == destination?.toColumnId)[0].status
+
+        api.contracts.update.status({
+            data: {
+                id: contract.id,
+                status: status,
+            },
+            callback: () => {},
+        })
     }
 
     const selectBoard = (board: Board) => {
+        setCurrentBoard(board)
         const columns: Column[] = JSON.parse(board.columns)
 
         const initialBoard: KanbanBoard<Card> = {

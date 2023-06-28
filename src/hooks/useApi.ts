@@ -76,6 +76,12 @@ export const useApi = () => {
                     .finally(() => defaultFinally(options.finallyCallback))
             },
             update: {
+                status: (options: ApiOptions) => {
+                    api.post("/contracts/set_status", options.data)
+                        .then((response) => options.callback(response))
+                        .catch((error) => defaultError(error, options.errorCallback))
+                        .finally(() => defaultFinally(options.finallyCallback))
+                },
                 archive: (options: ApiOptions) => {
                     api.post("/contracts/archive", options.data)
                         .then((response) => options.callback(response))
