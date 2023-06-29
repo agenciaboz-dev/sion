@@ -1,21 +1,24 @@
-import { Box } from "@mui/material"
+import { Box, Button, TextField, MenuItem } from "@mui/material"
 import React, { useEffect, useState } from "react"
 import { ControlledBoard, OnDragEndNotification, moveCard, KanbanBoard, Card } from "@caldwell619/react-kanban"
 import { Card as CardContainer } from "../Validations/Card"
-import { Contract } from "../../../definitions/contract"
+import { Contract, Status } from "../../../definitions/contract"
 import { useApi } from "../../../hooks/useApi"
 import "./style.scss"
+import { useNavigate } from "react-router-dom"
 
 interface BoardsProps {}
 
 export const Boards: React.FC<BoardsProps> = ({}) => {
     const api = useApi()
+    const navigate = useNavigate()
 
     const [contracts, setContracts] = useState<Contract[]>([])
     const [loading, setLoading] = useState(true)
     const [boards, setBoards] = useState<Board[]>([])
     const [currentBoard, setCurrentBoard] = useState<Board>()
     const [board, setBoard] = useState<KanbanBoard<Card>>()
+    const [statuses, setStatuses] = useState<Status[]>([])
 
     const handleCardMove: OnDragEndNotification<Card> = (_card, source, destination) => {
         setBoard((currentBoard) => {
@@ -66,6 +69,11 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
             callback: (response: { data: Board[] }) => setBoards(response.data),
             finallyCallback: () => setLoading(false),
         })
+
+        api.contracts.status({
+            callback: (response: { data: Status[] }) => setStatuses(response.data),
+            finallyCallback: () => setLoading(false),
+        })
     }, [])
 
     return board ? (
@@ -89,7 +97,10 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
             )}
         </Box>
     ) : (
-        <Box>
+        <Box sx={{ gap: "1vw" }}>
+            <Button onClick={() => navigate("/dashboard/boards/new")} variant="contained">
+                Criar quadro
+            </Button>
             {!loading && (
                 <>
                     {boards.map((board) => (
