@@ -1,6 +1,14 @@
 import { Box, Button, TextField, MenuItem, IconButton, CircularProgress } from "@mui/material"
 import React, { useEffect, useState } from "react"
-import { ControlledBoard, OnDragEndNotification, moveCard, KanbanBoard, Card, changeColumn } from "@caldwell619/react-kanban"
+import {
+    ControlledBoard,
+    OnDragEndNotification,
+    moveCard,
+    KanbanBoard,
+    Card,
+    changeColumn,
+    Column as ColumnType,
+} from "@caldwell619/react-kanban"
 import { Card as CardContainer } from "../Validations/Card"
 import { Contract, Status } from "../../../definitions/contract"
 import { useApi } from "../../../hooks/useApi"
@@ -55,6 +63,10 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
         //     callback: (response: { data: Contract[] }) => setContracts(response.data),
         //     finallyCallback: () => setLoading(false),
         // })
+    }
+
+    const handleColumnMove: OnDragEndNotification<ColumnType<Card>> = (column, from, destination) => {
+        // logica para mover colunas
     }
 
     const handleCardMove: OnDragEndNotification<Card> = (_card, source, destination) => {
@@ -241,6 +253,7 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
 
                     <ControlledBoard
                         onCardDragEnd={handleCardMove}
+                        onColumnDragEnd={handleColumnMove}
                         disableColumnDrag={!editMode}
                         onCardRemove={({ board, card, column }) => {
                             console.log({ board, card, column })
