@@ -73,6 +73,12 @@ export const useApi = () => {
                     .catch((error) => defaultError(error, options.errorCallback))
                     .finally(() => defaultFinally(options.finallyCallback))
             },
+            update: (options: ApiOptions) => {
+                api.post("/boards/update", options.data)
+                    .then((response) => options.callback(response))
+                    .catch((error) => defaultError(error, options.errorCallback))
+                    .finally(() => defaultFinally(options.finallyCallback))
+            },
             delete: (options: ApiOptions) => {
                 api.post("/boards/delete", options.data)
                     .then((response) => options.callback(response))

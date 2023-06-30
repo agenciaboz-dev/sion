@@ -1,6 +1,6 @@
 import { Box, Button, TextField, MenuItem, IconButton, CircularProgress } from "@mui/material"
 import React, { useEffect, useState } from "react"
-import { ControlledBoard, OnDragEndNotification, moveCard, KanbanBoard, Card } from "@caldwell619/react-kanban"
+import { ControlledBoard, OnDragEndNotification, moveCard, KanbanBoard, Card, changeColumn } from "@caldwell619/react-kanban"
 import { Card as CardContainer } from "../Validations/Card"
 import { Contract, Status } from "../../../definitions/contract"
 import { useApi } from "../../../hooks/useApi"
@@ -14,6 +14,8 @@ import SettingsIcon from "@mui/icons-material/Settings"
 import DeleteIcon from "@mui/icons-material/Delete"
 import { useConfirmDialog } from "burgos-confirm"
 import { useSnackbar } from "burgos-snackbar"
+import ModeEditIcon from "@mui/icons-material/ModeEdit"
+import { useColors } from "../../../hooks/useColors"
 
 interface BoardsProps {}
 interface FormValues {
@@ -24,6 +26,7 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
     const api = useApi()
     const navigate = useNavigate()
     const initialValues = { search: "" }
+    const colors = useColors()
 
     const { confirm } = useConfirmDialog()
     const { snackbar } = useSnackbar()
@@ -37,6 +40,9 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
     const [isVisibleContainer, setIsVisibleContainer] = useState(true)
     const [statuses, setStatuses] = useState<Status[]>([])
     const [deleteloading, setDeleteloading] = useState(0)
+    const [editMode, setEditMode] = useState(false)
+    const [firstRender, setFirstRender] = useState(true)
+    const [editLoading, setEditLoading] = useState(false)
 
     const handleToggleVisibility = () => {
         setIsVisibleContainer((prevIsVisible) => !prevIsVisible)
@@ -65,6 +71,32 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
                 status: status,
             },
             callback: () => {},
+        })
+    }
+
+    const renameColumn = (id: number | string, event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>) => {
+        if (!editMode) return
+        const columns: Column[] = JSON.parse(currentBoard!.columns)
+        const column = columns.filter((item) => item.id == id)[0]
+
+        column.name = event.target.value
+        setCurrentBoard({
+            ...currentBoard!,
+            columns: JSON.stringify([...columns.filter((item) => item.id != column.id), column].sort((a, b) => a.id - b.id)),
+        })
+
+        setBoard({
+            columns: columns.map((column) => ({
+                id: column.id,
+                title: column.name,
+                cards: contracts
+                    .filter((contract) => contract.statusId == column.status)
+                    .map((contract) => ({
+                        id: contract.id,
+                        title: contract.name,
+                        description: contract.email,
+                    })),
+            })),
         })
     }
 
@@ -103,6 +135,22 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
             },
         })
     }
+
+    useEffect(() => {
+        if (!firstRender) {
+            if (!editMode) {
+                setEditLoading(true)
+
+                api.boards.update({
+                    data: currentBoard,
+                    callback: () => null,
+                    finallyCallback: () => setEditLoading(false),
+                })
+            }
+        } else {
+            setFirstRender(false)
+        }
+    }, [editMode])
 
     useEffect(() => {
         api.contracts.list({
@@ -166,42 +214,77 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
             </Formik>
 
             {!loading && (
-                <ControlledBoard
-                    onCardDragEnd={handleCardMove}
-                    disableColumnDrag
-                    onCardRemove={({ board, card, column }) => {
-                        console.log({ board, card, column })
-                    }}
-                    renderCard={(card, options) => (
-                        <Box sx={{ boxShadow: "0px 2px 15px rgba(0, 0, 0, 0.25)", width: "15vw", height: "13vw" }}>
-                            <CardContainer contract={contracts.filter((contract) => contract.id == card.id)[0]} />
-                        </Box>
-                    )}
-                    renderColumnHeader={(column) => (
-                        <Box>
-                            <div className="header-column" style={{ gap: "0.6vw" }}>
-                                <p className="title">{column.title}</p>
-                                <div className="buttons-container">
-                                    <Button
-                                        variant="contained"
-                                        className="button-quantity"
-                                        sx={{ minWidth: "0", fontSize: "0.8vw", borderColor: "#384974" }}
+                <Box sx={{ boxShadow: "none!important", padding: "0!important", flexDirection: "column" }}>
+                    <Box sx={{ alignItems: "center", gap: "1vw" }}>
+                        <p>{currentBoard?.name}</p>
+
+                        <IconButton
+                            color={editMode ? "primary" : "default"}
+                            onClick={() => setEditMode(!editMode)}
+                            disabled={editLoading}
+                        >
+                            {editLoading ? <CircularProgress size="1.5rem" /> : <ModeEditIcon />}
+                        </IconButton>
+                    </Box>
+
+                    <ControlledBoard
+                        onCardDragEnd={handleCardMove}
+                        disableColumnDrag={!editMode}
+                        onCardRemove={({ board, card, column }) => {
+                            console.log({ board, card, column })
+                        }}
+                        renderCard={(card, options) => (
+                            <Box sx={{ boxShadow: "0px 2px 15px rgba(0, 0, 0, 0.25)", width: "15vw", height: "13vw" }}>
+                                <CardContainer contract={contracts.filter((contract) => contract.id == card.id)[0]} />
+                            </Box>
+                        )}
+                        renderColumnHeader={(column) => (
+                            <Box sx={{ width: "15vw", flexDirection: "column" }}>
+                                {editMode && (
+                                    <Box
+                                        sx={{
+                                            textAlign: "center",
+                                            backgroundColor: colors.primary,
+                                            color: "white",
+                                            fontSize: "0.7vw",
+                                            padding: "0.5vw",
+                                            borderRadius: "0.5vw",
+                                            marginBottom: "0.5vw",
+                                        }}
                                     >
-                                        {column.cards.length}
-                                    </Button>
-                                    <IconButton className="iconButtonArchive" sx={{ width: "auto" }}>
-                                        {isIcon ? <ExpandMoreIcon /> : <ExpandLessIcon />}
-                                    </IconButton>
+                                        Arrastar
+                                    </Box>
+                                )}
+                                <div className="header-column" style={{ gap: "0.6vw" }}>
+                                    {editMode ? (
+                                        <TextField
+                                            defaultValue={column.title}
+                                            variant="standard"
+                                            onBlur={(event) => renameColumn(column.id, event)}
+                                        />
+                                    ) : (
+                                        <p className="title">{column.title}</p>
+                                    )}
+                                    <div className="buttons-container">
+                                        <Button
+                                            variant="contained"
+                                            className="button-quantity"
+                                            sx={{ minWidth: "0", fontSize: "0.8vw", borderColor: "#384974" }}
+                                        >
+                                            {column.cards.length}
+                                        </Button>
+                                        <IconButton className="iconButtonArchive" sx={{ width: "auto" }}>
+                                            {isIcon ? <ExpandMoreIcon /> : <ExpandLessIcon />}
+                                        </IconButton>
+                                    </div>
                                 </div>
-                            </div>
-                        </Box>
-                    )}
-                    allowRemoveColumn={false}
-                    onColumnRename={(info) => console.log(info)}
-                    allowRenameColumn={false}
-                >
-                    {board}
-                </ControlledBoard>
+                            </Box>
+                        )}
+                        allowRemoveColumn={true}
+                    >
+                        {board}
+                    </ControlledBoard>
+                </Box>
             )}
         </Box>
     ) : (
