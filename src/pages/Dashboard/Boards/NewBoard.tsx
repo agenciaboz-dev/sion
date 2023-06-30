@@ -6,6 +6,7 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight"
 import { Status } from "../../../definitions/contract"
 import { useApi } from "../../../hooks/useApi"
 import { useNavigate } from "react-router-dom"
+import AddIcon from "@mui/icons-material/Add"
 
 interface NewBoardProps {}
 
@@ -17,6 +18,9 @@ export const NewBoard: React.FC<NewBoardProps> = ({}) => {
     const [columns, setColumns] = useState<Column[]>([{ id: 1, name: "", status: 0 }])
     const [statuses, setStatuses] = useState<Status[]>([])
     const [loading, setLoading] = useState(false)
+    const [addingStatus, setAddingStatus] = useState(0)
+    const [newStatusName, setNewStatusName] = useState("")
+    const [loadingNewStatus, setLoadingNewStatus] = useState(false)
 
     const initialValues: Board = {
         id: 0,
@@ -66,11 +70,56 @@ export const NewBoard: React.FC<NewBoardProps> = ({}) => {
     }
 
     const handleColumnStatus = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, column: Column) => {
+        if (event.target.value == "-1") return
+
         setColumns([
             ...columns.filter((item) => item.id != column.id),
             { id: column.id, name: column.name, status: Number(event.target.value) },
         ])
     }
+
+    const addStatus = () => {
+        if (loadingNewStatus) return
+        if (!setNewStatusName) return
+
+        if (statuses.filter((status) => status.name == newStatusName).length > 0) return
+
+        setLoadingNewStatus(true)
+        api.boards.newStatus({
+            data: { name: newStatusName },
+            callback: (response: { data: Status }) => {
+                setStatuses([...statuses, response.data])
+                setAddingStatus(0)
+                setLoadingNewStatus(false)
+                setNewStatusName("")
+                setColumns([
+                    ...columns.filter((item) => item.id != addingStatus),
+                    { ...columns.filter((item) => item.id == addingStatus)[0], status: Number(response.data.id) },
+                ])
+            },
+        })
+    }
+
+    const handleNewStatusBlur = () => {
+        setAddingStatus(0)
+    }
+
+    useEffect(() => {
+        const onKeyDown = (event: KeyboardEvent) => {
+            if (addingStatus) {
+                if (event.key === "Enter") {
+                    event.preventDefault()
+                    addStatus()
+                }
+            }
+        }
+
+        window.addEventListener("keydown", onKeyDown)
+
+        return () => {
+            window.removeEventListener("keydown", onKeyDown)
+        }
+    }, [newStatusName])
 
     useEffect(() => {
         api.contracts.status({
@@ -129,24 +178,54 @@ export const NewBoard: React.FC<NewBoardProps> = ({}) => {
                                                             fullWidth
                                                             required
                                                         />
-                                                        <TextField
-                                                            placeholder="Situação"
-                                                            value={column.status}
-                                                            onChange={(event) => handleColumnStatus(event, column)}
-                                                            autoComplete="off"
-                                                            variant="standard"
-                                                            fullWidth
-                                                            select
-                                                        >
-                                                            <MenuItem disabled value={0}>
-                                                                Situação
-                                                            </MenuItem>
-                                                            {statuses.map((status) => (
-                                                                <MenuItem key={status.id} value={status.id}>
-                                                                    {status.name}
+                                                        {addingStatus == column.id ? (
+                                                            // ADD NEW STATUS INPUT
+                                                            <TextField
+                                                                placeholder="Nome da situação"
+                                                                value={newStatusName}
+                                                                onChange={(event) => setNewStatusName(event.target.value)}
+                                                                onBlur={handleNewStatusBlur}
+                                                                autoComplete="off"
+                                                                variant="standard"
+                                                                fullWidth
+                                                                required
+                                                                autoFocus
+                                                                disabled={loadingNewStatus}
+                                                                InputProps={{
+                                                                    endAdornment: loadingNewStatus ? (
+                                                                        <CircularProgress size={"1.5rem"} />
+                                                                    ) : (
+                                                                        <></>
+                                                                    ),
+                                                                }}
+                                                            />
+                                                        ) : (
+                                                            <TextField
+                                                                placeholder="Situação"
+                                                                value={column.status}
+                                                                onChange={(event) => handleColumnStatus(event, column)}
+                                                                autoComplete="off"
+                                                                variant="standard"
+                                                                fullWidth
+                                                                select
+                                                            >
+                                                                <MenuItem disabled value={0}>
+                                                                    Situação
                                                                 </MenuItem>
-                                                            ))}
-                                                        </TextField>
+                                                                {statuses.map((status) => (
+                                                                    <MenuItem key={status.id} value={status.id}>
+                                                                        {status.name}
+                                                                    </MenuItem>
+                                                                ))}
+                                                                <MenuItem
+                                                                    value={-1}
+                                                                    sx={{ justifyContent: "center" }}
+                                                                    onClick={() => setAddingStatus(column.id)}
+                                                                >
+                                                                    <AddIcon />
+                                                                </MenuItem>
+                                                            </TextField>
+                                                        )}
                                                     </Box>
                                                 ),
                                             }}
