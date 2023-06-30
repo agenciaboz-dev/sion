@@ -100,6 +100,10 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
         })
     }
 
+    const renameBoard = (event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>) => {
+        setCurrentBoard({ ...currentBoard!, name: event.target.value })
+    }
+
     const selectBoard = (board: Board) => {
         setCurrentBoard(board)
         const columns: Column[] = JSON.parse(board.columns)
@@ -216,7 +220,15 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
             {!loading && (
                 <Box sx={{ boxShadow: "none!important", padding: "0!important", flexDirection: "column" }}>
                     <Box sx={{ alignItems: "center", gap: "1vw" }}>
-                        <p>{currentBoard?.name}</p>
+                        {editMode ? (
+                            <TextField
+                                defaultValue={currentBoard!.name}
+                                variant="standard"
+                                onBlur={(event) => renameBoard(event)}
+                            />
+                        ) : (
+                            <p>{currentBoard?.name}</p>
+                        )}
 
                         <IconButton
                             color={editMode ? "primary" : "default"}
