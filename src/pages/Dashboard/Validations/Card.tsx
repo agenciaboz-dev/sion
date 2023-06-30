@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import "./style.scss"
 import { Contract } from "../../../definitions/contract"
 import { Button, IconButton } from "@mui/material"
@@ -49,7 +49,10 @@ export const Card: React.FC<CardProps> = ({ contract, setContract }) => {
                 <div className="info-container">
                     <div className="header-card">
                         <p className="uc">{contract.unit}</p>
-                        <p className="name"> {contract.name} </p>
+                        <p className="name" data-tip={contract.name}>
+                            {" "}
+                            {contract.name}{" "}
+                        </p>
                     </div>
                     <p className="attach">3 anexos</p>
                     <p className="description">Adicionar descrição</p>

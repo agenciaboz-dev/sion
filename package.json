@@ -42,6 +42,7 @@
         "react-slide-routes": "^3.0.3",
         "react-slider": "^2.0.4",
         "react-text-mask": "^5.5.0",
+        "react-tooltip": "^5.16.1",
         "react-use-measure": "^2.1.1",
         "sass": "^1.58.1",
         "text-mask-addons": "^3.8.0",

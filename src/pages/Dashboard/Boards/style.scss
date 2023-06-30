@@ -1,34 +1,107 @@
 @import '/src/sass/colors';
 
 // collumn list
-.react-kanban-board > div {
-    display: flex;
-    gap: 1vw;
-    width: 100%;
-    max-height: 80vh;
-    padding-bottom: 5vw;
-    overflow-y: auto;
+.react-kanban-board {
+    box-shadow: none !important;
+    
+    > div {
+        display: flex;
+        width: 100%;
+        max-height: 80vh;
+        padding-bottom: 5vw;
+        overflow-y: auto;
+        
 
-    // each column
-    .react-kanban-column {
-        display: flex!important;
-        flex-direction: column;
-        width: 30%;
-        gap: 2vw;
-        border: 1px solid $primary-color;
-        box-shadow: 2px 2px 5px $primary-color;
-        padding: 1vw;
-
-        // add button
-        .react-kanban-card-adder-button {
-            display: none
-        }
-
-        // cards list
-        > div {
-            display: flex;
+        // each column
+        .react-kanban-column {
+            display: flex!important;
             flex-direction: column;
+            width: 25%;
             gap: 1vw;
+            padding: 0.85vw;
+            
+            .react-kanban-column-header__spacer{
+                
+            }
+
+            span {
+                font-weight:500;
+                font-size: 1vw;
+                color: #333333;
+               
+            }
+            padding:2vw 0vw 0vw 0.8vw;
+            // add button
+            .react-kanban-card-adder-button {
+                display: none
+            }
+
+            // cards list
+            > div {
+                display: flex;
+                flex-direction: column;
+                gap: 1vw;
+               
+                
+                .info-container {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.9vw;
+                    justify-content:flex-end;
+                    
+                    .header-card{
+                        flex-direction: column;
+                        
+                    }
+                    
+                    .uc{
+                        color: #384974;
+                        font-size: 0.8vw;
+                    }
+                
+                    .name {
+                        font-weight: 600;
+                        color: #384974;
+                        font-size: 1vw;
+                        white-space:nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                
+                    .attach {
+                        font-weight: 300;
+                        color: #384974;
+                        font-size: 0.9vw;
+                    }
+                
+                    .description {
+                        color: #737373;
+                        font-weight: 300;
+                        font-size: 0.8vw;
+                    }
+                
+                    .button {
+                        padding: 0;
+                        font-weight: 400;
+                        font-size: 0.7vw;
+                        width: 9vw;
+                        height: 1.7vw;
+                        border-radius: 1vw;
+                    }
+            
+                    .buttons-container{
+                        width: 100%;
+                        align-items: center;
+                        justify-content: space-between;
+                    }
+                }
+                
+                .one-column{
+                    padding: 1.5vw;    
+                    width: 100%;
+                }
+            }
         }
     }
 }
