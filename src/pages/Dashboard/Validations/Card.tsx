@@ -7,7 +7,7 @@ import RotateLeftIcon from "@mui/icons-material/RotateLeft"
 import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined"
 import { useApi } from "../../../hooks/useApi"
 import { DragDropContext, Droppable, Draggable, DropResult } from "react-beautiful-dnd"
-
+import SettingsIcon from "@mui/icons-material/Settings"
 interface CardProps {
     contract: Contract
     setContract?: (updatedContract: Contract) => void
@@ -48,7 +48,17 @@ export const Card: React.FC<CardProps> = ({ contract, setContract }) => {
             <div className="one-column">
                 <div className="info-container">
                     <div className="header-card">
-                        <p className="uc">{contract.unit}</p>
+                        <div
+                            style={{
+                                display: "flex",
+                                flexDirection: "row",
+                                alignItems: "center",
+                                justifyContent: "space-between",
+                            }}
+                        >
+                            <p className="uc">{contract.unit}</p>
+                            <SettingsIcon sx={{ color: "#384974", width: "11%" }}></SettingsIcon>
+                        </div>
                         <p className="name" data-tip={contract.name}>
                             {" "}
                             {contract.name}{" "}

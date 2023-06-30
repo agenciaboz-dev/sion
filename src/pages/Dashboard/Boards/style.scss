@@ -3,7 +3,8 @@
 // collumn list
 .react-kanban-board {
     box-shadow: none !important;
-    
+    padding: 0!important;
+    padding-left:1vw ; 
     > div {
         display: flex;
         width: 100%;
@@ -11,7 +12,7 @@
         padding-bottom: 5vw;
         overflow-y: auto;
         
-
+        
         // each column
         .react-kanban-column {
             display: flex!important;
@@ -20,9 +21,6 @@
             gap: 1vw;
             padding: 0.85vw;
             
-            .react-kanban-column-header__spacer{
-                
-            }
 
             span {
                 font-weight:500;
@@ -35,13 +33,42 @@
             .react-kanban-card-adder-button {
                 display: none
             }
-
+            .header-column{
+                display: flex;
+                justify-content: space-between;
+                .buttons-container{
+                    position:relative;
+                    right: 1vw;
+                    gap: 0.7vw;
+                    justify-content: space-between;
+                    
+    
+                    .iconButton{
+                        padding: 0.1vw;
+                        position: relative;
+                        top: -0.2vw;
+                    }
+                    .iconButtonArchive{
+                    
+                        padding: 0vw;
+                        position: relative;
+                        top: -0.2vw;
+                    }
+                }
+              
+                .button-quantity{
+                    width: 1vw;
+                    height: 1vw;
+                    border-radius: 50%;
+                    padding: 0.85vw;  
+                }
+    
+            } 
             // cards list
             > div {
                 display: flex;
                 flex-direction: column;
-                gap: 1vw;
-               
+                gap: 2vw;
                 
                 .info-container {
                     width: 100%;
@@ -98,8 +125,10 @@
                 }
                 
                 .one-column{
-                    padding: 1.5vw;    
+                    padding: 1vw 1.5vw 1vw 1.5vw;    
                     width: 100%;
+                    background-color: white;
+
                 }
             }
         }

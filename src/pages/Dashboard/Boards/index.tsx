@@ -1,4 +1,4 @@
-import { Box, Button, TextField, MenuItem, IconButton } from "@mui/material"
+import { Box, Button, TextField, MenuItem, IconButton, Badge } from "@mui/material"
 import React, { useEffect, useState } from "react"
 import { ControlledBoard, OnDragEndNotification, moveCard, KanbanBoard, Card } from "@caldwell619/react-kanban"
 import { Card as CardContainer } from "../Validations/Card"
@@ -10,6 +10,7 @@ import { Formik, Form } from "formik"
 import { SearchField } from "../../../components/SearchField"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 import ExpandLessIcon from "@mui/icons-material/ExpandLess"
+import SettingsIcon from "@mui/icons-material/Settings"
 
 interface BoardsProps {}
 interface FormValues {
@@ -30,6 +31,10 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
     const [isIcon, setIcon] = useState(false)
     const [isVisibleContainer, setIsVisibleContainer] = useState(true)
 
+    const handleToggleVisibility = () => {
+        setIsVisibleContainer((prevIsVisible) => !prevIsVisible)
+    }
+
     const handleSearchSubmit = (values: FormValues) => {
         setLoading(true)
         console.log(values)
@@ -39,11 +44,6 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
             callback: (response: { data: Contract[] }) => setContracts(response.data),
             finallyCallback: () => setLoading(false),
         })
-    }
-
-    const handleClick = () => {
-        setIcon(!isIcon)
-        setIsVisibleContainer(!isVisibleContainer)
     }
 
     const handleCardMove: OnDragEndNotification<Card> = (_card, source, destination) => {
@@ -161,7 +161,21 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
                     )}
                     renderColumnHeader={(column) => (
                         <Box>
-                            <p>{column.title}</p>
+                            <div className="header-column" style={{ gap: "0.6vw" }}>
+                                <p className="title">{column.title}</p>
+                                <div className="buttons-container">
+                                    <Button
+                                        variant="contained"
+                                        className="button-quantity"
+                                        sx={{ minWidth: "0", fontSize: "0.8vw", borderColor: "#384974" }}
+                                    >
+                                        {column.cards.length}
+                                    </Button>
+                                    <IconButton className="iconButtonArchive" sx={{ width: "auto" }}>
+                                        {isIcon ? <ExpandMoreIcon /> : <ExpandLessIcon />}
+                                    </IconButton>
+                                </div>
+                            </div>
                         </Box>
                     )}
                     allowRemoveColumn={false}
