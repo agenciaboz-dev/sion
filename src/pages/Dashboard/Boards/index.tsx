@@ -27,7 +27,6 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
     const [boards, setBoards] = useState<Board[]>([])
     const [currentBoard, setCurrentBoard] = useState<Board>()
     const [board, setBoard] = useState<KanbanBoard<Card>>()
-    const [statuses, setStatuses] = useState<Status[]>([])
     const [isIcon, setIcon] = useState(false)
     const [isVisibleContainer, setIsVisibleContainer] = useState(true)
 
@@ -93,11 +92,6 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
 
         api.boards.get({
             callback: (response: { data: Board[] }) => setBoards(response.data),
-            finallyCallback: () => setLoading(false),
-        })
-
-        api.contracts.status({
-            callback: (response: { data: Status[] }) => setStatuses(response.data),
             finallyCallback: () => setLoading(false),
         })
     }, [])
@@ -188,7 +182,7 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
         </Box>
     ) : (
         <Box sx={{ gap: "1vw" }}>
-            <Button onClick={() => navigate("/dashboard/boards/new")} variant="contained">
+            <Button onClick={() => navigate("/dashboard/boards/new", { state: { boards } })} variant="contained">
                 Criar quadro
             </Button>
             {!loading && (

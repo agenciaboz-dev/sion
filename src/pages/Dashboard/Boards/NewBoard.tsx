@@ -2,10 +2,9 @@ import { Box, Button, CircularProgress, MenuItem, TextField } from "@mui/materia
 import { Form, Formik } from "formik"
 import React, { useEffect, useState } from "react"
 import { useRoles } from "../../../hooks/useRoles"
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight"
 import { Status } from "../../../definitions/contract"
 import { useApi } from "../../../hooks/useApi"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 import AddIcon from "@mui/icons-material/Add"
 
 interface NewBoardProps {}
@@ -14,6 +13,7 @@ export const NewBoard: React.FC<NewBoardProps> = ({}) => {
     const api = useApi()
     const roles = useRoles()
     const navigate = useNavigate()
+    const boards: Board[] = useLocation().state.boards
 
     const [columns, setColumns] = useState<Column[]>([{ id: 1, name: "", status: 0 }])
     const [statuses, setStatuses] = useState<Status[]>([])
@@ -27,6 +27,8 @@ export const NewBoard: React.FC<NewBoardProps> = ({}) => {
         name: "",
         access: 0,
         columns: "",
+        inputColumn: 1,
+        nextBoardId: 0,
     }
 
     const newColumn = () => {
@@ -235,6 +237,37 @@ export const NewBoard: React.FC<NewBoardProps> = ({}) => {
                             <Button variant="contained" onClick={newColumn}>
                                 +
                             </Button>
+                        </Box>
+                        <Box sx={{ gap: "1vw" }}>
+                            <TextField
+                                label="Coluna de entrada"
+                                name="inputColumn"
+                                value={values.inputColumn}
+                                onChange={handleChange}
+                                fullWidth
+                                select
+                            >
+                                {columns.map((column) => (
+                                    <MenuItem key={column.id} value={column.id}>
+                                        {column.name}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                            <TextField
+                                label="Próximo quadro"
+                                name="nextBoardId"
+                                value={values.nextBoardId}
+                                onChange={handleChange}
+                                fullWidth
+                                select
+                            >
+                                <MenuItem value={0}>Nenhum</MenuItem>
+                                {boards.map((board) => (
+                                    <MenuItem key={board.id} value={board.id}>
+                                        {board.name}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
                         </Box>
                         <Button variant="contained" type="submit">
                             {loading ? <CircularProgress size={"1.5rem"} color="secondary" /> : "Criar"}

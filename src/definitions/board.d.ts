@@ -3,6 +3,8 @@ declare interface Board {
     name: string
     access: number
     columns: string
+    inputColumn: number
+    nextBoardId?: number
 }
 
 declare interface Column {
