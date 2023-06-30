@@ -1,4 +1,4 @@
-import { Box, Button, TextField, MenuItem, IconButton, Badge } from "@mui/material"
+import { Box, Button, TextField, MenuItem, IconButton, CircularProgress } from "@mui/material"
 import React, { useEffect, useState } from "react"
 import { ControlledBoard, OnDragEndNotification, moveCard, KanbanBoard, Card } from "@caldwell619/react-kanban"
 import { Card as CardContainer } from "../Validations/Card"
@@ -11,6 +11,9 @@ import { SearchField } from "../../../components/SearchField"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 import ExpandLessIcon from "@mui/icons-material/ExpandLess"
 import SettingsIcon from "@mui/icons-material/Settings"
+import DeleteIcon from "@mui/icons-material/Delete"
+import { useConfirmDialog } from "burgos-confirm"
+import { useSnackbar } from "burgos-snackbar"
 
 interface BoardsProps {}
 interface FormValues {
@@ -22,6 +25,9 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
     const navigate = useNavigate()
     const initialValues = { search: "" }
 
+    const { confirm } = useConfirmDialog()
+    const { snackbar } = useSnackbar()
+
     const [contracts, setContracts] = useState<Contract[]>([])
     const [loading, setLoading] = useState(true)
     const [boards, setBoards] = useState<Board[]>([])
@@ -30,6 +36,7 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
     const [isIcon, setIcon] = useState(false)
     const [isVisibleContainer, setIsVisibleContainer] = useState(true)
     const [statuses, setStatuses] = useState<Status[]>([])
+    const [deleteloading, setDeleteloading] = useState(0)
 
     const handleToggleVisibility = () => {
         setIsVisibleContainer((prevIsVisible) => !prevIsVisible)
@@ -82,19 +89,18 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
         setBoard(initialBoard)
     }
 
-    const sendToNextBoard = () => {
-        const columns: Column[] = JSON.parse(currentBoard!.columns)
-        const status = columns[columns.length - 1].status
-
-        const sendContracts = contracts.filter((contract) => contract.status?.id == status)
-
-        setLoading(true)
-        api.boards.next({
-            data: { contracts: sendContracts },
-            callback: (response: { data: Contract[] }) => {
-                setContracts(response.data)
+    const deleteBoard = (board: Board) => {
+        confirm({
+            content: "Tem certeza que deseja deletar esse quadro?",
+            title: "Atenção",
+            onConfirm: () => {
+                setDeleteloading(board.id)
+                api.boards.delete({
+                    data: board,
+                    callback: () => setBoards(boards.filter((item) => item.id != board.id)),
+                    finallyCallback: () => setDeleteloading(0),
+                })
             },
-            finallyCallback: () => setLoading(false),
         })
     }
 
@@ -205,23 +211,58 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
             </Button>
             {!loading && (
                 <>
-                    <Box
-                        onClick={() =>
-                            selectBoard({
-                                access: 1,
-                                id: -1,
-                                name: "Quadrão",
-                                columns: JSON.stringify(
-                                    statuses.map((status) => ({ id: status.id, name: status.name, status: status.id }))
-                                ),
-                            })
-                        }
-                    >
-                        <p>Quadrão</p>
+                    <Box sx={{ padding: "0!important", boxShadow: "none!important" }}>
+                        <MenuItem
+                            sx={{
+                                justifyContent: "space-between",
+                                alignItems: "center",
+                                boxShadow: "0px 2px 15px rgba(0, 0, 0, 0.25);",
+                                width: "100%",
+                                padding: "1vw",
+                            }}
+                            onClick={() =>
+                                selectBoard({
+                                    access: 1,
+                                    id: -1,
+                                    name: "Quadrão",
+                                    columns: JSON.stringify(
+                                        statuses.map((status) => ({
+                                            id: status.id,
+                                            name: status.name,
+                                            status: status.id,
+                                        }))
+                                    ),
+                                })
+                            }
+                        >
+                            <p style={{ cursor: "pointer" }}>Quadrão</p>
+                        </MenuItem>
+                        <IconButton color="error" disabled>
+                            <DeleteIcon />
+                        </IconButton>
                     </Box>
                     {boards.map((board) => (
-                        <Box key={board.id} onClick={() => selectBoard(board)}>
-                            <p>{board.name}</p>
+                        <Box sx={{ padding: "0!important", boxShadow: "none!important" }}>
+                            <MenuItem
+                                key={board.id}
+                                sx={{
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                    boxShadow: "0px 2px 15px rgba(0, 0, 0, 0.25);",
+                                    width: "100%",
+                                    padding: "1vw",
+                                }}
+                                onClick={() => selectBoard(board)}
+                            >
+                                <p style={{ cursor: "pointer" }}>{board.name}</p>
+                            </MenuItem>
+                            <IconButton color="error" onClick={() => deleteBoard(board)}>
+                                {deleteloading == board.id ? (
+                                    <CircularProgress size={"1.5rem"} color="error" />
+                                ) : (
+                                    <DeleteIcon />
+                                )}
+                            </IconButton>
                         </Box>
                     ))}
                 </>
