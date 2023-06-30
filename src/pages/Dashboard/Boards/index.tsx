@@ -29,20 +29,19 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
     const [board, setBoard] = useState<KanbanBoard<Card>>()
     const [isIcon, setIcon] = useState(false)
     const [isVisibleContainer, setIsVisibleContainer] = useState(true)
+    const [statuses, setStatuses] = useState<Status[]>([])
 
     const handleToggleVisibility = () => {
         setIsVisibleContainer((prevIsVisible) => !prevIsVisible)
     }
 
     const handleSearchSubmit = (values: FormValues) => {
-        setLoading(true)
-        console.log(values)
-
-        api.contracts.find.name({
-            data: values,
-            callback: (response: { data: Contract[] }) => setContracts(response.data),
-            finallyCallback: () => setLoading(false),
-        })
+        // setLoading(true)
+        // api.contracts.find.name({
+        //     data: values,
+        //     callback: (response: { data: Contract[] }) => setContracts(response.data),
+        //     finallyCallback: () => setLoading(false),
+        // })
     }
 
     const handleCardMove: OnDragEndNotification<Card> = (_card, source, destination) => {
@@ -82,7 +81,22 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
 
         setBoard(initialBoard)
     }
-    console.log(board?.columns)
+
+    const sendToNextBoard = () => {
+        const columns: Column[] = JSON.parse(currentBoard!.columns)
+        const status = columns[columns.length - 1].status
+
+        const sendContracts = contracts.filter((contract) => contract.status?.id == status)
+
+        setLoading(true)
+        api.boards.next({
+            data: { contracts: sendContracts },
+            callback: (response: { data: Contract[] }) => {
+                setContracts(response.data)
+            },
+            finallyCallback: () => setLoading(false),
+        })
+    }
 
     useEffect(() => {
         api.contracts.list({
@@ -93,6 +107,10 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
         api.boards.get({
             callback: (response: { data: Board[] }) => setBoards(response.data),
             finallyCallback: () => setLoading(false),
+        })
+
+        api.contracts.status({
+            callback: (response: { data: Status[] }) => setStatuses(response.data),
         })
     }, [])
 
@@ -187,6 +205,20 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
             </Button>
             {!loading && (
                 <>
+                    <Box
+                        onClick={() =>
+                            selectBoard({
+                                access: 1,
+                                id: -1,
+                                name: "Quadrão",
+                                columns: JSON.stringify(
+                                    statuses.map((status) => ({ id: status.id, name: status.name, status: status.id }))
+                                ),
+                            })
+                        }
+                    >
+                        <p>Quadrão</p>
+                    </Box>
                     {boards.map((board) => (
                         <Box key={board.id} onClick={() => selectBoard(board)}>
                             <p>{board.name}</p>

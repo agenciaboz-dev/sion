@@ -27,8 +27,6 @@ export const NewBoard: React.FC<NewBoardProps> = ({}) => {
         name: "",
         access: 0,
         columns: "",
-        inputColumn: 1,
-        nextBoardId: 0,
     }
 
     const newColumn = () => {
@@ -237,37 +235,6 @@ export const NewBoard: React.FC<NewBoardProps> = ({}) => {
                             <Button variant="contained" onClick={newColumn}>
                                 +
                             </Button>
-                        </Box>
-                        <Box sx={{ gap: "1vw" }}>
-                            <TextField
-                                label="Coluna de entrada"
-                                name="inputColumn"
-                                value={values.inputColumn}
-                                onChange={handleChange}
-                                fullWidth
-                                select
-                            >
-                                {columns.map((column) => (
-                                    <MenuItem key={column.id} value={column.id}>
-                                        {column.name}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
-                            <TextField
-                                label="Próximo quadro"
-                                name="nextBoardId"
-                                value={values.nextBoardId}
-                                onChange={handleChange}
-                                fullWidth
-                                select
-                            >
-                                <MenuItem value={0}>Nenhum</MenuItem>
-                                {boards.map((board) => (
-                                    <MenuItem key={board.id} value={board.id}>
-                                        {board.name}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
                         </Box>
                         <Button variant="contained" type="submit">
                             {loading ? <CircularProgress size={"1.5rem"} color="secondary" /> : "Criar"}

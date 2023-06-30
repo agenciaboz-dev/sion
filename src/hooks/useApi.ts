@@ -73,6 +73,12 @@ export const useApi = () => {
                     .catch((error) => defaultError(error, options.errorCallback))
                     .finally(() => defaultFinally(options.finallyCallback))
             },
+            next: (options: ApiOptions) => {
+                api.post("/boards/next", options.data)
+                    .then((response) => options.callback(response))
+                    .catch((error) => defaultError(error, options.errorCallback))
+                    .finally(() => defaultFinally(options.finallyCallback))
+            },
             newStatus: (options: ApiOptions) => {
                 api.post("/boards/status", options.data)
                     .then((response) => options.callback(response))
