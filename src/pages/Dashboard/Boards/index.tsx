@@ -159,6 +159,11 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
                             <CardContainer contract={contracts.filter((contract) => contract.id == card.id)[0]} />
                         </Box>
                     )}
+                    renderColumnHeader={(column) => (
+                        <Box>
+                            <p>{column.title}</p>
+                        </Box>
+                    )}
                     allowRemoveColumn={false}
                     onColumnRename={(info) => console.log(info)}
                     allowRenameColumn={false}
