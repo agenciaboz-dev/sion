@@ -272,6 +272,7 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
                         onCardDragEnd={handleCardMove}
                         onColumnDragEnd={handleColumnMove}
                         disableColumnDrag={!editMode}
+                        disableCardDrag={editMode}
                         onCardRemove={({ board, card, column }) => {
                             console.log({ board, card, column })
                         }}
@@ -300,7 +301,14 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
                                         Arrastar
                                     </Box>
                                 )}
-                                <div className="header-column" style={{ gap: "0.6vw" }}>
+                                <Box
+                                    sx={{
+                                        justifyContent: "space-between",
+                                        display: "flex",
+                                        alignItems: "center",
+                                        gap: "1vw",
+                                    }}
+                                >
                                     {editMode ? (
                                         <TextField
                                             defaultValue={column.title}
@@ -310,19 +318,28 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
                                     ) : (
                                         <p className="title">{column.title}</p>
                                     )}
-                                    <div className="buttons-container">
+                                    <Box>
                                         <Button
                                             variant="contained"
-                                            className="button-quantity"
-                                            sx={{ minWidth: "0", fontSize: "0.8vw", borderColor: "#384974" }}
+                                            sx={{
+                                                minWidth: "0",
+                                                fontSize: "0.8vw",
+                                                borderRadius: "100%",
+                                                width: "2vw",
+                                                height: "2vw",
+                                            }}
                                         >
                                             {column.cards.length}
                                         </Button>
-                                        <IconButton className="iconButtonArchive" sx={{ width: "auto" }}>
-                                            {isIcon ? <ExpandMoreIcon /> : <ExpandLessIcon />}
-                                        </IconButton>
-                                    </div>
-                                </div>
+                                        {editMode ? (
+                                            <IconButton color="error">
+                                                <DeleteIcon />
+                                            </IconButton>
+                                        ) : (
+                                            <IconButton>{isIcon ? <ExpandMoreIcon /> : <ExpandLessIcon />}</IconButton>
+                                        )}
+                                    </Box>
+                                </Box>
                             </Box>
                         )}
                         allowRemoveColumn={true}
