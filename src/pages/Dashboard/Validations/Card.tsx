@@ -11,9 +11,11 @@ import SettingsIcon from "@mui/icons-material/Settings"
 interface CardProps {
     contract: Contract
     setContract?: (updatedContract: Contract) => void
+    menu?: string
+    column: string
 }
 
-export const Card: React.FC<CardProps> = ({ contract, setContract }) => {
+export const Card: React.FC<CardProps> = ({ contract, setContract, menu, column }) => {
     const navigate = useNavigate()
     const api = useApi()
 
@@ -51,25 +53,38 @@ export const Card: React.FC<CardProps> = ({ contract, setContract }) => {
                         <div
                             style={{
                                 display: "flex",
-                                flexDirection: "row",
                                 alignItems: "center",
-                                justifyContent: "space-between",
+                                justifyContent: "flex-start",
+                                gap: "0.6vw",
                             }}
                         >
-                            <p className="uc">{contract.unit}</p>
                             <SettingsIcon sx={{ color: "#384974", width: "11%" }}></SettingsIcon>
+                            <Button variant="contained" className="button">
+                                {column}
+                            </Button>
                         </div>
-                        <p className="name" data-tip={contract.name}>
-                            {" "}
-                            {contract.name}{" "}
-                        </p>
+                        <div style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "0.5vw" }}>
+                            <p className="uc">[{contract.unit}]</p>
+                            <p className="uc">[{contract.supplier}]</p>
+                        </div>
                     </div>
-                    <p className="attach">3 anexos</p>
-                    <p className="description">Adicionar descrição</p>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "0.1vw" }}>
+                        <p className="name">{contract.name}</p>
+                        <p className="attach">500 KW</p>
+                        <p className="description">Adicionar comentário</p>
+                    </div>
+                    <hr style={{ width: "75%" }} />
+                    <p className="name" style={{ fontSize: "0.8vw" }}>
+                        {contract.seller.name}
+                    </p>
+                    <p className="description" style={{ display: "flex", fontSize: "0.6vw", justifyContent: "flex-end" }}>
+                        Prazo até: {new Date(contract.date).toLocaleDateString()}
+                    </p>
+
                     <div className="buttons-container">
-                        <Button variant="contained" className="button" onClick={handleSellerClick}>
+                        {/*<Button variant="contained" className="button" onClick={handleSellerClick}>
                             {contract.seller.name}
-                        </Button>
+                        </Button>*/}
                         {(contract.active || contract.reproved) && (
                             <>
                                 {contract.archived ? (

@@ -9,6 +9,7 @@ import {
     changeColumn,
     Column as ColumnType,
 } from "@caldwell619/react-kanban"
+
 import { Card as CardContainer } from "../Validations/Card"
 import { Contract, Status } from "../../../definitions/contract"
 import { useApi } from "../../../hooks/useApi"
@@ -26,6 +27,10 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit"
 import { useColors } from "../../../hooks/useColors"
 
 interface BoardsProps {}
+interface CardBag {
+    removeCard?: () => void
+    dragging: boolean
+}
 interface FormValues {
     search: string
 }
@@ -258,9 +263,12 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
                         onCardRemove={({ board, card, column }) => {
                             console.log({ board, card, column })
                         }}
-                        renderCard={(card, options) => (
-                            <Box sx={{ boxShadow: "0px 2px 15px rgba(0, 0, 0, 0.25)", width: "15vw", height: "13vw" }}>
-                                <CardContainer contract={contracts.filter((contract) => contract.id == card.id)[0]} />
+                        renderCard={(card, option) => (
+                            <Box sx={{ boxShadow: "0px 2px 15px rgba(0, 0, 0, 0.25)", width: "15vw", height: "13.3vw" }}>
+                                <CardContainer
+                                    contract={contracts.filter((contract) => contract.id == card.id)[0]}
+                                    column="Comercial (Correção)"
+                                />
                             </Box>
                         )}
                         renderColumnHeader={(column) => (

@@ -43,7 +43,7 @@ export const Column: React.FC<ColumnProps> = ({
         return contracts.length > 0 ? (
             <>
                 {contracts.map((contract) => (
-                    <Card key={contract.id} contract={contract} setContract={setContract} />
+                    <Card key={contract.id} contract={contract} setContract={setContract} column="" />
                 ))}
             </>
         ) : (
@@ -152,6 +152,7 @@ export const Column: React.FC<ColumnProps> = ({
                                                             key={contract.id}
                                                             contract={contract}
                                                             setContract={setContract}
+                                                            column=""
                                                         />
                                                     </div>
                                                 )}
@@ -230,6 +231,7 @@ export const Column: React.FC<ColumnProps> = ({
                                                                 key={contract.id}
                                                                 contract={contract}
                                                                 setContract={setContract}
+                                                                column=""
                                                             />
                                                         </div>
                                                     )}
