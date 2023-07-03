@@ -16,6 +16,7 @@ import { Images } from "./Images"
 import { Validations } from "./Validations"
 import { Boards } from "./Boards"
 import { NewBoard } from "./Boards/NewBoard"
+import { StatusManager } from "./Boards/StatusManager"
 
 interface DashboardProps {}
 
@@ -49,6 +50,7 @@ export const Dashboard: React.FC<DashboardProps> = ({}) => {
                     <Route path="validations/" element={<Validations />} />
                     <Route path="boards" element={<Boards />} />
                     <Route path="boards/new" element={<NewBoard />} />
+                    <Route path="boards/status" element={<StatusManager />} />
                 </Routes>
             </div>
         </div>

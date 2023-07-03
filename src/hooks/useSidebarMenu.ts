@@ -53,6 +53,12 @@ export const useSidebarMenu = () => {
                     location: "/dashboard/boards/new",
                     adm: true,
                 },
+                {
+                    id: 22,
+                    name: "Situações",
+                    location: "/dashboard/boards/status",
+                    adm: true,
+                },
             ],
         },
         {
