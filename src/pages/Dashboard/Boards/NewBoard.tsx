@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react"
 import { useRoles } from "../../../hooks/useRoles"
 import { Status } from "../../../definitions/contract"
 import { useApi } from "../../../hooks/useApi"
-import { useNavigate, useLocation } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import AddIcon from "@mui/icons-material/Add"
 
 interface NewBoardProps {}
@@ -13,7 +13,6 @@ export const NewBoard: React.FC<NewBoardProps> = ({}) => {
     const api = useApi()
     const roles = useRoles()
     const navigate = useNavigate()
-    const boards: Board[] = useLocation().state.boards
 
     const [columns, setColumns] = useState<Column[]>([{ id: 1, name: "", status: 0 }])
     const [statuses, setStatuses] = useState<Status[]>([])

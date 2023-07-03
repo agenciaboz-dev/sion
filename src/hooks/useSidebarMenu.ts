@@ -7,7 +7,6 @@ export const useSidebarMenu = () => {
             name: "Painel",
             location: "",
             adm: true,
-            seller: true,
             submenu: [
                 {
                     id: 5,
@@ -23,6 +22,11 @@ export const useSidebarMenu = () => {
                     id: 7,
                     name: "Cadastrar UC",
                     location: "/dashboard/register_uc",
+                },
+                {
+                    id: 21,
+                    name: "Quadros",
+                    location: "/dashboard/boards",
                 },
             ],
         },
@@ -45,8 +49,8 @@ export const useSidebarMenu = () => {
                 },
                 {
                     id: 10,
-                    name: "Novo Kanban",
-                    location: "/dashboard/new_kanban",
+                    name: "Novo quadro",
+                    location: "/dashboard/boards/new",
                     adm: true,
                 },
             ],
@@ -62,18 +66,6 @@ export const useSidebarMenu = () => {
                     name: "Clientes",
                     location: "/dashboard/contracts",
                 },
-                {
-                    id: 12,
-                    name: "Validações",
-                    location: "/dashboard/validations",
-                    adm: true,
-                },
-                {
-                    id: 21,
-                    name: "Quadros",
-                    location: "/dashboard/boards",
-                    adm: true,
-                },
             ],
         },
         {
@@ -87,30 +79,6 @@ export const useSidebarMenu = () => {
                     name: "Clientes",
                     location: "/dashboard/approved",
                 },
-                {
-                    id: 14,
-                    name: "Validações",
-                    location: "/dashboard/validations",
-                    adm: true,
-                },
-                {
-                    id: 15,
-                    name: "Onboard",
-                    location: "/dashboard/onboard",
-                    adm: true,
-                },
-                {
-                    id: 16,
-                    name: "Atendimento",
-                    location: "/dashboard/service",
-                    adm: true,
-                },
-                {
-                    id: 17,
-                    name: "Chamados",
-                    location: "/dashboard/called",
-                    adm: true,
-                },
             ],
         },
         {
@@ -122,19 +90,19 @@ export const useSidebarMenu = () => {
             submenu: [
                 {
                     id: 18,
-                    name: "Textos Site",
+                    name: "Textos",
                     location: "/dashboard/texts",
                     adm: true,
                 },
                 {
                     id: 19,
-                    name: "Imagens Site",
+                    name: "Imagens",
                     location: "/dashboard/images",
                     adm: true,
                 },
                 {
                     id: 20,
-                    name: "Tarifas de Energia",
+                    name: "Tarifa de Energia",
                     location: "/dashboard/rate",
                     adm: true,
                 },

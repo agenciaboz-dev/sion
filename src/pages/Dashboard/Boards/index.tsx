@@ -409,9 +409,6 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
         </Box>
     ) : (
         <Box sx={{ overflow: "hidden", gap: "1vw" }}>
-            <Button onClick={() => navigate("/dashboard/boards/new", { state: { boards } })} variant="contained">
-                Criar quadro
-            </Button>
             {!loading && (
                 <>
                     <Box sx={{ padding: "0!important", boxShadow: "none!important" }}>

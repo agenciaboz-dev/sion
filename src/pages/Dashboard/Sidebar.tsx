@@ -36,8 +36,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ user }) => {
             setShowSubmenu(true)
         }
         setSelectedSubmenu(null)
-
-        navigate(menu.location)
     }
 
     const handleSubmenuClick = (submenu: SidebarMenu) => {
