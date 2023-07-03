@@ -27,6 +27,7 @@ import { useSnackbar } from "burgos-snackbar"
 import ModeEditIcon from "@mui/icons-material/ModeEdit"
 import { useColors } from "../../../hooks/useColors"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
+import { ColumnAdder } from "./ColumnAdder"
 
 interface BoardsProps {}
 interface CardBag {
@@ -198,6 +199,26 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
         })
     }
 
+    const addColumn = (column: Column) => {
+        const columns: Column[] = JSON.parse(currentBoard!.columns)
+        const newColumns = [...columns, { ...column, id: columns.length + 1 }].sort((a, b) => a.id - b.id)
+
+        setCurrentBoard({ ...currentBoard!, columns: JSON.stringify(newColumns) })
+        setBoard({
+            columns: newColumns.map((column) => ({
+                id: column.id,
+                title: column.name,
+                cards: contracts
+                    .filter((contract) => contract.statusId == column.status)
+                    .map((contract) => ({
+                        id: contract.id,
+                        title: contract.name,
+                        description: contract.email,
+                    })),
+            })),
+        })
+    }
+
     useEffect(() => {
         if (!firstRender) {
             if (!editMode) {
@@ -322,6 +343,7 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
                                 {editMode && (
                                     <Box
                                         sx={{
+                                            position: "relative",
                                             textAlign: "center",
                                             backgroundColor: colors.primary,
                                             color: "white",
@@ -332,6 +354,7 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
                                         }}
                                     >
                                         Arrastar
+                                        {column.id == board.columns.length && <ColumnAdder addColumn={addColumn} />}
                                     </Box>
                                 )}
                                 <Box
@@ -378,7 +401,6 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
                         )}
                         allowRemoveColumn={true}
                         allowAddColumn={editMode}
-                        renderColumnAdder={() => <p>oi</p>}
                     >
                         {board}
                     </ControlledBoard>
