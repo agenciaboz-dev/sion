@@ -169,6 +169,34 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
         })
     }
 
+    const deleteColumn = (id: number | string) => {
+        confirm({
+            title: "Atenção",
+            content: "Tem certeza que deseja deletar essa coluna?",
+            onConfirm: () => {
+                const columns: Column[] = JSON.parse(currentBoard!.columns)
+                const column = columns.filter((item) => item.id == id)[0]
+
+                const newColumns = columns.filter((item) => item.id != column.id)
+
+                setCurrentBoard({ ...currentBoard!, columns: JSON.stringify(newColumns) })
+                setBoard({
+                    columns: newColumns.map((column) => ({
+                        id: column.id,
+                        title: column.name,
+                        cards: contracts
+                            .filter((contract) => contract.statusId == column.status)
+                            .map((contract) => ({
+                                id: contract.id,
+                                title: contract.name,
+                                description: contract.email,
+                            })),
+                    })),
+                })
+            },
+        })
+    }
+
     useEffect(() => {
         if (!firstRender) {
             if (!editMode) {
@@ -332,7 +360,7 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
                                             {column.cards.length}
                                         </Button>
                                         {editMode ? (
-                                            <IconButton color="error">
+                                            <IconButton color="error" onClick={() => deleteColumn(column.id)}>
                                                 <DeleteIcon />
                                             </IconButton>
                                         ) : (
