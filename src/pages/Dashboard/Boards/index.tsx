@@ -287,13 +287,15 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
                             <p>{currentBoard?.name}</p>
                         )}
 
-                        <IconButton
-                            color={editMode ? "primary" : "default"}
-                            onClick={() => setEditMode(!editMode)}
-                            disabled={editLoading}
-                        >
-                            {editLoading ? <CircularProgress size="1.5rem" /> : <ModeEditIcon />}
-                        </IconButton>
+                        {currentBoard!.id > 0 && (
+                            <IconButton
+                                color={editMode ? "primary" : "default"}
+                                onClick={() => setEditMode(!editMode)}
+                                disabled={editLoading}
+                            >
+                                {editLoading ? <CircularProgress size="1.5rem" /> : <ModeEditIcon />}
+                            </IconButton>
+                        )}
                     </Box>
 
                     <ControlledBoard
