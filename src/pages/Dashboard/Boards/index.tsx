@@ -342,16 +342,7 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
                                         gap: "1vw",
                                     }}
                                 >
-                                    {editMode ? (
-                                        <TextField
-                                            defaultValue={column.title}
-                                            variant="standard"
-                                            onBlur={(event) => renameColumn(column.id, event)}
-                                        />
-                                    ) : (
-                                        <p className="title">{column.title}</p>
-                                    )}
-                                    <Box>
+                                    <Box sx={{ gap: "1vw", display: "flex", alignItems: "center" }}>
                                         <Button
                                             variant="contained"
                                             sx={{
@@ -365,17 +356,29 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
                                             {column.cards.length}
                                         </Button>
                                         {editMode ? (
-                                            <IconButton color="error" onClick={() => deleteColumn(column.id)}>
-                                                <DeleteIcon />
-                                            </IconButton>
+                                            <TextField
+                                                defaultValue={column.title}
+                                                variant="standard"
+                                                onBlur={(event) => renameColumn(column.id, event)}
+                                            />
                                         ) : (
-                                            <IconButton>{isIcon ? <ExpandMoreIcon /> : <ExpandLessIcon />}</IconButton>
+                                            <p className="title">{column.title}</p>
                                         )}
                                     </Box>
+
+                                    {editMode ? (
+                                        <IconButton color="error" onClick={() => deleteColumn(column.id)}>
+                                            <DeleteIcon />
+                                        </IconButton>
+                                    ) : (
+                                        <IconButton>{isIcon ? <ExpandMoreIcon /> : <ExpandLessIcon />}</IconButton>
+                                    )}
                                 </Box>
                             </Box>
                         )}
                         allowRemoveColumn={true}
+                        allowAddColumn={editMode}
+                        renderColumnAdder={() => <p>oi</p>}
                     >
                         {board}
                     </ControlledBoard>
