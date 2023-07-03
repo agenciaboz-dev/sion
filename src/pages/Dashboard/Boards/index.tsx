@@ -7,6 +7,7 @@ import {
     KanbanBoard,
     Card,
     changeColumn,
+    moveColumn,
     Column as ColumnType,
 } from "@caldwell619/react-kanban"
 
@@ -70,8 +71,19 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
         // })
     }
 
-    const handleColumnMove: OnDragEndNotification<ColumnType<Card>> = (column, from, destination) => {
-        // logica para mover colunas
+    const handleColumnMove: OnDragEndNotification<ColumnType<Card>> = (_column, from, destination) => {
+        const moved = moveColumn(board, from, destination)
+        setBoard(moved)
+        console.log(moved)
+
+        const columns: Column[] = JSON.parse(currentBoard!.columns)
+        const newColumns = moved.columns.map((item: any, index: number) => ({
+            ...columns.filter((column) => column.id == item.id)[0],
+            id: index + 1,
+        }))
+        const newBoard = { ...currentBoard!, columns: JSON.stringify(newColumns) }
+
+        setCurrentBoard(newBoard)
     }
 
     const handleCardMove: OnDragEndNotification<Card> = (_card, source, destination) => {
