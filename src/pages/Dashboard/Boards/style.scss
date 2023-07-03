@@ -5,20 +5,23 @@
     box-shadow: none !important;
     padding: 0!important;
     padding-left:1vw ; 
+    overflow: hidden;
     
     > div {
         display: flex;
-        width: 100%;
-        max-height: 80vh;
+        width: 70vw;
+        max-height: 75vh;
         padding-bottom: 5vw;
         overflow-y: auto;
+        overflow-x: auto;
         
         
         // each column
         .react-kanban-column {
             display: flex!important;
+            flex-shrink: 0;
             flex-direction: column;
-            width: 25%;
+            width: 20vw;
             gap: 1vw;
             padding: 0.85vw;
             
@@ -29,7 +32,7 @@
                 color: #333333;
                
             }
-            padding:2vw 0vw 0vw 0.8vw;
+
             // add button
             .react-kanban-card-adder-button {
                 display: none

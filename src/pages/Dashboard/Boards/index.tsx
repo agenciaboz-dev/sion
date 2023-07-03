@@ -26,6 +26,7 @@ import { useConfirmDialog } from "burgos-confirm"
 import { useSnackbar } from "burgos-snackbar"
 import ModeEditIcon from "@mui/icons-material/ModeEdit"
 import { useColors } from "../../../hooks/useColors"
+import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 
 interface BoardsProps {}
 interface CardBag {
@@ -230,7 +231,7 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
     }, [])
 
     return board ? (
-        <Box>
+        <Box sx={{ overflow: "hidden" }}>
             <Formik
                 initialValues={initialValues}
                 sx={{ position: "absolute", top: "7vw", left: "76.3vw", boxShadow: "none" }}
@@ -277,6 +278,9 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
             {!loading && (
                 <Box sx={{ boxShadow: "none!important", padding: "0!important", flexDirection: "column" }}>
                     <Box sx={{ alignItems: "center", gap: "1vw" }}>
+                        <IconButton onClick={() => setBoard(undefined)}>
+                            <ArrowBackIcon />
+                        </IconButton>
                         {editMode ? (
                             <TextField
                                 defaultValue={currentBoard!.name}
@@ -286,7 +290,6 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
                         ) : (
                             <p>{currentBoard?.name}</p>
                         )}
-
                         {currentBoard!.id > 0 && (
                             <IconButton
                                 color={editMode ? "primary" : "default"}
@@ -380,7 +383,7 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
             )}
         </Box>
     ) : (
-        <Box sx={{ gap: "1vw" }}>
+        <Box sx={{ overflow: "hidden", gap: "1vw" }}>
             <Button onClick={() => navigate("/dashboard/boards/new", { state: { boards } })} variant="contained">
                 Criar quadro
             </Button>
