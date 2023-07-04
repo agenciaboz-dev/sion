@@ -55,7 +55,7 @@ export const useSidebarMenu = () => {
                 },
                 {
                     id: 22,
-                    name: "Situações",
+                    name: "Status de contrato",
                     location: "/dashboard/boards/status",
                     adm: true,
                 },

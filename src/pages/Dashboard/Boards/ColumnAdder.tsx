@@ -111,7 +111,7 @@ export const ColumnAdder: React.FC<ColumnAdderProps> = ({ addColumn }) => {
                         {addingStatus ? (
                             // ADD NEW STATUS INPUT
                             <TextField
-                                placeholder="Nome da situação"
+                                placeholder="Nome do status"
                                 value={newStatusName}
                                 onChange={(event) => setNewStatusName(event.target.value)}
                                 onBlur={handleNewStatusBlur}
@@ -127,7 +127,7 @@ export const ColumnAdder: React.FC<ColumnAdderProps> = ({ addColumn }) => {
                             />
                         ) : (
                             <TextField
-                                placeholder="Situação"
+                                placeholder="Status"
                                 name="status"
                                 value={values.status}
                                 onChange={handleChange}
@@ -136,7 +136,7 @@ export const ColumnAdder: React.FC<ColumnAdderProps> = ({ addColumn }) => {
                                 select
                             >
                                 <MenuItem disabled value={0}>
-                                    Situação
+                                    Status
                                 </MenuItem>
                                 {statuses.map((status) => (
                                     <MenuItem key={status.id} value={status.id}>

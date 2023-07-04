@@ -31,7 +31,7 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
 
         confirm({
             title: "Atenção",
-            content: "Deseja deletar essa situação?",
+            content: "Deseja deletar esse status?",
             onConfirm: () => {
                 setDeleteLoading(status.id)
                 api.boards.status.delete({

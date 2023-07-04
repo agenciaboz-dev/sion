@@ -180,7 +180,7 @@ export const NewBoard: React.FC<NewBoardProps> = ({}) => {
                                                         {addingStatus == column.id ? (
                                                             // ADD NEW STATUS INPUT
                                                             <TextField
-                                                                placeholder="Nome da situação"
+                                                                placeholder="Nome do status"
                                                                 value={newStatusName}
                                                                 onChange={(event) => setNewStatusName(event.target.value)}
                                                                 onBlur={handleNewStatusBlur}
@@ -200,7 +200,7 @@ export const NewBoard: React.FC<NewBoardProps> = ({}) => {
                                                             />
                                                         ) : (
                                                             <TextField
-                                                                placeholder="Situação"
+                                                                placeholder="Status"
                                                                 value={column.status}
                                                                 onChange={(event) => handleColumnStatus(event, column)}
                                                                 autoComplete="off"
@@ -209,7 +209,7 @@ export const NewBoard: React.FC<NewBoardProps> = ({}) => {
                                                                 select
                                                             >
                                                                 <MenuItem disabled value={0}>
-                                                                    Situação
+                                                                    Status
                                                                 </MenuItem>
                                                                 {statuses.map((status) => (
                                                                     <MenuItem key={status.id} value={status.id}>
