@@ -98,6 +98,12 @@ export const useApi = () => {
                         .catch((error) => defaultError(error, options.errorCallback))
                         .finally(() => defaultFinally(options.finallyCallback))
                 },
+                delete: (options: ApiOptions) => {
+                    api.post("/boards/status/delete", options.data)
+                        .then((response) => options.callback(response))
+                        .catch((error) => defaultError(error, options.errorCallback))
+                        .finally(() => defaultFinally(options.finallyCallback))
+                },
             },
         },
         contracts: {
