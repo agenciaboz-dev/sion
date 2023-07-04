@@ -13,7 +13,7 @@ import { Sellers } from "./Sellers"
 import { Seller } from "./Seller"
 import { Texts } from "./Texts"
 import { Images } from "./Images"
-import { Validations } from "./Validations"
+//import { Validations } from "./Validations"
 import { Boards } from "./Boards"
 import { NewBoard } from "./Boards/NewBoard"
 import { StatusManager } from "./Boards/StatusManager"
@@ -47,7 +47,7 @@ export const Dashboard: React.FC<DashboardProps> = ({}) => {
                     <Route path="new_seller/" element={<NewSeller />} />
                     <Route path="texts/" element={<Texts user={user} />} />
                     <Route path="images/" element={<Images />} />
-                    <Route path="validations/" element={<Validations />} />
+                    {/*<Route path="validations/" element={<Validations />} />*/}
                     <Route path="boards" element={<Boards />} />
                     <Route path="boards/new" element={<NewBoard />} />
                     <Route path="boards/status" element={<StatusManager />} />

@@ -60,6 +60,7 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                 >
                     <Box sx={{ alignItems: "center", justifyContent: "space-between" }}>
                         {editing == status.id ? <TextField variant="standard" value={status.name} /> : status.name}
+                        <TextField variant="standard" value={status.id} />
                         {![1, 2, 3].includes(status.id) && (
                             <IconButton color="primary" onClick={() => setEditing(status.id)}>
                                 <EditIcon />

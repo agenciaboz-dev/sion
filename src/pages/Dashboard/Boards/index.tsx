@@ -30,10 +30,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 import { ColumnAdder } from "./ColumnAdder"
 
 interface BoardsProps {}
-interface CardBag {
-    removeCard?: () => void
-    dragging: boolean
-}
+
 interface FormValues {
     search: string
 }
@@ -321,7 +318,6 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
                             </IconButton>
                         )}
                     </Box>
-
                     <ControlledBoard
                         onCardDragEnd={handleCardMove}
                         onColumnDragEnd={handleColumnMove}
@@ -333,6 +329,10 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
                         renderCard={(card, option) => (
                             <Box sx={{ boxShadow: "0px 2px 15px rgba(0, 0, 0, 0.25)", width: "15vw", height: "13.3vw" }}>
                                 <CardContainer
+                                    setBoard={setBoard}
+                                    contracts={contracts}
+                                    setContracts={setContracts}
+                                    board={currentBoard}
                                     contract={contracts.filter((contract) => contract.id == card.id)[0]}
                                     column="Comercial (Correção)"
                                 />

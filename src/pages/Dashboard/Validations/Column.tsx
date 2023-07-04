@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+/*import React, { useEffect, useState } from "react"
 import { Contract } from "../../../definitions/contract"
 import { Card } from "./Card"
 import { useArray } from "burgos-array"
@@ -258,3 +258,4 @@ export const Column: React.FC<ColumnProps> = ({
         </div>
     )
 }
+*/

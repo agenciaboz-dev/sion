@@ -1,3 +1,4 @@
+/*
 import React, { useState, useEffect } from "react"
 import "./style.scss"
 import { TextField, Button, makeStyles } from "@mui/material"
@@ -352,3 +353,4 @@ export const Validations: React.FC<ValidationsProps> = ({}) => {
         </div>
     )
 }
+*/
