@@ -51,7 +51,7 @@ export const ColumnAdder: React.FC<ColumnAdderProps> = ({ addColumn }) => {
         if (statuses.filter((status) => status.name == newStatusName).length > 0) return
 
         setLoadingNewStatus(true)
-        api.boards.newStatus({
+        api.boards.status.new({
             data: { name: newStatusName },
             callback: (response: { data: Status }) => {
                 setStatuses([...statuses, response.data])
