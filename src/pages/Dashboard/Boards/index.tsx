@@ -1,4 +1,4 @@
-import { Box, Button, TextField, MenuItem, IconButton, CircularProgress } from "@mui/material"
+import { Box, Button, TextField, MenuItem, IconButton, CircularProgress, Skeleton } from "@mui/material"
 import React, { useEffect, useState } from "react"
 import {
     ControlledBoard,
@@ -28,6 +28,7 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit"
 import { useColors } from "../../../hooks/useColors"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 import { ColumnAdder } from "./ColumnAdder"
+import { useArray } from "burgos-array"
 
 interface BoardsProps {}
 
@@ -40,6 +41,7 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
     const navigate = useNavigate()
     const initialValues = { search: "" }
     const colors = useColors()
+    const skeletons = useArray().newArray(10)
 
     const { confirm } = useConfirmDialog()
     const { snackbar } = useSnackbar()
@@ -218,7 +220,7 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
 
     useEffect(() => {
         if (!firstRender) {
-            if (!editMode) {
+            if (!editMode && currentBoard) {
                 setEditLoading(true)
 
                 api.boards.update({
@@ -233,14 +235,18 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
     }, [editMode])
 
     useEffect(() => {
+        if (contracts.length > 0 && statuses.length > 0) {
+            setLoading(false)
+        }
+    }, [contracts, statuses])
+
+    useEffect(() => {
         api.contracts.list({
             callback: (response: { data: Contract[] }) => setContracts(response.data),
-            finallyCallback: () => setLoading(false),
         })
 
         api.boards.get({
             callback: (response: { data: Board[] }) => setBoards(response.data),
-            finallyCallback: () => setLoading(false),
         })
 
         api.contracts.status({
@@ -409,7 +415,18 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
         </Box>
     ) : (
         <Box sx={{ overflow: "hidden", gap: "1vw" }}>
-            {!loading && (
+            {loading ? (
+                <Box sx={{ padding: "0!important", boxShadow: "none!important", gap: "1vw", flexDirection: "column" }}>
+                    {skeletons.map((index) => (
+                        <Skeleton
+                            key={index}
+                            variant="rectangular"
+                            sx={{ width: "100%", height: "3.5vw" }}
+                            animation="wave"
+                        />
+                    ))}
+                </Box>
+            ) : (
                 <>
                     <Box sx={{ padding: "0!important", boxShadow: "none!important" }}>
                         <MenuItem
