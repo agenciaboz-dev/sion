@@ -9,6 +9,8 @@ import { useConfirmDialog } from "burgos-confirm"
 import { Form, Formik } from "formik"
 import CheckCircleIcon from "@mui/icons-material/CheckCircle"
 import { useArray } from "burgos-array"
+import { Accordion, AccordionSummary, AccordionDetails, Typography } from "@mui/material"
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 
 interface StatusManagerProps {}
 
@@ -26,6 +28,11 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
     const [editLoading, setEditLoading] = useState(0)
     const [deleteLoading, setDeleteLoading] = useState(0)
 
+    const [expanded, setExpanded] = useState(false)
+
+    const handleToggle = () => {
+        setExpanded(!expanded)
+    }
     const handleDelete = (status: Status) => {
         if (!!deleteLoading) return
 
@@ -104,6 +111,9 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                         const contains = {
                             contracts: contracts.filter((contract) => contract.statusId == status.id).length,
                             contract: contracts.filter((contract) => contract.statusId == status.id),
+                            board: boards
+                                .map((board) => ({ ...board, columns: JSON.parse(board.columns) }))
+                                .filter((board) => board.columns.filter((column: Column) => column.status == status.id)),
                             boards: boards
                                 .map((board) => ({ ...board, columns: JSON.parse(board.columns) }))
                                 .filter(
@@ -111,17 +121,6 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                                         board.columns.filter((column: Column) => column.status == status.id).length > 0
                                 ).length,
                         }
-                        const contractsWithBoards = contracts.map((contract) => {
-                            const board = boards.find((board) => {
-                                const columns = JSON.parse(board.columns)
-                                return columns.some((column: Column) => column.status === contract.statusId)
-                            })
-
-                            return {
-                                ...contract,
-                                board: board ? board.name : null,
-                            }
-                        })
 
                         return (
                             <Box
@@ -191,14 +190,29 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                                 >
                                     <Box
                                         sx={{
-                                            padding: "1vw 1.6vw 0 1.6vw",
+                                            fontSize: "0.8vw",
+
                                             width: "100%",
                                             justifyContent: "space-between",
+                                            flexDirection: "column",
                                         }}
                                     >
-                                        <p>Contratos: {contains.contracts}</p>
-                                        <p>Quadros: {contains.boards}</p>
+                                        <Accordion expanded={expanded} onChange={handleToggle}>
+                                            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                                                <p>Quadros: {contains.boards}</p>
+                                            </AccordionSummary>
+
+                                            <AccordionDetails>{contains.board.map((board) => board.name)}</AccordionDetails>
+                                        </Accordion>
+                                        <Accordion expanded={expanded} onChange={handleToggle}>
+                                            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                                                <p>Contratos: {contains.contracts}</p>
+                                            </AccordionSummary>
+
+                                            <AccordionDetails>{contains.board.map((board) => board.name)}</AccordionDetails>
+                                        </Accordion>
                                     </Box>
+                                    {contains.contract.map((contract) => (
                                         <Box
                                             color="primary"
                                             sx={{
@@ -211,14 +225,9 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                                                 backgroundColor: "",
                                             }}
                                         >
-                                    {contains.contract.map((contract) => contract.name )}
-                                           
-
-                                            {contractsWithBoards.map((contract) => (
-                                                <p>Quadro: {contract.board}</p>
-                                                ))}
-                                                </Box>
-                                   
+                                            <p style={{ flexWrap: "nowrap" }}>{contract.name}</p>
+                                        </Box>
+                                    ))}
                                 </Box>
 
                                 {![1, 2, 3].includes(status.id) && !contains.contracts && !contains.boards && (
