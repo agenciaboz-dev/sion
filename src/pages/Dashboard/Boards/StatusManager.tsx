@@ -162,20 +162,43 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                                     ) : (
                                         status.name
                                     )}
-                                    {![1, 2, 3].includes(status.id) &&
-                                        (editing == status.id ? (
-                                            <IconButton color="secondary" onClick={() => handleSubmit(status)}>
-                                                {editLoading == status.id ? (
-                                                    <CircularProgress size="1.5rem" />
+                                    <Box sx={{ alignItems: "center", padding: 0 }}>
+                                        {![1, 2, 3].includes(status.id) &&
+                                            (editing == status.id ? (
+                                                <IconButton
+                                                    color="secondary"
+                                                    sx={{ width: "2vw", height: "2vw" }}
+                                                    onClick={() => handleSubmit(status)}
+                                                >
+                                                    {editLoading == status.id ? (
+                                                        <CircularProgress size="1.2rem" />
+                                                    ) : (
+                                                        <CheckCircleIcon />
+                                                    )}
+                                                </IconButton>
+                                            ) : (
+                                                <IconButton color="secondary" onClick={() => setEditing(status.id)}>
+                                                    <EditIcon />
+                                                </IconButton>
+                                            ))}
+                                        {![1, 2, 3].includes(status.id) && !contains.contracts && !contains.boards && (
+                                            <IconButton
+                                                color="secondary"
+                                                sx={{
+                                                    position: "relative",
+                                                    width: "2vw",
+                                                    height: "2vw",
+                                                }}
+                                                onClick={() => handleDelete(status)}
+                                            >
+                                                {deleteLoading == status.id ? (
+                                                    <CircularProgress size="1.5rem" color="error" />
                                                 ) : (
-                                                    <CheckCircleIcon />
+                                                    <DeleteOutlineIcon />
                                                 )}
                                             </IconButton>
-                                        ) : (
-                                            <IconButton color="secondary" onClick={() => setEditing(status.id)}>
-                                                <EditIcon />
-                                            </IconButton>
-                                        ))}
+                                        )}
+                                    </Box>
                                 </Box>
 
                                 <Box
@@ -229,20 +252,6 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                                         </Box>
                                     ))}
                                 </Box>
-
-                                {![1, 2, 3].includes(status.id) && !contains.contracts && !contains.boards && (
-                                    <IconButton
-                                        color="error"
-                                        sx={{ position: "absolute", right: "0.5vw", bottom: "0.5vw" }}
-                                        onClick={() => handleDelete(status)}
-                                    >
-                                        {deleteLoading == status.id ? (
-                                            <CircularProgress size="1.5rem" color="error" />
-                                        ) : (
-                                            <DeleteOutlineIcon />
-                                        )}
-                                    </IconButton>
-                                )}
                             </Box>
                         )
                     })
