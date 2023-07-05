@@ -1,4 +1,4 @@
-import { Box, Button, CircularProgress, IconButton, TextField, Skeleton } from "@mui/material"
+import { Box, Button, CircularProgress, IconButton, TextField, Skeleton, colors } from "@mui/material"
 import React, { useEffect, useState } from "react"
 import { Contract, Status } from "../../../definitions/contract"
 import { useApi } from "../../../hooks/useApi"
@@ -79,7 +79,13 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
     }, [])
 
     return (
-        <Box sx={{ gap: "2vw", flexWrap: "wrap", flexDirection: "row!important" }}>
+        <Box
+            sx={{
+                gap: "2vw",
+                flexDirection: "row!important",
+                width: "75vw !important",
+            }}
+        >
             {loading ? (
                 <>
                     {skeletons.map((index) => (
@@ -97,6 +103,7 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                     .map((status) => {
                         const contains = {
                             contracts: contracts.filter((contract) => contract.statusId == status.id).length,
+                            contract: contracts.filter((contract) => contract.statusId == status.id),
                             boards: boards
                                 .map((board) => ({ ...board, columns: JSON.parse(board.columns) }))
                                 .filter(
@@ -104,20 +111,39 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                                         board.columns.filter((column: Column) => column.status == status.id).length > 0
                                 ).length,
                         }
+                        const contractsWithBoards = contracts.map((contract) => {
+                            const board = boards.find((board) => {
+                                const columns = JSON.parse(board.columns)
+                                return columns.some((column: Column) => column.status === contract.statusId)
+                            })
+
+                            return {
+                                ...contract,
+                                board: board ? board.name : null,
+                            }
+                        })
 
                         return (
                             <Box
                                 key={status.id}
                                 sx={{
-                                    width: "15vw",
-                                    height: "15vw",
+                                    height: "35vw",
                                     flexDirection: "column",
-                                    padding: "1vw 1vw 1vw 2vw !important",
-                                    gap: "1vw",
-                                    position: "relative",
+                                    //boxShadow: "none !important",
+                                    padding: "0 !important",
                                 }}
                             >
-                                <Box sx={{ alignItems: "center", justifyContent: "space-between" }}>
+                                <Box
+                                    sx={{
+                                        alignItems: "center",
+                                        justifyContent: "space-between",
+                                        fontWeight: "600",
+                                        color: "white",
+                                        height: "3vw",
+                                        padding: "0 1vw 0 1vw",
+                                        backgroundColor: "#384974",
+                                    }}
+                                >
                                     {editing == status.id ? (
                                         <Formik initialValues={{ name: status.name, id: status.id }} onSubmit={handleSubmit}>
                                             {({ values, handleChange }) => (
@@ -139,7 +165,7 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                                     )}
                                     {![1, 2, 3].includes(status.id) &&
                                         (editing == status.id ? (
-                                            <IconButton color="primary" onClick={() => handleSubmit(status)}>
+                                            <IconButton color="secondary" onClick={() => handleSubmit(status)}>
                                                 {editLoading == status.id ? (
                                                     <CircularProgress size="1.5rem" />
                                                 ) : (
@@ -147,15 +173,52 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                                                 )}
                                             </IconButton>
                                         ) : (
-                                            <IconButton color="primary" onClick={() => setEditing(status.id)}>
+                                            <IconButton color="secondary" onClick={() => setEditing(status.id)}>
                                                 <EditIcon />
                                             </IconButton>
                                         ))}
                                 </Box>
 
-                                <Box sx={{ flexDirection: "column", gap: "0.5vw", fontSize: "0.9vw" }}>
-                                    <p>contratos: {contains.contracts}</p>
-                                    <p>quadros: {contains.boards}</p>
+                                <Box
+                                    sx={{
+                                        flexDirection: "column",
+                                        fontSize: "0.9vw",
+                                        display: "flex",
+                                        overflowY: "auto",
+                                        width: "15vw",
+                                        gap: "0.5vw",
+                                    }}
+                                >
+                                    <Box
+                                        sx={{
+                                            padding: "1vw 1.6vw 0 1.6vw",
+                                            width: "100%",
+                                            justifyContent: "space-between",
+                                        }}
+                                    >
+                                        <p>Contratos: {contains.contracts}</p>
+                                        <p>Quadros: {contains.boards}</p>
+                                    </Box>
+                                        <Box
+                                            color="primary"
+                                            sx={{
+                                                fontWeight: "600",
+                                                color: "#384974",
+                                                width: "90%",
+                                                //height: "6vw",
+                                                alignSelf: "center",
+                                                padding: "1vw",
+                                                backgroundColor: "",
+                                            }}
+                                        >
+                                    {contains.contract.map((contract) => contract.name )}
+                                           
+
+                                            {contractsWithBoards.map((contract) => (
+                                                <p>Quadro: {contract.board}</p>
+                                                ))}
+                                                </Box>
+                                   
                                 </Box>
 
                                 {![1, 2, 3].includes(status.id) && !contains.contracts && !contains.boards && (

@@ -1,5 +1,13 @@
 @import '/src/sass/colors';
 
+.content-container{
+    >div{
+        display: flex;
+        flex-wrap: nowrap;
+        height: max-content !important;
+        overflow-x: auto;      
+       }
+}
 // collumn list
 .react-kanban-board {
     box-shadow: none !important;
@@ -79,8 +87,9 @@
                     width: 100%;
                     display: flex;
                     flex-direction: column;
-                    gap: 0.3vw;
+                    gap: 0.6vw;
                     justify-content:flex-end;
+                    padding-bottom: 0vw;
                     
                     .header-card{
                         display: flex;

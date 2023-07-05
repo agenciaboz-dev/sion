@@ -31,6 +31,10 @@ export const Card: React.FC<CardProps> = ({ contract, setContract, column, board
     const handleSeller = () => {
         navigate(`../seller/${contract.seller_id}`)
     }
+
+    const handleContract = () => {
+        navigate(`../contract/${contract.id}`)
+    }
     const handleOpenMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget)
         console.log(columns)
@@ -103,7 +107,7 @@ export const Card: React.FC<CardProps> = ({ contract, setContract, column, board
                                 display: "flex",
                                 alignItems: "center",
                                 justifyContent: "flex-start",
-                                gap: "0.6vw",
+                                gap: "01vw",
                             }}
                         >
                             <IconButton color="inherit" onClick={handleOpenMenu} sx={{ padding: "0" }}>
@@ -152,14 +156,19 @@ export const Card: React.FC<CardProps> = ({ contract, setContract, column, board
                                 </MenuItem>
                             </Menu>
                         </div>
-                        <div style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "0.5vw" }}>
+                        <div style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "0.6vw" }}>
                             <p className="uc">[{contract.unit}]</p>
                             <p className="uc">[{contract.supplier}]</p>
                         </div>
                     </div>
-                    <div style={{ display: "flex", flexDirection: "column", gap: "0.1vw" }}>
-                        <p className="name">{contract.name}</p>
-                        <p className="attach">500 KW</p>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "0.5vw" }}>
+                        <button
+                            className="name"
+                            style={{ backgroundColor: "white", display: "flex", padding: "0" }}
+                            onClick={handleContract}
+                        >
+                            {contract.name}
+                        </button>
                         <p className="description">Adicionar comentário</p>
                     </div>
                     <hr style={{ width: "75%" }} />
