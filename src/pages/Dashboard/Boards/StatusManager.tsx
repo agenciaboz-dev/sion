@@ -12,6 +12,7 @@ import { useArray } from "burgos-array"
 import { Accordion, AccordionSummary, AccordionDetails, Typography } from "@mui/material"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 import { useNavigate } from "react-router-dom"
+import Collapsible from "react-collapsible"
 
 interface StatusManagerProps {}
 
@@ -28,12 +29,6 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
     const [editing, setEditing] = useState(0)
     const [editLoading, setEditLoading] = useState(0)
     const [deleteLoading, setDeleteLoading] = useState(0)
-
-    const [expanded, setExpanded] = useState(false)
-
-    const handleToggle = () => {
-        setExpanded(!expanded)
-    }
 
     const handleDelete = (status: Status) => {
         if (!!deleteLoading) return
@@ -72,6 +67,37 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
         })
     }
 
+    const QuestionBlock = ({ question, length, open }: { question: string; length: number; open?: boolean }) => {
+        return (
+            <Box sx={{ alignItems: "center", justifyContent: "space-between", display: "contents" }}>
+                <h3 style={{ fontSize: "0.95vw", fontWeight: "400" }}>{question}</h3>
+                <Box>
+                    <Box
+                        sx={{
+                            backgroundColor: "#384974",
+                            color: "white",
+                            fontSize: "0.95vw",
+                            borderRadius: "50%",
+                            width: "1.5vw",
+                            height: "1.5vw",
+                            justifyContent: "center",
+                        }}
+                    >
+                        {length}
+                    </Box>
+                    <ExpandMoreIcon color="disabled" sx={open ? { transform: "rotate(180deg)", color: "gray" } : null} />
+                </Box>
+            </Box>
+        )
+    }
+
+    const AnswerBlock = ({ answer }: { answer: any }) => {
+        return (
+            <Box sx={{ padding: "1vw 0 0 0  ", flexDirection: "column", gap: "1vw" }}>
+                <p style={{}}>{answer}</p>
+            </Box>
+        )
+    }
     useEffect(() => {
         api.contracts.status({
             callback: (response: { data: Status[] }) => setStatuses(response.data),
@@ -102,7 +128,7 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                             key={index}
                             variant="rectangular"
                             animation="wave"
-                            sx={{ width: "15vw", height: "35vw" }}
+                            sx={{ width: "16vw", height: "35vw" }}
                         />
                     ))}
                 </>
@@ -115,7 +141,10 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                             contract: contracts.filter((contract) => contract.statusId == status.id),
                             board: boards
                                 .map((board) => ({ ...board, columns: JSON.parse(board.columns) }))
-                                .filter((board) => board.columns.filter((column: Column) => column.status == status.id)),
+                                .filter(
+                                    (board) =>
+                                        board.columns.filter((column: Column) => column.status == status.id).length > 0
+                                ),
                             boards: boards
                                 .map((board) => ({ ...board, columns: JSON.parse(board.columns) }))
                                 .filter(
@@ -157,6 +186,11 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                                                         onBlur={handleBlur}
                                                         onChange={handleChange}
                                                         autoFocus
+                                                        sx={{
+                                                            "& .MuiInput-root": {
+                                                                color: "white", // Estilo do texto dentro do TextField
+                                                            },
+                                                        }}
                                                     />
                                                 </Form>
                                             )}
@@ -205,10 +239,6 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
 
                                 <Box
                                     sx={{
-                                        flexDirection: "column",
-                                        fontSize: "0.9vw",
-                                        display: "flex",
-                                        overflowY: "auto",
                                         width: "16vw",
                                         gap: "0.5vw",
                                     }}
@@ -217,113 +247,77 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                                         sx={{
                                             fontSize: "0.8vw",
 
-                                            width: "100%",
                                             justifyContent: "space-between",
                                             flexDirection: "column",
                                         }}
                                     >
                                         <Box
                                             sx={{
-                                                padding: "1vw 1vw 0.5vw 1vw",
+                                                //padding: "1vw 1vw 0.5vw 1vw",
                                                 justifyContent: "space-between",
                                                 alignItems: "center",
+                                                flexDirection: "column",
                                             }}
                                         >
-                                            <p style={{ fontSize: "0.95vw", fontWeight: "400" }}>Quadros</p>
-                                            <Box sx={{ alignItems: "center" }}>
-                                                <Box
-                                                    sx={{
-                                                        backgroundColor: "#384974",
-                                                        color: "white",
-                                                        fontSize: "0.95vw",
-                                                        borderRadius: "50%",
-                                                        width: "1.5vw",
-                                                        height: "1.5vw",
-                                                        alignItems: "center",
-                                                        justifyContent: "center",
-                                                    }}
-                                                >
-                                                    {contains.boards}
-                                                </Box>
-                                                <IconButton onClick={handleToggle} sx={{ padding: 0 }}>
-                                                    <ExpandMoreIcon />
-                                                </IconButton>
-                                            </Box>
+                                            <Collapsible
+                                                trigger={<QuestionBlock question={"Quadros"} length={contains.boards} />}
+                                                triggerWhenOpen={
+                                                    <QuestionBlock
+                                                        question={"Quadros"}
+                                                        length={contains.boards}
+                                                        open={true}
+                                                    />
+                                                }
+                                            >
+                                                <AnswerBlock
+                                                    answer={contains.board.map((board) => (
+                                                        <button
+                                                            onClick={() => {
+                                                                navigate(`../boards/${board.id}`)
+                                                            }}
+                                                            className="button-link"
+                                                        >
+                                                            {board.name}
+                                                        </button>
+                                                    ))}
+                                                />
+                                            </Collapsible>
                                         </Box>
-                                        <Collapse in={expanded} key={status.id} sx={{}}>
-                                            <Box sx={{ padding: "0", flexDirection: "column", gap: "0.5vw" }}>
-                                                {contains.board.map((board) => (
-                                                    <button
-                                                        onClick={() => {
-                                                            navigate(`../boards/${board.id}`)
-                                                        }}
-                                                        className="button-link"
-                                                    >
-                                                        {board.name}
-                                                    </button>
-                                                ))}
-                                            </Box>
-                                        </Collapse>
                                         <Box
                                             sx={{
-                                                padding: "1vw 1vw 0.5vw 1vw",
+                                                //padding: "1vw 1vw 0.5vw 1vw",
                                                 justifyContent: "space-between",
                                                 alignItems: "center",
+                                                flexDirection: "column",
                                             }}
                                         >
-                                            <p style={{ fontSize: "0.95vw", fontWeight: "400" }}>Contratos</p>
-                                            <Box sx={{ alignItems: "center" }}>
-                                                <Box
-                                                    sx={{
-                                                        backgroundColor: "#384974",
-                                                        color: "white",
-                                                        fontSize: "0.95vw",
-                                                        borderRadius: "50%",
-                                                        width: "1.5vw",
-                                                        height: "1.5vw",
-                                                        alignItems: "center",
-                                                        justifyContent: "center",
-                                                    }}
-                                                >
-                                                    {contains.contracts}
-                                                </Box>
-                                                <IconButton onClick={handleToggle} sx={{ padding: 0 }}>
-                                                    <ExpandMoreIcon />
-                                                </IconButton>
-                                            </Box>
+                                            <Collapsible
+                                                trigger={
+                                                    <QuestionBlock question={"Contratos"} length={contains.contracts} />
+                                                }
+                                                triggerWhenOpen={
+                                                    <QuestionBlock
+                                                        question={"Contratos"}
+                                                        length={contains.contracts}
+                                                        open={true}
+                                                    />
+                                                }
+                                            >
+                                                <AnswerBlock
+                                                    answer={contains.contract.map((contract) => (
+                                                        <button
+                                                            onClick={() => {
+                                                                navigate(`../contract/${contract.id}`)
+                                                            }}
+                                                            className="button-link"
+                                                        >
+                                                            {contract.name}
+                                                        </button>
+                                                    ))}
+                                                />
+                                            </Collapsible>
                                         </Box>
-                                        <Collapse in={expanded} sx={{}}>
-                                            <Box sx={{ padding: "0", flexDirection: "column", gap: "0.5vw" }}>
-                                                {contains.contract.map((contract) => (
-                                                    <button
-                                                        onClick={() => {
-                                                            navigate(`../contract/${contract.id}`)
-                                                        }}
-                                                        className="button-link button-contract"
-                                                    >
-                                                        {contract.name}
-                                                    </button>
-                                                ))}
-                                            </Box>
-                                        </Collapse>
                                     </Box>
-
-                                    {/* {contains.contract.map((contract) => (
-                                        <Box
-                                            color="primary"
-                                            sx={{
-                                                fontWeight: "600",
-                                                color: "#384974",
-                                                width: "90%",
-                                                //height: "6vw",
-                                                alignSelf: "center",
-                                                padding: "1vw",
-                                                backgroundColor: "",
-                                            }}
-                                        >
-                                            <p style={{ flexWrap: "nowrap" }}>{contract.name}</p>
-                                        </Box>
-                                    ))} */}
                                 </Box>
                             </Box>
                         )

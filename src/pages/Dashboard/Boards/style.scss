@@ -15,25 +15,29 @@
             background-color: white;
             font-weight: 500;
             color: gray;
-            padding: 0 2vw;  
+            padding: 0.5vw 1vw;  
             width: auto;
             white-space: nowrap;
             overflow: hidden;
+            
 
             &:hover{
                 font-weight: 600;
                 font-size: 0.85vw;
                 color: #384974;
-                padding: 0 2vw;  
+                padding: 0.5vw 1vw;  
                 width: 14vw;
                 white-space: nowrap;
                 overflow: hidden;
             }
        }
 
-       .button-contract{
+        .Collapsible {
+        display: flex;
+        flex-direction: column;
+        padding: 1vw;
         
-       }
+    }
 }
 // collumn list
 .react-kanban-board {
