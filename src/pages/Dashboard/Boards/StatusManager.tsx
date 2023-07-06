@@ -1,4 +1,4 @@
-import { Box, Button, CircularProgress, IconButton, TextField, Skeleton, colors } from "@mui/material"
+import { Box, Button, CircularProgress, IconButton, TextField, Skeleton, colors, Collapse } from "@mui/material"
 import React, { useEffect, useState } from "react"
 import { Contract, Status } from "../../../definitions/contract"
 import { useApi } from "../../../hooks/useApi"
@@ -11,13 +11,14 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle"
 import { useArray } from "burgos-array"
 import { Accordion, AccordionSummary, AccordionDetails, Typography } from "@mui/material"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
+import { useNavigate } from "react-router-dom"
 
 interface StatusManagerProps {}
 
 export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
     const api = useApi()
     const skeletons = useArray().newArray(10)
-
+    const navigate = useNavigate()
     const { confirm } = useConfirmDialog()
 
     const [loading, setLoading] = useState(true)
@@ -33,6 +34,7 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
     const handleToggle = () => {
         setExpanded(!expanded)
     }
+
     const handleDelete = (status: Status) => {
         if (!!deleteLoading) return
 
@@ -100,7 +102,7 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                             key={index}
                             variant="rectangular"
                             animation="wave"
-                            sx={{ width: "15vw", height: "15vw" }}
+                            sx={{ width: "15vw", height: "35vw" }}
                         />
                     ))}
                 </>
@@ -207,7 +209,7 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                                         fontSize: "0.9vw",
                                         display: "flex",
                                         overflowY: "auto",
-                                        width: "15vw",
+                                        width: "16vw",
                                         gap: "0.5vw",
                                     }}
                                 >
@@ -220,22 +222,93 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                                             flexDirection: "column",
                                         }}
                                     >
-                                        <Accordion expanded={expanded} onChange={handleToggle}>
-                                            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                                                <p>Quadros: {contains.boards}</p>
-                                            </AccordionSummary>
-
-                                            <AccordionDetails>{contains.board.map((board) => board.name)}</AccordionDetails>
-                                        </Accordion>
-                                        <Accordion expanded={expanded} onChange={handleToggle}>
-                                            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                                                <p>Contratos: {contains.contracts}</p>
-                                            </AccordionSummary>
-
-                                            <AccordionDetails>{contains.board.map((board) => board.name)}</AccordionDetails>
-                                        </Accordion>
+                                        <Box
+                                            sx={{
+                                                padding: "1vw 1vw 0.5vw 1vw",
+                                                justifyContent: "space-between",
+                                                alignItems: "center",
+                                            }}
+                                        >
+                                            <p style={{ fontSize: "0.95vw", fontWeight: "400" }}>Quadros</p>
+                                            <Box sx={{ alignItems: "center" }}>
+                                                <Box
+                                                    sx={{
+                                                        backgroundColor: "#384974",
+                                                        color: "white",
+                                                        fontSize: "0.95vw",
+                                                        borderRadius: "50%",
+                                                        width: "1.5vw",
+                                                        height: "1.5vw",
+                                                        alignItems: "center",
+                                                        justifyContent: "center",
+                                                    }}
+                                                >
+                                                    {contains.boards}
+                                                </Box>
+                                                <IconButton onClick={handleToggle} sx={{ padding: 0 }}>
+                                                    <ExpandMoreIcon />
+                                                </IconButton>
+                                            </Box>
+                                        </Box>
+                                        <Collapse in={expanded} key={status.id} sx={{}}>
+                                            <Box sx={{ padding: "0", flexDirection: "column", gap: "0.5vw" }}>
+                                                {contains.board.map((board) => (
+                                                    <button
+                                                        onClick={() => {
+                                                            navigate(`../boards/${board.id}`)
+                                                        }}
+                                                        className="button-link"
+                                                    >
+                                                        {board.name}
+                                                    </button>
+                                                ))}
+                                            </Box>
+                                        </Collapse>
+                                        <Box
+                                            sx={{
+                                                padding: "1vw 1vw 0.5vw 1vw",
+                                                justifyContent: "space-between",
+                                                alignItems: "center",
+                                            }}
+                                        >
+                                            <p style={{ fontSize: "0.95vw", fontWeight: "400" }}>Contratos</p>
+                                            <Box sx={{ alignItems: "center" }}>
+                                                <Box
+                                                    sx={{
+                                                        backgroundColor: "#384974",
+                                                        color: "white",
+                                                        fontSize: "0.95vw",
+                                                        borderRadius: "50%",
+                                                        width: "1.5vw",
+                                                        height: "1.5vw",
+                                                        alignItems: "center",
+                                                        justifyContent: "center",
+                                                    }}
+                                                >
+                                                    {contains.contracts}
+                                                </Box>
+                                                <IconButton onClick={handleToggle} sx={{ padding: 0 }}>
+                                                    <ExpandMoreIcon />
+                                                </IconButton>
+                                            </Box>
+                                        </Box>
+                                        <Collapse in={expanded} sx={{}}>
+                                            <Box sx={{ padding: "0", flexDirection: "column", gap: "0.5vw" }}>
+                                                {contains.contract.map((contract) => (
+                                                    <button
+                                                        onClick={() => {
+                                                            navigate(`../contract/${contract.id}`)
+                                                        }}
+                                                        className="button-link button-contract"
+                                                    >
+                                                        {contract.name}
+                                                    </button>
+                                                ))}
+                                            </Box>
+                                        </Collapse>
                                     </Box>
-                                    {contains.contract.map((contract) => (
+
+                                    {/* {contains.contract.map((contract) => (
                                         <Box
                                             color="primary"
                                             sx={{
@@ -250,7 +323,7 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                                         >
                                             <p style={{ flexWrap: "nowrap" }}>{contract.name}</p>
                                         </Box>
-                                    ))}
+                                    ))} */}
                                 </Box>
                             </Box>
                         )

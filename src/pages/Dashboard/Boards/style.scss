@@ -8,6 +8,32 @@
         overflow-x: auto;
         overflow-y: auto;      
        }
+
+       .button-link{
+            flex-direction: column;
+            font-size: 0.85vw;
+            background-color: white;
+            font-weight: 500;
+            color: gray;
+            padding: 0 2vw;  
+            width: auto;
+            white-space: nowrap;
+            overflow: hidden;
+
+            &:hover{
+                font-weight: 600;
+                font-size: 0.85vw;
+                color: #384974;
+                padding: 0 2vw;  
+                width: 14vw;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+       }
+
+       .button-contract{
+        
+       }
 }
 // collumn list
 .react-kanban-board {
