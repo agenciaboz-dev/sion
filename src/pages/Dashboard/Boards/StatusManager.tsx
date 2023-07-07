@@ -1,5 +1,5 @@
 import { Box, Button, CircularProgress, IconButton, TextField, Skeleton, colors, Collapse, SxProps } from "@mui/material"
-import React, { useEffect, useState } from "react"
+import React, { ReactNode, useEffect, useState } from "react"
 import { Contract, Status } from "../../../definitions/contract"
 import { useApi } from "../../../hooks/useApi"
 import EditIcon from "@mui/icons-material/Edit"
@@ -67,7 +67,7 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
         })
     }
 
-    const TriggerComponent = ({ question: title, length, open }: { question: string; length: number; open?: boolean }) => {
+    const TriggerComponent = ({ title, length, open }: { title: string; length: number; open?: boolean }) => {
         const expandIconStyle: SxProps = {
             transition: "0.5s",
             transform: open ? "rotate(-180deg)" : "",
@@ -98,12 +98,8 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
         )
     }
 
-    const ListComponent = ({ answer }: { answer: any }) => {
-        return (
-            <Box sx={{ padding: "1vw 0 0 0  ", flexDirection: "column", gap: "1vw" }}>
-                <p style={{}}>{answer}</p>
-            </Box>
-        )
+    const ListComponent = ({ list }: { list: ReactNode }) => {
+        return <Box sx={{ padding: "0vw 0 0 0  ", flexDirection: "column" }}>{list}</Box>
     }
     useEffect(() => {
         api.contracts.status({
@@ -267,16 +263,27 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                                             }}
                                         >
                                             <Collapsible
-                                                trigger={<TriggerComponent question={"Quadros"} length={contains.boards} />}
+                                                trigger={<TriggerComponent title={"Quadros"} length={contains.boards} />}
                                                 triggerWhenOpen={
                                                     <TriggerComponent
-                                                        question={"Quadros"}
+                                                        title={"Quadros"}
                                                         length={contains.boards}
                                                         open={true}
                                                     />
                                                 }
                                             >
-                                                <ListComponent answer={contains.board.map((board) => board.name)} />
+                                                <ListComponent
+                                                    list={contains.board.map((board) => (
+                                                        <p
+                                                            onClick={() => {
+                                                                navigate(`../boards/`)
+                                                            }}
+                                                            className="button-link"
+                                                        >
+                                                            {board.name}
+                                                        </p>
+                                                    ))}
+                                                />
                                             </Collapsible>
                                         </Box>
                                         <Box
@@ -289,18 +296,18 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                                         >
                                             <Collapsible
                                                 trigger={
-                                                    <TriggerComponent question={"Contratos"} length={contains.contracts} />
+                                                    <TriggerComponent title={"Contratos"} length={contains.contracts} />
                                                 }
                                                 triggerWhenOpen={
                                                     <TriggerComponent
-                                                        question={"Contratos"}
+                                                        title={"Contratos"}
                                                         length={contains.contracts}
                                                         open={true}
                                                     />
                                                 }
                                             >
                                                 <ListComponent
-                                                    answer={contains.contract.map((contract) => (
+                                                    list={contains.contract.map((contract) => (
                                                         <p
                                                             onClick={() => {
                                                                 navigate(`../contract/${contract.id}`)
