@@ -18,16 +18,13 @@
             width: auto;
             white-space: nowrap;
             overflow: hidden;
+            width: 14vw;
+            transition: 0.3s;
             
 
             &:hover{
                 font-weight: 600;
-                font-size: 0.85vw;
                 color: #384974;
-                padding: 0.5vw 1vw;  
-                width: 14vw;
-                white-space: nowrap;
-                overflow: hidden;
             }
        }
 

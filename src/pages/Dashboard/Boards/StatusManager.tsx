@@ -269,18 +269,7 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                                                     />
                                                 }
                                             >
-                                                <AnswerBlock
-                                                    answer={contains.board.map((board) => (
-                                                        <button
-                                                            onClick={() => {
-                                                                navigate(`../boards/${board.id}`)
-                                                            }}
-                                                            className="button-link"
-                                                        >
-                                                            {board.name}
-                                                        </button>
-                                                    ))}
-                                                />
+                                                <AnswerBlock answer={contains.board.map((board) => board.name)} />
                                             </Collapsible>
                                         </Box>
                                         <Box
