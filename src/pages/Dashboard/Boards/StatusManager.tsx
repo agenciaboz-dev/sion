@@ -74,7 +74,7 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
         }
 
         return (
-            <Box sx={{ alignItems: "center", justifyContent: "space-between" }}>
+            <Box sx={{ alignItems: "center", justifyContent: "space-between", width: "100%" }}>
                 <h3 style={{ fontSize: "0.95vw", fontWeight: "400" }}>{title}</h3>
                 <Box sx={{ alignItems: "center" }}>
                     <Box
