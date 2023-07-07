@@ -218,6 +218,11 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
         })
     }
 
+    const goBack = () => {
+        setEditMode(false)
+        setBoard(undefined)
+    }
+
     useEffect(() => {
         if (!firstRender) {
             if (!editMode && currentBoard) {
@@ -302,7 +307,7 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
             {!loading && (
                 <Box sx={{ boxShadow: "none!important", padding: "0!important", flexDirection: "column" }}>
                     <Box sx={{ alignItems: "center", gap: "1vw" }}>
-                        <IconButton onClick={() => setBoard(undefined)}>
+                        <IconButton onClick={() => goBack()}>
                             <ArrowBackIcon />
                         </IconButton>
                         {editMode ? (
