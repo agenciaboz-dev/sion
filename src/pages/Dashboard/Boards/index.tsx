@@ -15,7 +15,7 @@ import { Card as CardContainer } from "../Validations/Card"
 import { Contract, Status } from "../../../definitions/contract"
 import { useApi } from "../../../hooks/useApi"
 import "./style.scss"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { Formik, Form } from "formik"
 import { SearchField } from "../../../components/SearchField"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
@@ -49,7 +49,7 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
     const [contracts, setContracts] = useState<Contract[]>([])
     const [loading, setLoading] = useState(true)
     const [boards, setBoards] = useState<Board[]>([])
-    const [currentBoard, setCurrentBoard] = useState<Board>()
+    const [currentBoard, setCurrentBoard] = useState<Board | undefined>(useLocation().state.board)
     const [board, setBoard] = useState<KanbanBoard<Card>>()
     const [isIcon, setIcon] = useState(false)
     const [isVisibleContainer, setIsVisibleContainer] = useState(true)
@@ -75,8 +75,6 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
     const handleColumnMove: OnDragEndNotification<ColumnType<Card>> = (_column, from, destination) => {
         const moved = moveColumn(board, from, destination)
         setBoard(moved)
-        console.log(moved)
-
         const columns: Column[] = JSON.parse(currentBoard!.columns)
         const newColumns = moved.columns.map((item: any, index: number) => ({
             ...columns.filter((column) => column.id == item.id)[0],
@@ -85,6 +83,7 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
         const newBoard = { ...currentBoard!, columns: JSON.stringify(newColumns) }
 
         setCurrentBoard(newBoard)
+        setTimeout(() => setBoard(moved), 100)
     }
 
     const handleCardMove: OnDragEndNotification<Card> = (_card, source, destination) => {
@@ -114,20 +113,6 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
             ...currentBoard!,
             columns: JSON.stringify([...columns.filter((item) => item.id != column.id), column].sort((a, b) => a.id - b.id)),
         })
-
-        setBoard({
-            columns: columns.map((column) => ({
-                id: column.id,
-                title: column.name,
-                cards: contracts
-                    .filter((contract) => contract.statusId == column.status)
-                    .map((contract) => ({
-                        id: contract.id,
-                        title: contract.name,
-                        description: contract.email,
-                    })),
-            })),
-        })
     }
 
     const renameBoard = (event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>) => {
@@ -151,8 +136,6 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
                     })),
             })),
         }
-
-        setBoard(initialBoard)
     }
 
     const deleteBoard = (board: Board) => {
@@ -181,19 +164,6 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
                 const newColumns = columns.filter((item) => item.id != column.id)
 
                 setCurrentBoard({ ...currentBoard!, columns: JSON.stringify(newColumns) })
-                setBoard({
-                    columns: newColumns.map((column) => ({
-                        id: column.id,
-                        title: column.name,
-                        cards: contracts
-                            .filter((contract) => contract.statusId == column.status)
-                            .map((contract) => ({
-                                id: contract.id,
-                                title: contract.name,
-                                description: contract.email,
-                            })),
-                    })),
-                })
             },
         })
     }
@@ -203,24 +173,28 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
         const newColumns = [...columns, { ...column, id: columns.length + 1 }].sort((a, b) => a.id - b.id)
 
         setCurrentBoard({ ...currentBoard!, columns: JSON.stringify(newColumns) })
-        setBoard({
-            columns: newColumns.map((column) => ({
-                id: column.id,
-                title: column.name,
-                cards: contracts
-                    .filter((contract) => contract.statusId == column.status)
-                    .map((contract) => ({
-                        id: contract.id,
-                        title: contract.name,
-                        description: contract.email,
-                    })),
-            })),
-        })
     }
 
     const goBack = () => {
         setEditMode(false)
         setBoard(undefined)
+        setCurrentBoard(undefined)
+        refresh()
+    }
+
+    const refresh = () => {
+        setLoading(true)
+        api.contracts.list({
+            callback: (response: { data: Contract[] }) => setContracts(response.data),
+        })
+
+        api.boards.get({
+            callback: (response: { data: Board[] }) => setBoards(response.data),
+        })
+
+        api.contracts.status({
+            callback: (response: { data: Status[] }) => setStatuses(response.data),
+        })
     }
 
     useEffect(() => {
@@ -246,17 +220,28 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
     }, [contracts, statuses])
 
     useEffect(() => {
-        api.contracts.list({
-            callback: (response: { data: Contract[] }) => setContracts(response.data),
-        })
+        if (currentBoard) {
+            const columns: Column[] = JSON.parse(currentBoard.columns)
+            setBoard({
+                columns: columns.map((column) => ({
+                    id: column.id,
+                    title: column.name,
+                    cards: contracts
+                        .filter((contract) => contract.statusId == column.status)
+                        .map((contract) => ({
+                            id: contract.id,
+                            title: contract.name,
+                            description: contract.email,
+                        })),
+                })),
+            })
+        } else {
+            setBoard(undefined)
+        }
+    }, [currentBoard])
 
-        api.boards.get({
-            callback: (response: { data: Board[] }) => setBoards(response.data),
-        })
-
-        api.contracts.status({
-            callback: (response: { data: Status[] }) => setStatuses(response.data),
-        })
+    useEffect(() => {
+        refresh()
     }, [])
 
     return board ? (
