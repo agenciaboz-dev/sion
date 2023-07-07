@@ -1,4 +1,4 @@
-import { Box, Button, CircularProgress, IconButton, TextField, Skeleton, colors, Collapse } from "@mui/material"
+import { Box, Button, CircularProgress, IconButton, TextField, Skeleton, colors, Collapse, SxProps } from "@mui/material"
 import React, { useEffect, useState } from "react"
 import { Contract, Status } from "../../../definitions/contract"
 import { useApi } from "../../../hooks/useApi"
@@ -67,11 +67,16 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
         })
     }
 
-    const QuestionBlock = ({ question, length, open }: { question: string; length: number; open?: boolean }) => {
+    const TriggerComponent = ({ question: title, length, open }: { question: string; length: number; open?: boolean }) => {
+        const expandIconStyle: SxProps = {
+            transition: "0.5s",
+            transform: open ? "rotate(-180deg)" : "",
+        }
+
         return (
-            <Box sx={{ alignItems: "center", justifyContent: "space-between", display: "contents" }}>
-                <h3 style={{ fontSize: "0.95vw", fontWeight: "400" }}>{question}</h3>
-                <Box>
+            <Box sx={{ alignItems: "center", justifyContent: "space-between" }}>
+                <h3 style={{ fontSize: "0.95vw", fontWeight: "400" }}>{title}</h3>
+                <Box sx={{ alignItems: "center" }}>
                     <Box
                         sx={{
                             backgroundColor: "#384974",
@@ -85,13 +90,15 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                     >
                         {length}
                     </Box>
-                    <ExpandMoreIcon color="disabled" sx={open ? { transform: "rotate(180deg)", color: "gray" } : null} />
+                    <IconButton>
+                        <ExpandMoreIcon sx={expandIconStyle} />
+                    </IconButton>
                 </Box>
             </Box>
         )
     }
 
-    const AnswerBlock = ({ answer }: { answer: any }) => {
+    const ListComponent = ({ answer }: { answer: any }) => {
         return (
             <Box sx={{ padding: "1vw 0 0 0  ", flexDirection: "column", gap: "1vw" }}>
                 <p style={{}}>{answer}</p>
@@ -260,16 +267,16 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                                             }}
                                         >
                                             <Collapsible
-                                                trigger={<QuestionBlock question={"Quadros"} length={contains.boards} />}
+                                                trigger={<TriggerComponent question={"Quadros"} length={contains.boards} />}
                                                 triggerWhenOpen={
-                                                    <QuestionBlock
+                                                    <TriggerComponent
                                                         question={"Quadros"}
                                                         length={contains.boards}
                                                         open={true}
                                                     />
                                                 }
                                             >
-                                                <AnswerBlock answer={contains.board.map((board) => board.name)} />
+                                                <ListComponent answer={contains.board.map((board) => board.name)} />
                                             </Collapsible>
                                         </Box>
                                         <Box
@@ -282,26 +289,26 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                                         >
                                             <Collapsible
                                                 trigger={
-                                                    <QuestionBlock question={"Contratos"} length={contains.contracts} />
+                                                    <TriggerComponent question={"Contratos"} length={contains.contracts} />
                                                 }
                                                 triggerWhenOpen={
-                                                    <QuestionBlock
+                                                    <TriggerComponent
                                                         question={"Contratos"}
                                                         length={contains.contracts}
                                                         open={true}
                                                     />
                                                 }
                                             >
-                                                <AnswerBlock
+                                                <ListComponent
                                                     answer={contains.contract.map((contract) => (
-                                                        <button
+                                                        <p
                                                             onClick={() => {
                                                                 navigate(`../contract/${contract.id}`)
                                                             }}
                                                             className="button-link"
                                                         >
                                                             {contract.name}
-                                                        </button>
+                                                        </p>
                                                     ))}
                                                 />
                                             </Collapsible>
