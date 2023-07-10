@@ -283,7 +283,10 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                                                                 key={board.id}
                                                                 onClick={() => {
                                                                     navigate(`../boards`, {
-                                                                        state: { board: stringifiedColumnBoard },
+                                                                        state: {
+                                                                            board: stringifiedColumnBoard,
+                                                                            contracts: contracts,
+                                                                        },
                                                                     })
                                                                 }}
                                                                 className="button-link"

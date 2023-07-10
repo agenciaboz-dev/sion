@@ -42,14 +42,15 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
     const initialValues = { search: "" }
     const colors = useColors()
     const skeletons = useArray().newArray(10)
+    const location = useLocation()
 
     const { confirm } = useConfirmDialog()
     const { snackbar } = useSnackbar()
 
-    const [contracts, setContracts] = useState<Contract[]>([])
+    const [contracts, setContracts] = useState<Contract[]>(location.state?.contracts || [])
     const [loading, setLoading] = useState(true)
     const [boards, setBoards] = useState<Board[]>([])
-    const [currentBoard, setCurrentBoard] = useState<Board | undefined>(useLocation().state?.board || undefined)
+    const [currentBoard, setCurrentBoard] = useState<Board | undefined>(location.state?.board || undefined)
     const [board, setBoard] = useState<KanbanBoard<Card>>()
     const [isIcon, setIcon] = useState(false)
     const [isVisibleContainer, setIsVisibleContainer] = useState(true)
