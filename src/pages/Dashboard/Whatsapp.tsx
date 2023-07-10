@@ -51,11 +51,11 @@ export const Whatsapp: React.FC<WhatsappProps> = ({}) => {
                         <h3 style={{ fontSize: "2vw" }}>Whatsapp está conectado</h3>
                         <p>
                             {"> "}
-                            {info.pushname}
+                            {info?.pushname}
                         </p>
                         <p>
                             {"> "}
-                            {info.me.user}
+                            {info?.me.user}
                         </p>
                     </Box>
                     <CheckCircleIcon color="primary" sx={{ width: "20vw", height: "20vw" }} />
