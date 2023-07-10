@@ -5,5 +5,7 @@ export interface SidebarMenu {
     adm?: boolean
     seller?: boolean
     site?: boolean
+    operation?: boolean
+    commertial?: boolean
     submenu?: SidebarMenu[]
 }
