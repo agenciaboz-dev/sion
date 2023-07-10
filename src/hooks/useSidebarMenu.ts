@@ -23,6 +23,11 @@ export const useSidebarMenu = () => {
                 },
                 {
                     id: 7,
+                    name: "Vendedores",
+                    location: "/dashboard/sellers",
+                },
+                {
+                    id: 8,
                     name: "Cadastrar UC",
                     location: "/dashboard/register_uc",
                 },
@@ -30,11 +35,6 @@ export const useSidebarMenu = () => {
                     id: 21,
                     name: "Quadros",
                     location: "/dashboard/boards",
-                },
-                {
-                    id: 8,
-                    name: "Vendedores",
-                    location: "/dashboard/sellers",
                 },
             ],
         },
