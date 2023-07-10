@@ -93,35 +93,35 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
         if (board == 2) {
             return (
                 <Box style={{ gap: "0.5vw", alignItems: "center" }}>
-                    <p style={{ fontSize: "1vw" }}>Site</p>
+                    <p style={{ fontSize: "0.8vw", color:"gray" }}>Site</p>
                     <WebIcon color="primary" />
                 </Box>
             )
         } else if (board == 3) {
             return (
-                <Box>
-                    <p>Vendedor</p>
+                <Box style={{ gap: "0.5vw", alignItems: "center" }}>
+                    <p style={{ fontSize: "0.8vw", color:"gray" }}>Vendedor</p>
                     <GroupIcon color="primary" />
                 </Box>
             )
         } else if (board == 4) {
             return (
-                <Box>
-                    <p>Administrador</p>
+                <Box style={{ gap: "0.5vw", alignItems: "center" }}>
+                    <p style={{ fontSize: "0.8vw", color:"gray" }}>Administrador</p>
                     <AdminPanelSettingsIcon color="primary" />
                 </Box>
             )
         } else if (board == 5) {
             return (
-                <Box>
-                    <p>Operacional</p>
+                <Box style={{ gap: "0.5vw", alignItems: "center" }}>
+                    <p style={{ fontSize: "0.8vw", color:"gray" }}>Operacional</p>
                     <ManageAccountsIcon color="primary" />
                 </Box>
             )
         } else if (board == 6) {
             return (
-                <Box>
-                    <p>Comercial</p>
+                <Box style={{ gap: "0.5vw", alignItems: "center" }}>
+                    <p style={{ fontSize: "1vw", color: "gray" }}>Comercial</p>
                     <StoreIcon color="primary" />
                 </Box>
             )
