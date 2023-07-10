@@ -31,10 +31,13 @@ export const Seller: React.FC<SellerProps> = ({}) => {
     const [idError, setIdError] = useState(false)
     const [passwordLoading, setPasswordLoading] = useState(false)
     const [passwordError, setPasswordError] = useState("")
+    const [updateUserLoading, setUpdateUserLoading] = useState(false)
 
     const initialValues: FormValues = {
         password: "",
     }
+
+    const userFormValues: User = seller!
 
     const skeleton_style: SxProps = {
         width: "100%",
@@ -43,6 +46,28 @@ export const Seller: React.FC<SellerProps> = ({}) => {
 
     const textfield_style = {
         padding: "0vw",
+    }
+
+    const handleUpdateUser = (values: User) => {
+        if (updateUserLoading) return
+
+        confirm({
+            title: "Atualizar usuário",
+            content: "Confirma atualização do usuário?",
+            onConfirm: () => {
+                setUpdateUserLoading(true)
+                api.user.update({
+                    data: values,
+                    callback: (response: { data: User }) => {
+                        snackbar({
+                            severity: "success",
+                            text: "Usuário atualizado",
+                        })
+                    },
+                    finallyCallback: () => setUpdateUserLoading(false),
+                })
+            },
+        })
     }
 
     const handlePasswordSubmit = (values: FormValues) => {
@@ -104,106 +129,131 @@ export const Seller: React.FC<SellerProps> = ({}) => {
             ) : (
                 <>
                     <div className="info-container">
-                        <div className="data-container">
-                            <p>Dados Pessoais</p>
-                            <TextField
-                                label={"Nome"}
-                                value={seller.name}
-                                InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
-                            />
-                            <MaskedInput
-                                mask={useCpfMask}
-                                guide={false}
-                                name="cpf"
-                                value={seller.cpf}
-                                render={(ref, props) => (
-                                    <TextField
-                                        label={"CPF"}
-                                        inputRef={ref}
-                                        {...props}
-                                        InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
-                                    />
-                                )}
-                            />
-
-                            <TextField
-                                label={"E-mail"}
-                                value={seller.email}
-                                InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
-                            />
-                            <TextField
-                                label={"Data de nascimento"}
-                                value={new Date(seller.birth).toLocaleDateString()}
-                                InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
-                            />
-                        </div>
-                        <div className="data-container">
-                            <TextField
-                                label={"Função"}
-                                value={seller.role}
-                                InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
-                                select
-                            >
-                                {roles.map((role) => (
-                                    <MenuItem key={role.id} value={role.id}>
-                                        {role.name}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
-
-                            <Box sx={{ gap: "1vw" }}>
-                                <MaskedInput
-                                    mask={usePhoneMask}
-                                    name="phone"
-                                    guide={false}
-                                    value={seller.phone}
-                                    render={(ref, props) => (
-                                        <TextField
-                                            label={"Telefone"}
-                                            sx={{ width: "50%" }}
-                                            inputRef={ref}
-                                            {...props}
-                                            InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
-                                        />
-                                    )}
-                                />
-                                <MaskedInput
-                                    mask={useCepMask}
-                                    name="cep"
-                                    guide={false}
-                                    value={seller.cep}
-                                    render={(ref, props) => (
-                                        <TextField
-                                            label={"CEP"}
-                                            inputRef={ref}
-                                            {...props}
-                                            sx={{ width: "50%" }}
-                                            InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
-                                        />
-                                    )}
-                                />
-                            </Box>
-
-                            <TextField
-                                label={"Endereço"}
-                                value={seller.address}
-                                InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
-                            />
-                            <div className="number-district">
-                                <TextField
-                                    label={"Número"}
-                                    value={seller.number}
-                                    sx={{ width: "30%" }}
-                                    InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
-                                />
-                                <TextField
-                                    label={"Bairro"}
-                                    value={seller.district}
-                                    sx={{ width: "70%" }}
-                                    InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
-                                />
-                            </div>
-                        </div>
+                        <Formik initialValues={userFormValues} onSubmit={handleUpdateUser}>
+                            {({ values, handleChange }) => (
+                                <Form style={{ flexDirection: "column", display: "flex", gap: "1vw" }}>
+                                    <Box sx={{ gap: "1vw" }}>
+                                        <div className="data-container">
+                                            <p>Dados Pessoais</p>
+                                            <TextField
+                                                label={"Nome"}
+                                                name="name"
+                                                value={values.name}
+                                                onChange={handleChange}
+                                                InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
+                                            />
+                                            <MaskedInput
+                                                mask={useCpfMask}
+                                                guide={false}
+                                                name="cpf"
+                                                value={values.cpf}
+                                                onChange={handleChange}
+                                                render={(ref, props) => (
+                                                    <TextField
+                                                        label={"CPF"}
+                                                        inputRef={ref}
+                                                        {...props}
+                                                        InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
+                                                    />
+                                                )}
+                                            />
+                                            <TextField
+                                                label={"E-mail"}
+                                                name="email"
+                                                value={values.email}
+                                                onChange={handleChange}
+                                                InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
+                                            />
+                                            <TextField
+                                                label={"Data de nascimento"}
+                                                name="birth"
+                                                value={new Date(values.birth).toLocaleDateString()}
+                                                onChange={handleChange}
+                                                InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
+                                            />
+                                        </div>
+                                        <div className="data-container">
+                                            <TextField
+                                                label={"Função"}
+                                                name="role"
+                                                value={values.role}
+                                                onChange={handleChange}
+                                                InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
+                                                select
+                                            >
+                                                {roles.map((role) => (
+                                                    <MenuItem key={role.id} value={role.id}>
+                                                        {role.name}
+                                                    </MenuItem>
+                                                ))}
+                                            </TextField>
+                                            <Box sx={{ gap: "1vw" }}>
+                                                <MaskedInput
+                                                    mask={usePhoneMask}
+                                                    name="phone"
+                                                    guide={false}
+                                                    value={values.phone}
+                                                    onChange={handleChange}
+                                                    render={(ref, props) => (
+                                                        <TextField
+                                                            label={"Telefone"}
+                                                            sx={{ width: "50%" }}
+                                                            inputRef={ref}
+                                                            {...props}
+                                                            InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
+                                                        />
+                                                    )}
+                                                />
+                                                <MaskedInput
+                                                    mask={useCepMask}
+                                                    name="cep"
+                                                    guide={false}
+                                                    value={values.cep}
+                                                    onChange={handleChange}
+                                                    render={(ref, props) => (
+                                                        <TextField
+                                                            label={"CEP"}
+                                                            inputRef={ref}
+                                                            {...props}
+                                                            sx={{ width: "50%" }}
+                                                            InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
+                                                        />
+                                                    )}
+                                                />
+                                            </Box>
+                                            <TextField
+                                                label={"Endereço"}
+                                                name="address"
+                                                value={values.address}
+                                                onChange={handleChange}
+                                                InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
+                                            />
+                                            <div className="number-district">
+                                                <TextField
+                                                    label={"Número"}
+                                                    name="number"
+                                                    value={values.number}
+                                                    onChange={handleChange}
+                                                    sx={{ width: "30%" }}
+                                                    InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
+                                                />
+                                                <TextField
+                                                    label={"Bairro"}
+                                                    name="district"
+                                                    value={values.district}
+                                                    onChange={handleChange}
+                                                    sx={{ width: "70%" }}
+                                                    InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
+                                                />
+                                            </div>
+                                        </div>
+                                    </Box>
+                                    <Button variant="contained" type="submit" sx={{ alignSelf: "flex-end" }}>
+                                        {updateUserLoading ? <CircularProgress size={"1.5rem"} sx={{ color: "white" }} /> : "Atualizar usuário"}
+                                    </Button>
+                                </Form>
+                            )}
+                        </Formik>
                     </div>
 
                     {user!.adm && (
@@ -224,11 +274,7 @@ export const Seller: React.FC<SellerProps> = ({}) => {
                                                 helperText={passwordError}
                                             />
                                             <Button type="submit" variant="contained">
-                                                {passwordLoading ? (
-                                                    <CircularProgress size={"1.5rem"} sx={{ color: "white" }} />
-                                                ) : (
-                                                    "Alterar senha"
-                                                )}
+                                                {passwordLoading ? <CircularProgress size={"1.5rem"} sx={{ color: "white" }} /> : "Alterar senha"}
                                             </Button>
                                         </Form>
                                     )}
