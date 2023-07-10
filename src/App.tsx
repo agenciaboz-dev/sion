@@ -21,13 +21,13 @@ function App() {
     const muiTheme = useMuiTheme()
 
     return (
-        <SettingsProvider>
-            <ImagesProvider>
-                <UserProvider>
-                    <BrowserRouter>
-                        <ThemeProvider theme={muiTheme}>
-                            <ConfirmDialogProvider>
-                                <SnackbarProvider>
+        <SnackbarProvider>
+            <ConfirmDialogProvider>
+                <SettingsProvider>
+                    <ImagesProvider>
+                        <UserProvider>
+                            <BrowserRouter>
+                                <ThemeProvider theme={muiTheme}>
                                     <ClientProvider>
                                         <AttachmentsProvider>
                                             <PdfProvider>
@@ -45,13 +45,13 @@ function App() {
                                             </PdfProvider>
                                         </AttachmentsProvider>
                                     </ClientProvider>
-                                </SnackbarProvider>
-                            </ConfirmDialogProvider>
-                        </ThemeProvider>
-                    </BrowserRouter>
-                </UserProvider>
-            </ImagesProvider>
-        </SettingsProvider>
+                                </ThemeProvider>
+                            </BrowserRouter>
+                        </UserProvider>
+                    </ImagesProvider>
+                </SettingsProvider>
+            </ConfirmDialogProvider>
+        </SnackbarProvider>
     )
 }
 

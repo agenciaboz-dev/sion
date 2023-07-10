@@ -8451,7 +8451,7 @@ react-pdf@^7.1.2:
 
 react-qrcode-logo@^2.9.0:
   version "2.9.0"
-  resolved "https://registry.npmjs.org/react-qrcode-logo/-/react-qrcode-logo-2.9.0.tgz"
+  resolved "https://registry.yarnpkg.com/react-qrcode-logo/-/react-qrcode-logo-2.9.0.tgz#34270d563b4a15396b5e7e7656ea2d079673adad"
   integrity sha512-x9uctB/8kuQ+x7p4V/BRv6qbQV4xYopLcitBuQT3925U/zVFb3bbDUsUZsi7hEKuAX/wRsfhs331FhlPSYCO9Q==
   dependencies:
     lodash.isequal "^4.5.0"

@@ -59,6 +59,12 @@ export const useSidebarMenu = () => {
                     location: "/dashboard/boards/status",
                     adm: true,
                 },
+                {
+                    id: 23,
+                    name: "Whatsapp",
+                    location: "/dashboard/whatsapp",
+                    adm: true,
+                },
             ],
         },
         {
