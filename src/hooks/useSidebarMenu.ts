@@ -59,6 +59,12 @@ export const useSidebarMenu = () => {
                     name: "Status de contrato",
                     location: "/dashboard/boards/status",
                 },
+                {
+                    id: 23,
+                    name: "Whatsapp",
+                    location: "/dashboard/whatsapp",
+                    adm: true,
+                },
             ],
         },
         {
