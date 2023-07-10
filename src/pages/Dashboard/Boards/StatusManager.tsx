@@ -273,16 +273,25 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                                                 }
                                             >
                                                 <ListComponent
-                                                    list={contains.board.map((board) => (
-                                                        <p
-                                                            onClick={() => {
-                                                                navigate(`../boards/`)
-                                                            }}
-                                                            className="button-link"
-                                                        >
-                                                            {board.name}
-                                                        </p>
-                                                    ))}
+                                                    list={contains.board.map((board) => {
+                                                        const stringifiedColumnBoard = {
+                                                            ...board,
+                                                            columns: JSON.stringify(board.columns),
+                                                        }
+                                                        return (
+                                                            <p
+                                                                key={board.id}
+                                                                onClick={() => {
+                                                                    navigate(`../boards`, {
+                                                                        state: { board: stringifiedColumnBoard },
+                                                                    })
+                                                                }}
+                                                                className="button-link"
+                                                            >
+                                                                {board.name}
+                                                            </p>
+                                                        )
+                                                    })}
                                                 />
                                             </Collapsible>
                                         </Box>
@@ -309,6 +318,7 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                                                 <ListComponent
                                                     list={contains.contract.map((contract) => (
                                                         <p
+                                                            key={contract.id}
                                                             onClick={() => {
                                                                 navigate(`../contract/${contract.id}`)
                                                             }}
