@@ -7,6 +7,9 @@ export const useSidebarMenu = () => {
             name: "Painel",
             location: "",
             adm: true,
+            seller: true,
+            operation: true,
+            commertial: true,
             submenu: [
                 {
                     id: 5,
@@ -45,19 +48,16 @@ export const useSidebarMenu = () => {
                     id: 9,
                     name: "Novo Vendedor",
                     location: "/dashboard/new_seller",
-                    adm: true,
                 },
                 {
                     id: 10,
                     name: "Novo quadro",
                     location: "/dashboard/boards/new",
-                    adm: true,
                 },
                 {
                     id: 22,
                     name: "Status de contrato",
                     location: "/dashboard/boards/status",
-                    adm: true,
                 },
             ],
         },
@@ -66,11 +66,17 @@ export const useSidebarMenu = () => {
             name: "Comercial",
             location: "",
             adm: true,
+            commertial: true,
             submenu: [
                 {
                     id: 11,
                     name: "Clientes",
                     location: "/dashboard/contracts",
+                },
+                {
+                    id: 24,
+                    name: "Novo quadro",
+                    location: "/dashboard/boards/new",
                 },
             ],
         },
@@ -79,11 +85,17 @@ export const useSidebarMenu = () => {
             name: "Operacional",
             location: "",
             adm: true,
+            operation: true,
             submenu: [
                 {
                     id: 13,
                     name: "Clientes",
                     location: "/dashboard/approved",
+                },
+                {
+                    id: 25,
+                    name: "Novo quadro",
+                    location: "/dashboard/boards/new",
                 },
             ],
         },
@@ -98,19 +110,16 @@ export const useSidebarMenu = () => {
                     id: 18,
                     name: "Textos",
                     location: "/dashboard/texts",
-                    adm: true,
                 },
                 {
                     id: 19,
                     name: "Imagens",
                     location: "/dashboard/images",
-                    adm: true,
                 },
                 {
                     id: 20,
                     name: "Tarifa de Energia",
                     location: "/dashboard/rate",
-                    adm: true,
                 },
             ],
         },

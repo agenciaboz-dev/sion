@@ -49,12 +49,16 @@ export const Sidebar: React.FC<SidebarProps> = ({ user }) => {
     }
 
     const filteredMenus = menus.filter((menu) => {
-        if (user.role == 4 && menu) {
-            return menu.adm
-        } else if (user.role == 2 && menu) {
-            return menu.seller
-        } else {
+        if (user.role == 2 && menu) {
             return menu.site
+        } else if (user.role == 3 && menu) {
+            return menu.seller
+        } else if (user.role == 4 && menu) {
+            return menu.adm
+        } else if (user.role == 5 && menu) {
+            return menu.operation
+        } else if (user.role == 6 && menu) {
+            return menu.commertial
         }
     })
     return (
@@ -95,6 +99,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ user }) => {
                                         className={`SubmenuItem ${selectedSubmenu === submenuItem.id ? "selected" : ""}`}
                                     >
                                         <IconButton
+                                            key={submenuItem.id}
                                             onClick={() => handleSubmenuClick(submenuItem)}
                                             sx={{
                                                 alignSelf: "flex-start",

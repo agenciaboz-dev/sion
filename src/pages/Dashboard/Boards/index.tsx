@@ -11,6 +11,7 @@ import {
     Column as ColumnType,
 } from "@caldwell619/react-kanban"
 
+import { User } from "../../../definitions/user"
 import { Card as CardContainer } from "../Validations/Card"
 import { Contract, Status } from "../../../definitions/contract"
 import { useApi } from "../../../hooks/useApi"
@@ -29,14 +30,21 @@ import { useColors } from "../../../hooks/useColors"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 import { ColumnAdder } from "./ColumnAdder"
 import { useArray } from "burgos-array"
+import WebIcon from "@mui/icons-material/Web"
+import StoreIcon from "@mui/icons-material/Store"
+import ManageAccountsIcon from "@mui/icons-material/ManageAccounts"
+import GroupIcon from "@mui/icons-material/Group"
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings"
 
-interface BoardsProps {}
+interface BoardsProps {
+    user: User
+}
 
 interface FormValues {
     search: string
 }
 
-export const Boards: React.FC<BoardsProps> = ({}) => {
+export const Boards: React.FC<BoardsProps> = ({ user }) => {
     const api = useApi()
     const navigate = useNavigate()
     const initialValues = { search: "" }
@@ -73,6 +81,52 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
         // })
     }
 
+    const filteredBoards = boards.filter((board) => {
+        if (user.role == 4) {
+            return board
+        } else if (user.role == board.access && board) {
+            return board
+        }
+    })
+
+    const accessName = (board: number) => {
+        if (board == 2) {
+            return (
+                <Box style={{ gap: "0.5vw", alignItems: "center" }}>
+                    <p style={{ fontSize: "1vw" }}>Site</p>
+                    <WebIcon color="primary" />
+                </Box>
+            )
+        } else if (board == 3) {
+            return (
+                <Box>
+                    <p>Vendedor</p>
+                    <GroupIcon color="primary" />
+                </Box>
+            )
+        } else if (board == 4) {
+            return (
+                <Box>
+                    <p>Administrador</p>
+                    <AdminPanelSettingsIcon color="primary" />
+                </Box>
+            )
+        } else if (board == 5) {
+            return (
+                <Box>
+                    <p>Operacional</p>
+                    <ManageAccountsIcon color="primary" />
+                </Box>
+            )
+        } else if (board == 6) {
+            return (
+                <Box>
+                    <p>Comercial</p>
+                    <StoreIcon color="primary" />
+                </Box>
+            )
+        }
+    }
     const handleColumnMove: OnDragEndNotification<ColumnType<Card>> = (_column, from, destination) => {
         const moved = moveColumn(board, from, destination)
         setBoard(moved)
@@ -366,11 +420,11 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
                                         <Button
                                             variant="contained"
                                             sx={{
-                                                minWidth: "0",
-                                                fontSize: "0.8vw",
-                                                borderRadius: "100%",
-                                                width: "2vw",
-                                                height: "2vw",
+                                                minWidth: "0vw",
+                                                fontSize: "1vw",
+                                                borderRadius: "50%",
+                                                width: "0vw",
+                                                height: "2.3vw",
                                             }}
                                         >
                                             {column.cards.length}
@@ -419,37 +473,39 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
                 </Box>
             ) : (
                 <>
-                    <Box sx={{ padding: "0!important", boxShadow: "none!important" }}>
-                        <MenuItem
-                            sx={{
-                                justifyContent: "space-between",
-                                alignItems: "center",
-                                boxShadow: "0px 2px 15px rgba(0, 0, 0, 0.25);",
-                                width: "100%",
-                                padding: "1vw",
-                            }}
-                            onClick={() =>
-                                selectBoard({
-                                    access: 1,
-                                    id: -1,
-                                    name: "Quadrão",
-                                    columns: JSON.stringify(
-                                        statuses.map((status) => ({
-                                            id: status.id,
-                                            name: status.name,
-                                            status: status.id,
-                                        }))
-                                    ),
-                                })
-                            }
-                        >
-                            <p style={{ cursor: "pointer" }}>Quadrão</p>
-                        </MenuItem>
-                        <IconButton color="error" disabled>
-                            <DeleteIcon />
-                        </IconButton>
-                    </Box>
-                    {boards.map((board) => (
+                    {user.role === 4 && (
+                        <Box sx={{ padding: "0!important", boxShadow: "none!important" }}>
+                            <MenuItem
+                                sx={{
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                    boxShadow: "0px 2px 15px rgba(0, 0, 0, 0.25);",
+                                    width: "100%",
+                                    padding: "1vw",
+                                }}
+                                onClick={() =>
+                                    selectBoard({
+                                        access: 1,
+                                        id: -1,
+                                        name: "Quadrão",
+                                        columns: JSON.stringify(
+                                            statuses.map((status) => ({
+                                                id: status.id,
+                                                name: status.name,
+                                                status: status.id,
+                                            }))
+                                        ),
+                                    })
+                                }
+                            >
+                                <p style={{ cursor: "pointer" }}>Quadrão</p>
+                            </MenuItem>
+                            <IconButton color="error" disabled>
+                                <DeleteIcon />
+                            </IconButton>
+                        </Box>
+                    )}
+                    {filteredBoards.map((board) => (
                         <Box sx={{ padding: "0!important", boxShadow: "none!important" }}>
                             <MenuItem
                                 key={board.id}
@@ -463,6 +519,8 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
                                 onClick={() => selectBoard(board)}
                             >
                                 <p style={{ cursor: "pointer" }}>{board.name}</p>
+
+                                {accessName(board.access)}
                             </MenuItem>
                             <IconButton color="error" onClick={() => deleteBoard(board)}>
                                 {deleteloading == board.id ? (

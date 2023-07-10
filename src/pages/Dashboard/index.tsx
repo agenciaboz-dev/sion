@@ -48,7 +48,7 @@ export const Dashboard: React.FC<DashboardProps> = ({}) => {
                     <Route path="texts/" element={<Texts user={user} />} />
                     <Route path="images/" element={<Images />} />
                     {/*<Route path="validations/" element={<Validations />} />*/}
-                    <Route path="boards" element={<Boards />} />
+                    <Route path="boards" element={<Boards user={user} />} />
                     <Route path="boards/new" element={<NewBoard />} />
                     <Route path="boards/status" element={<StatusManager />} />
                 </Routes>
