@@ -90,42 +90,44 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
     })
 
     const accessName = (board: number) => {
-        if (board == 2) {
-            return (
-                <Box style={{ gap: "0.5vw", alignItems: "center" }}>
-                    <p style={{ fontSize: "0.8vw", color:"gray" }}>Site</p>
-                    <WebIcon color="primary" />
-                </Box>
-            )
-        } else if (board == 3) {
-            return (
-                <Box style={{ gap: "0.5vw", alignItems: "center" }}>
-                    <p style={{ fontSize: "0.8vw", color:"gray" }}>Vendedor</p>
-                    <GroupIcon color="primary" />
-                </Box>
-            )
-        } else if (board == 4) {
-            return (
-                <Box style={{ gap: "0.5vw", alignItems: "center" }}>
-                    <p style={{ fontSize: "0.8vw", color:"gray" }}>Administrador</p>
-                    <AdminPanelSettingsIcon color="primary" />
-                </Box>
-            )
-        } else if (board == 5) {
-            return (
-                <Box style={{ gap: "0.5vw", alignItems: "center" }}>
-                    <p style={{ fontSize: "0.8vw", color:"gray" }}>Operacional</p>
-                    <ManageAccountsIcon color="primary" />
-                </Box>
-            )
-        } else if (board == 6) {
-            return (
-                <Box style={{ gap: "0.5vw", alignItems: "center" }}>
-                    <p style={{ fontSize: "1vw", color: "gray" }}>Comercial</p>
-                    <StoreIcon color="primary" />
-                </Box>
-            )
-        }
+       if (user.role == 4) {
+           if (board == 2) {
+               return (
+                   <Box style={{ gap: "0.5vw", alignItems: "center" }}>
+                       <p style={{ fontSize: "0.8vw", color: "gray" }}>Site</p>
+                       <WebIcon color="primary" />
+                   </Box>
+               )
+           } else if (board == 3) {
+               return (
+                   <Box style={{ gap: "0.5vw", alignItems: "center" }}>
+                       <p style={{ fontSize: "0.8vw", color: "gray" }}>Vendedor</p>
+                       <GroupIcon color="primary" />
+                   </Box>
+               )
+           } else if (board == 4) {
+               return (
+                   <Box style={{ gap: "0.5vw", alignItems: "center" }}>
+                       <p style={{ fontSize: "0.8vw", color: "gray" }}>Administrador</p>
+                       <AdminPanelSettingsIcon color="primary" />
+                   </Box>
+               )
+           } else if (board == 5) {
+               return (
+                   <Box style={{ gap: "0.5vw", alignItems: "center" }}>
+                       <p style={{ fontSize: "0.8vw", color: "gray" }}>Operacional</p>
+                       <ManageAccountsIcon color="primary" />
+                   </Box>
+               )
+           } else if (board == 6) {
+               return (
+                   <Box style={{ gap: "0.5vw", alignItems: "center" }}>
+                       <p style={{ fontSize: "1vw", color: "gray" }}>Comercial</p>
+                       <StoreIcon color="primary" />
+                   </Box>
+               )
+           }
+       }
     }
     const handleColumnMove: OnDragEndNotification<ColumnType<Card>> = (_column, from, destination) => {
         const moved = moveColumn(board, from, destination)
