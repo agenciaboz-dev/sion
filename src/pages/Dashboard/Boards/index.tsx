@@ -49,7 +49,7 @@ export const Boards: React.FC<BoardsProps> = ({}) => {
     const [contracts, setContracts] = useState<Contract[]>([])
     const [loading, setLoading] = useState(true)
     const [boards, setBoards] = useState<Board[]>([])
-    const [currentBoard, setCurrentBoard] = useState<Board | undefined>(useLocation().state.board)
+    const [currentBoard, setCurrentBoard] = useState<Board | undefined>(useLocation().state?.board || undefined)
     const [board, setBoard] = useState<KanbanBoard<Card>>()
     const [isIcon, setIcon] = useState(false)
     const [isVisibleContainer, setIsVisibleContainer] = useState(true)
