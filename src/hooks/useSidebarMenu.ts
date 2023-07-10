@@ -23,6 +23,11 @@ export const useSidebarMenu = () => {
                 },
                 {
                     id: 7,
+                    name: "Vendedores",
+                    location: "/dashboard/sellers",
+                },
+                {
+                    id: 8,
                     name: "Cadastrar UC",
                     location: "/dashboard/register_uc",
                 },
@@ -39,11 +44,6 @@ export const useSidebarMenu = () => {
             location: "",
             adm: true,
             submenu: [
-                {
-                    id: 8,
-                    name: "Vendedores",
-                    location: "/dashboard/sellers",
-                },
                 {
                     id: 9,
                     name: "Novo Vendedor",
