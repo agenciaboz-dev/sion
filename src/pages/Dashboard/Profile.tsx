@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import "./style.scss"
 import { Form, Formik } from "formik"
-import { User } from "../../definitions/user"
 import { TextField, Button, SxProps, CircularProgress } from "@mui/material"
 import { useApi } from "../../hooks/useApi"
 import { useUser } from "../../hooks/useUser"

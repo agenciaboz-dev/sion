@@ -11,9 +11,7 @@ import {
     Column as ColumnType,
 } from "@caldwell619/react-kanban"
 
-import { User } from "../../../definitions/user"
 import { Card as CardContainer } from "../Validations/Card"
-import { Contract, Status } from "../../../definitions/contract"
 import { useApi } from "../../../hooks/useApi"
 import "./style.scss"
 import { useLocation, useNavigate } from "react-router-dom"

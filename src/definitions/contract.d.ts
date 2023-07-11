@@ -1,12 +1,10 @@
-import { User } from "./user"
-
-export interface Status {
+declare interface Status {
     id: number
     name: string
     contracts?: Contract[]
 }
 
-export interface Contract {
+declare interface Contract {
     id: number
     status?: Status
     statusId?: number

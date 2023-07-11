@@ -1,6 +1,4 @@
-import { User } from "./user"
-
-export interface Image {
+declare interface Image {
     id: number
     name: string
     title: string

@@ -1,5 +1,3 @@
-import { SidebarMenu } from "../definitions/sidebar"
-
 export const useSidebarMenu = () => {
     const links: SidebarMenu[] = [
         {

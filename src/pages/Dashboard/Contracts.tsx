@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
 import "./style.scss"
 import { useApi } from "../../hooks/useApi"
-import { Contract } from "../../definitions/contract"
 import { Button, Skeleton, SxProps, TextField } from "@mui/material"
 import { useArray } from "burgos-array"
 import { useNavigate } from "react-router-dom"

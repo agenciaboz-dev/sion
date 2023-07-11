@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from "react"
 import React from "react"
-import { Settings } from "../definitions/settings"
 import { useApi } from "../hooks/useApi"
 
 interface SettingsContextValue {

@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import { Image } from "../../../definitions/images"
 import FileUploadIcon from "@mui/icons-material/FileUpload"
 import { SxProps, Skeleton } from "@mui/material"
 import Dropzone from "react-dropzone"
@@ -62,12 +61,7 @@ export const ImageContainer: React.FC<ImageContainerProps> = ({ image }) => {
                 </p>
                 <Dropzone onDrop={(acceptedFiles) => fileHandler(acceptedFiles[0])}>
                     {({ getRootProps, getInputProps }) => (
-                        <div
-                            {...getRootProps()}
-                            className="image-container"
-                            onMouseEnter={() => setHover(true)}
-                            onMouseLeave={() => setHover(false)}
-                        >
+                        <div {...getRootProps()} className="image-container" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
                             <input {...getInputProps()} />
                             <img
                                 onLoad={() => setLoading(false)}

@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import "./style.scss"
-import { Contract, Status } from "../../../definitions/contract"
 import { Button, IconButton, Menu, MenuItem, Theme } from "@mui/material"
 import { makeStyles } from "@mui/styles"
 import { useNavigate } from "react-router-dom"

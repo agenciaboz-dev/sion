@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from "react"
 import React from "react"
-import { Image } from "../definitions/images"
 import { useApi } from "../hooks/useApi"
 
 interface ImagesContextValue {

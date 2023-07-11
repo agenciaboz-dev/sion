@@ -1,17 +1,15 @@
 import React, { useState } from "react"
 import "./style.scss"
-import { Texts } from "../../../definitions/texts"
 import { useApi } from "../../../hooks/useApi"
 import { CircularProgress, IconButton, SxProps, TextField } from "@mui/material"
 import { Form, Formik } from "formik"
 import CheckCircleIcon from "@mui/icons-material/CheckCircle"
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline"
-import { User } from "../../../definitions/user"
 import { useSnackbar } from "burgos-snackbar"
 import { useConfirmDialog } from "burgos-confirm"
 
 interface TextContainerProps {
-    text: Texts
+    text: Text
     user: User
 }
 
@@ -26,7 +24,7 @@ export const TextContainer: React.FC<TextContainerProps> = ({ text, user }) => {
 
     const initialValues = currentText
 
-    const handleSubmit = (values: Texts) => {
+    const handleSubmit = (values: Text) => {
         if (values.text == currentText.text) return
         if (loading) return
 
@@ -38,7 +36,7 @@ export const TextContainer: React.FC<TextContainerProps> = ({ text, user }) => {
                 setLoading(true)
                 api.texts.update({
                     data: { ...values, date: new Date(), user },
-                    callback: (response: { data: Texts }) => {
+                    callback: (response: { data: Text }) => {
                         setCurrentText(response.data)
                         snackbar({
                             severity: "success",

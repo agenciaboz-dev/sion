@@ -7,7 +7,6 @@ import { ReactComponent as LogoEscuro } from "../../images/logo_bonita.svg"
 import "./style.scss"
 import { useUser } from "../../hooks/useUser"
 import { useNavigate, useParams } from "react-router-dom"
-import { User } from "../../definitions/user"
 import { useApi } from "../../hooks/useApi"
 import { useMediaQuery } from "react-responsive"
 // import { FormHelperText } from '@mui/material';

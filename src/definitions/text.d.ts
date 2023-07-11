@@ -1,6 +1,4 @@
-import { User } from "./user"
-
-export interface Texts {
+declare interface Text {
     id: number
     section: number
     text: string

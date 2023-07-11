@@ -4,8 +4,7 @@ import './style.scss';
 import TextField from '@mui/material/TextField';
 import { Form, Formik, useFormikContext, withFormik } from 'formik';
 import { useApi } from '../../hooks/useApi';
-import { useSettings } from '../../hooks/useSettings';
-import { Settings } from '../../definitions/settings';
+import { useSettings } from "../../hooks/useSettings"
 import CircularProgress from '@mui/material/CircularProgress';
 import { useSnackbar } from "burgos-snackbar"
 

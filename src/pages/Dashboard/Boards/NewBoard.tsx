@@ -2,7 +2,6 @@ import { Box, Button, CircularProgress, MenuItem, TextField } from "@mui/materia
 import { Form, Formik } from "formik"
 import React, { useEffect, useState } from "react"
 import { useRoles } from "../../../hooks/useRoles"
-import { Status } from "../../../definitions/contract"
 import { useApi } from "../../../hooks/useApi"
 import { useNavigate } from "react-router-dom"
 import AddIcon from "@mui/icons-material/Add"

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react"
 import "./style.scss"
 import { useApi } from "../../../hooks/useApi"
-import { Texts as TextsType } from "../../../definitions/texts"
-import { User } from "../../../definitions/user"
 import { useArray } from "burgos-array"
 import { TextContainer } from "./TextContainer"
 import { Skeleton, SxProps } from "@mui/material"
@@ -17,7 +15,7 @@ export const Texts: React.FC<TextsProps> = ({ user }) => {
     const sections = newArray(7)
     const skeletons = newArray(7)
 
-    const [texts, setTexts] = useState<TextsType[]>([])
+    const [texts, setTexts] = useState<Text[]>([])
 
     const skeleton_style: SxProps = {
         width: "100%",
@@ -27,7 +25,7 @@ export const Texts: React.FC<TextsProps> = ({ user }) => {
 
     useEffect(() => {
         api.texts.get({
-            callback: (response: { data: TextsType[] }) => {
+            callback: (response: { data: Text[] }) => {
                 setTexts(response.data)
             },
         })

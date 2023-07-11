@@ -1,6 +1,5 @@
 import { useContext, useEffect } from "react"
 import ImagesContext from "../contexts/imagesContext"
-import { Image } from "../definitions/images"
 import { useApi } from "./useApi"
 
 export const useImages = () => {

@@ -1,6 +1,5 @@
 import { Box, Button, CircularProgress, IconButton, TextField, Skeleton, colors, Collapse, SxProps } from "@mui/material"
 import React, { ReactNode, useEffect, useState } from "react"
-import { Contract, Status } from "../../../definitions/contract"
 import { useApi } from "../../../hooks/useApi"
 import EditIcon from "@mui/icons-material/Edit"
 import DeleteIcon from "@mui/icons-material/Delete"

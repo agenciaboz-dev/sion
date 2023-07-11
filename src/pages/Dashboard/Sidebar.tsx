@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import "./style.scss"
 import { useNavigate } from "react-router-dom"
-import { User } from "../../definitions/user"
 import { useSidebarMenu } from "../../hooks/useSidebarMenu"
 import LogoutIcon from "@mui/icons-material/Logout"
 import { IconButton } from "@mui/material"
@@ -9,7 +8,6 @@ import { useUser } from "../../hooks/useUser"
 import { useLocation } from "react-router-dom"
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined"
 import ListAltIcon from "@mui/icons-material/ListAlt"
-import { SidebarMenu } from "../../definitions/sidebar"
 
 interface SidebarProps {
     user: User

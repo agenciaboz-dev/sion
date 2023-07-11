@@ -6,7 +6,6 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff"
 import { Form, Formik } from "formik"
 import AddIcon from "@mui/icons-material/Add"
 import { useApi } from "../../../hooks/useApi"
-import { Status } from "../../../definitions/contract"
 
 interface ColumnAdderProps {
     addColumn: (column: Column) => void

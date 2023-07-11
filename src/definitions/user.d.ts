@@ -1,6 +1,4 @@
-import { Contract } from "./contract"
-
-export interface User {
+declare interface User {
     id: number
     username: string
     email: string

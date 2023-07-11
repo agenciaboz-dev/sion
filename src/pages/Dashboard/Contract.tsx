@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { Contract as ContractType } from "../../definitions/contract"
 import { Skeleton, SxProps, TextField, Box, LinearProgress } from "@mui/material"
 import { useApi } from "../../hooks/useApi"
 import MaskedInput from "react-text-mask"
@@ -24,7 +23,7 @@ export const Contract: React.FC<ContractProps> = ({}) => {
     const navigate = useNavigate()
     const apio = useApi()
 
-    const [contract, setContract] = useState<ContractType>()
+    const [contract, setContract] = useState<Contract>()
     const [loading, setLoading] = useState(false)
     const [ref, { width }] = useMeasure()
     const [pages, setPages] = useState<number[]>([])
@@ -57,7 +56,7 @@ export const Contract: React.FC<ContractProps> = ({}) => {
 
         apio.contracts.find.id({
             data: { id },
-            callback: (response: { data: ContractType }) => setContract(response.data),
+            callback: (response: { data: Contract }) => setContract(response.data),
         })
     }, [])
 
@@ -136,13 +135,7 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                                 InputProps={{ readOnly: true, sx: textfield_style }}
                             />
 
-                            {contract.cpf && (
-                                <TextField
-                                    label={"RG"}
-                                    value={contract.rg}
-                                    InputProps={{ readOnly: true, sx: textfield_style }}
-                                />
-                            )}
+                            {contract.cpf && <TextField label={"RG"} value={contract.rg} InputProps={{ readOnly: true, sx: textfield_style }} />}
                             <MaskedInput
                                 mask={useCpfMask}
                                 value={contract.cnpj || contract.cpf}
@@ -193,30 +186,13 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                                     value={contract.cep}
                                     guide={false}
                                     render={(ref, props) => (
-                                        <TextField
-                                            inputRef={ref}
-                                            {...props}
-                                            label={"CEP"}
-                                            InputProps={{ readOnly: true, sx: textfield_style }}
-                                        />
+                                        <TextField inputRef={ref} {...props} label={"CEP"} InputProps={{ readOnly: true, sx: textfield_style }} />
                                     )}
                                 />
-                                <TextField
-                                    label={"UF"}
-                                    value={contract.state}
-                                    InputProps={{ readOnly: true, sx: textfield_style }}
-                                />
+                                <TextField label={"UF"} value={contract.state} InputProps={{ readOnly: true, sx: textfield_style }} />
                             </div>
-                            <TextField
-                                label={"Cidade"}
-                                value={contract.city}
-                                InputProps={{ readOnly: true, sx: textfield_style }}
-                            />
-                            <TextField
-                                label={"Endereço"}
-                                value={contract.address}
-                                InputProps={{ readOnly: true, sx: textfield_style }}
-                            />
+                            <TextField label={"Cidade"} value={contract.city} InputProps={{ readOnly: true, sx: textfield_style }} />
+                            <TextField label={"Endereço"} value={contract.address} InputProps={{ readOnly: true, sx: textfield_style }} />
                             <div className="number-district">
                                 <TextField
                                     label={"Número"}
@@ -257,9 +233,7 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                             <h1>{contract.seller.name}</h1>
                         </div>
 
-                        <h2 style={{ fontWeight: "normal" }}>
-                            Data de início: {new Date(contract.date).toLocaleDateString()}
-                        </h2>
+                        <h2 style={{ fontWeight: "normal" }}>Data de início: {new Date(contract.date).toLocaleDateString()}</h2>
                     </div>
 
                     <Box className="Contract-Page" ref={ref} sx={{ alignItems: "center", gap: "1vw" }}>

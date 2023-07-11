@@ -1,4 +1,4 @@
-export interface SidebarMenu {
+declare interface SidebarMenu {
     id: number
     name: string
     location: string

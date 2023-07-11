@@ -7,7 +7,6 @@ import { useApi } from '../../hooks/useApi';
 import CircularProgress from '@mui/material/CircularProgress/CircularProgress';
 import { useConfirmDialog } from 'burgos-confirm'
 import { useSnackbar } from "burgos-snackbar"
-import { User } from '../../definitions/user';
 import { Navigate, useNavigate } from 'react-router-dom';
 import MaskedInput from "react-text-mask"
 import { useCepMask, useCpfMask, usePhoneMask } from "burgos-masks"
