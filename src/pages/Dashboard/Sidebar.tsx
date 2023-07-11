@@ -18,12 +18,27 @@ export const Sidebar: React.FC<SidebarProps> = ({ user }) => {
     const menus = useSidebarMenu()
     const { logout } = useUser()
     const pathname = useLocation().pathname
-
+    
     const contractRegex = /^\/dashboard\/contract\/\d+$/
 
-    const [selectedMenu, setSelectedMenu] = useState<number | null>(null)
-    const [selectedSubmenu, setSelectedSubmenu] = useState<number | null>(null)
-    const [showSubmenu, setShowSubmenu] = useState(false)
+    const filteredMenus = menus.filter((menu) => {
+        if (user.role == 2 && menu) {
+            return menu.site
+        } else if (user.role == 3 && menu) {
+            return menu.seller
+        } else if (user.role == 4 && menu) {
+            return menu.adm
+        } else if (user.role == 5 && menu) {
+            return menu.operation
+        } else if (user.role == 6 && menu) {
+            return menu.commertial
+        }
+    })
+    const [selectedMenu, setSelectedMenu] = useState<number | null>(filteredMenus.length > 0 ? filteredMenus[0].id : null)
+    const [selectedSubmenu, setSelectedSubmenu] = useState<number | null>(
+        filteredMenus.length > 0 && filteredMenus[0].submenu ? filteredMenus[0].submenu[0].id : null
+    )
+    const [showSubmenu, setShowSubmenu] = useState(filteredMenus.length > 0 && filteredMenus[0].submenu ? true : false)
 
     const handleMenuClick = (menu: SidebarMenu) => {
         if (selectedMenu === menu.id) {
@@ -46,19 +61,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ user }) => {
         navigate(submenu.location)
     }
 
-    const filteredMenus = menus.filter((menu) => {
-        if (user.role == 2 && menu) {
-            return menu.site
-        } else if (user.role == 3 && menu) {
-            return menu.seller
-        } else if (user.role == 4 && menu) {
-            return menu.adm
-        } else if (user.role == 5 && menu) {
-            return menu.operation
-        } else if (user.role == 6 && menu) {
-            return menu.commertial
-        }
-    })
     return (
         <div className="Sidebar-Component">
             <div className="list">

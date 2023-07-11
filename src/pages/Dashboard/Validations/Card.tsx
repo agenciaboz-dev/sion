@@ -14,13 +14,11 @@ import { useContracts } from "../../../hooks/useContracts"
 interface CardProps {
     contract: Contract
     setContract?: (updatedContract: Contract) => void
-    menu?: string
-    column: string
     board?: Board
     setBoard: (board: KanbanBoard<KanbanCard>) => void
 }
 
-export const Card: React.FC<CardProps> = ({ contract, setContract, column, board, setBoard }) => {
+export const Card: React.FC<CardProps> = ({ contract, setContract, board, setBoard }) => {
     const navigate = useNavigate()
     const api = useApi()
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -45,7 +43,6 @@ export const Card: React.FC<CardProps> = ({ contract, setContract, column, board
     }
 
     const handleMenuItemClick = (option: number) => {
-        // Lógica para tratar a seleção do menu
         console.log(`Selecionado: ${option}`)
 
         const status = option

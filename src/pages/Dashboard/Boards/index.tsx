@@ -19,7 +19,6 @@ import { Formik, Form } from "formik"
 import { SearchField } from "../../../components/SearchField"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 import ExpandLessIcon from "@mui/icons-material/ExpandLess"
-import SettingsIcon from "@mui/icons-material/Settings"
 import DeleteIcon from "@mui/icons-material/Delete"
 import { useConfirmDialog } from "burgos-confirm"
 import { useSnackbar } from "burgos-snackbar"
@@ -45,12 +44,11 @@ interface FormValues {
 
 export const Boards: React.FC<BoardsProps> = ({ user }) => {
     const api = useApi()
-    const navigate = useNavigate()
+    //const navigate = useNavigate()
     const initialValues = { search: "" }
     const colors = useColors()
     const skeletons = useArray().newArray(10)
     const location = useLocation()
-
     const { confirm } = useConfirmDialog()
     const { snackbar } = useSnackbar()
     const contracts = useContracts()
@@ -60,16 +58,16 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
     const [currentBoard, setCurrentBoard] = useState<Board | undefined>(location.state?.board || undefined)
     const [board, setBoard] = useState<KanbanBoard<Card>>()
     const [isIcon, setIcon] = useState(false)
-    const [isVisibleContainer, setIsVisibleContainer] = useState(true)
+    //const [isVisibleContainer, setIsVisibleContainer] = useState(true)
     const [statuses, setStatuses] = useState<Status[]>([])
     const [deleteloading, setDeleteloading] = useState(0)
     const [editMode, setEditMode] = useState(false)
     const [firstRender, setFirstRender] = useState(true)
     const [editLoading, setEditLoading] = useState(false)
 
-    const handleToggleVisibility = () => {
-        setIsVisibleContainer((prevIsVisible) => !prevIsVisible)
-    }
+    // const handleToggleVisibility = () => {
+    //     setIsVisibleContainer((prevIsVisible) => !prevIsVisible)
+    // }
 
     const handleSearchSubmit = (values: FormValues) => {
         // setLoading(true)
@@ -120,7 +118,7 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
             } else if (board == 6) {
                 return (
                     <Box style={{ gap: "0.5vw", alignItems: "center" }}>
-                        <p style={{ fontSize: "1vw", color: "gray" }}>Comercial</p>
+                        <p style={{ fontSize: "0.8vw", color: "gray" }}>Comercial</p>
                         <StoreIcon color="primary" />
                     </Box>
                 )
@@ -305,8 +303,8 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
                 sx={{ position: "absolute", top: "7vw", left: "76.3vw", boxShadow: "none" }}
                 onSubmit={handleSearchSubmit}
             >
-                {({ values, handleChange }) => (
-                    <Form>
+                {({ values, handleChange, handleSubmit }) => (
+                    <Form onSubmit={handleSubmit}>
                         <SearchField
                             values={values}
                             onChange={handleChange}
@@ -374,7 +372,6 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
                                     setBoard={setBoard}
                                     board={currentBoard}
                                     contract={contracts.list.filter((contract) => contract.id == card.id)[0]}
-                                    column="Comercial (Correção)"
                                 />
                             </Box>
                         )}
@@ -483,14 +480,14 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
                                 }
                             >
                                 <p style={{ cursor: "pointer" }}>Quadrão</p>
+                                <IconButton color="error" disabled>
+                                    <DeleteIcon />
+                                </IconButton>
                             </MenuItem>
-                            <IconButton color="error" disabled>
-                                <DeleteIcon />
-                            </IconButton>
                         </Box>
                     )}
                     {filteredBoards.map((board) => (
-                        <Box sx={{ padding: "0!important", boxShadow: "none!important" }}>
+                        <Box key={board.id} sx={{ padding: "0!important", boxShadow: "none!important" }}>
                             <MenuItem
                                 key={board.id}
                                 sx={{
@@ -504,11 +501,17 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
                             >
                                 <p style={{ cursor: "pointer" }}>{board.name}</p>
 
-                                {accessName(board.access)}
+                                <Box>
+                                    {accessName(board.access)}
+                                    <IconButton color="error" key={board.id} onClick={() => deleteBoard(board)}>
+                                        {deleteloading == board.id ? (
+                                            <CircularProgress size={"1.5rem"} color="error" />
+                                        ) : (
+                                            <DeleteIcon />
+                                        )}
+                                    </IconButton>
+                                </Box>
                             </MenuItem>
-                            <IconButton color="error" onClick={() => deleteBoard(board)}>
-                                {deleteloading == board.id ? <CircularProgress size={"1.5rem"} color="error" /> : <DeleteIcon />}
-                            </IconButton>
                         </Box>
                     ))}
                 </>
