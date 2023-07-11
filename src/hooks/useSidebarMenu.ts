@@ -18,7 +18,7 @@ export const useSidebarMenu = () => {
                 },
                 {
                     id: 6,
-                    name: "Meus Contratos",
+                    name: "Contratos",
                     location: "/dashboard/",
                 },
                 {
@@ -75,11 +75,6 @@ export const useSidebarMenu = () => {
             commertial: true,
             submenu: [
                 {
-                    id: 11,
-                    name: "Clientes",
-                    location: "/dashboard/contracts",
-                },
-                {
                     id: 24,
                     name: "Novo quadro",
                     location: "/dashboard/boards/new",
@@ -93,11 +88,6 @@ export const useSidebarMenu = () => {
             adm: true,
             operation: true,
             submenu: [
-                {
-                    id: 13,
-                    name: "Clientes",
-                    location: "/dashboard/contracts",
-                },
                 {
                     id: 25,
                     name: "Novo quadro",
