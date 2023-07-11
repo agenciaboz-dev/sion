@@ -5,15 +5,16 @@ import { useRoles } from "../../../hooks/useRoles"
 import { useApi } from "../../../hooks/useApi"
 import { useNavigate } from "react-router-dom"
 import AddIcon from "@mui/icons-material/Add"
+import { useUser } from "../../../hooks/useUser"
 
-interface NewBoardProps {
-    user: User
-}
+interface NewBoardProps {}
 
-export const NewBoard: React.FC<NewBoardProps> = ({ user }) => {
+export const NewBoard: React.FC<NewBoardProps> = ({}) => {
     const api = useApi()
     const roles = useRoles()
     const navigate = useNavigate()
+
+    const { user } = useUser()
 
     const [columns, setColumns] = useState<Column[]>([{ id: 1, name: "", status: 0 }])
     const [statuses, setStatuses] = useState<Status[]>([])
@@ -25,7 +26,7 @@ export const NewBoard: React.FC<NewBoardProps> = ({ user }) => {
     const initialValues: Board = {
         id: 0,
         name: "",
-        access: 0,
+        access: user?.role || 0,
         columns: "",
     }
 
@@ -63,19 +64,13 @@ export const NewBoard: React.FC<NewBoardProps> = ({ user }) => {
     }
 
     const handleColumnName = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, column: Column) => {
-        setColumns([
-            ...columns.filter((item) => item.id != column.id),
-            { id: column.id, name: event.target.value, status: column.status },
-        ])
+        setColumns([...columns.filter((item) => item.id != column.id), { id: column.id, name: event.target.value, status: column.status }])
     }
 
     const handleColumnStatus = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, column: Column) => {
         if (event.target.value == "-1") return
 
-        setColumns([
-            ...columns.filter((item) => item.id != column.id),
-            { id: column.id, name: column.name, status: Number(event.target.value) },
-        ])
+        setColumns([...columns.filter((item) => item.id != column.id), { id: column.id, name: column.name, status: Number(event.target.value) }])
     }
 
     const addStatus = () => {
@@ -132,14 +127,7 @@ export const NewBoard: React.FC<NewBoardProps> = ({ user }) => {
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
                 {({ values, handleChange }) => (
                     <Form style={{ display: "contents" }}>
-                        <TextField
-                            label="Nome do quadro"
-                            name="name"
-                            value={values.name}
-                            onChange={handleChange}
-                            autoComplete="off"
-                            required
-                        />
+                        <TextField label="Nome do quadro" name="name" value={values.name} onChange={handleChange} autoComplete="off" required />
                         <TextField
                             label="Nível de acesso"
                             name="access"
@@ -147,25 +135,14 @@ export const NewBoard: React.FC<NewBoardProps> = ({ user }) => {
                             onChange={handleChange}
                             autoComplete="off"
                             select
+                            disabled={!user?.adm}
                         >
-                            {user.adm &&
-                                roles.map((role) => (
-                                    <MenuItem key={role.id} value={role.id}>
-                                        {role.name}
-                                    </MenuItem>
-                                ))}
-                            {!user.adm && user.role === 5 ? (
-                                <MenuItem key={5} value={5}>
-                                    {"Operacional"}
+                            <MenuItem sx={{ display: "none" }} value={0}></MenuItem>
+                            {roles.map((role) => (
+                                <MenuItem key={role.id} value={role.id}>
+                                    {role.name}
                                 </MenuItem>
-                            ) : (
-                                !user.adm &&
-                                user.role === 6 && (
-                                    <MenuItem key={6} value={6}>
-                                        {"Comercial"}
-                                    </MenuItem>
-                                )
-                            )}
+                            ))}
                         </TextField>
                         Colunas
                         <Box sx={{ gap: "1vw", flexWrap: "wrap" }}>
@@ -204,11 +181,7 @@ export const NewBoard: React.FC<NewBoardProps> = ({ user }) => {
                                                                 autoFocus
                                                                 disabled={loadingNewStatus}
                                                                 InputProps={{
-                                                                    endAdornment: loadingNewStatus ? (
-                                                                        <CircularProgress size={"1.5rem"} />
-                                                                    ) : (
-                                                                        <></>
-                                                                    ),
+                                                                    endAdornment: loadingNewStatus ? <CircularProgress size={"1.5rem"} /> : <></>,
                                                                 }}
                                                             />
                                                         ) : (
