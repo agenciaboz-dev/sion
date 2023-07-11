@@ -265,7 +265,7 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
 
                 api.boards.update({
                     data: currentBoard,
-                    callback: () => null,
+                    callback: (response: { data: Board }) => boards.update(response.data),
                     finallyCallback: () => setEditLoading(false),
                 })
             }
