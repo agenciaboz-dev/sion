@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react"
 import React from "react"
 import { useApi } from "../hooks/useApi"
 import { useContracts } from "../hooks/useContracts"
+import { useSellers } from "../hooks/useSellers"
 
 interface UserContextValue {
     user: User | null
@@ -19,6 +20,7 @@ export default UserContext
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     const api = useApi()
     const contracts = useContracts()
+    const sellers = useSellers()
 
     const [user, setUser] = useState<User | null>(null)
 
@@ -37,6 +39,12 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
                     finallyCallback: () => contracts.setLoading(false),
                 })
             }
+
+            sellers.setLoading(true)
+            api.user.list({
+                callback: (response: { data: User[] }) => sellers.set(response.data),
+                finallyCallback: () => sellers.setLoading(false),
+            })
         }
     }, [user])
 
