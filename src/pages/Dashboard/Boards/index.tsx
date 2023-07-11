@@ -33,6 +33,7 @@ import StoreIcon from "@mui/icons-material/Store"
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts"
 import GroupIcon from "@mui/icons-material/Group"
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings"
+import { useContracts } from "../../../hooks/useContracts"
 
 interface BoardsProps {
     user: User
@@ -52,8 +53,8 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
 
     const { confirm } = useConfirmDialog()
     const { snackbar } = useSnackbar()
+    const contracts = useContracts()
 
-    const [contracts, setContracts] = useState<Contract[]>(location.state?.contracts || [])
     const [loading, setLoading] = useState(true)
     const [boards, setBoards] = useState<Board[]>([])
     const [currentBoard, setCurrentBoard] = useState<Board | undefined>(location.state?.board || undefined)
@@ -74,7 +75,6 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
         // setLoading(true)
         // api.contracts.find.name({
         //     data: values,
-        //     callback: (response: { data: Contract[] }) => setContracts(response.data),
         //     finallyCallback: () => setLoading(false),
         // })
     }
@@ -88,44 +88,44 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
     })
 
     const accessName = (board: number) => {
-       if (user.role == 4) {
-           if (board == 2) {
-               return (
-                   <Box style={{ gap: "0.5vw", alignItems: "center" }}>
-                       <p style={{ fontSize: "0.8vw", color: "gray" }}>Site</p>
-                       <WebIcon color="primary" />
-                   </Box>
-               )
-           } else if (board == 3) {
-               return (
-                   <Box style={{ gap: "0.5vw", alignItems: "center" }}>
-                       <p style={{ fontSize: "0.8vw", color: "gray" }}>Vendedor</p>
-                       <GroupIcon color="primary" />
-                   </Box>
-               )
-           } else if (board == 4) {
-               return (
-                   <Box style={{ gap: "0.5vw", alignItems: "center" }}>
-                       <p style={{ fontSize: "0.8vw", color: "gray" }}>Administrador</p>
-                       <AdminPanelSettingsIcon color="primary" />
-                   </Box>
-               )
-           } else if (board == 5) {
-               return (
-                   <Box style={{ gap: "0.5vw", alignItems: "center" }}>
-                       <p style={{ fontSize: "0.8vw", color: "gray" }}>Operacional</p>
-                       <ManageAccountsIcon color="primary" />
-                   </Box>
-               )
-           } else if (board == 6) {
-               return (
-                   <Box style={{ gap: "0.5vw", alignItems: "center" }}>
-                       <p style={{ fontSize: "1vw", color: "gray" }}>Comercial</p>
-                       <StoreIcon color="primary" />
-                   </Box>
-               )
-           }
-       }
+        if (user.role == 4) {
+            if (board == 2) {
+                return (
+                    <Box style={{ gap: "0.5vw", alignItems: "center" }}>
+                        <p style={{ fontSize: "0.8vw", color: "gray" }}>Site</p>
+                        <WebIcon color="primary" />
+                    </Box>
+                )
+            } else if (board == 3) {
+                return (
+                    <Box style={{ gap: "0.5vw", alignItems: "center" }}>
+                        <p style={{ fontSize: "0.8vw", color: "gray" }}>Vendedor</p>
+                        <GroupIcon color="primary" />
+                    </Box>
+                )
+            } else if (board == 4) {
+                return (
+                    <Box style={{ gap: "0.5vw", alignItems: "center" }}>
+                        <p style={{ fontSize: "0.8vw", color: "gray" }}>Administrador</p>
+                        <AdminPanelSettingsIcon color="primary" />
+                    </Box>
+                )
+            } else if (board == 5) {
+                return (
+                    <Box style={{ gap: "0.5vw", alignItems: "center" }}>
+                        <p style={{ fontSize: "0.8vw", color: "gray" }}>Operacional</p>
+                        <ManageAccountsIcon color="primary" />
+                    </Box>
+                )
+            } else if (board == 6) {
+                return (
+                    <Box style={{ gap: "0.5vw", alignItems: "center" }}>
+                        <p style={{ fontSize: "1vw", color: "gray" }}>Comercial</p>
+                        <StoreIcon color="primary" />
+                    </Box>
+                )
+            }
+        }
     }
     const handleColumnMove: OnDragEndNotification<ColumnType<Card>> = (_column, from, destination) => {
         const moved = moveColumn(board, from, destination)
@@ -146,7 +146,7 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
             return moveCard(currentBoard, source, destination)
         })
 
-        const contract = contracts.filter((contract) => contract.id == _card.id)[0]
+        const contract = contracts.list.filter((contract) => contract.id == _card.id)[0]
         const columns: Column[] = JSON.parse(currentBoard!.columns)
         const status = columns.filter((column) => column.id == destination?.toColumnId)[0].status
         api.contracts.update.status({
@@ -154,7 +154,9 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
                 id: contract.id,
                 status: status,
             },
-            callback: () => {},
+            callback: (response: { data: Contract }) => {
+                contracts.update(response.data)
+            },
         })
     }
 
@@ -182,7 +184,7 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
             columns: columns.map((column) => ({
                 id: column.id,
                 title: column.name,
-                cards: contracts
+                cards: contracts.list
                     .filter((contract) => contract.statusId == column.status)
                     .map((contract) => ({
                         id: contract.id,
@@ -239,9 +241,6 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
 
     const refresh = () => {
         setLoading(true)
-        api.contracts.list({
-            callback: (response: { data: Contract[] }) => setContracts(response.data),
-        })
 
         api.boards.get({
             callback: (response: { data: Board[] }) => setBoards(response.data),
@@ -269,7 +268,7 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
     }, [editMode])
 
     useEffect(() => {
-        if (contracts.length > 0 && statuses.length > 0) {
+        if (contracts.list.length > 0 && statuses.length > 0) {
             setLoading(false)
         }
     }, [contracts, statuses])
@@ -281,7 +280,7 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
                 columns: columns.map((column) => ({
                     id: column.id,
                     title: column.name,
-                    cards: contracts
+                    cards: contracts.list
                         .filter((contract) => contract.statusId == column.status)
                         .map((contract) => ({
                             id: contract.id,
@@ -351,20 +350,12 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
                             <ArrowBackIcon />
                         </IconButton>
                         {editMode ? (
-                            <TextField
-                                defaultValue={currentBoard!.name}
-                                variant="standard"
-                                onBlur={(event) => renameBoard(event)}
-                            />
+                            <TextField defaultValue={currentBoard!.name} variant="standard" onBlur={(event) => renameBoard(event)} />
                         ) : (
                             <p>{currentBoard?.name}</p>
                         )}
                         {currentBoard!.id > 0 && (
-                            <IconButton
-                                color={editMode ? "primary" : "default"}
-                                onClick={() => setEditMode(!editMode)}
-                                disabled={editLoading}
-                            >
+                            <IconButton color={editMode ? "primary" : "default"} onClick={() => setEditMode(!editMode)} disabled={editLoading}>
                                 {editLoading ? <CircularProgress size="1.5rem" /> : <ModeEditIcon />}
                             </IconButton>
                         )}
@@ -381,10 +372,8 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
                             <Box sx={{ boxShadow: "0px 2px 15px rgba(0, 0, 0, 0.25)", width: "15vw", height: "13.3vw" }}>
                                 <CardContainer
                                     setBoard={setBoard}
-                                    contracts={contracts}
-                                    setContracts={setContracts}
                                     board={currentBoard}
-                                    contract={contracts.filter((contract) => contract.id == card.id)[0]}
+                                    contract={contracts.list.filter((contract) => contract.id == card.id)[0]}
                                     column="Comercial (Correção)"
                                 />
                             </Box>
@@ -463,12 +452,7 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
             {loading ? (
                 <Box sx={{ padding: "0!important", boxShadow: "none!important", gap: "1vw", flexDirection: "column" }}>
                     {skeletons.map((index) => (
-                        <Skeleton
-                            key={index}
-                            variant="rectangular"
-                            sx={{ width: "100%", height: "3.5vw" }}
-                            animation="wave"
-                        />
+                        <Skeleton key={index} variant="rectangular" sx={{ width: "100%", height: "3.5vw" }} animation="wave" />
                     ))}
                 </Box>
             ) : (
@@ -523,11 +507,7 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
                                 {accessName(board.access)}
                             </MenuItem>
                             <IconButton color="error" onClick={() => deleteBoard(board)}>
-                                {deleteloading == board.id ? (
-                                    <CircularProgress size={"1.5rem"} color="error" />
-                                ) : (
-                                    <DeleteIcon />
-                                )}
+                                {deleteloading == board.id ? <CircularProgress size={"1.5rem"} color="error" /> : <DeleteIcon />}
                             </IconButton>
                         </Box>
                     ))}

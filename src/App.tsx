@@ -16,42 +16,45 @@ import { SettingsProvider } from "./contexts/settingsContext"
 import { Snackbar, SnackbarProvider } from "burgos-snackbar"
 import { ConfirmDialog, ConfirmDialogProvider } from "burgos-confirm"
 import { ImagesProvider } from "./contexts/imagesContext"
+import { ContractsProvider } from "./contexts/contractsContext"
 
 function App() {
     const muiTheme = useMuiTheme()
 
     return (
-        <SnackbarProvider>
-            <ConfirmDialogProvider>
-                <SettingsProvider>
-                    <ImagesProvider>
+        <BrowserRouter>
+            <SnackbarProvider>
+                <ConfirmDialogProvider>
+                    <ContractsProvider>
                         <UserProvider>
-                            <BrowserRouter>
-                                <ThemeProvider theme={muiTheme}>
-                                    <ClientProvider>
-                                        <AttachmentsProvider>
-                                            <PdfProvider>
-                                                <StageProvider>
-                                                    <Snackbar />
-                                                    <ConfirmDialog />
-                                                    <Routes>
-                                                        {/* <Route index element={<Home />} /> */}
-                                                        <Route index element={<Login />} />
-                                                        <Route path="/login" element={<Login />} />
-                                                        <Route path="/dashboard/*" element={<Dashboard />} />
-                                                        <Route path="*" element={<NotFound />} />
-                                                    </Routes>
-                                                </StageProvider>
-                                            </PdfProvider>
-                                        </AttachmentsProvider>
-                                    </ClientProvider>
-                                </ThemeProvider>
-                            </BrowserRouter>
+                            <SettingsProvider>
+                                <ImagesProvider>
+                                    <ThemeProvider theme={muiTheme}>
+                                        <ClientProvider>
+                                            <AttachmentsProvider>
+                                                <PdfProvider>
+                                                    <StageProvider>
+                                                        <Snackbar />
+                                                        <ConfirmDialog />
+                                                        <Routes>
+                                                            {/* <Route index element={<Home />} /> */}
+                                                            <Route index element={<Login />} />
+                                                            <Route path="/login" element={<Login />} />
+                                                            <Route path="/dashboard/*" element={<Dashboard />} />
+                                                            <Route path="*" element={<NotFound />} />
+                                                        </Routes>
+                                                    </StageProvider>
+                                                </PdfProvider>
+                                            </AttachmentsProvider>
+                                        </ClientProvider>
+                                    </ThemeProvider>
+                                </ImagesProvider>
+                            </SettingsProvider>
                         </UserProvider>
-                    </ImagesProvider>
-                </SettingsProvider>
-            </ConfirmDialogProvider>
-        </SnackbarProvider>
+                    </ContractsProvider>
+                </ConfirmDialogProvider>
+            </SnackbarProvider>
+        </BrowserRouter>
     )
 }
 

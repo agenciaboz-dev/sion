@@ -7,8 +7,9 @@ import { useNavigate } from "react-router-dom"
 import { useUser } from "../../hooks/useUser"
 import { Form, Formik } from "formik"
 import { SearchField } from "../../components/SearchField"
+import { useContracts } from "../../hooks/useContracts"
 
-interface FormValues{
+interface FormValues {
     search: string
 }
 
@@ -57,13 +58,12 @@ export const ContractContainer = ({ contract, adm }: { contract: Contract; adm?:
 }
 
 export const Contracts: React.FC<ContractsProps> = ({}) => {
-    const { newArray } = useArray()
-    const skeletons = newArray(6)
+    const skeletons = useArray().newArray(6)
     const api = useApi()
-    const { user } = useUser()
 
-    const [contracts, setContracts] = useState<Contract[]>([])
-    const [loading, setLoading] = useState(true)
+    const { user } = useUser()
+    const contracts = useContracts()
+
     const [contract, setContract] = useState<Contract>()
 
     const initialValues = {
@@ -71,14 +71,9 @@ export const Contracts: React.FC<ContractsProps> = ({}) => {
     }
 
     const handleSubmit = (values: FormValues) => {
-        if (loading) return
+        if (contracts.loading) return
 
-        setLoading(true)
-        api.contracts.find.name({
-            data: values,
-            callback: (response: { data: Contract[] }) => setContracts(response.data),
-            finallyCallback: () => setLoading(false),
-        })
+        // search
     }
 
     const skeleton_style: SxProps = {
@@ -87,34 +82,21 @@ export const Contracts: React.FC<ContractsProps> = ({}) => {
         flexShrink: 0,
     }
 
-    useEffect(() => {
-        if (user!.adm) {
-            api.contracts.list({
-                callback: (response: { data: Contract[] }) => setContracts(response.data),
-                finallyCallback: () => setLoading(false),
-            })
-        } else {
-            api.contracts.find.seller({
-                data: user!,
-                callback: (response: { data: Contract[] }) => setContracts(response.data),
-                finallyCallback: () => setLoading(false),
-            })
-        }
-    }, [])
+    useEffect(() => {}, [])
 
     return (
         <div className="Contracts-Component">
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
                 {({ values, handleChange }) => (
                     <Form>
-                        <SearchField values={values} onChange={handleChange} loading={loading} />
+                        <SearchField values={values} onChange={handleChange} loading={contracts.loading} />
                     </Form>
                 )}
             </Formik>
-            {loading ? (
+            {contracts.loading ? (
                 skeletons.map((item) => <Skeleton key={skeletons.indexOf(item)} variant="rectangular" sx={skeleton_style} />)
             ) : (
-                <ContractList contracts={contracts} />
+                <ContractList contracts={contracts.list} />
             )}
         </div>
     )

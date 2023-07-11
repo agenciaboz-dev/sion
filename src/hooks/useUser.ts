@@ -7,9 +7,9 @@ export const useUser = () => {
     const navigate = useNavigate()
 
     const logout = () => {
-        userContext.setValue(null)
+        userContext.setUser(null)
         navigate("/")
     }
 
-    return { user: userContext.value, setUser: userContext.setValue, logout }
+    return { user: userContext.user, setUser: userContext.setUser, logout }
 }

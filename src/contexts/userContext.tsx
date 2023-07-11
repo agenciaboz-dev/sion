@@ -1,9 +1,11 @@
 import { createContext, useEffect, useState } from "react"
 import React from "react"
+import { useApi } from "../hooks/useApi"
+import { useContracts } from "../hooks/useContracts"
 
 interface UserContextValue {
-    value: User | null
-    setValue: (value: User | null) => void
+    user: User | null
+    setUser: (value: User | null) => void
 }
 
 interface UserProviderProps {
@@ -15,11 +17,28 @@ const UserContext = createContext<UserContextValue>({} as UserContextValue)
 export default UserContext
 
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
-    const [value, setValue] = useState<User | null>(null)
+    const api = useApi()
+    const contracts = useContracts()
+
+    const [user, setUser] = useState<User | null>(null)
 
     useEffect(() => {
-        console.log(value)
-    }, [value])
+        if (user) {
+            contracts.setLoading(true)
+            if (user.adm) {
+                api.contracts.list({
+                    callback: (response: { data: Contract[] }) => contracts.set(response.data),
+                    finallyCallback: () => contracts.setLoading(false),
+                })
+            } else {
+                api.contracts.find.seller({
+                    data: user,
+                    callback: (response: { data: Contract[] }) => contracts.set(response.data),
+                    finallyCallback: () => contracts.setLoading(false),
+                })
+            }
+        }
+    }, [user])
 
-    return <UserContext.Provider value={{ value, setValue }}>{children}</UserContext.Provider>
+    return <UserContext.Provider value={{ user: user, setUser: setUser }}>{children}</UserContext.Provider>
 }

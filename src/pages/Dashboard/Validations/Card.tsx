@@ -9,6 +9,7 @@ import { useApi } from "../../../hooks/useApi"
 import { DragDropContext, Droppable, Draggable, DropResult } from "react-beautiful-dnd"
 import SettingsIcon from "@mui/icons-material/Settings"
 import { Card as KanbanCard, KanbanBoard } from "@caldwell619/react-kanban"
+import { useContracts } from "../../../hooks/useContracts"
 
 interface CardProps {
     contract: Contract
@@ -16,16 +17,16 @@ interface CardProps {
     menu?: string
     column: string
     board?: Board
-    contracts: Contract[]
-    setContracts: (updatedContract: Contract[]) => void
     setBoard: (board: KanbanBoard<KanbanCard>) => void
 }
 
-export const Card: React.FC<CardProps> = ({ contract, setContract, column, board, contracts, setContracts, setBoard }) => {
+export const Card: React.FC<CardProps> = ({ contract, setContract, column, board, setBoard }) => {
     const navigate = useNavigate()
     const api = useApi()
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
     const columns: Column[] = JSON.parse(board!.columns)
+
+    const contracts = useContracts()
 
     const handleSeller = () => {
         navigate(`../seller/${contract.seller_id}`)
@@ -54,8 +55,8 @@ export const Card: React.FC<CardProps> = ({ contract, setContract, column, board
                 status: status,
             },
             callback: (response: { data: Contract }) => {
-                const newContracts = [...contracts.filter((item) => item.id != contract.id), response.data]
-                setContracts(newContracts)
+                const newContracts = [...contracts.list.filter((item) => item.id != contract.id), response.data]
+                contracts.update(response.data)
                 setBoard({
                     columns: columns.map((column) => ({
                         id: column.id,
@@ -161,11 +162,7 @@ export const Card: React.FC<CardProps> = ({ contract, setContract, column, board
                         </div>
                     </div>
                     <div style={{ display: "flex", flexDirection: "column", gap: "0.5vw" }}>
-                        <button
-                            className="name"
-                            style={{ backgroundColor: "white", display: "flex", padding: "0" }}
-                            onClick={handleContract}
-                        >
+                        <button className="name" style={{ backgroundColor: "white", display: "flex", padding: "0" }} onClick={handleContract}>
                             {contract.name}
                         </button>
                         <p className="description">Adicionar comentário</p>
