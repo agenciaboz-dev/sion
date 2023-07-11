@@ -4,8 +4,8 @@ import StatusesContext from "../contexts/statusesContext"
 export const useStatuses = () => {
     const statusesContext = useContext(StatusesContext)
     const statuses = {
-        list: statusesContext.statuses,
-        statuses: statusesContext.statuses,
+        list: statusesContext.statuses.sort((a, b) => a.id - b.id),
+        statuses: statusesContext.statuses.sort((a, b) => a.id - b.id),
         set: statusesContext.setStatuses,
         loading: statusesContext.loading,
         setLoading: statusesContext.setLoading,

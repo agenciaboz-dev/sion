@@ -5,8 +5,8 @@ export const useContracts = () => {
     const contractsContext = useContext(ContractsContext)
 
     const contracts = {
-        list: contractsContext.contracts,
-        contracts: contractsContext.contracts,
+        list: contractsContext.contracts.sort((a, b) => a.id - b.id),
+        contracts: contractsContext.contracts.sort((a, b) => a.id - b.id),
         set: contractsContext.setContracts,
         loading: contractsContext.loading,
         setLoading: contractsContext.setLoading,

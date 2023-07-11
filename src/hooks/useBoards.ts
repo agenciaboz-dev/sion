@@ -5,8 +5,8 @@ export const useBoards = () => {
     const boardsContext = useContext(BoardsContext)
 
     const boards = {
-        list: boardsContext.boards,
-        boards: boardsContext.boards,
+        list: boardsContext.boards.sort((a, b) => a.id - b.id),
+        boards: boardsContext.boards.sort((a, b) => a.id - b.id),
         set: boardsContext.setBoards,
         loading: boardsContext.loading,
         setLoading: boardsContext.setLoading,
