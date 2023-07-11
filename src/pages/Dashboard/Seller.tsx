@@ -11,6 +11,7 @@ import { ContractContainer } from "./Contracts"
 import { useRoles } from "../../hooks/useRoles"
 import { useCpfMask, useCepMask, usePhoneMask } from "burgos-masks"
 import MaskedInput from "react-text-mask"
+import { useSellers } from "../../hooks/useSellers"
 interface SellerProps {}
 
 interface FormValues {
@@ -22,11 +23,13 @@ export const Seller: React.FC<SellerProps> = ({}) => {
     const navigate = useNavigate()
     const api = useApi()
     const roles = useRoles()
+    const sellers = useSellers()
+
     const { snackbar } = useSnackbar()
     const { confirm } = useConfirmDialog()
     const { user } = useUser()
 
-    const [seller, setSeller] = useState<User>()
+    const [seller, setSeller] = useState<User | undefined>(id ? sellers.get(id) : undefined)
     const [idError, setIdError] = useState(false)
     const [passwordLoading, setPasswordLoading] = useState(false)
     const [passwordError, setPasswordError] = useState("")
@@ -58,6 +61,8 @@ export const Seller: React.FC<SellerProps> = ({}) => {
                 api.user.update({
                     data: values,
                     callback: (response: { data: User }) => {
+                        sellers.update(response.data)
+                        setSeller(response.data)
                         snackbar({
                             severity: "success",
                             text: "Usuário atualizado",
@@ -87,6 +92,7 @@ export const Seller: React.FC<SellerProps> = ({}) => {
                 api.user.password({
                     data: { password: values.password, id: seller!.id },
                     callback: (response: { data: User }) => {
+                        sellers.update(response.data)
                         setSeller(response.data)
                         snackbar({
                             severity: "success",
@@ -101,18 +107,6 @@ export const Seller: React.FC<SellerProps> = ({}) => {
 
     useEffect(() => {
         if (!id) navigate("/dashboard/sellers")
-
-        api.user.find.id({
-            data: { id },
-            callback: (response: { data: User }) => {
-                const user = response.data
-                if (user) {
-                    setSeller(user)
-                } else {
-                    setIdError(true)
-                }
-            },
-        })
     }, [])
 
     return id ? (
@@ -249,11 +243,7 @@ export const Seller: React.FC<SellerProps> = ({}) => {
                                             </div>
                                         </Box>
                                         <Button variant="contained" type="submit" sx={{ alignSelf: "flex-end" }}>
-                                            {updateUserLoading ? (
-                                                <CircularProgress size={"1.5rem"} sx={{ color: "white" }} />
-                                            ) : (
-                                                "Atualizar usuário"
-                                            )}
+                                            {updateUserLoading ? <CircularProgress size={"1.5rem"} sx={{ color: "white" }} /> : "Atualizar usuário"}
                                         </Button>
                                     </Form>
                                 </Box>
@@ -279,11 +269,7 @@ export const Seller: React.FC<SellerProps> = ({}) => {
                                                 helperText={passwordError}
                                             />
                                             <Button type="submit" variant="contained">
-                                                {passwordLoading ? (
-                                                    <CircularProgress size={"1.5rem"} sx={{ color: "white" }} />
-                                                ) : (
-                                                    "Alterar senha"
-                                                )}
+                                                {passwordLoading ? <CircularProgress size={"1.5rem"} sx={{ color: "white" }} /> : "Alterar senha"}
                                             </Button>
                                         </Form>
                                     )}
