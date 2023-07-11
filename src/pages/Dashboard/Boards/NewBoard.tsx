@@ -6,10 +6,13 @@ import { Status } from "../../../definitions/contract"
 import { useApi } from "../../../hooks/useApi"
 import { useNavigate } from "react-router-dom"
 import AddIcon from "@mui/icons-material/Add"
+import { User } from "../../../definitions/user"
 
-interface NewBoardProps {}
+interface NewBoardProps {
+    user: User
+}
 
-export const NewBoard: React.FC<NewBoardProps> = ({}) => {
+export const NewBoard: React.FC<NewBoardProps> = ({ user }) => {
     const api = useApi()
     const roles = useRoles()
     const navigate = useNavigate()
@@ -147,12 +150,24 @@ export const NewBoard: React.FC<NewBoardProps> = ({}) => {
                             autoComplete="off"
                             select
                         >
-                            <MenuItem sx={{ display: "none" }} value={0}></MenuItem>
-                            {roles.map((role) => (
-                                <MenuItem key={role.id} value={role.id}>
-                                    {role.name}
+                            {user.adm &&
+                                roles.map((role) => (
+                                    <MenuItem key={role.id} value={role.id}>
+                                        {role.name}
+                                    </MenuItem>
+                                ))}
+                            {!user.adm && user.role === 5 ? (
+                                <MenuItem key={5} value={5}>
+                                    {"Operacional"}
                                 </MenuItem>
-                            ))}
+                            ) : (
+                                !user.adm &&
+                                user.role === 6 && (
+                                    <MenuItem key={6} value={6}>
+                                        {"Comercial"}
+                                    </MenuItem>
+                                )
+                            )}
                         </TextField>
                         Colunas
                         <Box sx={{ gap: "1vw", flexWrap: "wrap" }}>

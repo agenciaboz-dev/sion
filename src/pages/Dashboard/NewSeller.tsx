@@ -86,7 +86,7 @@ export const NewSeller: React.FC<NewSellerProps> = ({}) => {
                 {({ values, handleChange }) => (
                     <Form>
                         <div className="form">
-                            <div className="infoSellers">
+                            <div className="infoSellers" style={{ gap: "1vw" }}>
                                 <p className="data">Dados Pessoais</p>
                                 <TextField name="name" label="Nome completo" value={values.name} onChange={handleChange} />
                                 <TextField
@@ -114,13 +114,6 @@ export const NewSeller: React.FC<NewSellerProps> = ({}) => {
                                     value={values.birth}
                                     onChange={handleChange}
                                 />
-                                <TextField
-                                    name="email"
-                                    label="E-mail"
-                                    placeholder="seu@email.com"
-                                    value={values.email}
-                                    onChange={handleChange}
-                                />
                                 <MaskedInput
                                     mask={phoneMask}
                                     guide={false}
@@ -139,12 +132,20 @@ export const NewSeller: React.FC<NewSellerProps> = ({}) => {
                             </div>
 
                             <div className="infoComplement">
-                                <p className="title">Biometria Facial</p>
+                                <TextField
+                                    name="email"
+                                    label="E-mail"
+                                    placeholder="seu@email.com"
+                                    value={values.email}
+                                    onChange={handleChange}
+                                />
+                                {/* <p className="title">Biometria Facial</p>
                                 <p className="subtitle">Foto do rosto do vendedor</p>
-                                <div className="biometry">Upload de arquivo </div>
+                                <div className="biometry">Upload de arquivo </div> */}
                                 <div className="two-inputs">
                                     <TextField
                                         name="username"
+                                        sx={{ width: "50%" }}
                                         label="Login"
                                         placeholder="Login"
                                         value={values.username}
@@ -152,6 +153,7 @@ export const NewSeller: React.FC<NewSellerProps> = ({}) => {
                                     />
                                     <TextField
                                         name="password"
+                                        sx={{ width: "50%" }}
                                         label="Senha"
                                         placeholder="Senha"
                                         value={values.password}
@@ -161,6 +163,7 @@ export const NewSeller: React.FC<NewSellerProps> = ({}) => {
                                 <div className="two-inputs">
                                     <TextField
                                         name="adress"
+                                        sx={{ width: "50%" }}
                                         label="Endereço Residencial"
                                         placeholder="Rua Exemplo"
                                         value={values.adress}
@@ -168,6 +171,7 @@ export const NewSeller: React.FC<NewSellerProps> = ({}) => {
                                     />
                                     <TextField
                                         name="number"
+                                        sx={{ width: "50%" }}
                                         label="Número"
                                         placeholder="123"
                                         value={values.number}
@@ -179,6 +183,7 @@ export const NewSeller: React.FC<NewSellerProps> = ({}) => {
                                         mask={cepMask}
                                         guide={false}
                                         name="cep"
+                                        style={{ width: "50%" }}
                                         value={values.cep}
                                         onChange={handleChange}
                                         render={(ref, props) => (
@@ -187,6 +192,7 @@ export const NewSeller: React.FC<NewSellerProps> = ({}) => {
                                     />
                                     <TextField
                                         name="district"
+                                        sx={{ width: "50%" }}
                                         label="Bairro"
                                         placeholder="Exemplo"
                                         value={values.district}
@@ -195,10 +201,10 @@ export const NewSeller: React.FC<NewSellerProps> = ({}) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="info-container">
+                        {/* <div className="info-container">
                             <div className="info">
                                 <p className="title">Comprovante de Residência</p>
-                                <p className="subtitle">Foto or arquivo de um comprovante de residência do vendedor</p>
+                                <p className="subtitle">Foto do arquivo de um comprovante de residência do vendedor</p>
                                 <div className="biometry">Upload de arquivo</div>
                             </div>
                             <div className="info right">
@@ -214,7 +220,7 @@ export const NewSeller: React.FC<NewSellerProps> = ({}) => {
                                 trabalho
                             </p>
                             <div className="biometry"> Upload de arquivo </div>
-                        </div>
+                        </div> */}
                         <Button type="submit" variant="contained">
                             {" "}
                             {infoLoading ? <CircularProgress {...loading_props} /> : "Cadastrar Vendedor"}
