@@ -33,6 +33,7 @@ import ManageAccountsIcon from "@mui/icons-material/ManageAccounts"
 import GroupIcon from "@mui/icons-material/Group"
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings"
 import { useContracts } from "../../../hooks/useContracts"
+import { useBoards } from "../../../hooks/useBoards"
 
 interface BoardsProps {
     user: User
@@ -52,9 +53,10 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
     const { confirm } = useConfirmDialog()
     const { snackbar } = useSnackbar()
     const contracts = useContracts()
+    const boards = useBoards()
 
+    const [contractList, setContractList] = useState(contracts.list)
     const [loading, setLoading] = useState(true)
-    const [boards, setBoards] = useState<Board[]>([])
     const [currentBoard, setCurrentBoard] = useState<Board | undefined>(location.state?.board || undefined)
     const [board, setBoard] = useState<KanbanBoard<Card>>()
     const [isIcon, setIcon] = useState(false)
@@ -77,7 +79,7 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
         // })
     }
 
-    const filteredBoards = boards.filter((board) => {
+    const filteredBoards = boards.list.filter((board) => {
         if (user.role == 4) {
             return board
         } else if (user.role == board.access && board) {
@@ -201,7 +203,7 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
                 setDeleteloading(board.id)
                 api.boards.delete({
                     data: board,
-                    callback: () => setBoards(boards.filter((item) => item.id != board.id)),
+                    callback: () => boards.remove(board),
                     finallyCallback: () => setDeleteloading(0),
                 })
             },
@@ -240,12 +242,28 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
     const refresh = () => {
         setLoading(true)
 
-        api.boards.get({
-            callback: (response: { data: Board[] }) => setBoards(response.data),
-        })
-
         api.contracts.status({
             callback: (response: { data: Status[] }) => setStatuses(response.data),
+        })
+    }
+
+    const onSearch = (value: string) => {
+        const searchResult = contracts.list.filter((contract) => contract.name.toLowerCase().includes(value))
+
+        setContractList(searchResult)
+        const columns: Column[] = JSON.parse(currentBoard!.columns)
+        setBoard({
+            columns: columns.map((column) => ({
+                id: column.id,
+                title: column.name,
+                cards: searchResult
+                    .filter((contract) => contract.statusId == column.status)
+                    .map((contract) => ({
+                        id: contract.id,
+                        title: contract.name,
+                        description: contract.email,
+                    })),
+            })),
         })
     }
 
@@ -269,7 +287,7 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
         if (contracts.list.length > 0 && statuses.length > 0) {
             setLoading(false)
         }
-    }, [contracts, statuses])
+    }, [contracts.list, statuses])
 
     useEffect(() => {
         if (currentBoard) {
@@ -278,7 +296,7 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
                 columns: columns.map((column) => ({
                     id: column.id,
                     title: column.name,
-                    cards: contracts.list
+                    cards: contractList
                         .filter((contract) => contract.statusId == column.status)
                         .map((contract) => ({
                             id: contract.id,
@@ -306,8 +324,7 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
                 {({ values, handleChange, handleSubmit }) => (
                     <Form onSubmit={handleSubmit}>
                         <SearchField
-                            values={values}
-                            onChange={handleChange}
+                            onChange={onSearch}
                             loading={loading}
                             sx={{
                                 "& .MuiInputBase-root": {
@@ -504,11 +521,7 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
                                 <Box>
                                     {accessName(board.access)}
                                     <IconButton color="error" key={board.id} onClick={() => deleteBoard(board)}>
-                                        {deleteloading == board.id ? (
-                                            <CircularProgress size={"1.5rem"} color="error" />
-                                        ) : (
-                                            <DeleteIcon />
-                                        )}
+                                        {deleteloading == board.id ? <CircularProgress size={"1.5rem"} color="error" /> : <DeleteIcon />}
                                     </IconButton>
                                 </Box>
                             </MenuItem>

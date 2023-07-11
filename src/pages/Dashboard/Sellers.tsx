@@ -10,6 +10,7 @@ import { useConfirmDialog } from "burgos-confirm"
 import { useSnackbar } from "burgos-snackbar"
 import { Form, Formik } from "formik"
 import { SearchField } from "../../components/SearchField"
+import { useSellers } from "../../hooks/useSellers"
 
 interface SellersProps {}
 interface FormValues {
@@ -50,15 +51,14 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
                         () =>
                             confirm({
                                 title: "Atenção",
-                                content:
-                                    "Essa ação não poderá ser desfeita. Os dados do vendedor serão perdidos. Deseja continuar?",
+                                content: "Essa ação não poderá ser desfeita. Os dados do vendedor serão perdidos. Deseja continuar?",
                                 onConfirm: () => {
                                     setDeleteLoading(true)
                                     api.user.delete({
                                         data: { id: seller.id },
                                         callback: (response: { data: User }) => {
                                             snackbar({ severity: "warning", text: "Vendedor deletado" })
-                                            setSellers(sellers.filter((item) => item.id != response.data.id))
+                                            // setSellers(sellers.filter((item) => item.id != response.data.id))
                                         },
                                         finallyCallback: () => setDeleteLoading(false),
                                     })
@@ -106,61 +106,46 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
     const skeletons = newArray(3)
     const api = useApi()
 
-    const [sellers, setSellers] = useState<User[]>([])
-    const [loading, setLoading] = useState(true)
+    const sellers = useSellers()
+
+    const [sellerList, setSellerList] = useState<User[]>(sellers.list)
 
     const initialValues = { search: "" }
 
-    const handleSubmit = (values: FormValues) => {
-        if (loading) return
-
-        setLoading(true)
-        api.user.find.name({
-            data: values,
-            callback: (response: { data: User[] }) => setSellers(response.data),
-            finallyCallback: () => setLoading(false),
-        })
-    }
     const skeleton_style: SxProps = {
         width: "100%",
         height: "3.5vw",
         flexShrink: 0,
     }
 
+    const onSearch = (value: string) => {
+        const searchResult = sellers.list.filter((seller) => seller.name.toLowerCase().includes(value))
+        setSellerList(searchResult)
+    }
+
     useEffect(() => {
-        api.user.list({
-            callback: (response: { data: User[] }) => setSellers(response.data),
-            finallyCallback: () => setLoading(false),
-        })
-    }, [])
+        if (sellerList.length == sellers.list.length) {
+            setSellerList(sellers.list)
+        }
+    }, [sellers.list])
 
     return (
         <div className="Sellers-Component">
-            <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-                {({ values, handleChange }) => (
-                    <Form>
-                        <SearchField values={values} onChange={handleChange} loading={loading} />
-                    </Form>
-                )}
-            </Formik>
+            <SearchField onChange={onSearch} loading={sellers.loading} />
             <p>Administradores</p>
             <div className="sellers-list">
-                {loading ? (
-                    skeletons.map((item) => (
-                        <Skeleton key={skeletons.indexOf(item)} variant="rectangular" sx={skeleton_style} />
-                    ))
+                {sellers.loading ? (
+                    skeletons.map((item) => <Skeleton key={skeletons.indexOf(item)} variant="rectangular" sx={skeleton_style} />)
                 ) : (
-                    <SellerList sellers={sellers.filter((seller) => seller.adm)} />
+                    <SellerList sellers={sellerList.filter((seller) => seller.adm)} />
                 )}
             </div>
             <p>Vendedores</p>
             <div className="sellers-list">
-                {loading ? (
-                    skeletons.map((item) => (
-                        <Skeleton key={skeletons.indexOf(item)} variant="rectangular" sx={skeleton_style} />
-                    ))
+                {sellers.loading ? (
+                    skeletons.map((item) => <Skeleton key={skeletons.indexOf(item)} variant="rectangular" sx={skeleton_style} />)
                 ) : (
-                    <SellerList sellers={sellers.filter((seller) => !seller.adm)} />
+                    <SellerList sellers={sellerList.filter((seller) => !seller.adm)} />
                 )}
             </div>
         </div>

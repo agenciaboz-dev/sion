@@ -64,16 +64,11 @@ export const Contracts: React.FC<ContractsProps> = ({}) => {
     const { user } = useUser()
     const contracts = useContracts()
 
-    const [contract, setContract] = useState<Contract>()
+    const [contractList, setContractList] = useState<Contract[]>(contracts.list)
 
-    const initialValues = {
-        search: "",
-    }
-
-    const handleSubmit = (values: FormValues) => {
-        if (contracts.loading) return
-
-        // search
+    const handleSearch = (value: string) => {
+        const searchResult = contracts.list.filter((contract) => contract.name.toLowerCase().includes(value))
+        setContractList(searchResult)
     }
 
     const skeleton_style: SxProps = {
@@ -82,21 +77,17 @@ export const Contracts: React.FC<ContractsProps> = ({}) => {
         flexShrink: 0,
     }
 
-    useEffect(() => {}, [])
+    useEffect(() => {
+        setContractList(contracts.list)
+    }, [contracts.list])
 
     return (
         <div className="Contracts-Component">
-            <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-                {({ values, handleChange }) => (
-                    <Form>
-                        <SearchField values={values} onChange={handleChange} loading={contracts.loading} />
-                    </Form>
-                )}
-            </Formik>
+            <SearchField onChange={handleSearch} loading={contracts.loading} />
             {contracts.loading ? (
                 skeletons.map((item) => <Skeleton key={skeletons.indexOf(item)} variant="rectangular" sx={skeleton_style} />)
             ) : (
-                <ContractList contracts={contracts.list} />
+                <ContractList contracts={contractList} />
             )}
         </div>
     )
