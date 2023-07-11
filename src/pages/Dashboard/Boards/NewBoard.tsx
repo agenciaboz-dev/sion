@@ -6,6 +6,8 @@ import { useApi } from "../../../hooks/useApi"
 import { useNavigate } from "react-router-dom"
 import AddIcon from "@mui/icons-material/Add"
 import { useUser } from "../../../hooks/useUser"
+import { useStatuses } from "../../../hooks/useStatuses"
+import { useBoards } from "../../../hooks/useBoards"
 
 interface NewBoardProps {}
 
@@ -13,11 +15,12 @@ export const NewBoard: React.FC<NewBoardProps> = ({}) => {
     const api = useApi()
     const roles = useRoles()
     const navigate = useNavigate()
+    const statuses = useStatuses()
+    const boards = useBoards()
 
     const { user } = useUser()
 
     const [columns, setColumns] = useState<Column[]>([{ id: 1, name: "", status: 0 }])
-    const [statuses, setStatuses] = useState<Status[]>([])
     const [loading, setLoading] = useState(false)
     const [addingStatus, setAddingStatus] = useState(0)
     const [newStatusName, setNewStatusName] = useState("")
@@ -58,7 +61,10 @@ export const NewBoard: React.FC<NewBoardProps> = ({}) => {
         setLoading(true)
         api.boards.new({
             data,
-            callback: () => navigate("/dashboard/boards"),
+            callback: (response: { data: Board }) => {
+                navigate("/dashboard/boards")
+                boards.add(response.data)
+            },
             finallyCallback: () => setLoading(false),
         })
     }
@@ -77,13 +83,13 @@ export const NewBoard: React.FC<NewBoardProps> = ({}) => {
         if (loadingNewStatus) return
         if (!setNewStatusName) return
 
-        if (statuses.filter((status) => status.name == newStatusName).length > 0) return
+        if (statuses.list.filter((status) => status.name == newStatusName).length > 0) return
 
         setLoadingNewStatus(true)
         api.boards.status.new({
             data: { name: newStatusName },
             callback: (response: { data: Status }) => {
-                setStatuses([...statuses, response.data])
+                statuses.add(response.data)
                 setAddingStatus(0)
                 setLoadingNewStatus(false)
                 setNewStatusName("")
@@ -115,13 +121,6 @@ export const NewBoard: React.FC<NewBoardProps> = ({}) => {
             window.removeEventListener("keydown", onKeyDown)
         }
     }, [newStatusName])
-
-    useEffect(() => {
-        api.contracts.status({
-            callback: (response: { data: Status[] }) => setStatuses(response.data),
-        })
-    }, [])
-
     return (
         <Box sx={{ gap: "1vw" }}>
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
@@ -197,7 +196,7 @@ export const NewBoard: React.FC<NewBoardProps> = ({}) => {
                                                                 <MenuItem disabled value={0}>
                                                                     Status
                                                                 </MenuItem>
-                                                                {statuses.map((status) => (
+                                                                {statuses.list.map((status) => (
                                                                     <MenuItem key={status.id} value={status.id}>
                                                                         {status.name}
                                                                     </MenuItem>

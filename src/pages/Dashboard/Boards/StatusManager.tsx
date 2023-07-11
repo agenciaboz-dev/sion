@@ -13,6 +13,8 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 import { useNavigate } from "react-router-dom"
 import Collapsible from "react-collapsible"
 import { useContracts } from "../../../hooks/useContracts"
+import { useStatuses } from "../../../hooks/useStatuses"
+import { useBoards } from "../../../hooks/useBoards"
 
 interface StatusManagerProps {}
 
@@ -20,12 +22,12 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
     const api = useApi()
     const skeletons = useArray().newArray(10)
     const navigate = useNavigate()
+    const statuses = useStatuses()
+    const boards = useBoards()
+
     const { confirm } = useConfirmDialog()
     const { contracts } = useContracts()
 
-    const [loading, setLoading] = useState(true)
-    const [statuses, setStatuses] = useState<Status[]>([])
-    const [boards, setBoards] = useState<Board[]>([])
     const [editing, setEditing] = useState(0)
     const [editLoading, setEditLoading] = useState(0)
     const [deleteLoading, setDeleteLoading] = useState(0)
@@ -41,7 +43,7 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                 api.boards.status.delete({
                     data: status,
                     callback: () => {
-                        setStatuses(statuses.filter((item) => item.id != status.id))
+                        statuses.remove(status)
                     },
                     finallyCallback: () => setDeleteLoading(0),
                 })
@@ -60,7 +62,7 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
         api.boards.status.update({
             data: values,
             callback: () => {
-                setStatuses([...statuses.filter((item) => item.id != values.id), values])
+                statuses.update(values)
                 setEditing(0)
             },
             finallyCallback: () => setEditLoading(0),
@@ -101,16 +103,6 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
     const ListComponent = ({ list }: { list: ReactNode }) => {
         return <Box sx={{ padding: "0vw 0 0 0  ", flexDirection: "column" }}>{list}</Box>
     }
-    useEffect(() => {
-        api.contracts.status({
-            callback: (response: { data: Status[] }) => setStatuses(response.data),
-            finallyCallback: () => setLoading(false),
-        })
-
-        api.boards.get({
-            callback: (response: { data: Board[] }) => setBoards(response.data),
-        })
-    }, [])
 
     return (
         <Box
@@ -120,23 +112,23 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                 width: "75vw !important",
             }}
         >
-            {loading ? (
+            {statuses.loading ? (
                 <>
                     {skeletons.map((index) => (
                         <Skeleton key={index} variant="rectangular" animation="wave" sx={{ width: "16vw", height: "35vw" }} />
                     ))}
                 </>
             ) : (
-                statuses
+                statuses.list
                     .sort((a, b) => a.id - b.id)
                     .map((status) => {
                         const contains = {
                             contracts: contracts.filter((contract) => contract.statusId == status.id).length,
                             contract: contracts.filter((contract) => contract.statusId == status.id),
-                            board: boards
+                            board: boards.list
                                 .map((board) => ({ ...board, columns: JSON.parse(board.columns) }))
                                 .filter((board) => board.columns.filter((column: Column) => column.status == status.id).length > 0),
-                            boards: boards
+                            boards: boards.list
                                 .map((board) => ({ ...board, columns: JSON.parse(board.columns) }))
                                 .filter((board) => board.columns.filter((column: Column) => column.status == status.id).length > 0).length,
                         }

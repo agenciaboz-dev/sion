@@ -34,6 +34,7 @@ import GroupIcon from "@mui/icons-material/Group"
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings"
 import { useContracts } from "../../../hooks/useContracts"
 import { useBoards } from "../../../hooks/useBoards"
+import { useStatuses } from "../../../hooks/useStatuses"
 
 interface BoardsProps {
     user: User
@@ -54,14 +55,13 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
     const { snackbar } = useSnackbar()
     const contracts = useContracts()
     const boards = useBoards()
+    const statuses = useStatuses()
 
     const [contractList, setContractList] = useState(contracts.list)
-    const [loading, setLoading] = useState(true)
     const [currentBoard, setCurrentBoard] = useState<Board | undefined>(location.state?.board || undefined)
     const [board, setBoard] = useState<KanbanBoard<Card>>()
     const [isIcon, setIcon] = useState(false)
     //const [isVisibleContainer, setIsVisibleContainer] = useState(true)
-    const [statuses, setStatuses] = useState<Status[]>([])
     const [deleteloading, setDeleteloading] = useState(0)
     const [editMode, setEditMode] = useState(false)
     const [firstRender, setFirstRender] = useState(true)
@@ -236,15 +236,6 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
         setEditMode(false)
         setBoard(undefined)
         setCurrentBoard(undefined)
-        refresh()
-    }
-
-    const refresh = () => {
-        setLoading(true)
-
-        api.contracts.status({
-            callback: (response: { data: Status[] }) => setStatuses(response.data),
-        })
     }
 
     const onSearch = (value: string) => {
@@ -284,12 +275,6 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
     }, [editMode])
 
     useEffect(() => {
-        if (contracts.list.length > 0 && statuses.length > 0) {
-            setLoading(false)
-        }
-    }, [contracts.list, statuses])
-
-    useEffect(() => {
         if (currentBoard) {
             const columns: Column[] = JSON.parse(currentBoard.columns)
             setBoard({
@@ -310,10 +295,6 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
         }
     }, [currentBoard])
 
-    useEffect(() => {
-        refresh()
-    }, [])
-
     return board ? (
         <Box sx={{ overflow: "hidden" }}>
             <Formik
@@ -325,7 +306,7 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
                     <Form onSubmit={handleSubmit}>
                         <SearchField
                             onChange={onSearch}
-                            loading={loading}
+                            loading={contracts.loading || statuses.loading || boards.loading}
                             sx={{
                                 "& .MuiInputBase-root": {
                                     height: "1.9vw",
@@ -358,7 +339,7 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
                 )}
             </Formik>
 
-            {!loading && (
+            {!(contracts.loading || statuses.loading || boards.loading) && (
                 <Box sx={{ boxShadow: "none!important", padding: "0!important", flexDirection: "column" }}>
                     <Box sx={{ alignItems: "center", gap: "1vw" }}>
                         <IconButton onClick={() => goBack()}>
@@ -463,7 +444,7 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
         </Box>
     ) : (
         <Box sx={{ overflow: "hidden", gap: "1vw" }}>
-            {loading ? (
+            {contracts.loading || statuses.loading || boards.loading ? (
                 <Box sx={{ padding: "0!important", boxShadow: "none!important", gap: "1vw", flexDirection: "column" }}>
                     {skeletons.map((index) => (
                         <Skeleton key={index} variant="rectangular" sx={{ width: "100%", height: "3.5vw" }} animation="wave" />
@@ -487,7 +468,7 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
                                         id: -1,
                                         name: "Quadrão",
                                         columns: JSON.stringify(
-                                            statuses.map((status) => ({
+                                            statuses.list.map((status) => ({
                                                 id: status.id,
                                                 name: status.name,
                                                 status: status.id,

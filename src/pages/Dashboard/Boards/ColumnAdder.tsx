@@ -6,6 +6,7 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff"
 import { Form, Formik } from "formik"
 import AddIcon from "@mui/icons-material/Add"
 import { useApi } from "../../../hooks/useApi"
+import { useStatuses } from "../../../hooks/useStatuses"
 
 interface ColumnAdderProps {
     addColumn: (column: Column) => void
@@ -13,8 +14,8 @@ interface ColumnAdderProps {
 
 export const ColumnAdder: React.FC<ColumnAdderProps> = ({ addColumn }) => {
     const api = useApi()
+    const statuses = useStatuses()
 
-    const [statuses, setStatuses] = useState<Status[]>([])
     const [addingColumn, setAddingColumn] = useState(false)
     const [addingStatus, setAddingStatus] = useState(false)
     const [newStatusName, setNewStatusName] = useState("")
@@ -47,13 +48,13 @@ export const ColumnAdder: React.FC<ColumnAdderProps> = ({ addColumn }) => {
         if (loadingNewStatus) return
         if (!setNewStatusName) return
 
-        if (statuses.filter((status) => status.name == newStatusName).length > 0) return
+        if (statuses.list.filter((status) => status.name == newStatusName).length > 0) return
 
         setLoadingNewStatus(true)
         api.boards.status.new({
             data: { name: newStatusName },
             callback: (response: { data: Status }) => {
-                setStatuses([...statuses, response.data])
+                statuses.add(response.data)
                 setAddingStatus(false)
                 setLoadingNewStatus(false)
                 setNewStatusName("")
@@ -77,12 +78,6 @@ export const ColumnAdder: React.FC<ColumnAdderProps> = ({ addColumn }) => {
             window.removeEventListener("keydown", onKeyDown)
         }
     }, [newStatusName])
-
-    useEffect(() => {
-        api.contracts.status({
-            callback: (response: { data: Status[] }) => setStatuses(response.data),
-        })
-    }, [])
 
     return addingColumn ? (
         <Box
@@ -137,7 +132,7 @@ export const ColumnAdder: React.FC<ColumnAdderProps> = ({ addColumn }) => {
                                 <MenuItem disabled value={0}>
                                     Status
                                 </MenuItem>
-                                {statuses.map((status) => (
+                                {statuses.list.map((status) => (
                                     <MenuItem key={status.id} value={status.id}>
                                         {status.name}
                                     </MenuItem>
