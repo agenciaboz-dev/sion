@@ -5,7 +5,6 @@ import { useRoles } from "../../../hooks/useRoles"
 import { useApi } from "../../../hooks/useApi"
 import { useNavigate } from "react-router-dom"
 import AddIcon from "@mui/icons-material/Add"
-import { User } from "../../../definitions/user"
 
 interface NewBoardProps {
     user: User
