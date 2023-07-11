@@ -18,6 +18,7 @@ import { ConfirmDialog, ConfirmDialogProvider } from "burgos-confirm"
 import { ImagesProvider } from "./contexts/imagesContext"
 import { ContractsProvider } from "./contexts/contractsContext"
 import { SellersProvider } from "./contexts/sellersContext"
+import { BoardsProvider } from "./contexts/boardsContext"
 
 function App() {
     const muiTheme = useMuiTheme()
@@ -28,31 +29,33 @@ function App() {
                 <ConfirmDialogProvider>
                     <ContractsProvider>
                         <SellersProvider>
-                            <UserProvider>
-                                <SettingsProvider>
-                                    <ImagesProvider>
-                                        <ThemeProvider theme={muiTheme}>
-                                            <ClientProvider>
-                                                <AttachmentsProvider>
-                                                    <PdfProvider>
-                                                        <StageProvider>
-                                                            <Snackbar />
-                                                            <ConfirmDialog />
-                                                            <Routes>
-                                                                {/* <Route index element={<Home />} /> */}
-                                                                <Route index element={<Login />} />
-                                                                <Route path="/login" element={<Login />} />
-                                                                <Route path="/dashboard/*" element={<Dashboard />} />
-                                                                <Route path="*" element={<NotFound />} />
-                                                            </Routes>
-                                                        </StageProvider>
-                                                    </PdfProvider>
-                                                </AttachmentsProvider>
-                                            </ClientProvider>
-                                        </ThemeProvider>
-                                    </ImagesProvider>
-                                </SettingsProvider>
-                            </UserProvider>
+                            <BoardsProvider>
+                                <UserProvider>
+                                    <SettingsProvider>
+                                        <ImagesProvider>
+                                            <ThemeProvider theme={muiTheme}>
+                                                <ClientProvider>
+                                                    <AttachmentsProvider>
+                                                        <PdfProvider>
+                                                            <StageProvider>
+                                                                <Snackbar />
+                                                                <ConfirmDialog />
+                                                                <Routes>
+                                                                    {/* <Route index element={<Home />} /> */}
+                                                                    <Route index element={<Login />} />
+                                                                    <Route path="/login" element={<Login />} />
+                                                                    <Route path="/dashboard/*" element={<Dashboard />} />
+                                                                    <Route path="*" element={<NotFound />} />
+                                                                </Routes>
+                                                            </StageProvider>
+                                                        </PdfProvider>
+                                                    </AttachmentsProvider>
+                                                </ClientProvider>
+                                            </ThemeProvider>
+                                        </ImagesProvider>
+                                    </SettingsProvider>
+                                </UserProvider>
+                            </BoardsProvider>
                         </SellersProvider>
                     </ContractsProvider>
                 </ConfirmDialogProvider>
