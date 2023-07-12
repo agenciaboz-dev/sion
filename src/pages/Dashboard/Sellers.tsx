@@ -57,8 +57,7 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
                                     api.user.delete({
                                         data: { id: seller.id },
                                         callback: (response: { data: User }) => {
-                                            snackbar({ severity: "warning", text: "Vendedor deletado" })
-                                            // setSellers(sellers.filter((item) => item.id != response.data.id))
+                                            sellers.remove(seller)
                                         },
                                         finallyCallback: () => setDeleteLoading(false),
                                     })
@@ -109,6 +108,7 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
     const sellers = useSellers()
 
     const [sellerList, setSellerList] = useState<User[]>(sellers.list)
+    const [searching, setSearching] = useState(false)
 
     const initialValues = { search: "" }
 
@@ -119,12 +119,14 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
     }
 
     const onSearch = (value: string) => {
+        setSearching(!!value)
+
         const searchResult = sellers.list.filter((seller) => seller.name.toLowerCase().includes(value))
         setSellerList(searchResult)
     }
 
     useEffect(() => {
-        if (sellerList.length == sellers.list.length) {
+        if (!searching) {
             setSellerList(sellers.list)
         }
     }, [sellers.list])
