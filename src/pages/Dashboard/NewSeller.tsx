@@ -10,6 +10,7 @@ import { useSnackbar } from "burgos-snackbar"
 import { Navigate, useNavigate } from 'react-router-dom';
 import MaskedInput from "react-text-mask"
 import { useCepMask, useCpfMask, usePhoneMask } from "burgos-masks"
+import { useSellers } from "../../hooks/useSellers"
 
 interface NewSellerProps {}
 
@@ -30,13 +31,16 @@ interface FormValues {
 
 export const NewSeller: React.FC<NewSellerProps> = ({}) => {
     const api = useApi()
-    const [infoLoading, setInfoLoading] = useState(false)
-    const { confirm } = useConfirmDialog()
-    const { snackbar } = useSnackbar()
     const navigate = useNavigate()
     const cpfMask = useCpfMask
     const phoneMask = usePhoneMask()
     const cepMask = useCepMask()
+    const sellers = useSellers()
+
+    const { confirm } = useConfirmDialog()
+    const { snackbar } = useSnackbar()
+
+    const [infoLoading, setInfoLoading] = useState(false)
 
     const loading_props = {
         size: "1.5rem",
@@ -59,18 +63,18 @@ export const NewSeller: React.FC<NewSellerProps> = ({}) => {
     }
 
     const handleInfoSubmit = (values: FormValues) => {
-        setInfoLoading(true)
         console.log(values)
 
         confirm({
             title: "Salvar",
             content: "Salvar novo vendedor?",
             onConfirm: () => {
+                setInfoLoading(true)
                 api.user.new({
                     data: values,
                     callback: (response: { data: User }) => {
                         const user = response.data
-                        snackbar({ severity: "success", text: "Vendedor cadastrado" })
+                        sellers.add(response.data)
                         navigate(`/dashboard/seller/${user.id}`)
                     },
                     finallyCallback: () => setInfoLoading(false),
@@ -88,22 +92,14 @@ export const NewSeller: React.FC<NewSellerProps> = ({}) => {
                             <div className="infoSellers" style={{ gap: "1vw" }}>
                                 <p className="data">Dados Pessoais</p>
                                 <TextField name="name" label="Nome completo" value={values.name} onChange={handleChange} />
-                                <TextField
-                                    name="rg"
-                                    label="RG"
-                                    placeholder="0000000000"
-                                    value={values.rg}
-                                    onChange={handleChange}
-                                />
+                                <TextField name="rg" label="RG" placeholder="0000000000" value={values.rg} onChange={handleChange} />
                                 <MaskedInput
                                     mask={cpfMask}
                                     guide={false}
                                     name="cpf"
                                     value={values.cpf}
                                     onChange={handleChange}
-                                    render={(ref, props) => (
-                                        <TextField inputRef={ref} {...props} label="CPF" placeholder="000.000.000-00" />
-                                    )}
+                                    render={(ref, props) => <TextField inputRef={ref} {...props} label="CPF" placeholder="000.000.000-00" />}
                                 />
                                 <TextField
                                     name="birth"
@@ -119,25 +115,12 @@ export const NewSeller: React.FC<NewSellerProps> = ({}) => {
                                     name="phone"
                                     value={values.phone}
                                     onChange={handleChange}
-                                    render={(ref, props) => (
-                                        <TextField
-                                            inputRef={ref}
-                                            {...props}
-                                            label="Telefone"
-                                            placeholder="(41) 9 9999-9999"
-                                        />
-                                    )}
+                                    render={(ref, props) => <TextField inputRef={ref} {...props} label="Telefone" placeholder="(41) 9 9999-9999" />}
                                 />
                             </div>
 
                             <div className="infoComplement">
-                                <TextField
-                                    name="email"
-                                    label="E-mail"
-                                    placeholder="seu@email.com"
-                                    value={values.email}
-                                    onChange={handleChange}
-                                />
+                                <TextField name="email" label="E-mail" placeholder="seu@email.com" value={values.email} onChange={handleChange} />
                                 {/* <p className="title">Biometria Facial</p>
                                 <p className="subtitle">Foto do rosto do vendedor</p>
                                 <div className="biometry">Upload de arquivo </div> */}
@@ -185,9 +168,7 @@ export const NewSeller: React.FC<NewSellerProps> = ({}) => {
                                         style={{ width: "50%" }}
                                         value={values.cep}
                                         onChange={handleChange}
-                                        render={(ref, props) => (
-                                            <TextField inputRef={ref} {...props} label="CEP" placeholder="00.000-000" />
-                                        )}
+                                        render={(ref, props) => <TextField inputRef={ref} {...props} label="CEP" placeholder="00.000-000" />}
                                     />
                                     <TextField
                                         name="district"
