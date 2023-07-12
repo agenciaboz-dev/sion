@@ -32,8 +32,6 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
 
     useEffect(() => {
         if (user) {
-            if (io.disconnected) io.connect()
-
             contracts.setLoading(true)
             if (user.adm) {
                 api.contracts.list({
@@ -65,8 +63,6 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
                 callback: (response: { data: Status[] }) => statuses.set(response.data),
                 finallyCallback: () => statuses.setLoading(false),
             })
-        } else {
-            if (io.connected) io.close()
         }
     }, [user])
 
