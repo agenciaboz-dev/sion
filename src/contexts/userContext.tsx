@@ -5,6 +5,7 @@ import { useContracts } from "../hooks/useContracts"
 import { useSellers } from "../hooks/useSellers"
 import { useBoards } from "../hooks/useBoards"
 import { useStatuses } from "../hooks/useStatuses"
+import { useIo } from "../hooks/useIo"
 
 interface UserContextValue {
     user: User | null
@@ -21,6 +22,7 @@ export default UserContext
 
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     const api = useApi()
+    const io = useIo()
     const contracts = useContracts()
     const sellers = useSellers()
     const boards = useBoards()
