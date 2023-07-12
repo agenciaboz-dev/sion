@@ -21,14 +21,14 @@ export const IoProvider: React.FC<IoProviderProps> = ({ children }) => {
     const { snackbar } = useSnackbar()
 
     io.on("connect", () => {
-        snackbar({ severity: "success", text: "conectado com o servidor" })
+        snackbar({ severity: "success", text: "Conectado com o servidor" })
     })
 
     io.on("disconnect", (reason) => {
         if (reason == "io client disconnect" || reason == "io server disconnect") {
-            snackbar({ severity: "info", text: "desconectado do servidor" })
+            snackbar({ severity: "info", text: "Desconectado do servidor" })
         } else {
-            snackbar({ severity: "error", text: "conexão com o servidor perdida, tentando reconectar automaticamente" })
+            snackbar({ severity: "error", text: "Conexão com o servidor perdida! Tentando reconectar automaticamente" })
         }
     })
 

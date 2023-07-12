@@ -34,19 +34,19 @@ export const StatusesProvider: React.FC<StatusesProviderProps> = ({ children }) 
     const add = (status: Status, emit = false) => {
         if (emit) io.emit("status:new", status)
         setStatuses([...statuses, status])
-        snackbar({ severity: emit ? "success" : "info", text: `novo quadro ${status.name}` })
+        snackbar({ severity: emit ? "success" : "info", text: `Novo status ${status.name}` })
     }
 
     const remove = (status: Status, emit = false) => {
         if (emit) io.emit("status:remove", status)
         setStatuses(statuses.filter((item) => item.id != status.id))
-        snackbar({ severity: emit ? "warning" : "info", text: `quadro ${status.name} removido` })
+        snackbar({ severity: emit ? "warning" : "info", text: `Status ${status.name} removido` })
     }
 
     const update = (status: Status, emit = false) => {
         setStatuses([...statuses.filter((item) => item.id != status.id), status])
         if (emit) io.emit("status:update", status)
-        snackbar({ severity: emit ? "success" : "info", text: `quadro ${status.name} atualizado` })
+        snackbar({ severity: emit ? "success" : "info", text: `Status ${status.name} atualizado` })
     }
 
     io.on("status:new", (status: Status) => add(status))

@@ -231,7 +231,7 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                                                 onClick={() => handleDelete(status)}
                                             >
                                                 {deleteLoading == status.id ? (
-                                                    <CircularProgress size="1.5rem" color="error" />
+                                                    <CircularProgress size="1.5rem" color="secondary" />
                                                 ) : (
                                                     <DeleteOutlineIcon />
                                                 )}
@@ -242,97 +242,84 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
 
                                 <Box
                                     sx={{
+                                        fontSize: "0.8vw",
                                         width: "16vw",
-                                        gap: "0.5vw",
+                                        justifyContent: "space-between",
+                                        flexDirection: "column",
                                     }}
                                 >
                                     <Box
                                         sx={{
-                                            fontSize: "0.8vw",
-
+                                            //padding: "1vw 1vw 0.5vw 1vw",
                                             justifyContent: "space-between",
+                                            alignItems: "center",
                                             flexDirection: "column",
                                         }}
                                     >
-                                        <Box
-                                            sx={{
-                                                //padding: "1vw 1vw 0.5vw 1vw",
-                                                justifyContent: "space-between",
-                                                alignItems: "center",
-                                                flexDirection: "column",
-                                            }}
+                                        <Collapsible
+                                            trigger={<TriggerComponent title={"Quadros"} length={contains.boards} />}
+                                            triggerWhenOpen={
+                                                <TriggerComponent title={"Quadros"} length={contains.boards} open={true} />
+                                            }
                                         >
-                                            <Collapsible
-                                                trigger={<TriggerComponent title={"Quadros"} length={contains.boards} />}
-                                                triggerWhenOpen={
-                                                    <TriggerComponent
-                                                        title={"Quadros"}
-                                                        length={contains.boards}
-                                                        open={true}
-                                                    />
-                                                }
-                                            >
-                                                <ListComponent
-                                                    list={contains.board.map((board) => {
-                                                        const stringifiedColumnBoard = {
-                                                            ...board,
-                                                            columns: JSON.stringify(board.columns),
-                                                        }
-                                                        return (
-                                                            <p
-                                                                key={board.id}
-                                                                onClick={() => {
-                                                                    navigate(`../boards`, {
-                                                                        state: {
-                                                                            board: stringifiedColumnBoard,
-                                                                            contracts: contracts,
-                                                                        },
-                                                                    })
-                                                                }}
-                                                                className="button-link"
-                                                            >
-                                                                {board.name}
-                                                            </p>
-                                                        )
-                                                    })}
-                                                />
-                                            </Collapsible>
-                                        </Box>
-                                        <Box
-                                            sx={{
-                                                //padding: "1vw 1vw 0.5vw 1vw",
-                                                justifyContent: "space-between",
-                                                alignItems: "center",
-                                                flexDirection: "column",
-                                            }}
-                                        >
-                                            <Collapsible
-                                                trigger={
-                                                    <TriggerComponent title={"Contratos"} length={contains.contracts} />
-                                                }
-                                                triggerWhenOpen={
-                                                    <TriggerComponent
-                                                        title={"Contratos"}
-                                                        length={contains.contracts}
-                                                        open={true}
-                                                    />
-                                                }
-                                            >
-                                                <ListComponent
-                                                    list={contains.contract.map((contract) => (
+                                            <ListComponent
+                                                list={contains.board.map((board) => {
+                                                    const stringifiedColumnBoard = {
+                                                        ...board,
+                                                        columns: JSON.stringify(board.columns),
+                                                    }
+                                                    return (
                                                         <p
-                                                            key={contract.id}
+                                                            key={board.id}
                                                             onClick={() => {
-                                                                navigate(`../contract/${contract.id}`)
+                                                                navigate(`../boards`, {
+                                                                    state: {
+                                                                        board: stringifiedColumnBoard,
+                                                                        contracts: contracts,
+                                                                    },
+                                                                })
                                                             }}
                                                             className="button-link"
                                                         >
-                                                            {contract.name}
+                                                            {board.name}
                                                         </p>
-                                                    ))}
+                                                    )
+                                                })}
+                                            />
+                                        </Collapsible>
+                                    </Box>
+                                    <Box
+                                        sx={{
+                                            //padding: "1vw 1vw 0.5vw 1vw",
+                                            justifyContent: "space-between",
+                                            alignItems: "center",
+                                            flexDirection: "column",
+                                        }}
+                                    >
+                                        <Collapsible
+                                            trigger={<TriggerComponent title={"Contratos"} length={contains.contracts} />}
+                                            triggerWhenOpen={
+                                                <TriggerComponent
+                                                    title={"Contratos"}
+                                                    length={contains.contracts}
+                                                    open={true}
                                                 />
-                                            </Collapsible>
-                                        </Box>
+                                            }
+                                        >
+                                            <ListComponent
+                                                list={contains.contract.map((contract) => (
+                                                    <p
+                                                        key={contract.id}
+                                                        onClick={() => {
+                                                            navigate(`../contract/${contract.id}`)
+                                                        }}
+                                                        className="button-link"
+                                                    >
+                                                        {contract.name}
+                                                    </p>
+                                                ))}
+                                            />
+                                        </Collapsible>
                                     </Box>
                                 </Box>
                             </Box>

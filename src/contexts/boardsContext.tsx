@@ -34,19 +34,19 @@ export const BoardsProvider: React.FC<BoardsProviderProps> = ({ children }) => {
     const add = (board: Board, emit = false) => {
         if (emit) io.emit("board:new", board)
         setBoards([...boards, board])
-        snackbar({ severity: emit ? "success" : "info", text: `novo quadro ${board.name}` })
+        snackbar({ severity: emit ? "success" : "info", text: `Novo quadro ${board.name}` })
     }
 
     const remove = (board: Board, emit = false) => {
         if (emit) io.emit("board:remove", board)
         setBoards(boards.filter((item) => item.id != board.id))
-        snackbar({ severity: emit ? "warning" : "info", text: `quadro ${board.name} removido` })
+        snackbar({ severity: emit ? "warning" : "info", text: `Quadro ${board.name} removido` })
     }
 
     const update = (board: Board, emit = false) => {
         setBoards([...boards.filter((item) => item.id != board.id), board])
         if (emit) io.emit("board:update", board)
-        snackbar({ severity: emit ? "success" : "info", text: `quadro ${board.name} atualizado` })
+        snackbar({ severity: emit ? "success" : "info", text: `Quadro ${board.name} atualizado` })
     }
 
     io.on("board:new", (board: Board) => add(board))
