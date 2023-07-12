@@ -192,6 +192,7 @@ export const Seller: React.FC<SellerProps> = ({}) => {
                                                     value={values.username}
                                                     onChange={handleChange}
                                                     InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
+                                                    disabled
                                                 />
                                                 <TextField
                                                     label={"Função"}

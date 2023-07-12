@@ -346,12 +346,20 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
                             <ArrowBackIcon />
                         </IconButton>
                         {editMode ? (
-                            <TextField defaultValue={currentBoard!.name} variant="standard" onBlur={(event) => renameBoard(event)} />
+                            <TextField
+                                defaultValue={currentBoard!.name}
+                                variant="standard"
+                                onBlur={(event) => renameBoard(event)}
+                            />
                         ) : (
                             <p>{currentBoard?.name}</p>
                         )}
                         {currentBoard!.id > 0 && (
-                            <IconButton color={editMode ? "primary" : "default"} onClick={() => setEditMode(!editMode)} disabled={editLoading}>
+                            <IconButton
+                                color={editMode ? "primary" : "default"}
+                                onClick={() => setEditMode(!editMode)}
+                                disabled={editLoading}
+                            >
                                 {editLoading ? <CircularProgress size="1.5rem" /> : <ModeEditIcon />}
                             </IconButton>
                         )}
@@ -447,7 +455,12 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
             {contracts.loading || statuses.loading || boards.loading ? (
                 <Box sx={{ padding: "0!important", boxShadow: "none!important", gap: "1vw", flexDirection: "column" }}>
                     {skeletons.map((index) => (
-                        <Skeleton key={index} variant="rectangular" sx={{ width: "100%", height: "3.5vw" }} animation="wave" />
+                        <Skeleton
+                            key={index}
+                            variant="rectangular"
+                            sx={{ width: "100%", height: "3.5vw" }}
+                            animation="wave"
+                        />
                     ))}
                 </Box>
             ) : (
@@ -495,14 +508,28 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
                                     width: "100%",
                                     padding: "1vw",
                                 }}
-                                onClick={() => selectBoard(board)}
                             >
-                                <p style={{ cursor: "pointer" }}>{board.name}</p>
+                                <p
+                                    style={{
+                                        width: "100%",
+                                        height: "100%",
+                                        paddingTop: "0.6vw",
+                                        paddingLeft: "0.5vw",
+                                        cursor: "pointer",
+                                    }}
+                                    onClick={() => selectBoard(board)}
+                                >
+                                    {board.name}
+                                </p>
 
                                 <Box>
                                     {accessName(board.access)}
                                     <IconButton color="error" key={board.id} onClick={() => deleteBoard(board)}>
-                                        {deleteloading == board.id ? <CircularProgress size={"1.5rem"} color="error" /> : <DeleteIcon />}
+                                        {deleteloading == board.id ? (
+                                            <CircularProgress size={"1.5rem"} color="error" />
+                                        ) : (
+                                            <DeleteIcon />
+                                        )}
                                     </IconButton>
                                 </Box>
                             </MenuItem>
