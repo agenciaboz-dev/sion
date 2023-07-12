@@ -248,17 +248,18 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                             InputProps={{ readOnly: true, sx: textfield_style }}
                         />
                         <div style={{ gap: "1vw" }}>
-                            {contract.subunits.split(", ").map((subunit, index) => (
-                                <React.Fragment key={index}>
-                                    <TextField
-                                        sx={{ width: "50%", marginRight: 0 }}
-                                        label={"Subunidade"}
-                                        value={subunit}
-                                        InputProps={{ readOnly: true, sx: textfield_style }}
-                                    />
-                                    {/* {(index + 1) % 2 === 0 && <br />} */}
-                                </React.Fragment>
-                            ))}
+                            {contract.subunits &&
+                                contract.subunits.split(", ").map((subunit, index) => (
+                                    <React.Fragment key={index}>
+                                        <TextField
+                                            sx={{ width: "50%", marginRight: 0 }}
+                                            label={"Subunidade"}
+                                            value={subunit}
+                                            InputProps={{ readOnly: true, sx: textfield_style }}
+                                        />
+                                        {/* {(index + 1) % 2 === 0 && <br />} */}
+                                    </React.Fragment>
+                                ))}
                         </div>
                     </div>
 
