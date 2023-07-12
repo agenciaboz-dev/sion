@@ -5,6 +5,7 @@ import { useContracts } from "../hooks/useContracts"
 import { useSellers } from "../hooks/useSellers"
 import { useBoards } from "../hooks/useBoards"
 import { useStatuses } from "../hooks/useStatuses"
+import { useIo } from "../hooks/useIo"
 
 interface UserContextValue {
     user: User | null
@@ -21,6 +22,7 @@ export default UserContext
 
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     const api = useApi()
+    const io = useIo()
     const contracts = useContracts()
     const sellers = useSellers()
     const boards = useBoards()
@@ -30,6 +32,8 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
 
     useEffect(() => {
         if (user) {
+            if (io.disconnected) io.connect()
+
             contracts.setLoading(true)
             if (user.adm) {
                 api.contracts.list({
@@ -61,6 +65,8 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
                 callback: (response: { data: Status[] }) => statuses.set(response.data),
                 finallyCallback: () => statuses.setLoading(false),
             })
+        } else {
+            if (io.connected) io.close()
         }
     }, [user])
 
