@@ -26,7 +26,7 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
     const boards = useBoards()
 
     const { confirm } = useConfirmDialog()
-    const { contracts } = useContracts()
+    const contracts = useContracts()
 
     const [editing, setEditing] = useState(0)
     const [editLoading, setEditLoading] = useState(0)
@@ -140,20 +140,14 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                     .sort((a, b) => a.id - b.id)
                     .map((status) => {
                         const contains = {
-                            contracts: contracts.filter((contract) => contract.statusId == status.id).length,
-                            contract: contracts.filter((contract) => contract.statusId == status.id),
+                            contracts: contracts.list.filter((contract) => contract.statusId == status.id).length,
+                            contract: contracts.list.filter((contract) => contract.statusId == status.id),
                             board: boards.list
                                 .map((board) => ({ ...board, columns: JSON.parse(board.columns) }))
-                                .filter(
-                                    (board) =>
-                                        board.columns.filter((column: Column) => column.status == status.id).length > 0
-                                ),
+                                .filter((board) => board.columns.filter((column: Column) => column.status == status.id).length > 0),
                             boards: boards.list
                                 .map((board) => ({ ...board, columns: JSON.parse(board.columns) }))
-                                .filter(
-                                    (board) =>
-                                        board.columns.filter((column: Column) => column.status == status.id).length > 0
-                                ).length,
+                                .filter((board) => board.columns.filter((column: Column) => column.status == status.id).length > 0).length,
                         }
 
                         return (

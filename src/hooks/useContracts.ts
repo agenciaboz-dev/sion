@@ -3,20 +3,11 @@ import ContractsContext from "../contexts/contractsContext"
 
 export const useContracts = () => {
     const contractsContext = useContext(ContractsContext)
+    const contracts = contractsContext
 
-    const contracts = {
-        list: contractsContext.contracts.sort((a, b) => a.id - b.id),
-        contracts: contractsContext.contracts.sort((a, b) => a.id - b.id),
-        set: contractsContext.setContracts,
-        loading: contractsContext.loading,
-        setLoading: contractsContext.setLoading,
-        add: (contract: Contract) => {
-            contractsContext.setContracts([...contractsContext.contracts, contract])
-        },
-        remove: (contract: Contract) => contractsContext.setContracts(contractsContext.contracts.filter((item) => item.id != contract.id)),
-        update: (contract: Contract) =>
-            contractsContext.setContracts([...contractsContext.contracts.filter((item) => item.id != contract.id), contract]),
-    }
+    const add = (contract: Contract) => contracts.add(contract, true)
+    const remove = (contract: Contract) => contracts.remove(contract, true)
+    const update = (contract: Contract) => contracts.update(contract, true)
 
-    return contracts
+    return { ...contracts, add, remove, update }
 }
