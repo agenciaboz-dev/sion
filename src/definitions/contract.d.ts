@@ -9,6 +9,7 @@ declare interface Contract {
     status?: Status
     statusId?: number
     unit: string
+    subunits: string
     date: string
     ip: string
     pessoa: string

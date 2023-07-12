@@ -234,19 +234,31 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                     </div>
                     <div className="unit-container">
                         <b>Unidades consumidoras</b>
+                        <TextField
+                            sx={{ width: "100%" }}
+                            label={"Distribuidora Atual"}
+                            value={contract.supplier}
+                            InputProps={{ readOnly: true, sx: textfield_style }}
+                        />
+
+                        <TextField
+                            sx={{ width: "100%" }}
+                            label={"Unidade Consumidora"}
+                            value={contract.unit}
+                            InputProps={{ readOnly: true, sx: textfield_style }}
+                        />
                         <div style={{ gap: "1vw" }}>
-                            <TextField
-                                sx={{ width: "50%" }}
-                                label={"Unidade Consumidora"}
-                                value={contract.unit}
-                                InputProps={{ readOnly: true, sx: textfield_style }}
-                            />
-                            <TextField
-                                sx={{ width: "50%" }}
-                                label={"Distribuidora Atual"}
-                                value={contract.supplier}
-                                InputProps={{ readOnly: true, sx: textfield_style }}
-                            />
+                            {contract.subunits.split(", ").map((subunit, index) => (
+                                <React.Fragment key={index}>
+                                    <TextField
+                                        sx={{ width: "50%", marginRight: 0 }}
+                                        label={"Subunidade"}
+                                        value={subunit}
+                                        InputProps={{ readOnly: true, sx: textfield_style }}
+                                    />
+                                    {/* {(index + 1) % 2 === 0 && <br />} */}
+                                </React.Fragment>
+                            ))}
                         </div>
                     </div>
 
