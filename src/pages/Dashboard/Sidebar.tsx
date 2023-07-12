@@ -132,17 +132,24 @@ export const Sidebar: React.FC<SidebarProps> = ({ user }) => {
                 ))}
             </div>
             <IconButton
-                sx={{ marginTop: "auto", color: "white", gap: "1vw", alignSelf: "flex-start", fontWeight: "normal" }}
+                sx={{
+                    marginTop: "auto",
+                    color: "white",
+                    gap: "0.6vw",
+                    alignSelf: "flex-start",
+                    fontWeight: "normal",
+                    fontSize: "1.3vw",
+                }}
                 onClick={() => (window.location.href = "https://controle.cooperativasion.com.br")}
             >
-                <ListAltIcon />
+                <ListAltIcon sx={{ width: "2vw" }} />
                 Controle
             </IconButton>
             <IconButton
-                sx={{ color: "white", gap: "1vw", alignSelf: "flex-start", fontWeight: "normal", fontSize: "1vw" }}
+                sx={{ color: "white", gap: "0.6vw", alignSelf: "flex-start", fontWeight: "normal", fontSize: "1.3vw" }}
                 onClick={() => logout()}
             >
-                <LogoutIcon sx={{ width: "1vw" }} />
+                <LogoutIcon sx={{ width: "2vw" }} />
                 Sair
             </IconButton>
         </div>

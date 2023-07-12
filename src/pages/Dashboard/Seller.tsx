@@ -151,37 +151,15 @@ export const Seller: React.FC<SellerProps> = ({}) => {
                                                         />
                                                     )}
                                                 />
-                                                <TextField
-                                                    label={"E-mail"}
-                                                    name="email"
-                                                    value={values.email}
-                                                    onChange={handleChange}
-                                                    InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
-                                                />
-                                                <TextField
-                                                    label={"Data de nascimento"}
-                                                    name="birth"
-                                                    value={new Date(values.birth).toLocaleDateString()}
-                                                    onChange={handleChange}
-                                                    InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
-                                                />
-                                            </div>
-                                            <div className="data-container">
-                                                <TextField
-                                                    label={"Função"}
-                                                    name="role"
-                                                    value={values.role}
-                                                    onChange={handleChange}
-                                                    InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
-                                                    select
-                                                >
-                                                    {roles.map((role) => (
-                                                        <MenuItem key={role.id} value={role.id}>
-                                                            {role.name}
-                                                        </MenuItem>
-                                                    ))}
-                                                </TextField>
+
                                                 <Box sx={{ gap: "1vw" }}>
+                                                    <TextField
+                                                        label={"Data de nascimento"}
+                                                        name="birth"
+                                                        value={new Date(values.birth).toLocaleDateString()}
+                                                        onChange={handleChange}
+                                                        InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
+                                                    />
                                                     <MaskedInput
                                                         mask={usePhoneMask}
                                                         name="phone"
@@ -198,6 +176,38 @@ export const Seller: React.FC<SellerProps> = ({}) => {
                                                             />
                                                         )}
                                                     />
+                                                </Box>
+                                                <TextField
+                                                    label={"E-mail"}
+                                                    name="email"
+                                                    value={values.email}
+                                                    onChange={handleChange}
+                                                    InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
+                                                />
+                                            </div>
+                                            <div className="data-container">
+                                                <TextField
+                                                    label={"Nome de Usuário"}
+                                                    name="username"
+                                                    value={values.username}
+                                                    onChange={handleChange}
+                                                    InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
+                                                />
+                                                <TextField
+                                                    label={"Função"}
+                                                    name="role"
+                                                    value={values.role}
+                                                    onChange={handleChange}
+                                                    InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
+                                                    select
+                                                >
+                                                    {roles.map((role) => (
+                                                        <MenuItem key={role.id} value={role.id}>
+                                                            {role.name}
+                                                        </MenuItem>
+                                                    ))}
+                                                </TextField>
+                                                <Box sx={{ gap: "1vw" }}>
                                                     <MaskedInput
                                                         mask={useCepMask}
                                                         name="cep"
@@ -214,23 +224,6 @@ export const Seller: React.FC<SellerProps> = ({}) => {
                                                             />
                                                         )}
                                                     />
-                                                </Box>
-                                                <TextField
-                                                    label={"Endereço"}
-                                                    name="address"
-                                                    value={values.address}
-                                                    onChange={handleChange}
-                                                    InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
-                                                />
-                                                <div className="number-district">
-                                                    <TextField
-                                                        label={"Número"}
-                                                        name="number"
-                                                        value={values.number}
-                                                        onChange={handleChange}
-                                                        sx={{ width: "30%" }}
-                                                        InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
-                                                    />
                                                     <TextField
                                                         label={"Bairro"}
                                                         name="district"
@@ -239,11 +232,33 @@ export const Seller: React.FC<SellerProps> = ({}) => {
                                                         sx={{ width: "70%" }}
                                                         InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
                                                     />
+                                                </Box>
+                                                <div className="number-district">
+                                                    <TextField
+                                                        sx={{ width: "70%" }}
+                                                        label={"Endereço"}
+                                                        name="address"
+                                                        value={values.address}
+                                                        onChange={handleChange}
+                                                        InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
+                                                    />
+                                                    <TextField
+                                                        label={"Número"}
+                                                        name="number"
+                                                        value={values.number}
+                                                        onChange={handleChange}
+                                                        sx={{ width: "30%" }}
+                                                        InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
+                                                    />
                                                 </div>
                                             </div>
                                         </Box>
                                         <Button variant="contained" type="submit" sx={{ alignSelf: "flex-end" }}>
-                                            {updateUserLoading ? <CircularProgress size={"1.5rem"} sx={{ color: "white" }} /> : "Atualizar usuário"}
+                                            {updateUserLoading ? (
+                                                <CircularProgress size={"1.5rem"} sx={{ color: "white" }} />
+                                            ) : (
+                                                "Atualizar usuário"
+                                            )}
                                         </Button>
                                     </Form>
                                 </Box>
@@ -269,7 +284,11 @@ export const Seller: React.FC<SellerProps> = ({}) => {
                                                 helperText={passwordError}
                                             />
                                             <Button type="submit" variant="contained">
-                                                {passwordLoading ? <CircularProgress size={"1.5rem"} sx={{ color: "white" }} /> : "Alterar senha"}
+                                                {passwordLoading ? (
+                                                    <CircularProgress size={"1.5rem"} sx={{ color: "white" }} />
+                                                ) : (
+                                                    "Alterar senha"
+                                                )}
                                             </Button>
                                         </Form>
                                     )}

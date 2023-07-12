@@ -92,7 +92,7 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                     >
                         {length}
                     </Box>
-                    <IconButton>
+                    <IconButton sx={{ padding: 0 }}>
                         <ExpandMoreIcon sx={expandIconStyle} />
                     </IconButton>
                 </Box>
@@ -101,7 +101,19 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
     }
 
     const ListComponent = ({ list }: { list: ReactNode }) => {
-        return <Box sx={{ padding: "0vw 0 0 0  ", flexDirection: "column" }}>{list}</Box>
+        return (
+            <Box
+                sx={{
+                    paddingTop: "1vw",
+                    flexDirection: "column",
+                    maxHeight: "12vw",
+                    overflowY: "auto !important",
+                    overflowX: "auto",
+                }}
+            >
+                {list}
+            </Box>
+        )
     }
 
     return (
@@ -115,7 +127,12 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
             {statuses.loading ? (
                 <>
                     {skeletons.map((index) => (
-                        <Skeleton key={index} variant="rectangular" animation="wave" sx={{ width: "16vw", height: "35vw" }} />
+                        <Skeleton
+                            key={index}
+                            variant="rectangular"
+                            animation="wave"
+                            sx={{ width: "16vw", height: "35vw" }}
+                        />
                     ))}
                 </>
             ) : (
@@ -127,10 +144,16 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                             contract: contracts.filter((contract) => contract.statusId == status.id),
                             board: boards.list
                                 .map((board) => ({ ...board, columns: JSON.parse(board.columns) }))
-                                .filter((board) => board.columns.filter((column: Column) => column.status == status.id).length > 0),
+                                .filter(
+                                    (board) =>
+                                        board.columns.filter((column: Column) => column.status == status.id).length > 0
+                                ),
                             boards: boards.list
                                 .map((board) => ({ ...board, columns: JSON.parse(board.columns) }))
-                                .filter((board) => board.columns.filter((column: Column) => column.status == status.id).length > 0).length,
+                                .filter(
+                                    (board) =>
+                                        board.columns.filter((column: Column) => column.status == status.id).length > 0
+                                ).length,
                         }
 
                         return (
@@ -186,7 +209,11 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                                                     sx={{ width: "2vw", height: "2vw" }}
                                                     onClick={() => handleSubmit(status)}
                                                 >
-                                                    {editLoading == status.id ? <CircularProgress size="1.2rem" /> : <CheckCircleIcon />}
+                                                    {editLoading == status.id ? (
+                                                        <CircularProgress size="1.2rem" />
+                                                    ) : (
+                                                        <CheckCircleIcon />
+                                                    )}
                                                 </IconButton>
                                             ) : (
                                                 <IconButton color="secondary" onClick={() => setEditing(status.id)}>
@@ -237,7 +264,13 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                                         >
                                             <Collapsible
                                                 trigger={<TriggerComponent title={"Quadros"} length={contains.boards} />}
-                                                triggerWhenOpen={<TriggerComponent title={"Quadros"} length={contains.boards} open={true} />}
+                                                triggerWhenOpen={
+                                                    <TriggerComponent
+                                                        title={"Quadros"}
+                                                        length={contains.boards}
+                                                        open={true}
+                                                    />
+                                                }
                                             >
                                                 <ListComponent
                                                     list={contains.board.map((board) => {
@@ -274,8 +307,16 @@ export const StatusManager: React.FC<StatusManagerProps> = ({}) => {
                                             }}
                                         >
                                             <Collapsible
-                                                trigger={<TriggerComponent title={"Contratos"} length={contains.contracts} />}
-                                                triggerWhenOpen={<TriggerComponent title={"Contratos"} length={contains.contracts} open={true} />}
+                                                trigger={
+                                                    <TriggerComponent title={"Contratos"} length={contains.contracts} />
+                                                }
+                                                triggerWhenOpen={
+                                                    <TriggerComponent
+                                                        title={"Contratos"}
+                                                        length={contains.contracts}
+                                                        open={true}
+                                                    />
+                                                }
                                             >
                                                 <ListComponent
                                                     list={contains.contract.map((contract) => (
