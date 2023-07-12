@@ -498,7 +498,7 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
                         </Box>
                     )}
                     {filteredBoards.map((board) => (
-                        <Box key={board.id} sx={{ padding: "0!important", boxShadow: "none!important" }}>
+                        <Box key={board.id} sx={{ padding: "0!important", margin: 0, boxShadow: "none!important" }}>
                             <MenuItem
                                 key={board.id}
                                 sx={{
@@ -506,16 +506,14 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
                                     alignItems: "center",
                                     boxShadow: "0px 2px 15px rgba(0, 0, 0, 0.25);",
                                     width: "100%",
-                                    padding: "1vw",
+                                    margin: 0,
                                 }}
                             >
                                 <p
                                     style={{
                                         width: "100%",
-                                        height: "100%",
-                                        paddingTop: "0.6vw",
-                                        paddingLeft: "0.5vw",
                                         cursor: "pointer",
+                                        padding: "1vw 0 ",
                                     }}
                                     onClick={() => selectBoard(board)}
                                 >
