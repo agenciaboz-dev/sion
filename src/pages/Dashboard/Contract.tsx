@@ -1,33 +1,74 @@
 import React, { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { Skeleton, SxProps, TextField, Box, LinearProgress, IconButton, Tooltip } from "@mui/material"
+import {
+    Skeleton,
+    SxProps,
+    TextField,
+    Box,
+    LinearProgress,
+    IconButton,
+    Tooltip,
+    Checkbox,
+    CircularProgress,
+} from "@mui/material"
 import { useApi } from "../../hooks/useApi"
 import MaskedInput from "react-text-mask"
 import CircleIcon from "@mui/icons-material/Circle"
 import RepeatOnIcon from "@mui/icons-material/RepeatOn"
 import { MuiLoading } from "../../components/MuiLoading"
-import { Modal } from "../../components/Modal"
 import { useSign } from "../../hooks/useSign"
 import useMeasure from "react-use-measure"
 import { useColors } from "../../hooks/useColors"
 import { api } from "../../api"
-import { Button } from "@mui/material"
+import { useUser } from "../../hooks/useUser"
+import { Button, Modal } from "@mui/material"
 import "./style.scss"
 import { useCepMask, usePhoneMask, useCpfMask, useCnpjMask } from "burgos-masks"
 import { Document, Page, pdfjs } from "react-pdf"
+import { useSellers } from "../../hooks/useSellers"
+import { DataGrid, GridColDef, GridFooter, GridPagination, GridRowsProp } from "@mui/x-data-grid"
+import { useSnackbar } from "burgos-snackbar"
+import { Formik, Form } from "formik"
+import { useContracts } from "../../hooks/useContracts"
+import { SearchField } from "../../components/SearchField"
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/3.6.172/pdf.worker.min.js`
 
 interface ContractProps {}
 
+interface FormValues {
+    search: string
+}
 export const Contract: React.FC<ContractProps> = ({}) => {
     const id = useParams().id
     const navigate = useNavigate()
     const apio = useApi()
-
+    const { user } = useUser()
     const [contract, setContract] = useState<Contract>()
     const [loading, setLoading] = useState(false)
     const [ref, { width }] = useMeasure()
     const [pages, setPages] = useState<number[]>([])
+    const [open, setOpen] = useState(false)
+    const sellers = useSellers()
+    const [sellerList, setSellerList] = useState<User[]>(sellers.list)
+    const [selectedSeller, setSelectedSeller] = useState<number | null>(null)
+    const [updateSellerLoading, setUpdateSellerLoading] = useState(false)
+    const { snackbar } = useSnackbar()
+    const contracts = useContracts()
+    const [searching, setSearching] = useState(false)
+
+    const initialValues = { search: "" }
+    const onSearch = (value: string) => {
+        setSearching(!!value)
+
+        const searchResult = sellers.list.filter((seller) => seller.name.toLowerCase().includes(value))
+        setSellerList(searchResult)
+    }
+
+    useEffect(() => {
+        if (!searching) {
+            setSellerList(sellers.list)
+        }
+    }, [sellers.list])
 
     const skeleton_style: SxProps = {
         width: "100%",
@@ -43,8 +84,151 @@ export const Contract: React.FC<ContractProps> = ({}) => {
         color: !contract?.active && !contract?.reproved ? "yellow" : contract.active && !contract.archived ? "green" : "red",
     }
 
+    const handleOpen = () => {
+        setOpen(true)
+    }
+
+    const handleClose = () => {
+        setOpen(false)
+    }
+
     const handleReplaceSeller = () => {
-        return <Modal />
+        handleOpen()
+    }
+
+    const handleSellerUpdate = (selectedSeller: any) => {
+        setUpdateSellerLoading(true)
+        apio.contracts.update.seller({
+            data: { contract, seller_id: selectedSeller },
+            callback: (response: { data: Contract }) => {
+                setContract(response.data)
+                contracts.update(response.data)
+            },
+            finallyCallback: () => setUpdateSellerLoading(false),
+        })
+    }
+
+    const SellerList = ({ sellers }: { sellers: User[] }) => {
+        const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>, sellerId: number) => {
+            if (event.target.checked) {
+                setSelectedSeller(sellerId)
+            } else {
+                setSelectedSeller(null)
+            }
+        }
+
+        const columns: GridColDef[] = [
+            {
+                field: "option",
+                headerName: "Selecione",
+                width: 100,
+                renderCell: (params) => (
+                    <Checkbox
+                        checked={params.value === selectedSeller}
+                        onChange={(event) => handleCheckboxChange(event, params.value as number)}
+                        color="primary"
+                        disabled={params.row.sellerId === contract?.seller_id}
+                    />
+                ),
+            },
+            {
+                field: "id",
+                headerName: "ID",
+                width: 100,
+                editable: false,
+                renderCell: (params) => (
+                    <>
+                        <div style={{ flexDirection: "column" }}>
+                            {params.row.sellerId !== contract?.seller_id ? (
+                                <div>{params.row.id}</div>
+                            ) : (
+                                <div style={{ color: "gray" }}>{params.row.id}</div>
+                            )}
+                        </div>
+                    </>
+                ),
+            },
+            {
+                field: "name",
+                headerName: "Nome",
+                width: 500,
+                renderCell: (params) => (
+                    <>
+                        <div style={{ flexDirection: "column" }}>
+                            {params.row.sellerId !== contract?.seller_id ? (
+                                <div>{params.row.name}</div>
+                            ) : (
+                                <div style={{ color: "gray" }}>{params.row.name}</div>
+                            )}
+
+                            {params.row.sellerId === contract?.seller_id && (
+                                <div style={{ color: "red", fontSize: "0.7vw" }}>Vendedor atual</div>
+                            )}
+                        </div>
+                    </>
+                ),
+            },
+            {
+                field: "contracts",
+                headerName: "Contratos",
+                width: 100,
+                renderCell: (params) => (
+                    <>
+                        <div style={{ flexDirection: "column" }}>
+                            {params.row.sellerId !== contract?.seller_id ? (
+                                <div>{params.row.contracts}</div>
+                            ) : (
+                                <div style={{ color: "gray" }}>{params.row.contracts}</div>
+                            )}
+                        </div>
+                    </>
+                ),
+            },
+        ]
+
+        const rows: GridRowsProp = sellers.map((seller) => ({
+            option: seller.id,
+            id: seller.id,
+            name: seller.name,
+            contracts: seller.contracts.length,
+            sellerId: seller.id,
+        }))
+
+        const getRowClassName = (params: any) => {
+            if (params.row.sellerId === contract?.seller_id) {
+                return "disabled-row"
+            }
+            return ""
+        }
+
+        const selectedSellerName = selectedSeller ? sellers.find((seller) => seller.id === selectedSeller)?.name : ""
+        const detinationSeller = selectedSeller == contract?.seller_id ? true : false
+
+        console.log({ sellerSource: contract?.seller.name, sellerDestination: selectedSellerName, detinationSeller })
+
+        const customLocaleText = {
+            noRowsLabel: "Nenhum registro encontrado",
+        }
+
+        return (
+            <div style={{ height: 600, width: "100%" }}>
+                <DataGrid
+                    columns={columns}
+                    key={selectedSeller}
+                    rows={rows}
+                    disableRowSelectionOnClick
+                    getRowClassName={getRowClassName}
+                    localeText={customLocaleText}
+                    componentsProps={{
+                        noRowsOverlay: {
+                            style: {
+                                width: "110vw",
+                            },
+                        },
+                    }}
+                />
+            </div>
+        )
     }
 
     const onLoadSuccess = (pdf: any) => {
@@ -180,6 +364,7 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                                     guide={false}
                                     render={(ref, props) => (
                                         <TextField
+                                            sx={{ width: "50%" }}
                                             inputRef={ref}
                                             {...props}
                                             label={"Telefone"}
@@ -207,6 +392,7 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                                 />
                                 <TextField
                                     label={"UF"}
+                                    sx={{ width: "50%" }}
                                     value={contract.state}
                                     InputProps={{ readOnly: true, sx: textfield_style }}
                                 />
@@ -254,7 +440,7 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                         />
                         <div style={{ gap: "1vw" }}>
                             {contract.subunits &&
-                                contract.subunits.split(", ").map((subunit, index) => (
+                                contract.subunits.split(",").map((subunit, index) => (
                                     <React.Fragment key={index}>
                                         <TextField
                                             sx={{ width: "50%", marginRight: 0 }}
@@ -283,6 +469,82 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                                     <RepeatOnIcon color="primary" sx={{ width: "2.5vw", height: "2.5vw" }} />
                                 </IconButton>
                             </Tooltip>
+                            <Modal
+                                open={open}
+                                onClose={handleClose}
+                                aria-labelledby="modal-modal-title"
+                                aria-describedby="modal-modal-description"
+                            >
+                                <Box
+                                    sx={{
+                                        position: "absolute",
+                                        top: "50%",
+                                        left: "50%",
+                                        transform: "translate(-50%, -50%)",
+                                        width: 900,
+                                        bgcolor: "background.paper",
+                                        boxShadow: 24,
+                                        p: 4,
+                                        padding: "2vw",
+                                        borderRadius: "0.5vw",
+                                        flexDirection: "column",
+                                        gap: "1vw",
+                                    }}
+                                >
+                                    <Box
+                                        sx={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}
+                                    >
+                                        <h3>Escolha um vendedor</h3>
+
+                                        <SearchField
+                                            onChange={onSearch}
+                                            loading={sellers.loading}
+                                            sx={{
+                                                "& .MuiInputBase-root": {
+                                                    height: "1.6vw",
+                                                    width: "15vw",
+                                                    borderRadius: "20vw",
+                                                },
+                                                "& .MuiInputBase-input": {
+                                                    padding: "0 12px",
+                                                    fontSize: "0.8vw",
+                                                },
+                                                "& .MuiOutlinedInput-root": {
+                                                    "& fieldset": {
+                                                        borderColor: "#384974",
+                                                    },
+                                                    "&:hover fieldset": {
+                                                        borderColor: "#384974",
+                                                    },
+                                                    "&.Mui-focused fieldset": {
+                                                        borderColor: "#384974",
+                                                        borderWidth: "0.11vw",
+                                                    },
+                                                },
+                                            }}
+                                        />
+                                    </Box>
+
+                                    <SellerList sellers={sellerList.filter((seller) => seller.name)} />
+                                    {user!.adm && (
+                                        <div
+                                            className="buttons-container"
+                                            style={{ gap: "1vw", justifyContent: "flex-end" }}
+                                        >
+                                            <Button onClick={handleClose} variant="outlined">
+                                                Cancelar
+                                            </Button>
+                                            <Button onClick={() => handleSellerUpdate(selectedSeller)} variant="contained">
+                                                {updateSellerLoading ? (
+                                                    <CircularProgress size={"1.5rem"} sx={{ color: "white" }} />
+                                                ) : (
+                                                    "Alterar"
+                                                )}
+                                            </Button>
+                                        </div>
+                                    )}
+                                </Box>
+                            </Modal>
                         </div>
                     </div>
 

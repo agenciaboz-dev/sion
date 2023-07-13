@@ -10,6 +10,7 @@
         "@mui/icons-material": "^5.11.11",
         "@mui/material": "^5.11.14",
         "@mui/styles": "^5.13.7",
+        "@mui/x-data-grid": "^6.9.2",
         "@ramonak/react-progress-bar": "^5.0.3",
         "axios": "^0.27.2",
         "burgos-array": "^1.0.1",

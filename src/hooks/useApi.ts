@@ -120,6 +120,12 @@ export const useApi = () => {
                     .finally(() => defaultFinally(options.finallyCallback))
             },
             update: {
+                seller: (options: ApiOptions) => {
+                    api.post("/contracts/set_seller", options.data)
+                        .then((response) => options.callback(response))
+                        .catch((error) => defaultError(error, options.errorCallback))
+                        .finally(() => defaultFinally(options.finallyCallback))
+                },
                 status: (options: ApiOptions) => {
                     api.post("/contracts/set_status", options.data)
                         .then((response) => options.callback(response))
