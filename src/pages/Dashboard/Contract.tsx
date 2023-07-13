@@ -1,24 +1,12 @@
 import React, { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import {
-    Skeleton,
-    SxProps,
-    TextField,
-    Box,
-    LinearProgress,
-    IconButton,
-    Tooltip,
-    Checkbox,
-    CircularProgress,
-} from "@mui/material"
+import { Skeleton, SxProps, TextField, Box, LinearProgress, IconButton, Tooltip, Checkbox, CircularProgress } from "@mui/material"
 import { useApi } from "../../hooks/useApi"
 import MaskedInput from "react-text-mask"
 import CircleIcon from "@mui/icons-material/Circle"
 import RepeatOnIcon from "@mui/icons-material/RepeatOn"
 import { MuiLoading } from "../../components/MuiLoading"
-import { useSign } from "../../hooks/useSign"
 import useMeasure from "react-use-measure"
-import { useColors } from "../../hooks/useColors"
 import { useUser } from "../../hooks/useUser"
 import { Button, Modal } from "@mui/material"
 import "./style.scss"
@@ -27,16 +15,12 @@ import { Document, Page, pdfjs } from "react-pdf"
 import { useSellers } from "../../hooks/useSellers"
 import { DataGrid, GridColDef, GridFooter, GridPagination, GridRowsProp } from "@mui/x-data-grid"
 import { useSnackbar } from "burgos-snackbar"
-import { Formik, Form } from "formik"
 import { useContracts } from "../../hooks/useContracts"
 import { SearchField } from "../../components/SearchField"
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/3.6.172/pdf.worker.min.js`
 
 interface ContractProps {}
 
-interface FormValues {
-    search: string
-}
 export const Contract: React.FC<ContractProps> = ({}) => {
     const id = useParams().id
     const navigate = useNavigate()
@@ -51,11 +35,9 @@ export const Contract: React.FC<ContractProps> = ({}) => {
     const [sellerList, setSellerList] = useState<User[]>(sellers.list)
     const [selectedSeller, setSelectedSeller] = useState<number | null>(null)
     const [updateSellerLoading, setUpdateSellerLoading] = useState(false)
-    const { snackbar } = useSnackbar()
     const contracts = useContracts()
     const [searching, setSearching] = useState(false)
 
-    const initialValues = { search: "" }
     const onSearch = (value: string) => {
         setSearching(!!value)
 

@@ -1,7 +1,6 @@
 import { Button, Checkbox, CircularProgress, FormControlLabel, TextField } from "@mui/material"
 import { Form, Formik } from "formik"
 import { useEffect, useLayoutEffect, useState } from "react"
-import { useLocalStorage } from "../../hooks/useLocalStorage"
 // @ts-ignore
 import { ReactComponent as LogoEscuro } from "../../images/logo_bonita.svg"
 import "./style.scss"
@@ -17,14 +16,12 @@ interface FormValues {
 }
 
 export const Login = () => {
-    const isMobile = useMediaQuery({orientation: "portrait"})
-    
-    const storage = useLocalStorage()
+    const isMobile = useMediaQuery({ orientation: "portrait" })
+
     const { setUser } = useUser()
     const navigate = useNavigate()
     const api = useApi()
 
-    const [remind, setRemind] = useState(storage.get("remindme"))
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
 
@@ -47,10 +44,6 @@ export const Login = () => {
         })
     }
 
-    useEffect(() => {
-        storage.set("remindme", remind)
-    }, [remind])
-
     useEffect(() => {}, [])
 
     return (
@@ -70,7 +63,7 @@ export const Login = () => {
                                     value={values.user}
                                     error={Boolean(errors.user)}
                                     helperText={errors.user}
-                                    InputProps={{sx:{height: "4vw"}}}
+                                    InputProps={{ sx: { height: "4vw" } }}
                                 />
                             </div>
                             <div className="password-input-container">
@@ -82,16 +75,14 @@ export const Login = () => {
                                     value={values.password}
                                     error={error}
                                     helperText={"Não foi possível fazer login"}
-                                    FormHelperTextProps={{sx: {fontSize: isMobile ? "4vw" : "1.5vw", margin: "0.75vw 0"}}}
-                                    InputProps={{sx:{height: "4vw"}}}
+                                    FormHelperTextProps={{ sx: { fontSize: isMobile ? "4vw" : "1.5vw", margin: "0.75vw 0" } }}
+                                    InputProps={{ sx: { height: "4vw" } }}
                                 />
                             </div>
                             <div className="bottom-container">
                                 <p>Perdeu a senha?</p>
                                 <div className="button-container">
-                                    <button type="submit">
-                                        {loading ? <CircularProgress size="2.2vw" sx={{ color: "white" }} /> : "Entrar"}
-                                    </button>
+                                    <button type="submit">{loading ? <CircularProgress size="2.2vw" sx={{ color: "white" }} /> : "Entrar"}</button>
                                 </div>
                             </div>
                         </Form>
