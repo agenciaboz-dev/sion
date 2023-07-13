@@ -109,13 +109,7 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                             sx={{ width: "13vw" }}
                             variant="standard"
                             label="Status"
-                            value={
-                                !contract?.active && !contract?.reproved
-                                    ? "Aguardando"
-                                    : contract.active && !contract.archived
-                                    ? "Ativo"
-                                    : "Reprovado"
-                            }
+                            value={contract.status?.name}
                             InputProps={{
                                 readOnly: true,
                                 startAdornment: <CircleIcon sx={style} />,
@@ -140,13 +134,7 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                                 InputProps={{ readOnly: true, sx: textfield_style }}
                             />
 
-                            {contract.cpf && (
-                                <TextField
-                                    label={"RG"}
-                                    value={contract.rg}
-                                    InputProps={{ readOnly: true, sx: textfield_style }}
-                                />
-                            )}
+                            {contract.cpf && <TextField label={"RG"} value={contract.rg} InputProps={{ readOnly: true, sx: textfield_style }} />}
                             <MaskedInput
                                 mask={useCpfMask}
                                 value={contract.cnpj || contract.cpf}
@@ -197,30 +185,13 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                                     value={contract.cep}
                                     guide={false}
                                     render={(ref, props) => (
-                                        <TextField
-                                            inputRef={ref}
-                                            {...props}
-                                            label={"CEP"}
-                                            InputProps={{ readOnly: true, sx: textfield_style }}
-                                        />
+                                        <TextField inputRef={ref} {...props} label={"CEP"} InputProps={{ readOnly: true, sx: textfield_style }} />
                                     )}
                                 />
-                                <TextField
-                                    label={"UF"}
-                                    value={contract.state}
-                                    InputProps={{ readOnly: true, sx: textfield_style }}
-                                />
+                                <TextField label={"UF"} value={contract.state} InputProps={{ readOnly: true, sx: textfield_style }} />
                             </div>
-                            <TextField
-                                label={"Cidade"}
-                                value={contract.city}
-                                InputProps={{ readOnly: true, sx: textfield_style }}
-                            />
-                            <TextField
-                                label={"Endereço"}
-                                value={contract.address}
-                                InputProps={{ readOnly: true, sx: textfield_style }}
-                            />
+                            <TextField label={"Cidade"} value={contract.city} InputProps={{ readOnly: true, sx: textfield_style }} />
+                            <TextField label={"Endereço"} value={contract.address} InputProps={{ readOnly: true, sx: textfield_style }} />
                             <div className="number-district">
                                 <TextField
                                     label={"Número"}
@@ -275,9 +246,7 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                         </div>
 
                         <div style={{ alignItems: "center", gap: "1vw" }}>
-                            <h2 style={{ fontWeight: "normal" }}>
-                                Data de início: {new Date(contract.date).toLocaleDateString()}
-                            </h2>
+                            <h2 style={{ fontWeight: "normal" }}>Data de início: {new Date(contract.date).toLocaleDateString()}</h2>
                             <Tooltip title="Trocar de Vendedor">
                                 <IconButton sx={{ flexDirection: "column" }} onClick={handleReplaceSeller}>
                                     <RepeatOnIcon color="primary" sx={{ width: "2.5vw", height: "2.5vw" }} />
