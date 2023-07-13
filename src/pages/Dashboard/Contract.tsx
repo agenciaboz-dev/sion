@@ -293,13 +293,7 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                             sx={{ width: "13vw" }}
                             variant="standard"
                             label="Status"
-                            value={
-                                !contract?.active && !contract?.reproved
-                                    ? "Aguardando"
-                                    : contract.active && !contract.archived
-                                    ? "Ativo"
-                                    : "Reprovado"
-                            }
+                            value={contract.status?.name}
                             InputProps={{
                                 readOnly: true,
                                 startAdornment: <CircleIcon sx={style} />,
@@ -392,7 +386,6 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                                 />
                                 <TextField
                                     label={"UF"}
-                                    sx={{ width: "50%" }}
                                     value={contract.state}
                                     InputProps={{ readOnly: true, sx: textfield_style }}
                                 />

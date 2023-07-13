@@ -34,19 +34,19 @@ export const ContractsProvider: React.FC<ContractsProviderProps> = ({ children }
     const add = (contract: Contract, emit = false) => {
         if (emit) io.emit("contract:new", contract)
         setContracts([...contracts, contract])
-        snackbar({ severity: emit ? "success" : "info", text: `Novo quadro ${contract.name}` })
+        snackbar({ severity: emit ? "success" : "info", text: `Novo contrato ${contract.name}` })
     }
 
     const remove = (contract: Contract, emit = false) => {
         if (emit) io.emit("contract:remove", contract)
         setContracts(contracts.filter((item) => item.id != contract.id))
-        snackbar({ severity: emit ? "warning" : "info", text: `Quadro ${contract.name} removido` })
+        snackbar({ severity: emit ? "warning" : "info", text: `Contrato ${contract.name} removido` })
     }
 
     const update = (contract: Contract, emit = false) => {
         setContracts([...contracts.filter((item) => item.id != contract.id), contract])
         if (emit) io.emit("contract:update", contract)
-        snackbar({ severity: emit ? "success" : "info", text: `Quadro ${contract.name} atualizado` })
+        snackbar({ severity: emit ? "success" : "info", text: `Contrato ${contract.name} atualizado` })
     }
 
     io.on("contract:new", (contract: Contract) => add(contract))

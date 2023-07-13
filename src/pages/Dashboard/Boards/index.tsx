@@ -242,21 +242,30 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
         const searchResult = contracts.list.filter((contract) => contract.name.toLowerCase().includes(value))
 
         setContractList(searchResult)
-        const columns: Column[] = JSON.parse(currentBoard!.columns)
-        setBoard({
-            columns: columns.map((column) => ({
-                id: column.id,
-                title: column.name,
-                cards: searchResult
-                    .filter((contract) => contract.statusId == column.status)
-                    .map((contract) => ({
-                        id: contract.id,
-                        title: contract.name,
-                        description: contract.email,
-                    })),
-            })),
-        })
     }
+
+    useEffect(() => {
+        setContractList(contracts.list)
+    }, [contracts.list])
+
+    useEffect(() => {
+        if (currentBoard) {
+            const columns: Column[] = JSON.parse(currentBoard!.columns)
+            setBoard({
+                columns: columns.map((column) => ({
+                    id: column.id,
+                    title: column.name,
+                    cards: contractList
+                        .filter((contract) => contract.statusId == column.status)
+                        .map((contract) => ({
+                            id: contract.id,
+                            title: contract.name,
+                            description: contract.email,
+                        })),
+                })),
+            })
+        }
+    }, [contractList])
 
     useEffect(() => {
         if (!firstRender) {
