@@ -8,9 +8,9 @@ interface ContractsContextValue {
     set: React.Dispatch<React.SetStateAction<Contract[]>>
     loading: boolean
     setLoading: React.Dispatch<React.SetStateAction<boolean>>
-    add: (contract: Contract, emit?: boolean) => void
-    remove: (contract: Contract, emit?: boolean) => void
-    update: (contract: Contract, emit?: boolean) => void
+    add: (contract: Contract, user: User | null) => void
+    remove: (contract: Contract, user: User | null) => void
+    update: (contract: Contract, user: User | null) => void
 }
 
 interface ContractsProviderProps {
@@ -31,22 +31,22 @@ export const ContractsProvider: React.FC<ContractsProviderProps> = ({ children }
 
     const list = contracts.sort((a, b) => a.id - b.id)
     const set = setContracts
-    const add = (contract: Contract, emit = false) => {
-        if (emit) io.emit("contract:new", contract)
+    const add = (contract: Contract, user: User | null = null) => {
+        if (user) io.emit("contract:new", { contract, user_id: user.id })
         setContracts([...contracts, contract])
-        snackbar({ severity: emit ? "success" : "info", text: `Novo contrato ${contract.name}` })
+        snackbar({ severity: user ? "success" : "info", text: `Novo contrato ${contract.name}` })
     }
 
-    const remove = (contract: Contract, emit = false) => {
-        if (emit) io.emit("contract:remove", contract)
+    const remove = (contract: Contract, user: User | null = null) => {
+        if (user) io.emit("contract:remove", { contract, user_id: user.id })
         setContracts(contracts.filter((item) => item.id != contract.id))
-        snackbar({ severity: emit ? "warning" : "info", text: `Contrato ${contract.name} removido` })
+        snackbar({ severity: user ? "warning" : "info", text: `Contrato ${contract.name} removido` })
     }
 
-    const update = (contract: Contract, emit = false) => {
+    const update = (contract: Contract, user: User | null = null) => {
         setContracts([...contracts.filter((item) => item.id != contract.id), contract])
-        if (emit) io.emit("contract:update", contract)
-        snackbar({ severity: emit ? "success" : "info", text: `Contrato ${contract.name} atualizado` })
+        if (user) io.emit("contract:update", { contract, user_id: user.id })
+        snackbar({ severity: user ? "success" : "info", text: `Contrato ${contract.name} atualizado` })
     }
 
     io.on("contract:new", (contract: Contract) => add(contract))

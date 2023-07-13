@@ -9,9 +9,9 @@ interface SellersContextValue {
     set: React.Dispatch<React.SetStateAction<User[]>>
     loading: boolean
     setLoading: React.Dispatch<React.SetStateAction<boolean>>
-    add: (board: User, emit?: boolean) => void
-    remove: (board: User, emit?: boolean) => void
-    update: (board: User, emit?: boolean) => void
+    add: (board: User, user: User | null) => void
+    remove: (board: User, user: User | null) => void
+    update: (board: User, user: User | null) => void
     get: (id: number | string) => User
 }
 
@@ -33,22 +33,22 @@ export const SellersProvider: React.FC<SellersProviderProps> = ({ children }) =>
 
     const list = sellers.sort((a, b) => a.id - b.id)
     const set = setSellers
-    const add = (seller: User, emit = false) => {
-        if (emit) io.emit("user:new", seller)
+    const add = (seller: User, user: User | null = null) => {
+        if (user) io.emit("user:new", { seller, user_id: user.id })
         setSellers([...sellers, seller])
-        snackbar({ severity: emit ? "success" : "info", text: `novo vendedor ${seller.name}` })
+        snackbar({ severity: user ? "success" : "info", text: `novo vendedor ${seller.name}` })
     }
 
-    const remove = (seller: User, emit = false) => {
-        if (emit) io.emit("user:remove", seller)
+    const remove = (seller: User, user: User | null = null) => {
+        if (user) io.emit("user:remove", { seller, user_id: user.id })
         setSellers(sellers.filter((item) => item.id != seller.id))
-        snackbar({ severity: emit ? "warning" : "info", text: `vendedor ${seller.name} removido` })
+        snackbar({ severity: user ? "warning" : "info", text: `vendedor ${seller.name} removido` })
     }
 
-    const update = (seller: User, emit = false) => {
+    const update = (seller: User, user: User | null = null) => {
+        if (user) io.emit("user:update", { seller, user_id: user.id })
         setSellers([...sellers.filter((item) => item.id != seller.id), seller])
-        if (emit) io.emit("user:update", seller)
-        snackbar({ severity: emit ? "success" : "info", text: `vendedor ${seller.name} atualizado` })
+        snackbar({ severity: user ? "success" : "info", text: `vendedor ${seller.name} atualizado` })
     }
 
     const get = (id: number | string) => sellers.filter((seller) => seller.id == Number(id))[0]
