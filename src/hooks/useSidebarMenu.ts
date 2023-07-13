@@ -63,6 +63,12 @@ export const useSidebarMenu = () => {
                     location: "/dashboard/whatsapp",
                     adm: true,
                 },
+                {
+                    id: 24,
+                    name: "Logs",
+                    location: "/dashboard/logs",
+                    adm: true,
+                },
             ],
         },
         {

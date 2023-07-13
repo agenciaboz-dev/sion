@@ -18,6 +18,7 @@ import { Boards } from "./Boards"
 import { NewBoard } from "./Boards/NewBoard"
 import { StatusManager } from "./Boards/StatusManager"
 import { Whatsapp } from "./Whatsapp"
+import { Logs } from "./Logs"
 
 interface DashboardProps {}
 
@@ -53,6 +54,7 @@ export const Dashboard: React.FC<DashboardProps> = ({}) => {
                     <Route path="boards/new" element={<NewBoard />} />
                     <Route path="boards/status" element={<StatusManager />} />
                     <Route path="whatsapp" element={<Whatsapp />} />
+                    <Route path="logs" element={<Logs />} />
                 </Routes>
             </div>
         </div>

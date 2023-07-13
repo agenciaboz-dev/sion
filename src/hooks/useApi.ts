@@ -32,6 +32,12 @@ export const useApi = () => {
                 .catch((error) => defaultError(error, options.errorCallback))
                 .finally(() => defaultFinally(options.finallyCallback))
         },
+        logs: (options: ApiOptions) => {
+            api.get("/logs")
+                .then((response) => options.callback(response))
+                .catch((error) => defaultError(error, options.errorCallback))
+                .finally(() => defaultFinally(options.finallyCallback))
+        },
         texts: {
             get: (options: ApiOptions) => {
                 api.get("/texts")
