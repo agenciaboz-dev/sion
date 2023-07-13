@@ -19,7 +19,6 @@ import { MuiLoading } from "../../components/MuiLoading"
 import { useSign } from "../../hooks/useSign"
 import useMeasure from "react-use-measure"
 import { useColors } from "../../hooks/useColors"
-import { api } from "../../api"
 import { useUser } from "../../hooks/useUser"
 import { Button, Modal } from "@mui/material"
 import "./style.scss"
@@ -41,7 +40,7 @@ interface FormValues {
 export const Contract: React.FC<ContractProps> = ({}) => {
     const id = useParams().id
     const navigate = useNavigate()
-    const apio = useApi()
+    const api = useApi()
     const { user } = useUser()
     const [contract, setContract] = useState<Contract>()
     const [loading, setLoading] = useState(false)
@@ -98,7 +97,7 @@ export const Contract: React.FC<ContractProps> = ({}) => {
 
     const handleSellerUpdate = (selectedSeller: any) => {
         setUpdateSellerLoading(true)
-        apio.contracts.update.seller({
+        api.contracts.update.seller({
             data: { contract, seller_id: selectedSeller },
             callback: (response: { data: Contract }) => {
                 setContract(response.data)
@@ -161,9 +160,7 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                                 <div style={{ color: "gray" }}>{params.row.name}</div>
                             )}
 
-                            {params.row.sellerId === contract?.seller_id && (
-                                <div style={{ color: "red", fontSize: "0.7vw" }}>Vendedor atual</div>
-                            )}
+                            {params.row.sellerId === contract?.seller_id && <div style={{ color: "red", fontSize: "0.7vw" }}>Vendedor atual</div>}
                         </div>
                     </>
                 ),
@@ -243,7 +240,7 @@ export const Contract: React.FC<ContractProps> = ({}) => {
     useEffect(() => {
         if (!id) navigate("/dashboard/contracts")
 
-        apio.contracts.find.id({
+        api.contracts.find.id({
             data: { id },
             callback: (response: { data: Contract }) => setContract(response.data),
         })
@@ -376,30 +373,13 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                                     value={contract.cep}
                                     guide={false}
                                     render={(ref, props) => (
-                                        <TextField
-                                            inputRef={ref}
-                                            {...props}
-                                            label={"CEP"}
-                                            InputProps={{ readOnly: true, sx: textfield_style }}
-                                        />
+                                        <TextField inputRef={ref} {...props} label={"CEP"} InputProps={{ readOnly: true, sx: textfield_style }} />
                                     )}
                                 />
-                                <TextField
-                                    label={"UF"}
-                                    value={contract.state}
-                                    InputProps={{ readOnly: true, sx: textfield_style }}
-                                />
+                                <TextField label={"UF"} value={contract.state} InputProps={{ readOnly: true, sx: textfield_style }} />
                             </div>
-                            <TextField
-                                label={"Cidade"}
-                                value={contract.city}
-                                InputProps={{ readOnly: true, sx: textfield_style }}
-                            />
-                            <TextField
-                                label={"Endereço"}
-                                value={contract.address}
-                                InputProps={{ readOnly: true, sx: textfield_style }}
-                            />
+                            <TextField label={"Cidade"} value={contract.city} InputProps={{ readOnly: true, sx: textfield_style }} />
+                            <TextField label={"Endereço"} value={contract.address} InputProps={{ readOnly: true, sx: textfield_style }} />
                             <div className="number-district">
                                 <TextField
                                     label={"Número"}
@@ -454,20 +434,13 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                         </div>
 
                         <div style={{ alignItems: "center", gap: "1vw" }}>
-                            <h2 style={{ fontWeight: "normal" }}>
-                                Data de início: {new Date(contract.date).toLocaleDateString()}
-                            </h2>
+                            <h2 style={{ fontWeight: "normal" }}>Data de início: {new Date(contract.date).toLocaleDateString()}</h2>
                             <Tooltip title="Trocar de Vendedor">
                                 <IconButton sx={{ flexDirection: "column" }} onClick={handleReplaceSeller}>
                                     <RepeatOnIcon color="primary" sx={{ width: "2.5vw", height: "2.5vw" }} />
                                 </IconButton>
                             </Tooltip>
-                            <Modal
-                                open={open}
-                                onClose={handleClose}
-                                aria-labelledby="modal-modal-title"
-                                aria-describedby="modal-modal-description"
-                            >
+                            <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
                                 <Box
                                     sx={{
                                         position: "absolute",
@@ -484,9 +457,7 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                                         gap: "1vw",
                                     }}
                                 >
-                                    <Box
-                                        sx={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}
-                                    >
+                                    <Box sx={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
                                         <h3>Escolha um vendedor</h3>
 
                                         <SearchField
@@ -520,19 +491,12 @@ export const Contract: React.FC<ContractProps> = ({}) => {
 
                                     <SellerList sellers={sellerList.filter((seller) => seller.name)} />
                                     {user!.adm && (
-                                        <div
-                                            className="buttons-container"
-                                            style={{ gap: "1vw", justifyContent: "flex-end" }}
-                                        >
+                                        <div className="buttons-container" style={{ gap: "1vw", justifyContent: "flex-end" }}>
                                             <Button onClick={handleClose} variant="outlined">
                                                 Cancelar
                                             </Button>
                                             <Button onClick={() => handleSellerUpdate(selectedSeller)} variant="contained">
-                                                {updateSellerLoading ? (
-                                                    <CircularProgress size={"1.5rem"} sx={{ color: "white" }} />
-                                                ) : (
-                                                    "Alterar"
-                                                )}
+                                                {updateSellerLoading ? <CircularProgress size={"1.5rem"} sx={{ color: "white" }} /> : "Alterar"}
                                             </Button>
                                         </div>
                                     )}
