@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { Skeleton, SxProps, TextField, Box, LinearProgress } from "@mui/material"
+import { Skeleton, SxProps, TextField, Box, LinearProgress, IconButton, Tooltip } from "@mui/material"
 import { useApi } from "../../hooks/useApi"
 import MaskedInput from "react-text-mask"
 import CircleIcon from "@mui/icons-material/Circle"
-
+import RepeatOnIcon from "@mui/icons-material/RepeatOn"
 import { MuiLoading } from "../../components/MuiLoading"
+import { Modal } from "../../components/Modal"
 import { useSign } from "../../hooks/useSign"
 import useMeasure from "react-use-measure"
 import { useColors } from "../../hooks/useColors"
@@ -40,6 +41,10 @@ export const Contract: React.FC<ContractProps> = ({}) => {
     const style = {
         width: "1vw",
         color: !contract?.active && !contract?.reproved ? "yellow" : contract.active && !contract.archived ? "green" : "red",
+    }
+
+    const handleReplaceSeller = () => {
+        return <Modal />
     }
 
     const onLoadSuccess = (pdf: any) => {
@@ -269,9 +274,16 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                             <h1>{contract.seller.name}</h1>
                         </div>
 
-                        <h2 style={{ fontWeight: "normal" }}>
-                            Data de início: {new Date(contract.date).toLocaleDateString()}
-                        </h2>
+                        <div style={{ alignItems: "center", gap: "1vw" }}>
+                            <h2 style={{ fontWeight: "normal" }}>
+                                Data de início: {new Date(contract.date).toLocaleDateString()}
+                            </h2>
+                            <Tooltip title="Trocar de Vendedor">
+                                <IconButton sx={{ flexDirection: "column" }} onClick={handleReplaceSeller}>
+                                    <RepeatOnIcon color="primary" sx={{ width: "2.5vw", height: "2.5vw" }} />
+                                </IconButton>
+                            </Tooltip>
+                        </div>
                     </div>
 
                     <Box className="Contract-Page" ref={ref} sx={{ alignItems: "center", gap: "1vw" }}>
