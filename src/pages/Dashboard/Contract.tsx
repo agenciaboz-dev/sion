@@ -321,7 +321,7 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                             {contract.cpf && (
                                 <TextField
                                     label={"RG"}
-                                    value={contract.rg}
+                                    value={contract.rg != null ? contract.rg : ""}
                                     InputProps={{ readOnly: true, sx: textfield_style }}
                                 />
                             )}
