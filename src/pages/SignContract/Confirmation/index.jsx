@@ -13,7 +13,7 @@ import Dropzone from "react-dropzone"
 import { useParams } from "react-router"
 import MaskedInput from "react-text-mask"
 import { useDocumentMask } from "../../../hooks/useDocumentMask"
-import { useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { api } from "../../../api"
 import { ReactComponent as CameraIcon } from "../../../images/camera.svg"
 import { useUser } from "../../../hooks/useUser"
@@ -22,12 +22,16 @@ import ReactSignatureCanvas from "react-signature-canvas"
 import useMeasure from "react-use-measure"
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever"
 import { useColors } from "../../../hooks/useColors"
+import Stack from '@mui/material/Stack';
+import LinearProgress from '@mui/material/LinearProgress';
+
 
 export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract }) => {
     const [attachments, setAttachments] = useState([])
     const [loading, setLoading] = useState(false)
     const [rubricModal, setRubricModal] = useState(false)
     const [rubric, setRubric] = useState("")
+    const [mentirinhaValue, setMentirinhaValue] = useState(0)
 
     const params = useParams()
     const [user, setUser] = useUser()
@@ -53,7 +57,9 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
         }
 
         setLoading(true)
-        const formData = new FormData()
+        setMentirinhaValue(0)
+        setTimeout(() => {
+            const formData = new FormData()
         const data = { ...values, id: params.id, signing: params.signing, user, rubric }
         console.log({ data })
 
@@ -88,6 +94,7 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
             })
             .catch((error) => console.error(error))
             .finally(() => setLoading(false))
+        }, 10000)
     }
 
     const onDrop = (acceptedFiles) => {
@@ -116,9 +123,19 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
         return signature.toDataURL()
     }
 
+
     useEffect(() => {
         console.log(attachments)
     }, [attachments])
+
+    useEffect(() => {
+        const mentirinha = setInterval(() => {
+            setMentirinhaValue(mentirinhaValue + 1)
+            console.log({mentirinhaValue})
+        }, 100)
+
+        return () => clearInterval(mentirinha)
+    }, [mentirinhaValue])
 
     return (
         <Formik initialValues={initialValues} onSubmit={handleSubmit}>
@@ -197,6 +214,7 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
                             {loading ? <CircularProgress size={"1.5rem"} color="secondary" /> : "Avançar"}
                         </Button>
                     )}
+                    {loading && <><LinearProgress variant="determinate" value={mentirinhaValue} /><p style={{ fontWeight: 'bold' }}>Processando.........</p></>}
                     <SafeEnvironment />
 
                     <Dialog open={rubricModal} onClose={() => setRubricModal(false)} style={{ flexDirection: "column" }}>
