@@ -23,13 +23,17 @@ export const RepresentanteLegal = ({ handleChange, values, errors }) => {
     const [cpfError, setCpfError] = useState(false)
     
     const [emails, setEmails] = useState([1])
-    const [initialInputs, setInitialInputs] = useState(client.value?.name ? client.value : {
-        name: '',
-        cpf: '',
-        email1: '',
-        birth: new Date().toISOString().substring(0, 10),
-        phone: '',
-    })
+    const [initialInputs, setInitialInputs] = useState(
+        client.value?.name
+            ? client.value
+            : {
+                  name: "",
+                  cpf: "",
+                  email1: "",
+                  birth: "",
+                  phone: "",
+              }
+    )
 
     const validationSchema = object({
         name: string().required(default_errors.required),
@@ -72,97 +76,83 @@ export const RepresentanteLegal = ({ handleChange, values, errors }) => {
     }, [emails])
 
     return (
-		<Formik
-			initialValues={initialInputs}
-			onSubmit={(values) => nextStage(values)}
-			validationSchema={validationSchema}
-			enableReinitialize
-		>
-			{({ handleChange, values, submitForm, errors }) => (
-				<Form
-					onKeyDown={(event) => {
-						if (event.key === 'Enter') {
-							event.preventDefault()
-							submitForm()
-						}
-					}}
-				>
-					<InputField
-						title={'Nome do Responsável Legal'}
-						id={'name'}
-						handleChange={handleChange}
-						value={values.name}
-						error={Boolean(errors.name)}
-						errorText={errors.name}
-					/>
-					<InputField
-						title={'CPF'}
-						onBlur={cpfBlur}
-						mask={[/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/]}
-						inputMode={'numeric'}
-						id={'cpf'}
-						handleChange={handleChange}
-						value={values.cpf}
-						error={cpfError}
-						errorText={'CPF inválido'}
-					/>
-					<InputField
-						title={'Data de nascimento'}
-						type="date"
-						id={'birth'}
-						handleChange={handleChange}
-						value={values.birth}
-						error={errors.birth}
-						errorText={'Data inválida'}
-					/>
-					<InputField
-						title={'Telefone'}
-						inputMode={'tel'}
-						mask={['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
-						id={'phone'}
-						handleChange={handleChange}
-						value={values.phone}
-						error={Boolean(errors.phone)}
-						errorText={errors.phone}
-					/>
+        <Formik initialValues={initialInputs} onSubmit={(values) => nextStage(values)} validationSchema={validationSchema} enableReinitialize>
+            {({ handleChange, values, submitForm, errors }) => (
+                <Form
+                    onKeyDown={(event) => {
+                        if (event.key === "Enter") {
+                            event.preventDefault()
+                            submitForm()
+                        }
+                    }}
+                >
+                    <InputField
+                        title={"Nome do Responsável Legal"}
+                        id={"name"}
+                        handleChange={handleChange}
+                        value={values.name}
+                        error={Boolean(errors.name)}
+                        errorText={errors.name}
+                    />
+                    <InputField
+                        title={"CPF"}
+                        onBlur={cpfBlur}
+                        mask={[/\d/, /\d/, /\d/, ".", /\d/, /\d/, /\d/, ".", /\d/, /\d/, /\d/, "-", /\d/, /\d/]}
+                        inputMode={"numeric"}
+                        id={"cpf"}
+                        handleChange={handleChange}
+                        value={values.cpf}
+                        error={cpfError}
+                        errorText={"CPF inválido"}
+                    />
+                    <InputField
+                        title={"Data de nascimento"}
+                        id={"birth"}
+                        handleChange={handleChange}
+                        inputMode={"numeric"}
+                        mask={[/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/]}
+                        value={values.birth}
+                        error={errors.birth}
+                        errorText={"Data inválida"}
+                    />
+                    <InputField
+                        title={"Telefone"}
+                        inputMode={"tel"}
+                        mask={["(", /\d/, /\d/, ")", " ", /\d/, /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/]}
+                        id={"phone"}
+                        handleChange={handleChange}
+                        value={values.phone}
+                        error={Boolean(errors.phone)}
+                        errorText={errors.phone}
+                    />
 
-					{emails.map((index) => (
-						<div
-							className="email-container"
-							key={index}
-							style={{ alignItems: 'center', justifyContent: 'center', gap: '3vw' }}
-						>
-							<InputField
-								title={'E-mail do Representante legal'}
-								type="email"
-								inputMode={'email'}
-								id={`email${index}`}
-								handleChange={handleChange}
-								value={values[`email${index}`]}
-								error={Boolean(errors[`email${index}`])}
-								errorText={errors[`email${index}`]}
-							/>
-							{index > 1 && (
-								<DeleteForeverIcon onClick={() => removeEmail(index)} sx={{ color: COLORS.primary }} />
-							)}
-						</div>
-					))}
-					{/* <DashedPlusBox onClick={addEmailContainer} /> */}
+                    {emails.map((index) => (
+                        <div className="email-container" key={index} style={{ alignItems: "center", justifyContent: "center", gap: "3vw" }}>
+                            <InputField
+                                title={"E-mail do Representante legal"}
+                                type="email"
+                                inputMode={"email"}
+                                id={`email${index}`}
+                                handleChange={handleChange}
+                                value={values[`email${index}`]}
+                                error={Boolean(errors[`email${index}`])}
+                                errorText={errors[`email${index}`]}
+                            />
+                            {index > 1 && <DeleteForeverIcon onClick={() => removeEmail(index)} sx={{ color: COLORS.primary }} />}
+                        </div>
+                    ))}
+                    {/* <DashedPlusBox onClick={addEmailContainer} /> */}
 
-					<div className="buttons-container">
-						<button
-							tabIndex={2}
-							onClick={(event) => previousStage(event)}
-							style={{ backgroundColor: COLORS.gray }}
-						>
-							Voltar
-						</button>
-						<button tabIndex={1} type="submit">
-							Avançar
-						</button>
-					</div>
-				</Form>
-			)}
-		</Formik>
-	)
+                    <div className="buttons-container">
+                        <button tabIndex={2} onClick={(event) => previousStage(event)} style={{ backgroundColor: COLORS.gray }}>
+                            Voltar
+                        </button>
+                        <button tabIndex={1} type="submit">
+                            Avançar
+                        </button>
+                    </div>
+                </Form>
+            )}
+        </Formik>
+    )
 }
