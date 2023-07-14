@@ -3,11 +3,12 @@ import "./style.scss"
 import { useNavigate } from "react-router-dom"
 import { useSidebarMenu } from "../../hooks/useSidebarMenu"
 import LogoutIcon from "@mui/icons-material/Logout"
-import { IconButton } from "@mui/material"
+import { Box, IconButton, SxProps } from "@mui/material"
 import { useUser } from "../../hooks/useUser"
 import { useLocation } from "react-router-dom"
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined"
 import ListAltIcon from "@mui/icons-material/ListAlt"
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"
 
 interface SidebarProps {
     user: User
@@ -18,7 +19,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ user }) => {
     const menus = useSidebarMenu()
     const { logout } = useUser()
     const pathname = useLocation().pathname
-    
+
     const contractRegex = /^\/dashboard\/contract\/\d+$/
 
     const filteredMenus = menus.filter((menu) => {
@@ -60,6 +61,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ user }) => {
 
         navigate(submenu.location)
     }
+    const expandIconStyle = (menu: number): SxProps => ({
+        transition: "0.5s",
+        transform: selectedMenu === menu ? "rotate(90deg)" : "",
+        width: "1.3vw",
+    })
 
     return (
         <div className="Sidebar-Component">
@@ -78,55 +84,51 @@ export const Sidebar: React.FC<SidebarProps> = ({ user }) => {
                             }}
                         >
                             {[pathname, contractRegex.test(menu.location)].includes(menu.location) && (
-                                <ArrowForwardIosOutlinedIcon
-                                    sx={{
-                                        border: "0.15vw solid white",
-                                        borderRadius: "50%",
-                                        padding: "0.1vw",
-                                        height: "1.2vw",
-                                        width: "1.2vw",
-                                    }}
-                                />
+                                <ArrowForwardIosOutlinedIcon />
                             )}
+
+                            <ArrowForwardIosIcon color="secondary" sx={expandIconStyle(menu.id)} />
                             <p className={`link ${selectedMenu === menu.id ? "fontWeight: 600" : ""}`}>{menu.name}</p>
                         </IconButton>
                         {showSubmenu && selectedMenu === menu.id && menu.submenu && (
-                            <ul className="submenu">
-                                {menu.submenu.map((submenuItem) => (
-                                    <li
-                                        key={submenuItem.id}
-                                        style={{ listStyle: "none" }}
-                                        className={`SubmenuItem ${selectedSubmenu === submenuItem.id ? "selected" : ""}`}
-                                    >
-                                        <IconButton
+                            <Box sx={{ paddingLeft: "2vw" }}>
+                                <ul className="submenu">
+                                    {menu.submenu.map((submenuItem) => (
+                                        <li
                                             key={submenuItem.id}
-                                            onClick={() => handleSubmenuClick(submenuItem)}
-                                            sx={{
-                                                alignSelf: "flex-start",
-                                                color: "white",
-                                                transition: "0.1s",
-                                                gap: "0.5vw",
-                                                "&:hover": { transform: "scale(1.1)" },
-                                            }}
+                                            style={{ listStyle: "none" }}
+                                            className={`SubmenuItem ${selectedSubmenu === submenuItem.id ? "selected" : ""}`}
                                         >
-                                            {[pathname, contractRegex.test(submenuItem.location)].includes(
-                                                submenuItem.location
-                                            ) && (
-                                                <ArrowForwardIosOutlinedIcon
-                                                    sx={{
-                                                        border: "0.15vw solid white",
-                                                        borderRadius: "50%",
-                                                        padding: "0.1vw",
-                                                        height: "1.2vw",
-                                                        width: "1.2vw",
-                                                    }}
-                                                />
-                                            )}
-                                            <p className="submenu-link">{submenuItem.name}</p>
-                                        </IconButton>
-                                    </li>
-                                ))}
-                            </ul>
+                                            <IconButton
+                                                key={submenuItem.id}
+                                                onClick={() => handleSubmenuClick(submenuItem)}
+                                                sx={{
+                                                    alignSelf: "flex-start",
+                                                    color: "white",
+                                                    transition: "0.1s",
+                                                    gap: "0.5vw",
+                                                    "&:hover": { transform: "scale(1.1)" },
+                                                }}
+                                            >
+                                                {[pathname, contractRegex.test(submenuItem.location)].includes(
+                                                    submenuItem.location
+                                                ) && (
+                                                    <ArrowForwardIosOutlinedIcon
+                                                        sx={{
+                                                            border: "0.15vw solid white",
+                                                            borderRadius: "50%",
+                                                            padding: "0.1vw",
+                                                            height: "1.2vw",
+                                                            width: "1.2vw",
+                                                        }}
+                                                    />
+                                                )}
+                                                <p className="submenu-link">{submenuItem.name}</p>
+                                            </IconButton>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </Box>
                         )}
                     </React.Fragment>
                 ))}
@@ -139,6 +141,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ user }) => {
                     alignSelf: "flex-start",
                     fontWeight: "normal",
                     fontSize: "1.3vw",
+                    padding: "0 2vw",
                 }}
                 onClick={() => (window.location.href = "https://controle.cooperativasion.com.br")}
             >
@@ -146,7 +149,14 @@ export const Sidebar: React.FC<SidebarProps> = ({ user }) => {
                 Controle
             </IconButton>
             <IconButton
-                sx={{ color: "white", gap: "0.6vw", alignSelf: "flex-start", fontWeight: "normal", fontSize: "1.3vw" }}
+                sx={{
+                    color: "white",
+                    gap: "0.6vw",
+                    alignSelf: "flex-start",
+                    fontWeight: "normal",
+                    fontSize: "1.3vw",
+                    padding: "1vw 2vw",
+                }}
                 onClick={() => logout()}
             >
                 <LogoutIcon sx={{ width: "2vw" }} />

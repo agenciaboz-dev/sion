@@ -126,7 +126,14 @@ export const NewBoard: React.FC<NewBoardProps> = ({}) => {
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
                 {({ values, handleChange }) => (
                     <Form style={{ display: "contents" }}>
-                        <TextField label="Nome do quadro" name="name" value={values.name} onChange={handleChange} autoComplete="off" required />
+                        <TextField
+                            label="Nome do quadro"
+                            name="name"
+                            value={values.name}
+                            onChange={handleChange}
+                            autoComplete="off"
+                            required
+                        />
                         <TextField
                             label="Nível de acesso"
                             name="access"
@@ -180,7 +187,11 @@ export const NewBoard: React.FC<NewBoardProps> = ({}) => {
                                                                 autoFocus
                                                                 disabled={loadingNewStatus}
                                                                 InputProps={{
-                                                                    endAdornment: loadingNewStatus ? <CircularProgress size={"1.5rem"} /> : <></>,
+                                                                    endAdornment: loadingNewStatus ? (
+                                                                        <CircularProgress size={"1.5rem"} />
+                                                                    ) : (
+                                                                        <></>
+                                                                    ),
                                                                 }}
                                                             />
                                                         ) : (

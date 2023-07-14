@@ -133,11 +133,13 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
 
     return (
         <div className="Sellers-Component">
-            <SearchField onChange={onSearch} loading={sellers.loading} />
+            <SearchField onChange={onSearch} loading={sellers.loading} sx={{}} />
             <p>Administradores</p>
             <div className="sellers-list">
                 {sellers.loading ? (
-                    skeletons.map((item) => <Skeleton key={skeletons.indexOf(item)} variant="rectangular" sx={skeleton_style} />)
+                    skeletons.map((item) => (
+                        <Skeleton key={skeletons.indexOf(item)} variant="rectangular" sx={skeleton_style} />
+                    ))
                 ) : (
                     <SellerList sellers={sellerList.filter((seller) => seller.adm)} />
                 )}
@@ -145,7 +147,9 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
             <p>Vendedores</p>
             <div className="sellers-list">
                 {sellers.loading ? (
-                    skeletons.map((item) => <Skeleton key={skeletons.indexOf(item)} variant="rectangular" sx={skeleton_style} />)
+                    skeletons.map((item) => (
+                        <Skeleton key={skeletons.indexOf(item)} variant="rectangular" sx={skeleton_style} />
+                    ))
                 ) : (
                     <SellerList sellers={sellerList.filter((seller) => !seller.adm)} />
                 )}

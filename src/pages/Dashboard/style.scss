@@ -37,7 +37,7 @@
         color: white;
         width: 20%;
         flex-direction: column;
-        padding: 1vw 3vw;
+        padding: 1vw 2vw;
         z-index: 3;
 
         .title {
@@ -53,11 +53,15 @@
                 font-weight: 500;
                 cursor: pointer;
             }
-            .submenu-link{
-                white-space: nowrap;
-                font-size: 1.0vw ;
-                font-weight: 100;
+            .submenu{
+
                 
+                .submenu-link{
+                    white-space: nowrap;
+                    font-size: 1.0vw ;
+                    font-weight: 100;
+                    
+                }
             }
         }
     }
@@ -167,7 +171,7 @@
             width: 20%;
             box-shadow: none !important;
             position: absolute;
-            right: 4.3vw;
+            right: 2.3vw;
             top: 3.5vw;
 
             
