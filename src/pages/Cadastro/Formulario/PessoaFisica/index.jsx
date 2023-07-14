@@ -62,26 +62,83 @@ export const PessoaFisica = ({ previousStage, nextStage }) => {
 
 
     return (
-        <Formik initialValues={initial_inputs} onSubmit={values => nextStage(values, cpfError)} validationSchema={validationSchema} >
-            {({handleChange, values, submitForm, errors}) => (
-                <Form onKeyDown={(event) => {
-                    if (event.key === 'Enter') {
-                        event.preventDefault();
-                        submitForm();
-                    }
-                    }}>
-                    <InputField title={'Nome Completo do titular da Unidade Consumidora'} id={'name'} handleChange={handleChange} value={values.name} error={Boolean(errors.name)} errorText={errors.name} />
-                    <InputField title={'CPF'} onBlur={cpfBlur} mask={[ /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/ ]} inputMode={'numeric'} id={'cpf'} handleChange={handleChange} value={values.cpf} error={cpfError} errorText={'CPF inválido'} />
-                    <InputField title={'RG'} inputMode={'numeric'} id={'rg'} handleChange={handleChange} value={values.rg} error={Boolean(errors.rg)} errorText={errors.rg} />
-                    <InputField title={'Data de nascimento'} type='date' id={'birth'} handleChange={handleChange} value={values.birth} error={errors.birth} errorText={'Data inválida'} />
-                    <InputField title={'E-mail'} inputMode={'email'} id={'email'} handleChange={handleChange} value={values.email} error={Boolean(errors.email)} errorText={errors.email} />
-                    <InputField title={'Telefone'} inputMode={'tel'} mask={["(", /\d/, /\d/, ")", " ", /\d/, /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/]} id={'phone'} handleChange={handleChange} value={values.phone} error={Boolean(errors.phone)} errorText={errors.phone} />
-                    
+        <Formik initialValues={initial_inputs} onSubmit={(values) => nextStage(values, cpfError)} validationSchema={validationSchema}>
+            {({ handleChange, values, submitForm, errors }) => (
+                <Form
+                    onKeyDown={(event) => {
+                        if (event.key === "Enter") {
+                            event.preventDefault()
+                            submitForm()
+                        }
+                    }}
+                >
+                    <InputField
+                        title={"Nome Completo do titular da Unidade Consumidora"}
+                        id={"name"}
+                        handleChange={handleChange}
+                        value={values.name}
+                        error={Boolean(errors.name)}
+                        errorText={errors.name}
+                    />
+                    <InputField
+                        title={"CPF"}
+                        onBlur={cpfBlur}
+                        mask={[/\d/, /\d/, /\d/, ".", /\d/, /\d/, /\d/, ".", /\d/, /\d/, /\d/, "-", /\d/, /\d/]}
+                        inputMode={"numeric"}
+                        id={"cpf"}
+                        handleChange={handleChange}
+                        value={values.cpf}
+                        error={cpfError}
+                        errorText={"CPF inválido"}
+                    />
+                    <InputField
+                        title={"RG"}
+                        inputMode={"numeric"}
+                        id={"rg"}
+                        handleChange={handleChange}
+                        value={values.rg}
+                        error={Boolean(errors.rg)}
+                        errorText={errors.rg}
+                    />
+                    <InputField
+                        title={"Data de nascimento"}
+                        id={"birth"}
+                        handleChange={handleChange}
+                        inputMode={"numeric"}
+                        mask={[/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/]}
+                        value={values.birth}
+                        error={errors.birth}
+                        errorText={"Data inválida"}
+                    />
+                    <InputField
+                        title={"E-mail"}
+                        inputMode={"email"}
+                        id={"email"}
+                        handleChange={handleChange}
+                        value={values.email}
+                        error={Boolean(errors.email)}
+                        errorText={errors.email}
+                    />
+                    <InputField
+                        title={"Telefone"}
+                        inputMode={"tel"}
+                        mask={["(", /\d/, /\d/, ")", " ", /\d/, /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/]}
+                        id={"phone"}
+                        handleChange={handleChange}
+                        value={values.phone}
+                        error={Boolean(errors.phone)}
+                        errorText={errors.phone}
+                    />
+
                     <AddressFields values={values} handleChange={handleChange} errors={errors} />
 
                     <div className="buttons-container">
-                        <Button variant='contained' onClick={(event) => previousStage(event)} sx={{backgroundColor: COLORS.gray}}>Voltar</Button>
-                        <Button variant='contained' type="submit">Avançar</Button>
+                        <Button variant="contained" onClick={(event) => previousStage(event)} sx={{ backgroundColor: COLORS.gray }}>
+                            Voltar
+                        </Button>
+                        <Button variant="contained" type="submit">
+                            Avançar
+                        </Button>
                     </div>
                 </Form>
             )}
