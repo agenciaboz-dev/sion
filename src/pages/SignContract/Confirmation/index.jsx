@@ -31,7 +31,7 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
     const [loading, setLoading] = useState(false)
     const [rubricModal, setRubricModal] = useState(false)
     const [rubric, setRubric] = useState("")
-    const [mentirinhaValue, setMentirinhaValue] = useState(0)
+    const [progressBarValue, setProgressBarValue] = useState(0)
 
     const params = useParams()
     const [user, setUser] = useUser()
@@ -57,7 +57,7 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
         }
 
         setLoading(true)
-        setMentirinhaValue(0)
+        setProgressBarValue(0)
         setTimeout(() => {
             const formData = new FormData()
         const data = { ...values, id: params.id, signing: params.signing, user, rubric }
@@ -129,13 +129,13 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
     }, [attachments])
 
     useEffect(() => {
-        const mentirinha = setInterval(() => {
-            setMentirinhaValue(mentirinhaValue + 1)
-            console.log({mentirinhaValue})
+        const progressBar = setInterval(() => {
+            setProgressBarValue(progressBarValue + 1)
+            console.log({progressBarValue})
         }, 100)
 
-        return () => clearInterval(mentirinha)
-    }, [mentirinhaValue])
+        return () => clearInterval(progressBar)
+    }, [progressBarValue])
 
     return (
         <Formik initialValues={initialValues} onSubmit={handleSubmit}>
@@ -214,7 +214,7 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
                             {loading ? <CircularProgress size={"1.5rem"} color="secondary" /> : "Avançar"}
                         </Button>
                     )}
-                    {loading && <><LinearProgress variant="determinate" value={mentirinhaValue} /><p style={{ fontWeight: 'bold', color: colors.primary }}>Processando solicitação, aguarde um momento...</p></>}
+                    {loading && <><LinearProgress variant="determinate" value={progressBarValue} /><p style={{ fontWeight: 'bold', color: colors.primary }}>Fazendo upload...</p></>}
                     <SafeEnvironment />
 
                     <Dialog open={rubricModal} onClose={() => setRubricModal(false)} style={{ flexDirection: "column" }}>
