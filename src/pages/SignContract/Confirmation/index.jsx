@@ -50,6 +50,7 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
     }
 
     const handleSubmit = (values) => {
+        if (loading) return
         if (!rubric && (user?.adm || !user)) {
             setOpenSnackbar(true)
             setError("Rúbrica obrigatória")
@@ -58,42 +59,43 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
 
         setLoading(true)
         setProgressBarValue(0)
-        setTimeout(() => {
-            const formData = new FormData()
-        const data = { ...values, id: params.id, signing: params.signing, user, rubric }
-        console.log({ data })
+        const formData = new FormData()
+    const data = { ...values, id: params.id, signing: params.signing, user, rubric }
+    console.log({ data })
 
-        formData.append("data", JSON.stringify(data))
+    formData.append("data", JSON.stringify(data))
 
-        // Assuming you have the files in the `attachments` state
-        if (attachments[0]) {
-            attachments.map((file) => {
-                formData.append("biometria", file)
-            })
-        } else {
-            setOpenSnackbar(true)
-            setError("Foto obrigatória")
-            setLoading(false)
-            return
-        }
+    // Assuming you have the files in the `attachments` state
+    if (attachments[0]) {
+        attachments.map((file) => {
+            formData.append("biometria", file)
+        })
+    } else {
+        setOpenSnackbar(true)
+        setError("Foto obrigatória")
+        setLoading(false)
+        return
+    }
 
-        api.post("/contract/confirm", formData)
-            .then((response) => {
-                const contract = response.data
-                if (!contract) {
-                    setOpenSnackbar(true)
-                    setError("Dados inválidos")
+    api.post("/contract/confirm", formData)
+        .then((response) => {
+            const contract = response.data
+            if (!contract) {
+                setOpenSnackbar(true)
+                setError("Dados inválidos")
+            } else {
+                if (contract.signed) {
+                    setStage(3)
                 } else {
-                    if (contract.signed) {
-                        setStage(3)
-                    } else {
-                        setContract(contract)
-                        setStage(2)
-                    }
+                    setContract(contract)
+                    setStage(2)
                 }
-            })
-            .catch((error) => console.error(error))
-            .finally(() => setLoading(false))
+            }
+        })
+        .catch((error) => console.error(error))
+
+        setTimeout(() => {
+            setLoading(false)
         }, 10000)
     }
 
