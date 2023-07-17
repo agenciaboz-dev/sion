@@ -214,7 +214,7 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
                             {loading ? <CircularProgress size={"1.5rem"} color="secondary" /> : "Avançar"}
                         </Button>
                     )}
-                    {loading && <><LinearProgress variant="determinate" value={mentirinhaValue} /><p style={{ fontWeight: 'bold' }}>Processando.........</p></>}
+                    {loading && <><LinearProgress variant="determinate" value={mentirinhaValue} /><p style={{ fontWeight: 'bold', color: colors.primary }}>Processando solicitação, aguarde um momento...</p></>}
                     <SafeEnvironment />
 
                     <Dialog open={rubricModal} onClose={() => setRubricModal(false)} style={{ flexDirection: "column" }}>
