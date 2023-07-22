@@ -54,13 +54,18 @@ export const Contrato = ({  }) => {
     const client = useClient()
 
     const [loading, setLoading] = useState(true)
+    const [sending, setSending] = useState(false)
     const [page, setPage] = useState(1)
     const [pages, setPages] = useState(0)
     const [contract, setContract] = useState(null)
 
     const nextStage = () => {
+        setSending(true)
         api.post("/contract/send", client.value).then((response) => console.log(response.data))
-        navigate("/cadastro/financeiro")
+        setTimeout(() => {
+            setSending(false)
+            navigate("/cadastro/financeiro")
+            }, 1000)
     }
 
     const onLoadSuccess = (pdf) => {
@@ -86,7 +91,7 @@ export const Contrato = ({  }) => {
                     <ChoseIcon style={{ height: "10vw", width: "10vw" }} />
                 </div>
                 <div className="description-container">
-                    <p>Clique avançar para enviar o contrato por email para todos os envolvidos cadastrados!</p>
+                    <p>Clique em "avançar" para enviar o contrato por email para todos os envolvidos cadastrados!</p>
                 </div>
                 {contract ? (
                     <>
@@ -105,7 +110,7 @@ export const Contrato = ({  }) => {
                     <MuiLoading color={"primary"} size={"15vw"} />
                 )}
             </div>
-            <NavButtons goBack={() => navigate("/cadastro/anexos")} nextStage={nextStage} children={<p>Enviar</p>} />
+            <NavButtons goBack={() => navigate("/cadastro/anexos")} nextStage={nextStage} children={sending && <MuiLoading size='5vw'/> } />
         </div>
     )
 }
