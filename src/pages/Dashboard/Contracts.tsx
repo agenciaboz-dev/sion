@@ -18,9 +18,11 @@ interface ContractsProps {}
 const ContractList = ({ contracts }: { contracts: Contract[] }) => {
     return contracts.length > 0 ? (
         <>
-            {contracts.map((contract) => (
-                <ContractContainer key={contract.id} contract={contract} />
-            ))}
+            {contracts
+                .sort((a, b) => b.id - a.id)
+                .map((contract) => (
+                    <ContractContainer key={contract.id} contract={contract} />
+                ))}
         </>
     ) : (
         <div className="empty" style={{ padding: "2vw" }}>
