@@ -32,6 +32,8 @@ export const ContractsProvider: React.FC<ContractsProviderProps> = ({ children }
     const list = contracts.sort((a, b) => a.id - b.id)
     const set = setContracts
     const add = (contract: Contract, user: User | null = null) => {
+        console.log({ contract })
+        if (!contract) return
         if (user) io.emit("contract:new", { contract, user_id: user.id })
         setContracts([...contracts, contract])
         snackbar({ severity: user ? "success" : "info", text: `Novo contrato ${contract.name}` })
@@ -44,6 +46,8 @@ export const ContractsProvider: React.FC<ContractsProviderProps> = ({ children }
     }
 
     const update = (contract: Contract, user: User | null = null) => {
+        console.log({ contract })
+        if (!contract) return
         setContracts([...contracts.filter((item) => item.id != contract.id), contract])
         if (user) io.emit("contract:update", { contract, user_id: user.id })
         snackbar({ severity: user ? "success" : "info", text: `Contrato ${contract.name} atualizado` })
