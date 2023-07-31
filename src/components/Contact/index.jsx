@@ -7,14 +7,20 @@ import {ReactComponent as WhatsappIcon} from '../../images/whatsapp.svg'
 import './style.scss';
 import { useMediaQuery } from 'react-responsive';
 import { useTexts } from "../../hooks/useTexts"
+import { api2 } from '../../api';
+import { Button, CircularProgress } from '@mui/material';
 
 export const Contact = () => {
-    const [textsLoading, setTextsLoading] = useState(true)
     const texts = useTexts().contact
     const { text } = useTexts()
-
-    const [showForm, setShowForm] = useState(false)
     const isMobile = useMediaQuery({maxWidth: 600})
+    
+    const [textsLoading, setTextsLoading] = useState(true)
+    const [showForm, setShowForm] = useState(false)
+    const [mailIsSent, setMailIsSent] = useState(false);
+    const [loading, setLoading] = useState(false);
+    
+    
 
     const wrapper_style = {
         height: showForm ? (isMobile ? '125vw' : '15vw') : null,
@@ -29,7 +35,12 @@ export const Contact = () => {
     }
 
     const sendForm = (values) => {
-        setShowForm(false)
+        if (loading) return
+        setLoading(true)
+
+        api2.post('/lead', values).then(response => {
+            setMailIsSent(true)
+        })
     }
     
     useEffect(() => {
@@ -52,7 +63,9 @@ export const Contact = () => {
                             <InputField className='contact-input' id='phone' title={'Telefone'} handleChange={handleChange} />
                             <InputField className='contact-input' id='email' title={'Email'} handleChange={handleChange} />
                             <InputField className='contact-input' multiline inputProps={{height: '6vw'}} id='message' title={'Mensagem'} handleChange={handleChange} />
-                            <button className='contact-send-button' type='submit'>Enviar</button>
+                                <div>
+                                    {mailIsSent ? "Mensagem enviada" : <Button variant='contained' type='submit'>{loading ? <CircularProgress size='1.5rem' sx={{color: 'white'}} /> : "Enviar"}</Button>}
+                                </div>
                         </Form>
                     )}
                 </Formik>
