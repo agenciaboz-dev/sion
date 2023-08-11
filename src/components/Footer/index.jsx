@@ -20,11 +20,6 @@ export const Footer = ({ vendas }) => {
 
     const [email, setEmail] = useState('')
 
-    const finish = () => {
-        client.setValue(null)
-        navigate('/')
-    }
-
     const onMailSignUp = useCallback(() => {
         api.post('/signup', {email, news_signup: true})
         .then(response => {
@@ -52,14 +47,6 @@ export const Footer = ({ vendas }) => {
                 padding: 0,
             }}
         >
-            {location.pathname == "/cadastro/contrato" && (
-                <div className="finish-container" onClick={finish}>
-                    <p>Finalizar</p>
-                    <div className="forward-arrow-container">
-                        <ForwardArrow />
-                    </div>
-                </div>
-            )}
         </div>
     ) : (
         <div className="Footer-Component">
