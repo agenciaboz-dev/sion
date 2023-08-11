@@ -20,7 +20,7 @@ export const ContatoFinanceiro = ({}) => {
 		name: '',
 		phone: '',
 		email: '',
-		login: '',
+		login: client.value.cnpj || client.value.cpf,
 		password: '',
 	}
 
@@ -82,7 +82,7 @@ export const ContatoFinanceiro = ({}) => {
                             handleChange={handleChange}
                         />
                         <h2>Credenciais</h2>
-                        <InputField title={"Login"} id="login" value={values.login} handleChange={handleChange} />
+                        <InputField title={"Acesso"} id="login" value={values.login} handleChange={handleChange} />
                         <InputField title={"Senha"} id="password" value={values.password} handleChange={handleChange} />
                         <NavButtons
                             goBack={(event) => goBack(event)}
