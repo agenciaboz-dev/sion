@@ -20,7 +20,7 @@ export const ContatoFinanceiro = ({}) => {
 		name: '',
 		phone: '',
 		email: '',
-		login: client.value.cnpj || client.value.cpf,
+		login: client.value?.cnpj || client.value?.cpf,
 		password: '',
 	}
 
