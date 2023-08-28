@@ -7,6 +7,7 @@ import { useImages } from "../../../hooks/useImages"
 import { useColors } from "../../../hooks/useColors"
 import { useUser } from "../../../hooks/useUser"
 import { useConfirmDialog } from "burgos-confirm"
+import { useDate } from "../../../hooks/useDate"
 
 interface ImageContainerProps {
     image: Image
@@ -20,6 +21,7 @@ export const ImageContainer: React.FC<ImageContainerProps> = ({ image }) => {
     const { updateImage } = useImages()
     const { user } = useUser()
     const { confirm } = useConfirmDialog()
+    const { getDateString } = useDate()
 
     const upload_icon_style: SxProps = {
         width: "30%",
@@ -77,7 +79,7 @@ export const ImageContainer: React.FC<ImageContainerProps> = ({ image }) => {
                     )}
                 </Dropzone>
                 <p style={{ fontSize: "0.9vw", textAlign: "end" }}>
-                    Editado por {image.user.name} em {new Date(image.date).toLocaleString()}
+                    Editado por {image.user.name} em {getDateString(image.date)}
                 </p>
             </div>
         </div>

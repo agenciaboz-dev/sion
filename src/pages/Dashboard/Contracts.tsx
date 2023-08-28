@@ -8,6 +8,7 @@ import { useUser } from "../../hooks/useUser"
 import { Form, Formik } from "formik"
 import { SearchField } from "../../components/SearchField"
 import { useContracts } from "../../hooks/useContracts"
+import { useDate } from "../../hooks/useDate"
 
 interface FormValues {
     search: string
@@ -33,6 +34,7 @@ const ContractList = ({ contracts }: { contracts: Contract[] }) => {
 
 export const ContractContainer = ({ contract, adm }: { contract: Contract; adm?: boolean }) => {
     const navigate = useNavigate()
+    const { getDateString } = useDate()
 
     return (
         <div className="contract-container">
@@ -48,7 +50,7 @@ export const ContractContainer = ({ contract, adm }: { contract: Contract; adm?:
 
                 <div className="value">
                     {!adm && <p>{contract.seller.name}</p>}
-                    <p>{new Date(contract.date).toLocaleDateString()}</p>
+                    <p>{getDateString(contract.date, true)}</p>
                 </div>
 
                 <Button onClick={() => navigate(`/dashboard/contract/${contract.id}`)} variant="contained">

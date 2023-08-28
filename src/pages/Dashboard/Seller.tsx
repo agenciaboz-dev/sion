@@ -12,6 +12,7 @@ import { useRoles } from "../../hooks/useRoles"
 import { useCpfMask, useCepMask, usePhoneMask } from "burgos-masks"
 import MaskedInput from "react-text-mask"
 import { useSellers } from "../../hooks/useSellers"
+import { useDate } from "../../hooks/useDate"
 interface SellerProps {}
 
 interface FormValues {
@@ -28,6 +29,7 @@ export const Seller: React.FC<SellerProps> = ({}) => {
     const { snackbar } = useSnackbar()
     const { confirm } = useConfirmDialog()
     const { user } = useUser()
+    const { getDateString } = useDate()
 
     const [seller, setSeller] = useState<User | undefined>(id ? sellers.get(id) : undefined)
     const [idError, setIdError] = useState(false)
@@ -156,7 +158,7 @@ export const Seller: React.FC<SellerProps> = ({}) => {
                                                     <TextField
                                                         label={"Data de nascimento"}
                                                         name="birth"
-                                                        value={new Date(values.birth).toLocaleDateString()}
+                                                        value={getDateString(values.birth, true)}
                                                         onChange={handleChange}
                                                         InputProps={{ readOnly: !user!.adm, sx: textfield_style }}
                                                     />
@@ -255,11 +257,7 @@ export const Seller: React.FC<SellerProps> = ({}) => {
                                             </div>
                                         </Box>
                                         <Button variant="contained" type="submit" sx={{ alignSelf: "flex-end" }}>
-                                            {updateUserLoading ? (
-                                                <CircularProgress size={"1.5rem"} sx={{ color: "white" }} />
-                                            ) : (
-                                                "Atualizar usuário"
-                                            )}
+                                            {updateUserLoading ? <CircularProgress size={"1.5rem"} sx={{ color: "white" }} /> : "Atualizar usuário"}
                                         </Button>
                                     </Form>
                                 </Box>
@@ -285,11 +283,7 @@ export const Seller: React.FC<SellerProps> = ({}) => {
                                                 helperText={passwordError}
                                             />
                                             <Button type="submit" variant="contained">
-                                                {passwordLoading ? (
-                                                    <CircularProgress size={"1.5rem"} sx={{ color: "white" }} />
-                                                ) : (
-                                                    "Alterar senha"
-                                                )}
+                                                {passwordLoading ? <CircularProgress size={"1.5rem"} sx={{ color: "white" }} /> : "Alterar senha"}
                                             </Button>
                                         </Form>
                                     )}

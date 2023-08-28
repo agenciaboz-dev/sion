@@ -5,7 +5,7 @@ declare interface User {
     password: string
     name: string
     phone: string
-    birth: Date
+    birth: string
     cpf: string
     rg?: string
     address?: string
