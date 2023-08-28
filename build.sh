@@ -1,7 +1,7 @@
 #!/bin/bash
 
 user="cooperativasion"
-subdomain="vendas.cooperativasion.com.br"
+subdomain="adesao.cooperativasion.com.br"
 path="/home/${user}/${subdomain}"
 
 yarn build
