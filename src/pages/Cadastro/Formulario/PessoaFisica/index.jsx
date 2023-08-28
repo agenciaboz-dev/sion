@@ -60,7 +60,11 @@ export const PessoaFisica = ({ previousStage, nextStage }) => {
 
 
     return (
-        <Formik initialValues={initial_inputs} onSubmit={(values) => nextStage(values, cpfError)} validationSchema={validationSchema}>
+        <Formik
+            initialValues={initial_inputs}
+            onSubmit={(values) => nextStage(values, cpfError)}
+            validationSchema={validationSchema}
+        >
             {({ handleChange, values, submitForm, errors }) => (
                 <Form
                     onKeyDown={(event) => {
@@ -108,6 +112,7 @@ export const PessoaFisica = ({ previousStage, nextStage }) => {
                         error={errors.birth}
                         errorText={"Data inválida"}
                     />
+                    {console.log(values.birth)}
                     <InputField
                         title={"E-mail"}
                         inputMode={"email"}
@@ -131,7 +136,11 @@ export const PessoaFisica = ({ previousStage, nextStage }) => {
                     <AddressFields values={values} handleChange={handleChange} errors={errors} />
 
                     <div className="buttons-container">
-                        <Button variant="contained" onClick={(event) => previousStage(event)} sx={{ backgroundColor: COLORS.gray }}>
+                        <Button
+                            variant="contained"
+                            onClick={(event) => previousStage(event)}
+                            sx={{ backgroundColor: COLORS.gray }}
+                        >
                             Voltar
                         </Button>
                         <Button variant="contained" type="submit">

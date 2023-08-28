@@ -24,7 +24,7 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever"
 import { useColors } from "../../../hooks/useColors"
 import Stack from '@mui/material/Stack';
 import LinearProgress from '@mui/material/LinearProgress';
-
+import { Masked } from "../../../components/Masked"
 
 export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract }) => {
     const [attachments, setAttachments] = useState([])
@@ -60,39 +60,46 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
         setLoading(true)
         setProgressBarValue(0)
         const formData = new FormData()
-    const data = { ...values, id: params.id, signing: params.signing, user, rubric }
-    console.log({ data })
+        const data = {
+            ...values,
+            id: params.id,
+            signing: params.signing,
+            user,
+            rubric,
+            birth: values.birth.split("/").reverse().join("-"),
+        }
+        console.log({ data })
 
-    formData.append("data", JSON.stringify(data))
+        formData.append("data", JSON.stringify(data))
 
-    // Assuming you have the files in the `attachments` state
-    if (attachments[0]) {
-        attachments.map((file) => {
-            formData.append("biometria", file)
-        })
-    } else {
-        setOpenSnackbar(true)
-        setError("Foto obrigatória")
-        setLoading(false)
-        return
-    }
+        // Assuming you have the files in the `attachments` state
+        if (attachments[0]) {
+            attachments.map((file) => {
+                formData.append("biometria", file)
+            })
+        } else {
+            setOpenSnackbar(true)
+            setError("Foto obrigatória")
+            setLoading(false)
+            return
+        }
 
-    api.post("/contract/confirm", formData)
-        .then((response) => {
-            const contract = response.data
-            if (!contract) {
-                setOpenSnackbar(true)
-                setError("Dados inválidos")
-            } else {
-                if (contract.signed) {
-                    setStage(3)
+        api.post("/contract/confirm", formData)
+            .then((response) => {
+                const contract = response.data
+                if (!contract) {
+                    setOpenSnackbar(true)
+                    setError("Dados inválidos")
                 } else {
-                    setContract(contract)
-                    setStage(2)
+                    if (contract.signed) {
+                        setStage(3)
+                    } else {
+                        setContract(contract)
+                        setStage(2)
+                    }
                 }
-            }
-        })
-        .catch((error) => console.error(error))
+            })
+            .catch((error) => console.error(error))
 
         setTimeout(() => {
             setLoading(false)
@@ -125,7 +132,6 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
         return signature.toDataURL()
     }
 
-
     useEffect(() => {
         console.log(attachments)
     }, [attachments])
@@ -133,7 +139,7 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
     useEffect(() => {
         const progressBar = setInterval(() => {
             setProgressBarValue(progressBarValue + 1)
-            console.log({progressBarValue})
+            //console.log({progressBarValue})
         }, 100)
 
         return () => clearInterval(progressBar)
@@ -174,7 +180,10 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
                         name="birth"
                         value={values.birth}
                         onChange={handleChange}
-                        type="date"
+                        InputProps={{
+                            inputComponent: Masked,
+                            inputProps: { mask: "00/00/0000" },
+                        }}
                         fullWidth
                         required
                     />
@@ -216,7 +225,12 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
                             {loading ? <CircularProgress size={"1.5rem"} color="secondary" /> : "Avançar"}
                         </Button>
                     )}
-                    {loading && <><LinearProgress variant="determinate" value={progressBarValue} /><p style={{ fontWeight: 'bold', color: colors.primary }}>Fazendo upload...</p></>}
+                    {loading && (
+                        <>
+                            <LinearProgress variant="determinate" value={progressBarValue} />
+                            <p style={{ fontWeight: "bold", color: colors.primary }}>Fazendo upload...</p>
+                        </>
+                    )}
                     <SafeEnvironment />
 
                     <Dialog open={rubricModal} onClose={() => setRubricModal(false)} style={{ flexDirection: "column" }}>
