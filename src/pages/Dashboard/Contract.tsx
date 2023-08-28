@@ -426,13 +426,13 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                             <TextField
                                 sx={{ width: "100%" }}
                                 label={"Login"}
-                                value={contract.financial?.login}
+                                value={contract.financial?.login || ""}
                                 InputProps={{ readOnly: true, sx: textfield_style }}
                             />
                             <TextField
                                 sx={{ width: "100%" }}
                                 label={"Senha"}
-                                value={contract.financial?.password}
+                                value={contract.financial?.password || ""}
                                 InputProps={{ readOnly: true, sx: textfield_style }}
                             />
                         </div>
