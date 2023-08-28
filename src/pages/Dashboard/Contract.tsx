@@ -355,13 +355,30 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                                     value={contract.cep}
                                     guide={false}
                                     render={(ref, props) => (
-                                        <TextField inputRef={ref} {...props} label={"CEP"} InputProps={{ readOnly: true, sx: textfield_style }} />
+                                        <TextField
+                                            inputRef={ref}
+                                            {...props}
+                                            label={"CEP"}
+                                            InputProps={{ readOnly: true, sx: textfield_style }}
+                                        />
                                     )}
                                 />
-                                <TextField label={"UF"} value={contract.state} InputProps={{ readOnly: true, sx: textfield_style }} />
+                                <TextField
+                                    label={"UF"}
+                                    value={contract.state}
+                                    InputProps={{ readOnly: true, sx: textfield_style }}
+                                />
                             </div>
-                            <TextField label={"Cidade"} value={contract.city} InputProps={{ readOnly: true, sx: textfield_style }} />
-                            <TextField label={"Endereço"} value={contract.address} InputProps={{ readOnly: true, sx: textfield_style }} />
+                            <TextField
+                                label={"Cidade"}
+                                value={contract.city}
+                                InputProps={{ readOnly: true, sx: textfield_style }}
+                            />
+                            <TextField
+                                label={"Endereço"}
+                                value={contract.address}
+                                InputProps={{ readOnly: true, sx: textfield_style }}
+                            />
                             <div className="number-district">
                                 <TextField
                                     label={"Número"}
@@ -408,6 +425,31 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                                 ))}
                         </div>
                     </div>
+                    <div
+                        style={{
+                            width: "100%",
+                            gap: "1vw",
+                            padding: "2vw",
+                            flexDirection: "column",
+                            justifyContent: "space-between",
+                        }}
+                    >
+                        <h4>Contato Financeiro</h4>
+                        <div style={{ gap: "1vw" }}>
+                            <TextField
+                                sx={{ width: "100%" }}
+                                label={"Login"}
+                                value={contract.financial?.login}
+                                InputProps={{ readOnly: true, sx: textfield_style }}
+                            />
+                            <TextField
+                                sx={{ width: "100%" }}
+                                label={"Senha"}
+                                value={contract.financial?.password}
+                                InputProps={{ readOnly: true, sx: textfield_style }}
+                            />
+                        </div>
+                    </div>
 
                     <div className="seller-container">
                         <div className="text">
@@ -416,13 +458,20 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                         </div>
 
                         <div style={{ alignItems: "center", gap: "1vw" }}>
-                            <h2 style={{ fontWeight: "normal" }}>Data de início: {new Date(contract.date).toLocaleDateString()}</h2>
+                            <h2 style={{ fontWeight: "normal" }}>
+                                Data de início: {new Date(contract.date).toLocaleDateString()}
+                            </h2>
                             <Tooltip title="Trocar de Vendedor">
                                 <IconButton sx={{ flexDirection: "column" }} onClick={handleReplaceSeller}>
                                     <RepeatOnIcon color="primary" sx={{ width: "2.5vw", height: "2.5vw" }} />
                                 </IconButton>
                             </Tooltip>
-                            <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+                            <Modal
+                                open={open}
+                                onClose={handleClose}
+                                aria-labelledby="modal-modal-title"
+                                aria-describedby="modal-modal-description"
+                            >
                                 <Box
                                     sx={{
                                         position: "absolute",
@@ -439,7 +488,9 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                                         gap: "1vw",
                                     }}
                                 >
-                                    <Box sx={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+                                    <Box
+                                        sx={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}
+                                    >
                                         <h3>Escolha um vendedor</h3>
 
                                         <SearchField
@@ -473,12 +524,19 @@ export const Contract: React.FC<ContractProps> = ({}) => {
 
                                     <SellerList sellers={sellerList.filter((seller) => seller.name)} />
                                     {user!.adm && (
-                                        <div className="buttons-container" style={{ gap: "1vw", justifyContent: "flex-end" }}>
+                                        <div
+                                            className="buttons-container"
+                                            style={{ gap: "1vw", justifyContent: "flex-end" }}
+                                        >
                                             <Button onClick={handleClose} variant="outlined">
                                                 Cancelar
                                             </Button>
                                             <Button onClick={() => handleSellerUpdate(selectedSeller)} variant="contained">
-                                                {updateSellerLoading ? <CircularProgress size={"1.5rem"} sx={{ color: "white" }} /> : "Alterar"}
+                                                {updateSellerLoading ? (
+                                                    <CircularProgress size={"1.5rem"} sx={{ color: "white" }} />
+                                                ) : (
+                                                    "Alterar"
+                                                )}
                                             </Button>
                                         </div>
                                     )}

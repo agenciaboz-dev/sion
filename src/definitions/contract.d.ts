@@ -39,6 +39,15 @@ declare interface Contract {
     seller_id: number
     rdstation: never
     omie: never
-    financial: never
+    financial?: Financial
     logs: never
+}
+
+declare interface Financial {
+    id: number
+    name: string
+    phone: string
+    email: string
+    login: string
+    password: string
 }
