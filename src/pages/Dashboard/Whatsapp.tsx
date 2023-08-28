@@ -4,11 +4,14 @@ import { useApi } from "../../hooks/useApi"
 import { StatusCircle } from "../../components/StatusCircle"
 import { QRCode } from "react-qrcode-logo"
 import CheckCircleIcon from "@mui/icons-material/CheckCircle"
+import { useIo } from "../../hooks/useIo"
 
 interface WhatsappProps {}
 
 export const Whatsapp: React.FC<WhatsappProps> = ({}) => {
     const vw = window.innerWidth / 100
+    const io = useIo()
+
     const [info, setInfo] = useState<any>()
     const [qrcode, setQrcode] = useState("")
     const [loading, setLoading] = useState(false)
@@ -23,6 +26,22 @@ export const Whatsapp: React.FC<WhatsappProps> = ({}) => {
                 setInfo(response.data.info)
             },
         })
+
+        io.on("zap:qrcode", (code) => {
+            setQrcode(code)
+            console.log({ code })
+        })
+
+        io.on("zap:ready", (info) => {
+            console.log({ info })
+            setInfo(info)
+            setQrcode("")
+        })
+
+        return () => {
+            io.off("zap:qrcode")
+            io.off("zap:ready")
+        }
     }, [])
 
     return (
