@@ -1,7 +1,7 @@
 import React from "react"
 import { IMaskInput } from "react-imask"
 
-export const Masked = (props, ref) => {
+const Masked = (props, ref) => {
     return (
         <IMaskInput
             {...props}
@@ -9,3 +9,5 @@ export const Masked = (props, ref) => {
         />
     )
 }
+
+export default Masked

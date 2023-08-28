@@ -23,8 +23,7 @@ import useMeasure from "react-use-measure"
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever"
 import { useColors } from "../../../hooks/useColors"
 import Stack from '@mui/material/Stack';
-import LinearProgress from '@mui/material/LinearProgress';
-import { Masked } from "../../../components/Masked"
+import LinearProgress from "@mui/material/LinearProgress"
 
 export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract }) => {
     const [attachments, setAttachments] = useState([])
@@ -46,7 +45,7 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
     const initialValues = {
         name: "",
         document: "",
-        birth: new Date().toISOString().substring(0, 10),
+        birth: "",
     }
 
     const handleSubmit = (values) => {
@@ -54,6 +53,20 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
         if (!rubric && (user?.adm || !user)) {
             setOpenSnackbar(true)
             setError("Rúbrica obrigatória")
+            return
+        }
+
+        const birthDate = values.birth.split("/")
+        if (
+            Number(birthDate[0]) < 1 ||
+            Number(birthDate[0]) > 31 ||
+            Number(birthDate[1]) < 1 ||
+            Number(birthDate[1]) > 12 ||
+            Number(birthDate[2]) < 1920 ||
+            Number(birthDate[2]) > new Date().getFullYear()
+        ) {
+            setOpenSnackbar(true)
+            setError("Data de nascimento inválida")
             return
         }
 
@@ -99,6 +112,7 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
                     }
                 }
             })
+            .finally(() => setLoading(false))
             .catch((error) => console.error(error))
 
         setTimeout(() => {
@@ -150,14 +164,7 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
             {({ values, handleChange }) => (
                 <Form ref={ref}>
                     <h3>Confirme seus dados</h3>
-                    <TextField
-                        label="Nome Completo"
-                        name="name"
-                        value={values.name}
-                        onChange={handleChange}
-                        fullWidth
-                        required
-                    />
+                    <TextField label="Nome Completo" name="name" value={values.name} onChange={handleChange} fullWidth required />
                     <MaskedInput
                         mask={[/\d/, /\d/, /\d/, ".", /\d/, /\d/, /\d/, ".", /\d/, /\d/, /\d/, "-", /\d/, /\d/]}
                         name={"document"}
@@ -165,27 +172,25 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
                         value={values.document}
                         guide={false}
                         render={(ref, props) => (
+                            <TextField inputRef={ref} {...props} label="CPF" inputProps={{ inputMode: "numeric" }} fullWidth required />
+                        )}
+                    />
+                    <MaskedInput
+                        mask={[/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/]}
+                        name="birth"
+                        value={values.birth}
+                        onChange={handleChange}
+                        guide={false}
+                        render={(ref, props) => (
                             <TextField
                                 inputRef={ref}
                                 {...props}
-                                label="CPF"
+                                label="Data de nascimento"
                                 inputProps={{ inputMode: "numeric" }}
                                 fullWidth
                                 required
                             />
                         )}
-                    />
-                    <TextField
-                        label="Data de nascimento"
-                        name="birth"
-                        value={values.birth}
-                        onChange={handleChange}
-                        InputProps={{
-                            inputComponent: Masked,
-                            inputProps: { mask: "00/00/0000" },
-                        }}
-                        fullWidth
-                        required
                     />
 
                     <Dropzone onDrop={(acceptedFiles) => onDrop(acceptedFiles)}>
@@ -209,12 +214,7 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
                     </Dropzone>
                     <h3>Rúbrica</h3>
                     {rubric ? (
-                        <img
-                            style={{ height: isMobile ? "30vw" : "5vw" }}
-                            onClick={() => setRubricModal(true)}
-                            src={rubric}
-                            alt=""
-                        />
+                        <img style={{ height: isMobile ? "30vw" : "5vw" }} onClick={() => setRubricModal(true)} src={rubric} alt="" />
                     ) : (
                         <Button variant="contained" onClick={() => setRubricModal(true)}>
                             Clique aqui para rubricar
