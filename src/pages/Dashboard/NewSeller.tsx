@@ -67,7 +67,7 @@ export const NewSeller: React.FC<NewSellerProps> = ({}) => {
 
         confirm({
             title: "Salvar",
-            content: "Salvar novo vendedor?",
+            content: "Salvar novo usuário?",
             onConfirm: () => {
                 setInfoLoading(true)
                 api.user.new({
@@ -203,7 +203,7 @@ export const NewSeller: React.FC<NewSellerProps> = ({}) => {
                         </div> */}
                         <Button type="submit" variant="contained">
                             {" "}
-                            {infoLoading ? <CircularProgress {...loading_props} /> : "Cadastrar Vendedor"}
+                            {infoLoading ? <CircularProgress {...loading_props} /> : "Cadastrar usuário"}
                         </Button>
                     </Form>
                 )}
