@@ -440,13 +440,13 @@ export const Contract: React.FC<ContractProps> = ({}) => {
 
                     <div className="seller-container">
                         <div className="text">
-                            <p>Vendedor responsável</p>
+                            <p>Usuário responsável</p>
                             <h1>{contract.seller.name}</h1>
                         </div>
 
                         <div style={{ alignItems: "center", gap: "1vw" }}>
                             <h2 style={{ fontWeight: "normal" }}>Data de início: {getDateString(contract.date, true)}</h2>
-                            <Tooltip title="Trocar de Vendedor">
+                            <Tooltip title="Trocar usuário">
                                 <IconButton sx={{ flexDirection: "column" }} onClick={handleReplaceSeller}>
                                     <RepeatOnIcon color="primary" sx={{ width: "2.5vw", height: "2.5vw" }} />
                                 </IconButton>
@@ -469,7 +469,7 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                                     }}
                                 >
                                     <Box sx={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-                                        <h3>Escolha um vendedor</h3>
+                                        <h3>Escolha um usuário</h3>
 
                                         <SearchField
                                             onChange={onSearch}

@@ -44,7 +44,7 @@ export const ContractContainer = ({ contract, adm }: { contract: Contract; adm?:
 
             <div className="info">
                 <div className="data">
-                    {!adm && <p>Vendedor responsável: </p>}
+                    {!adm && <p>Usuário responsável: </p>}
                     <p>Vigente até: </p>
                 </div>
 

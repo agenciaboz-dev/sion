@@ -271,7 +271,7 @@ export const Seller: React.FC<SellerProps> = ({}) => {
                                 <Formik initialValues={initialValues} onSubmit={handlePasswordSubmit}>
                                     {({ values, handleChange }) => (
                                         <Form>
-                                            <p>Alterar senha do vendedor</p>
+                                            <p>Alterar senha do usuário</p>
                                             <TextField
                                                 name="password"
                                                 type="password"

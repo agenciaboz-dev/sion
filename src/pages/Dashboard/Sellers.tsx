@@ -44,14 +44,14 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
             if (deleteLoading) return
 
             confirm({
-                title: "Deletar vendedor",
-                content: "Tem certeza que deseja deletar o vendedor?",
+                title: "Deletar usuário",
+                content: "Tem certeza que deseja deletar o usuário?",
                 onConfirm: () => {
                     setTimeout(
                         () =>
                             confirm({
                                 title: "Atenção",
-                                content: "Essa ação não poderá ser desfeita. Os dados do vendedor serão perdidos. Deseja continuar?",
+                                content: "Essa ação não poderá ser desfeita. Os dados do usuário serão perdidos. Deseja continuar?",
                                 onConfirm: () => {
                                     setDeleteLoading(true)
                                     api.user.delete({
@@ -137,19 +137,15 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
             <p>Administradores</p>
             <div className="sellers-list">
                 {sellers.loading ? (
-                    skeletons.map((item) => (
-                        <Skeleton key={skeletons.indexOf(item)} variant="rectangular" sx={skeleton_style} />
-                    ))
+                    skeletons.map((item) => <Skeleton key={skeletons.indexOf(item)} variant="rectangular" sx={skeleton_style} />)
                 ) : (
                     <SellerList sellers={sellerList.filter((seller) => seller.adm)} />
                 )}
             </div>
-            <p>Vendedores</p>
+            <p>Usuários</p>
             <div className="sellers-list">
                 {sellers.loading ? (
-                    skeletons.map((item) => (
-                        <Skeleton key={skeletons.indexOf(item)} variant="rectangular" sx={skeleton_style} />
-                    ))
+                    skeletons.map((item) => <Skeleton key={skeletons.indexOf(item)} variant="rectangular" sx={skeleton_style} />)
                 ) : (
                     <SellerList sellers={sellerList.filter((seller) => !seller.adm)} />
                 )}

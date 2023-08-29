@@ -21,7 +21,7 @@ export const useSidebarMenu = () => {
                 },
                 {
                     id: 7,
-                    name: "Vendedores",
+                    name: "Usuários",
                     location: "/dashboard/sellers",
                 },
                 {
