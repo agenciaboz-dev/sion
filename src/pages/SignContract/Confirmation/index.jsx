@@ -205,7 +205,10 @@ export const Confirmation = ({ setOpenSnackbar, setError, setStage, setContract 
                                     ) : (
                                         <div className="upload-container">
                                             <CameraIcon />
-                                            <h3>Clique aqui para {isMobile ? "tirar" : "subir"} uma foto</h3>
+                                            <h3>
+                                                Clique aqui para {isMobile ? "anexar ou tirar" : "anexar"} uma foto para confirmação da sua biometria
+                                                facial
+                                            </h3>
                                         </div>
                                     )}
                                 </div>
