@@ -16,7 +16,7 @@ const SettingsContext = createContext<SettingsContextValue>({} as SettingsContex
 export default SettingsContext
 
 export const SettingsProvider: React.FC<SettingsProviderProps> = ({ children }) => {
-    const [value, setValue] = useState<Settings>({ rate: 0 })
+    const [value, setValue] = useState<Settings>({ greenFlagRate: 0, yellowFlagRate: 0, redFlagRate: 0, red2FlagRate: 0 })
 
     const api = useApi()
 

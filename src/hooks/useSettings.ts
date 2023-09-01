@@ -5,7 +5,7 @@ export const useSettings = () => {
     const settingsContext = useContext(SettingsContext)
 
     const settings = settingsContext.value
-    const rate = settings.rate
+    const rates = { green: settings.greenFlagRate, yellow: settings.yellowFlagRate, red: settings.redFlagRate, red2: settings.red2FlagRate }
 
-    return { rate, setSettings: settingsContext.setValue }
+    return { rates, setSettings: settingsContext.setValue }
 }

@@ -1,3 +1,6 @@
 declare interface Settings {
-    rate: number
+    greenFlagRate: number
+    yellowFlagRate: number
+    redFlagRate: number
+    red2FlagRate: number
 }
