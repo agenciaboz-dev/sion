@@ -388,16 +388,14 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                         </div>
                     </div>
 
-                    {!!signatures?.length && (
-                        <Box sx={{ flexDirection: "column" }}>
-                            <p style={{ fontWeight: "bold" }}>Assinaturas</p>
-                            <Box sx={{ gap: "2vw" }}>
-                                <FormControlLabel label={contract.name} control={<Checkbox checked={signatures.includes("client")} />} />
-                                <FormControlLabel label={fernanda?.name} control={<Checkbox checked={signatures.includes("seller")} />} />
-                                <FormControlLabel label={"Sion"} control={<Checkbox checked={signatures.includes("sion")} />} />
-                            </Box>
+                    <Box sx={{ flexDirection: "column" }}>
+                        <p style={{ fontWeight: "bold" }}>Assinaturas</p>
+                        <Box sx={{ gap: "2vw" }}>
+                            <FormControlLabel label={contract.name} control={<Checkbox checked={signatures?.includes("client")} />} />
+                            <FormControlLabel label={fernanda?.name} control={<Checkbox checked={signatures?.includes("seller")} />} />
+                            <FormControlLabel label={"Sion"} control={<Checkbox checked={signatures?.includes("sion")} />} />
                         </Box>
-                    )}
+                    </Box>
 
                     <div className="unit-container">
                         <b>Unidades consumidoras</b>
