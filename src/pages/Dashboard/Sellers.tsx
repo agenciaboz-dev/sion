@@ -139,7 +139,7 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
                 {sellers.loading ? (
                     skeletons.map((item) => <Skeleton key={skeletons.indexOf(item)} variant="rectangular" sx={skeleton_style} />)
                 ) : (
-                    <SellerList sellers={sellerList.filter((seller) => seller.adm)} />
+                    <SellerList sellers={sellerList.filter((seller) => seller.role == 4)} />
                 )}
             </div>
             <p>Usuários</p>
@@ -147,7 +147,7 @@ export const Sellers: React.FC<SellersProps> = ({}) => {
                 {sellers.loading ? (
                     skeletons.map((item) => <Skeleton key={skeletons.indexOf(item)} variant="rectangular" sx={skeleton_style} />)
                 ) : (
-                    <SellerList sellers={sellerList.filter((seller) => !seller.adm)} />
+                    <SellerList sellers={sellerList.filter((seller) => seller.role != 4)} />
                 )}
             </div>
         </div>
