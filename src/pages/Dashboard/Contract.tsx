@@ -224,7 +224,7 @@ export const Contract: React.FC<ContractProps> = ({}) => {
     useEffect(() => {
         console.log(contract)
         if (contract) {
-            setSignatures(contract.signatures.split(","))
+            setSignatures(contract.signatures?.split(","))
         }
     }, [contract])
 
