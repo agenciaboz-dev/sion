@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { Skeleton, SxProps, TextField, Box, LinearProgress, IconButton, Tooltip, Checkbox, CircularProgress } from "@mui/material"
+import { Skeleton, SxProps, TextField, Box, LinearProgress, IconButton, Tooltip, Checkbox, CircularProgress, FormControlLabel } from "@mui/material"
 import { useApi } from "../../hooks/useApi"
 import MaskedInput from "react-text-mask"
 import CircleIcon from "@mui/icons-material/Circle"
@@ -27,6 +27,7 @@ export const Contract: React.FC<ContractProps> = ({}) => {
     const navigate = useNavigate()
     const api = useApi()
     const contracts = useContracts()
+    const fernanda = useSellers().list.find((user) => user.username == "fernanda")
     const sellers = useSellers()
 
     const { user } = useUser()
@@ -41,6 +42,7 @@ export const Contract: React.FC<ContractProps> = ({}) => {
     const [selectedSeller, setSelectedSeller] = useState<number | null>(null)
     const [updateSellerLoading, setUpdateSellerLoading] = useState(false)
     const [searching, setSearching] = useState(false)
+    const [signatures, setSignatures] = useState<string[]>([])
 
     const onSearch = (value: string) => {
         setSearching(!!value)
@@ -221,6 +223,9 @@ export const Contract: React.FC<ContractProps> = ({}) => {
 
     useEffect(() => {
         console.log(contract)
+        if (contract) {
+            setSignatures(contract.signatures.split(","))
+        }
     }, [contract])
 
     useEffect(() => {
@@ -382,6 +387,18 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                             </div>
                         </div>
                     </div>
+
+                    {!!signatures.length && (
+                        <Box sx={{ flexDirection: "column" }}>
+                            <p style={{ fontWeight: "bold" }}>Assinaturas</p>
+                            <Box sx={{ gap: "2vw" }}>
+                                <FormControlLabel label={contract.name} control={<Checkbox checked={signatures.includes("client")} />} />
+                                <FormControlLabel label={fernanda?.name} control={<Checkbox checked={signatures.includes("seller")} />} />
+                                <FormControlLabel label={"Sion"} control={<Checkbox checked={signatures.includes("sion")} />} />
+                            </Box>
+                        </Box>
+                    )}
+
                     <div className="unit-container">
                         <b>Unidades consumidoras</b>
                         <TextField
