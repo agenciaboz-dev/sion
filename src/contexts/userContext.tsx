@@ -48,7 +48,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
 
             sellers.setLoading(true)
             api.user.list({
-                callback: (response: { data: User[] }) => sellers.set(response.data),
+                callback: (response: { data: User[] }) => sellers.set(response.data.map((user) => ({ ...user, adm: user.role == 4 }))),
                 finallyCallback: () => sellers.setLoading(false),
             })
 

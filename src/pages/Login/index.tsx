@@ -34,7 +34,7 @@ export const Login = () => {
             callback: (response: { data: User }) => {
                 if (response.data) {
                     const usuario = response.data
-                    setUser(usuario)
+                    setUser({ ...usuario, adm: usuario.role == 4 })
                     navigate("/dashboard")
                 } else {
                     setError(true)

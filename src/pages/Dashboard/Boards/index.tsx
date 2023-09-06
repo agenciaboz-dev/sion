@@ -80,7 +80,7 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
     }
 
     const filteredBoards = boards.list.filter((board) => {
-        if (user.role == 4) {
+        if (user.adm) {
             return board
         } else if (user.role == board.access && board) {
             return board
@@ -88,7 +88,7 @@ export const Boards: React.FC<BoardsProps> = ({ user }) => {
     })
 
     const accessName = (board: number) => {
-        if (user.role == 4) {
+        if (user.adm) {
             if (board == 2) {
                 return (
                     <Box style={{ gap: "0.5vw", alignItems: "center" }}>
