@@ -49,7 +49,7 @@ export const Profile: React.FC<ProfileProps> = ({ user }) => {
                 api.user.update({
                     data: { ...values, contracts: [] },
                     callback: (response: { data: User }) => {
-                        setUser(response.data)
+                        setUser({ ...response.data, adm: response.data.role == 4 })
                         snackbar({
                             severity: "success",
                             text: "Usuário atualizado",
@@ -84,7 +84,7 @@ export const Profile: React.FC<ProfileProps> = ({ user }) => {
                 api.user.password({
                     data: { password: values.new_password, id: user.id },
                     callback: (response: { data: User }) => {
-                        setUser(response.data)
+                        setUser({ ...response.data, adm: response.data.role == 4 })
                         snackbar({
                             severity: "success",
                             text: "Senha atualizada",
@@ -108,7 +108,7 @@ export const Profile: React.FC<ProfileProps> = ({ user }) => {
                 api.user.update({
                     data: { email: values.new_email, id: user.id },
                     callback: (response: { data: User }) => {
-                        setUser(response.data)
+                        setUser({ ...response.data, adm: response.data.role == 4 })
                         snackbar({
                             severity: "success",
                             text: "E=mail atualizado",
