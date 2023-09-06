@@ -35,7 +35,7 @@ export const SellersProvider: React.FC<SellersProviderProps> = ({ children }) =>
     const set = setSellers
     const add = (seller: User, user: User | null = null) => {
         if (user) io.emit("user:new", { seller, user_id: user.id })
-        setSellers([...sellers, seller])
+        setSellers([...sellers, { ...seller, adm: seller.role == 4 }])
         snackbar({ severity: user ? "success" : "info", text: `novo vendedor ${seller.name}` })
     }
 
@@ -47,7 +47,7 @@ export const SellersProvider: React.FC<SellersProviderProps> = ({ children }) =>
 
     const update = (seller: User, user: User | null = null) => {
         if (user) io.emit("user:update", { seller, user_id: user.id })
-        setSellers([...sellers.filter((item) => item.id != seller.id), seller])
+        setSellers([...sellers.filter((item) => item.id != seller.id), { ...seller, adm: seller.role == 4 }])
         snackbar({ severity: user ? "success" : "info", text: `vendedor ${seller.name} atualizado` })
     }
 
