@@ -1,6 +1,17 @@
 import React, { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { Skeleton, SxProps, TextField, Box, LinearProgress, IconButton, Tooltip, Checkbox, CircularProgress, FormControlLabel } from "@mui/material"
+import {
+    Skeleton,
+    SxProps,
+    TextField,
+    Box,
+    LinearProgress,
+    IconButton,
+    Tooltip,
+    Checkbox,
+    CircularProgress,
+    FormControlLabel,
+} from "@mui/material"
 import { useApi } from "../../hooks/useApi"
 import MaskedInput from "react-text-mask"
 import CircleIcon from "@mui/icons-material/Circle"
@@ -18,6 +29,7 @@ import { useSnackbar } from "burgos-snackbar"
 import { useContracts } from "../../hooks/useContracts"
 import { SearchField } from "../../components/SearchField"
 import { useDate } from "../../hooks/useDate"
+import DownloadIcon from "@mui/icons-material/Download"
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/3.6.172/pdf.worker.min.js`
 
 interface ContractProps {}
@@ -148,7 +160,9 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                                 <div style={{ color: "gray" }}>{params.row.name}</div>
                             )}
 
-                            {params.row.sellerId === contract?.seller_id && <div style={{ color: "red", fontSize: "0.7vw" }}>Vendedor atual</div>}
+                            {params.row.sellerId === contract?.seller_id && (
+                                <div style={{ color: "red", fontSize: "0.7vw" }}>Vendedor atual</div>
+                            )}
                         </div>
                     </>
                 ),
@@ -364,13 +378,30 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                                     value={contract.cep}
                                     guide={false}
                                     render={(ref, props) => (
-                                        <TextField inputRef={ref} {...props} label={"CEP"} InputProps={{ readOnly: true, sx: textfield_style }} />
+                                        <TextField
+                                            inputRef={ref}
+                                            {...props}
+                                            label={"CEP"}
+                                            InputProps={{ readOnly: true, sx: textfield_style }}
+                                        />
                                     )}
                                 />
-                                <TextField label={"UF"} value={contract.state} InputProps={{ readOnly: true, sx: textfield_style }} />
+                                <TextField
+                                    label={"UF"}
+                                    value={contract.state}
+                                    InputProps={{ readOnly: true, sx: textfield_style }}
+                                />
                             </div>
-                            <TextField label={"Cidade"} value={contract.city} InputProps={{ readOnly: true, sx: textfield_style }} />
-                            <TextField label={"Endereço"} value={contract.address} InputProps={{ readOnly: true, sx: textfield_style }} />
+                            <TextField
+                                label={"Cidade"}
+                                value={contract.city}
+                                InputProps={{ readOnly: true, sx: textfield_style }}
+                            />
+                            <TextField
+                                label={"Endereço"}
+                                value={contract.address}
+                                InputProps={{ readOnly: true, sx: textfield_style }}
+                            />
                             <div className="number-district">
                                 <TextField
                                     label={"Número"}
@@ -391,8 +422,14 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                     <Box sx={{ flexDirection: "column" }}>
                         <p style={{ fontWeight: "bold" }}>Assinaturas</p>
                         <Box sx={{ gap: "2vw" }}>
-                            <FormControlLabel label={contract.name} control={<Checkbox checked={signatures?.includes("client")} />} />
-                            <FormControlLabel label={fernanda?.name} control={<Checkbox checked={signatures?.includes("seller")} />} />
+                            <FormControlLabel
+                                label={contract.name}
+                                control={<Checkbox checked={signatures?.includes("client")} />}
+                            />
+                            <FormControlLabel
+                                label={fernanda?.name}
+                                control={<Checkbox checked={signatures?.includes("seller")} />}
+                            />
                             <FormControlLabel label={"Sion"} control={<Checkbox checked={signatures?.includes("sion")} />} />
                         </Box>
                     </Box>
@@ -466,7 +503,12 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                                     <RepeatOnIcon color="primary" sx={{ width: "2.5vw", height: "2.5vw" }} />
                                 </IconButton>
                             </Tooltip>
-                            <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+                            <Modal
+                                open={open}
+                                onClose={handleClose}
+                                aria-labelledby="modal-modal-title"
+                                aria-describedby="modal-modal-description"
+                            >
                                 <Box
                                     sx={{
                                         position: "absolute",
@@ -483,7 +525,9 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                                         gap: "1vw",
                                     }}
                                 >
-                                    <Box sx={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+                                    <Box
+                                        sx={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}
+                                    >
                                         <h3>Escolha um usuário</h3>
 
                                         <SearchField
@@ -517,12 +561,19 @@ export const Contract: React.FC<ContractProps> = ({}) => {
 
                                     <SellerList sellers={sellerList.filter((seller) => seller.name)} />
                                     {user!.adm && (
-                                        <div className="buttons-container" style={{ gap: "1vw", justifyContent: "flex-end" }}>
+                                        <div
+                                            className="buttons-container"
+                                            style={{ gap: "1vw", justifyContent: "flex-end" }}
+                                        >
                                             <Button onClick={handleClose} variant="outlined">
                                                 Cancelar
                                             </Button>
                                             <Button onClick={() => handleSellerUpdate(selectedSeller)} variant="contained">
-                                                {updateSellerLoading ? <CircularProgress size={"1.5rem"} sx={{ color: "white" }} /> : "Alterar"}
+                                                {updateSellerLoading ? (
+                                                    <CircularProgress size={"1.5rem"} sx={{ color: "white" }} />
+                                                ) : (
+                                                    "Alterar"
+                                                )}
                                             </Button>
                                         </div>
                                     )}
@@ -530,8 +581,27 @@ export const Contract: React.FC<ContractProps> = ({}) => {
                             </Modal>
                         </div>
                     </div>
-
-                    <Box className="Contract-Page" ref={ref} sx={{ alignItems: "center", gap: "1vw" }}>
+                    <Box>
+                        <a
+                            href={`https://app.agenciaboz.com.br:4000/${contract.filename}`}
+                            download={`${contract.filename}`}
+                            target="_blank"
+                        >
+                            <Button
+                                sx={{
+                                    alignSelf: "flex-start",
+                                    borderRadius: "1vw",
+                                    padding: " 0 0vw",
+                                    gap: "0.6vw",
+                                    color: "black",
+                                }}
+                            >
+                                <DownloadIcon />
+                                <h1>Baixar Contrato</h1>
+                            </Button>
+                        </a>
+                    </Box>
+                    <Box className="Contract-Page" ref={ref} sx={{ alignItems: "center", gap: "1vw", width: "100%" }}>
                         {contract ? (
                             <>
                                 <Document
