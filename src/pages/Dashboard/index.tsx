@@ -19,6 +19,8 @@ import { NewBoard } from "./Boards/NewBoard"
 import { StatusManager } from "./Boards/StatusManager"
 import { Whatsapp } from "./Whatsapp"
 import { Logs } from "./Logs"
+import { CustomersImages } from "./CustomersImages"
+import { CustomerForm } from "./CustomersImages/CustomerForm"
 
 interface DashboardProps {}
 
@@ -49,6 +51,9 @@ export const Dashboard: React.FC<DashboardProps> = ({}) => {
                     <Route path="new_seller/" element={<NewSeller />} />
                     <Route path="texts/" element={<Texts user={user} />} />
                     <Route path="images/" element={<Images />} />
+                    <Route path="customers_images/" element={<CustomersImages />} />
+                    <Route path="customer/new" element={<CustomerForm />} />
+                    <Route path="customer/:id" element={<CustomerForm />} />
                     {/*<Route path="validations/" element={<Validations />} />*/}
                     <Route path="boards" element={<Boards user={user} />} />
                     <Route path="boards/new" element={<NewBoard />} />
