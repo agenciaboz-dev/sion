@@ -1,10 +1,13 @@
 #!/bin/bash
 
-user="cooperativasion"
+ssh_profile="root@agencyboz"
+user="coope8746"
+domain="cooperativasion.com.br"
 subdomain="painel.cooperativasion.com.br"
-path="/home/${user}/${subdomain}"
+
+path="/home/${domain}/${subdomain}"
 
 yarn build
 echo 'Uploading build to server'
-scp -r -P 22022 build/* agenciaboz:${path}
-ssh -p 22022 agenciaboz "chown -R ${user}:${user} ${path}/*"
+scp -r build/* ${ssh_profile}:${path}
+ssh ${ssh_profile} "chown -R ${user}:${user} ${path}/*"
