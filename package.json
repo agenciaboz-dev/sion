@@ -23,7 +23,7 @@
     "react-loading": "^2.0.3",
     "react-modal": "^3.16.1",
     "react-responsive": "^9.0.2",
-    "react-responsive-carousel": "^3.2.23",
+    "react-responsive-carousel": "3.2.21",
     "react-router-dom": "^6.4.0",
     "react-scripts": "5.0.1",
     "react-slide-routes": "^3.0.3",

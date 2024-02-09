@@ -2,14 +2,24 @@ import useMeasure from "react-use-measure"
 import { Carousel } from "react-responsive-carousel"
 import { Avatar, Box, useMediaQuery } from "@mui/material"
 import "./style.scss"
+import axios from "axios"
+import { useEffect, useState } from "react"
 
 const getImageUrl = (customerImage) => `/images/customers/${customerImage}.webp`
-
-const customerImages = ["confiance", "toyota_sulpar", "elasto", "mcdonalds", "baraquias", "varandas", "dutra_ipiranga", "lojasmm"]
 
 export const WhoGets = () => {
     const isMobile = useMediaQuery("(max-width:600px)")
     const [ref, { height }] = useMeasure()
+    const [customerImages, setCustomerImages] = useState([])
+
+    async function fetchCustomerImages() {
+        const images = (await axios.get("https://app.agenciaboz.com.br:4101/api/customers")).data.map((customer) => customer.image)
+        setCustomerImages(images)
+    }
+
+    useEffect(() => {
+        fetchCustomerImages()
+    }, [])
 
     return (
         <div className="WhoGets-Component" ref={ref}>
@@ -27,8 +37,9 @@ export const WhoGets = () => {
                     showStatus={false}
                     showIndicators={false}
                     width={"100vw"}
+                    stopOnHover={false}
                 >
-                    {customerImages.map((name, index) => (
+                    {customerImages.map((url, index) => (
                         <Box
                             key={index}
                             sx={{
@@ -38,13 +49,12 @@ export const WhoGets = () => {
                             }}
                         >
                             <Avatar
-                                variant="rounded"
-                                src={getImageUrl(name)}
+                                variant="square"
+                                src={url}
                                 style={{
                                     width: isMobile ? "60%" : "25%",
                                     height: "auto",
                                     aspectRatio: "1/1",
-                                    borderRadius: "5vw",
                                     boxShadow: "0 0.5vw 1vw #00000040",
                                 }}
                             />
