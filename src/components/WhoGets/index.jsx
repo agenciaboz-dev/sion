@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react"
-import { Avatar, Box, useMediaQuery } from "@mui/material"
 import useMeasure from "react-use-measure"
-import axios from "axios"
-import Slider from "react-slick"
+import { Carousel } from "react-responsive-carousel"
+import { Avatar, Box, useMediaQuery } from "@mui/material"
 import "./style.scss"
-import "slick-carousel/slick/slick.css"
-import "slick-carousel/slick/slick-theme.css"
+import axios from "axios"
+import { useEffect, useState } from "react"
 
 const getImageUrl = (customerImage) => `/images/customers/${customerImage}.webp`
 
@@ -23,20 +21,6 @@ export const WhoGets = () => {
         fetchCustomerImages()
     }, [])
 
-    const settings = {
-        dots: false,
-        infinite: true,
-        speed: isMobile ? 2000 * customerImages.length : 3000 * customerImages.length,
-        slidesToShow: customerImages.length,
-        slidesToScroll: customerImages.length,
-        autoplay: true,
-        autoplaySpeed: 0,
-        cssEase: "linear",
-        variableWidth: true,
-        arrows: true,
-        pauseOnHover: false,
-    }
-
     return (
         <div className="WhoGets-Component" ref={ref}>
             <h2>Quem recebe nossa energia</h2>
@@ -44,30 +28,39 @@ export const WhoGets = () => {
             <div className="white-background"></div>
 
             <div className="main-container">
-                <Slider {...settings}>
+                <Carousel
+                    autoPlay
+                    infiniteLoop
+                    interval={3000}
+                    transitionTime={1000}
+                    showThumbs={false}
+                    showStatus={false}
+                    showIndicators={false}
+                    width={"100vw"}
+                    stopOnHover={false}
+                >
                     {customerImages.map((url, index) => (
                         <Box
                             key={index}
                             sx={{
-                                padding: isMobile ? "5vw" : "2vw",
+                                position: "relative",
                                 justifyContent: "center",
-                                alignItems: "center",
-                                display: "flex !important",
-                                width: isMobile ? "60% !important" : "25% !important",
+                                padding: "3vw",
                             }}
                         >
-                            <img
+                            <Avatar
+                                variant="square"
                                 src={url}
-                                alt={`Customer ${index}`}
                                 style={{
-                                    width: isMobile ? "60vw" : "15vw",
+                                    width: isMobile ? "60%" : "25%",
                                     height: "auto",
+                                    aspectRatio: "1/1",
                                     boxShadow: "0 0.5vw 1vw #00000040",
                                 }}
                             />
                         </Box>
                     ))}
-                </Slider>
+                </Carousel>
             </div>
         </div>
     )
