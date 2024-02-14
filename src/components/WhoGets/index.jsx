@@ -31,7 +31,7 @@ export const WhoGets = () => {
         autoplaySpeed: 0,
         cssEase: "linear",
         variableWidth: true,
-        arrows: true,
+        arrows: false,
         pauseOnHover: false,
     }
 
