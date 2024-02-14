@@ -24,7 +24,7 @@ export const WhoGets = () => {
     const settings = {
         dots: false,
         infinite: true,
-        speed: 2000,
+        speed: 3000,
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
@@ -51,7 +51,7 @@ export const WhoGets = () => {
                                 justifyContent: "center",
                                 alignItems: "center",
                                 display: "flex !important",
-                                width: isMobile ? "60% !important" : "25% !important",
+                                // width: isMobile ? "60vw" : "15vw",
                             }}
                         >
                             <img
@@ -60,6 +60,8 @@ export const WhoGets = () => {
                                 style={{
                                     width: isMobile ? "60vw" : "15vw",
                                     height: "auto",
+                                    aspectRatio: "1/1",
+                                    objectFit: "cover",
                                     boxShadow: "0 0.5vw 1vw #00000040",
                                 }}
                             />
