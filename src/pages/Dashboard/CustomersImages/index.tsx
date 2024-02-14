@@ -32,7 +32,7 @@ export const CustomersImages: React.FC<CustomersImagesProps> = ({}) => {
                         <AddIcon sx={{ transform: "scale(3)" }} />
                     </Button>
                 </Grid>
-                {customers.map((customer) => (
+                {[...customers].reverse().map((customer) => (
                     <Grid item xs={1} key={customer.id}>
                         <CustomerContainer customer={customer} />
                     </Grid>
