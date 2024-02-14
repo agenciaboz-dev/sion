@@ -24,9 +24,9 @@ export const WhoGets = () => {
     const settings = {
         dots: false,
         infinite: true,
-        speed: isMobile ? 2000 * customerImages.length : 3000 * customerImages.length,
-        slidesToShow: customerImages.length,
-        slidesToScroll: customerImages.length,
+        speed: 2000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 0,
         cssEase: "linear",
