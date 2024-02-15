@@ -28,8 +28,8 @@ export const WhoGets = () => {
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 0,
-        cssEase: "linear",
+        autoplaySpeed: 3000,
+        cssEase: "ease-in-out",
         variableWidth: true,
         arrows: false,
         pauseOnHover: false,
@@ -47,18 +47,17 @@ export const WhoGets = () => {
                         <Box
                             key={index}
                             sx={{
-                                padding: isMobile ? "5vw" : "2vw",
+                                padding: isMobile ? "10vw" : "2vw",
                                 justifyContent: "center",
                                 alignItems: "center",
                                 display: "flex !important",
-                                // width: isMobile ? "60vw" : "15vw",
                             }}
                         >
                             <img
                                 src={url}
                                 alt={`Customer ${index}`}
                                 style={{
-                                    width: isMobile ? "60vw" : "15vw",
+                                    width: isMobile ? "80vw" : "16vw",
                                     height: "auto",
                                     aspectRatio: "1/1",
                                     objectFit: "cover",
