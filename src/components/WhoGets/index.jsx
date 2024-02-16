@@ -3,6 +3,7 @@ import { Box, useMediaQuery } from "@mui/material"
 import useMeasure from "react-use-measure"
 import axios from "axios"
 import Slider from "react-slick"
+import { useTexts } from "../../hooks/useTexts"
 import "./style.scss"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
@@ -11,6 +12,7 @@ export const WhoGets = () => {
     const isMobile = useMediaQuery("(max-width:600px)")
     const [ref, { height }] = useMeasure()
     const [customerImages, setCustomerImages] = useState([])
+    const texts = useTexts().whoGets
 
     async function fetchCustomerImages() {
         const images = (await axios.get("https://app.agenciaboz.com.br:4101/api/customers")).data.map((customer) => customer.image)
@@ -37,7 +39,7 @@ export const WhoGets = () => {
 
     return (
         <div className="WhoGets-Component" ref={ref}>
-            <h2>Quem recebe nossa energia</h2>
+            <h2>{texts[0]?.text}</h2>
             <div className="blue-background"></div>
             <div className="white-background"></div>
 

@@ -13,6 +13,7 @@ export const TextsProvider = ({ children }) => {
     const [contact, setContact] = useState([])
     const [about, setAbout] = useState([])
     const [footer, setFooter] = useState([])
+    const [whoGets, setWhoGets] = useState([])
 
     useEffect(() => {
         api2.get("texts").then((response) => {
@@ -24,12 +25,9 @@ export const TextsProvider = ({ children }) => {
             setAbout(texts.filter((text) => text.section == 5))
             setFooter(texts.filter((text) => text.section == 6))
             setContact(texts.filter((text) => text.section == 7))
+            setWhoGets(texts.filter((text) => text.section == 8))
         })
     }, [])
 
-    return (
-        <TextsContext.Provider value={{ advert, howWorks, simulator, faq, contact, about, footer }}>
-            {children}
-        </TextsContext.Provider>
-    )
+    return <TextsContext.Provider value={{ advert, howWorks, simulator, faq, contact, about, footer, whoGets }}>{children}</TextsContext.Provider>
 }
