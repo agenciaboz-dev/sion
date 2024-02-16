@@ -12,8 +12,8 @@ interface TextsProps {
 export const Texts: React.FC<TextsProps> = ({ user }) => {
     const api = useApi()
     const { newArray } = useArray()
-    const sections = newArray(7)
-    const skeletons = newArray(7)
+    const sections = newArray(8)
+    const skeletons = newArray(8)
 
     const [texts, setTexts] = useState<Text[]>([])
 
