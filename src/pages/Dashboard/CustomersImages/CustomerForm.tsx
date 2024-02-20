@@ -39,6 +39,10 @@ export const CustomerForm: React.FC<CustomerFormProps> = ({}) => {
 
     async function deleteCustomerImage() {
         try {
+            const userConfirmed = window.confirm("Tem certeza de que deseja excluir esta imagem?")
+            if (!userConfirmed) {
+                return
+            }
             setDeleting(true)
             const response = await api.delete("/customers", { data: { id: customer?.id } })
             setDeleting(false)
@@ -69,7 +73,7 @@ export const CustomerForm: React.FC<CustomerFormProps> = ({}) => {
                         <Box
                             sx={{
                                 alignItems: "center",
-                                gap: "2vw",
+                                gap: "1vw",
                             }}
                         >
                             <p>URL da imagem:</p>
