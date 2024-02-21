@@ -71,7 +71,7 @@ export const CustomerForm: React.FC<CustomerFormProps> = ({}) => {
 
         confirm({
             title: "Atualizar imagem",
-            content: "Tem certeza de que deseja alterar essa imagem?",
+            content: "Confirma o uso desta imagem?",
             onConfirm: async () => {
                 setLoading(true)
                 const formData = new FormData()
