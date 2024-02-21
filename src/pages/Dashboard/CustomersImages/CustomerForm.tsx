@@ -70,7 +70,7 @@ export const CustomerForm: React.FC<CustomerFormProps> = ({}) => {
         if (loading) return
 
         confirm({
-            title: "Atualizar imagem",
+            title: "Nova imagem",
             content: "Confirma o uso desta imagem?",
             onConfirm: async () => {
                 setLoading(true)
