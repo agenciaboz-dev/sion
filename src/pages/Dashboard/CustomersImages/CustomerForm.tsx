@@ -10,6 +10,7 @@ import { api } from "../../../api"
 import { useFormik } from "formik"
 import { useSnackbar } from "burgos-snackbar"
 import Dropzone from "react-dropzone"
+import { useConfirmDialog } from "burgos-confirm"
 import "./style.scss"
 
 interface CustomerFormProps {}
@@ -25,6 +26,8 @@ export const CustomerForm: React.FC<CustomerFormProps> = ({}) => {
     const { snackbar } = useSnackbar()
     const [hover, setHover] = useState(false)
     const formik = useFormik<customerForm>({ initialValues: customer || { image: "" }, onSubmit: (values) => onSubmit(values) })
+    const { confirm } = useConfirmDialog()
+
     const skeleton_style = { width: "100%", height: "15vw" }
     const upload_icon_style: SxProps = {
         width: "30%",
@@ -63,6 +66,28 @@ export const CustomerForm: React.FC<CustomerFormProps> = ({}) => {
         }
     }
 
+    const fileHandler = async (file: File) => {
+        if (loading) return
+
+        confirm({
+            title: "Atualizar imagem",
+            content: "Tem certeza de que deseja alterar essa imagem?",
+            onConfirm: async () => {
+                setLoading(true)
+                const formData = new FormData()
+                const data = { id: customer?.id }
+
+                formData.append("data", JSON.stringify(data))
+                formData.append("file", file)
+                setLoading(true)
+                const response = customer ? await api.patch("/customers", formData) : await api.post("/customers", formData)
+                setLoading(false)
+
+                navigate(-1)
+            },
+        })
+    }
+
     return (
         <div>
             <form style={{ display: "contents" }} onSubmit={formik.handleSubmit}>
@@ -73,9 +98,7 @@ export const CustomerForm: React.FC<CustomerFormProps> = ({}) => {
                         }}
                     >
                         <p>Arraste ou selecione um arquivo:</p>
-                        <Dropzone
-                        // onDrop={(acceptedFiles) => fileHandler(acceptedFiles[0])}
-                        >
+                        <Dropzone onDrop={(acceptedFiles) => fileHandler(acceptedFiles[0])}>
                             {({ getRootProps, getInputProps }) => (
                                 <div
                                     {...getRootProps()}

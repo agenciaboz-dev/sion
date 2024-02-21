@@ -36,7 +36,7 @@ export const ImageContainer: React.FC<ImageContainerProps> = ({ image }) => {
 
         confirm({
             title: "Atualizar imagem",
-            content: "Tem certeza que deseja alterar essa imagem?",
+            content: "Tem certeza de que deseja alterar essa imagem?",
             onConfirm: () => {
                 setLoading(true)
                 const formData = new FormData()
