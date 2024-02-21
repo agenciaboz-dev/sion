@@ -24,23 +24,21 @@ export const CustomerContainer: React.FC<CustomerContainerProps> = ({ customer }
 
     return (
         <MenuItem
-            sx={{ flexDirection: "column", alignItems: "center" }}
+            sx={{ flexDirection: "column", alignItems: "center", width: 1 }}
             onClick={() => navigate(`/dashboard/customer/${customer.id}`, { state: { customer } })}
         >
-            <Box>
-                <Avatar
-                    key={customer.id}
-                    src={customer.image}
-                    variant="rounded"
-                    sx={{
-                        border: "1px dashed $primary-color",
-                        width: "100%",
-                        height: "auto",
-                        aspectRatio: "1/1",
-                        objectFit: "cover",
-                    }}
-                />
-            </Box>
+            <Avatar
+                key={customer.id}
+                src={customer.image}
+                variant="rounded"
+                sx={{
+                    border: "1px dashed $primary-color",
+                    width: "100%",
+                    height: "auto",
+                    aspectRatio: "1/1",
+                    objectFit: "cover",
+                }}
+            />
         </MenuItem>
     )
 }
