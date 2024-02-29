@@ -133,63 +133,51 @@ export const Simulator = () => {
   }, [spent])
 
   return (
-    <div className="Simulator-Component">
-      <div className="simulator-anchor" id="simulator"></div>
-      <div className="white-container">
-         {text({ text: <h1>{texts[0]?.text}</h1>, loading: textsLoading, height: "5vw" })}
-        <MaskedInput
-          value={spent}
-          mask={numberMask}
-          onChange={(event) => setSpent(event.target.value)}
-          render={(ref, props) => (
-            <TextField
-              inputRef={ref}
-              {...props}
-              label="Digite seu consumo mensal"
-              InputProps={{
-                endAdornment: <p className="kwh">kWh</p>,
-                sx: {
-                  width: isMobile ? "72vw" : "100%",
-                },
-              }}
-              inputProps={{ inputMode: "numeric" }}
-            />
-          )}
-        />
+      <div className="Simulator-Component">
+          <div className="simulator-anchor" id="simulator"></div>
+          <div className="white-container">
+              {text({ text: <h1>{texts[0]?.text}</h1>, loading: textsLoading, height: "5vw" })}
+              <MaskedInput
+                  value={spent}
+                  mask={numberMask}
+                  onChange={(event) => setSpent(event.target.value)}
+                  render={(ref, props) => (
+                      <TextField
+                          inputRef={ref}
+                          {...props}
+                          label="Digite seu consumo mensal"
+                          InputProps={{
+                              endAdornment: <p className="kwh">kWh</p>,
+                              sx: {
+                                  width: isMobile ? "72vw" : "100%",
+                              },
+                          }}
+                          inputProps={{ inputMode: "numeric" }}
+                      />
+                  )}
+              />
 
-        {/* <div className="flags-container">
+              {/* <div className="flags-container">
           {flags.map((flag) => (
             <Flag flag={flag} />
           ))}
         </div> */}
 
-        <div className="econ-wrapper">
-          <Econ />
-        </div>
+              <div className="econ-wrapper">
+                  <Econ />
+              </div>
+          </div>
+          <div className="blue-container">
+              {text({ text: <h1>{texts[4]?.text}</h1>, loading: textsLoading, height: "5vw" })}
+              <div className="benefits-container">
+                  <Benefits icon={() => <EconomyIcon />} title={texts[5]?.text} text={texts[6]?.text} />
+                  <Benefits icon={() => <NoInvestmentIcon />} title={texts[7]?.text} text={texts[8]?.text} />
+                  <Benefits icon={() => <RenewableEnergyIcon />} title={texts[9]?.text} text={texts[10]?.text} />
+              </div>
+              <button onClick={() => window.open("https://wa.me/554130283782", "_blank")} className="simulator-signup-button">
+                  Quero economizar!
+              </button>
+          </div>
       </div>
-      <div className="blue-container">
-      {text({ text: <h1>{texts[4]?.text}</h1>, loading: textsLoading, height: "5vw" })}
-        <div className="benefits-container">
-          <Benefits
-            icon={() => <EconomyIcon />}
-            title= {texts[5]?.text}
-            text= {texts[6]?.text}
-          />
-          <Benefits
-            icon={() => <NoInvestmentIcon />}
-            title={texts[7]?.text}
-            text={texts[8]?.text}
-          />
-          <Benefits
-            icon={() => <RenewableEnergyIcon />}
-            title={texts[9]?.text}
-            text={texts[10]?.text}
-          />
-        </div>
-        <button onClick={() => goToSignUp()} className="simulator-signup-button">
-          Quero economizar!
-        </button>
-      </div>
-    </div>
   )
 }
